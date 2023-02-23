@@ -18,6 +18,7 @@
 		"paths": {
 			"@/components/*": ["components/*"],
 			"@/ui/*": ["ui/*"],
+			"@/api/*": ["api/*"],
 			"@/hooks/*": ["hooks/*"],
 			"@/shared/*": ["shared/*"],
 			"@/pages/*": ["pages/*"],
@@ -27,7 +28,12 @@
 			"@/store/*": ["store/*"],
 			"@/utils/*": ["utils/*"],
 			"@/providers/*": ["providers/*"]
-		}
+		},
+		"plugins": [
+			{
+				"name": "next"
+			}
+		]
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]
