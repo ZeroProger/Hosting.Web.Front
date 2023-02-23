@@ -27,7 +27,8 @@
 			"@/assets/*": ["assets/*"],
 			"@/store/*": ["store/*"],
 			"@/utils/*": ["utils/*"],
-			"@/providers/*": ["providers/*"]
+			"@/providers/*": ["providers/*"],
+			"@/styles/*": ["styles/*"]
 		},
 		"plugins": [
 			{
