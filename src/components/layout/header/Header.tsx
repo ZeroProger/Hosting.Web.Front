@@ -1,5 +1,5 @@
 import logo from '/public/favicon.png'
-import { Avatar, Dropdown, Navbar } from '@nextui-org/react'
+import { Avatar, Dropdown, Navbar, Text } from '@nextui-org/react'
 import { FC, Fragment, useEffect, useState } from 'react'
 
 import useMediaQuery from '@/hooks/useMediaQuery'
@@ -47,16 +47,25 @@ const Header: FC<IHeader> = () => {
 						<Dropdown placement="bottom-right" isBordered>
 							<Navbar.Item>
 								<Dropdown.Trigger>
-									<Avatar
-										className={styles.avatar}
-										as="button"
-										color="primary"
-										bordered
-										borderWeight="normal"
-										size="md"
-										text="ZeroProger"
-										src={logo.src}
-									/>
+									<div className="flex flex-row gap-x-3 flex-nowrap items-center cursor-pointer">
+										<Avatar
+											className={styles.avatar}
+											as="button"
+											squared
+											size="md"
+											text="ZeroProger"
+											textColor="white"
+											src={logo.src}
+											css={{
+												img: {
+													borderColor: '$gray600',
+												},
+											}}
+										/>
+										<Text className="text-lg font-semibold" css={{ color: '$gray900' }}>
+											ZeroProger
+										</Text>
+									</div>
 								</Dropdown.Trigger>
 							</Navbar.Item>
 							<UserMenu />

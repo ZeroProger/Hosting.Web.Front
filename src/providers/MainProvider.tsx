@@ -25,7 +25,8 @@ const nextUITheme = createTheme({
 			primarySolidContrast: '$white',
 			primaryShadow: '$green500',
 			link: '#8d4ede',
-			background: '#08c466',
+			background: '$gray200',
+			border: '$gray200',
 		},
 	},
 })
