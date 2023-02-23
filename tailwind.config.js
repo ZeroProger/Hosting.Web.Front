@@ -4,13 +4,21 @@ const { white } = require('tailwindcss/colors')
 const colors = require('tailwindcss/colors')
 const plugin = require('tailwindcss/plugin')
 
-const primary = '#E30B13'
+const primary = '#08c466'
+const secondary = '#005801'
+const secondaryGray = '#006B6A'
+const secondaryBlue = '#59BAB8'
+const secondaryDirt = '#bb855d'
 
 module.exports = {
 	content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		colors: {
 			primary,
+			secondary,
+			secondaryGray,
+			secondaryBlue,
+			secondaryDirt,
 			black: colors.black,
 			white: colors.white,
 			transparent: colors.transparent,

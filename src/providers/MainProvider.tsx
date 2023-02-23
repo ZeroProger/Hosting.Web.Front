@@ -1,4 +1,4 @@
-import { createTheme, NextUIProvider } from '@nextui-org/react'
+import { NextUIProvider, createTheme } from '@nextui-org/react'
 import { SSRProvider } from '@react-aria/ssr'
 import { FC, PropsWithChildren } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -15,15 +15,17 @@ const nextUITheme = createTheme({
 			primaryLightHover: '$green300',
 			primaryLightActive: '$green400',
 			primaryLightContrast: '$green600',
-			primary: '#E30B13',
-			secondary: '#940407',
+			primary: '#08c466',
+			secondary: '#005801',
+			secondaryGray: '#006B6A',
+			secondaryBlue: '#59BAB8',
 			primaryBorder: '$green500',
 			primaryBorderHover: '$green600',
 			primarySolidHover: '$green700',
 			primarySolidContrast: '$white',
 			primaryShadow: '$green500',
 			link: '#8d4ede',
-			background: 'rgb(51 51 51 / var(--tw-bg-opacity))',
+			background: '#08c466',
 		},
 	},
 })
