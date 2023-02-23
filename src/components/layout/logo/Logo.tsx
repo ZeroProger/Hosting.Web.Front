@@ -29,17 +29,17 @@ const Logo: FC<ILogo> = ({ showRule = minWidthMediaQuery, withText = false }) =>
 
 	return (
 		<Fragment>
-			{isLoad && isShow && (
-				<Link href="/" className="flex flex-row gap-2 items-center">
+			{isLoad && (
+				<Link href="/" className="flex flex-row gap-2 items-center mr-4 md:mr-8">
 					<Image
 						src={logo.src}
 						alt="Simple Host Logo"
 						className={styles.image}
-						width={50}
-						height={50}
+						width={isShow ? 50 : 45}
+						height={isShow ? 50 : 45}
 						priority
 					/>
-					{withText && (
+					{withText && isShow && (
 						<div className={styles.logoText}>
 							<span className="text-primary">Simple</span>
 							<span className="text-secondaryDirt">Host</span>

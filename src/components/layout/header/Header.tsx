@@ -1,10 +1,14 @@
 import logo from '/public/favicon.png'
 import { Avatar, Dropdown, Navbar, Text } from '@nextui-org/react'
+import Link from 'next/link'
 import { FC, Fragment, useEffect, useState } from 'react'
+
+import CustomSelect from '@/components/ui/customSelect/CustomSelect'
 
 import useMediaQuery from '@/hooks/useMediaQuery'
 
 import { maxWidthMediaQuery } from '@/config/mediaQuery.config'
+import { getServerUrl } from '@/config/url.config'
 
 import Logo from '../logo/Logo'
 import UserMenu from '../menu/userMenu/UserMenu'
@@ -16,6 +20,12 @@ interface IHeader {}
 const Header: FC<IHeader> = () => {
 	const isMobile = useMediaQuery(maxWidthMediaQuery)
 	const [isLoad, setIsLoad] = useState<boolean>(false)
+
+	const options = [
+		{ value: 'sky-block', label: 'Sky Block' },
+		{ value: 'classic-vanila', label: 'Classic Vanila' },
+		{ value: 'industrial-craft', label: 'Industrial Craft' },
+	]
 
 	useEffect(() => {
 		setIsLoad(true)
@@ -44,6 +54,24 @@ const Header: FC<IHeader> = () => {
 							justifyContent: 'end',
 						}}
 					>
+						<Navbar.Item
+							css={{
+								width: '100%',
+								display: 'flex',
+								flexWrap: 'nowrap',
+								columnGap: '8px',
+								'& :first-child': {
+									boxSizing: 'border-box',
+								},
+							}}
+						>
+							<>
+								<CustomSelect options={options}></CustomSelect>
+								<Link href={getServerUrl('/create')} className="btn-primary">
+									Создать сервер
+								</Link>
+							</>
+						</Navbar.Item>
 						<Dropdown placement="bottom-right" isBordered>
 							<Navbar.Item>
 								<Dropdown.Trigger>

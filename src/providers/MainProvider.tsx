@@ -5,10 +5,12 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 
 import Layout from '@/components/layout/Layout'
 
+import { IS_DARK_THEME } from '@/config/constants'
+
 const queryClient = new QueryClient()
 
 const nextUITheme = createTheme({
-	type: 'dark',
+	type: IS_DARK_THEME ? 'dark' : 'light',
 	theme: {
 		colors: {
 			primaryLight: '$green200',

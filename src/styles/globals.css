@@ -4,6 +4,13 @@
 
 :root {
 	--max-width: 1200px;
+	--primary: #08c466;
+	--secondary: #005801;
+	--secondary-gray: #006b6a;
+	--secondary-blue: #59bab8;
+	--secondary-dirt: #bb855d;
+	--background: #192024;
+	--light-gray: #666666;
 }
 
 * {
@@ -18,9 +25,6 @@ body {
 	overflow-x: hidden;
 }
 
-body {
-}
-
 a {
 	color: inherit;
 	text-decoration: none;
@@ -29,5 +33,31 @@ a {
 @media (prefers-color-scheme: dark) {
 	html {
 		color-scheme: dark;
+	}
+
+	body {
+		background-color: #192024;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		color-scheme: dark;
+	}
+
+	body {
+		background-color: #192024;
+		color: #fff;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	html {
+		color-scheme: light;
+	}
+
+	body {
+		background-color: #fff;
+		color: #192024;
 	}
 }

@@ -9,6 +9,7 @@ const secondary = '#005801'
 const secondaryGray = '#006B6A'
 const secondaryBlue = '#59BAB8'
 const secondaryDirt = '#bb855d'
+const background = '#192024'
 
 module.exports = {
 	content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
@@ -19,6 +20,7 @@ module.exports = {
 			secondaryGray,
 			secondaryBlue,
 			secondaryDirt,
+			background,
 			black: colors.black,
 			white: colors.white,
 			transparent: colors.transparent,
@@ -92,14 +94,18 @@ module.exports = {
 			addComponents({
 				'.btn-primary': {
 					backgroundColor: primary,
-					color: white,
+					color: '#e6e6e6',
 					borderRadius: '0.65rem',
+					padding: '13px 15px',
+					wordWrap: 'normal',
+					whiteSpace: 'nowrap',
+					fontSize: '1.125rem !important',
 					transition: 'background-color .3s ease-in-out',
 					'&:hover': {
-						backgroundColor: '#ff0009',
+						backgroundColor: secondary,
 					},
 					'&:active': {
-						backgroundColor: '#ff0009',
+						backgroundColor: secondary,
 					},
 				},
 				'.text-link': {
