@@ -40,37 +40,54 @@ const Header: FC<IHeader> = () => {
 						backgroundColor: '$gray200',
 						$$navbarBackgroundColor: '$gray200',
 						zIndex: 2,
-						height: '70px',
+						height: 'var(--nextui--navbarHeight)',
+						'& .nextui-navbar-container': {
+							columnGap: '1.5rem',
+							'@media screen and (max-width: 900px)': {
+								flexWrap: 'wrap',
+							},
+						},
+						'@media screen and (max-width: 900px)': {
+							height: 'calc(var(--nextui--navbarHeight) * 2)',
+							alignItems: 'start',
+						},
 					}}
 					disableBlur
 					disableShadow
 				>
 					<Navbar.Brand>
-						<Logo withText />
+						<Logo withText showRule="(min-width: 600px)" />
 					</Navbar.Brand>
 					<Navbar.Content
 						css={{
 							w: '100%',
-							justifyContent: 'end',
+							maxW: '500px',
 						}}
+						className="sm:order-5 sm:max-w-full"
 					>
 						<Navbar.Item
 							css={{
 								width: '100%',
-								display: 'flex',
-								flexWrap: 'nowrap',
-								columnGap: '8px',
 								'& :first-child': {
 									boxSizing: 'border-box',
 								},
 							}}
 						>
-							<>
-								<CustomSelect options={options}></CustomSelect>
-								<Link href={getServerUrl('/create')} className="btn-primary">
-									Создать сервер
-								</Link>
-							</>
+							<CustomSelect options={options}></CustomSelect>
+						</Navbar.Item>
+					</Navbar.Content>
+					<Navbar.Content
+						css={{
+							width: '100%',
+							display: 'flex',
+							justifyContent: 'space-between',
+						}}
+						className="sm:w-auto"
+					>
+						<Navbar.Item>
+							<Link href={getServerUrl('/create')} className="btn-primary">
+								Создать сервер
+							</Link>
 						</Navbar.Item>
 						<Dropdown placement="bottom-right" isBordered>
 							<Navbar.Item>

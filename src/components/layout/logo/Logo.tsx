@@ -23,14 +23,10 @@ const Logo: FC<ILogo> = ({ showRule = minWidthMediaQuery, withText = false }) =>
 		setIsLoad(true)
 	}, [])
 
-	useEffect(() => {
-		console.log(isLoad, isShow)
-	}, [isLoad, isShow])
-
 	return (
 		<Fragment>
 			{isLoad && (
-				<Link href="/" className="flex flex-row gap-2 items-center mr-4 md:mr-8">
+				<Link href="/" className="flex flex-row gap-2 items-center">
 					<Image
 						src={logo.src}
 						alt="Simple Host Logo"

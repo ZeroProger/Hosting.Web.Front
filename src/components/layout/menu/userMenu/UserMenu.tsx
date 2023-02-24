@@ -9,6 +9,9 @@ const UserMenu: FC = () => {
 		<Dropdown.Menu
 			aria-label="User menu actions"
 			onAction={(actionKey) => console.log({ actionKey })}
+			style={{
+				backgroundColor: '#fff',
+			}}
 		>
 			{userMenu.items.map((item) => (
 				<Dropdown.Item

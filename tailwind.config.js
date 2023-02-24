@@ -39,6 +39,9 @@ module.exports = {
 				950: '#1a1a1a',
 			},
 		},
+		screens: {
+			sm: { max: '900px' },
+		},
 		extend: {
 			spacing: {
 				0.5: '0.12rem',

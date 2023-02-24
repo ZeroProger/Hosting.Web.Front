@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import Select, { ActionMeta, SingleValue, components } from 'react-select'
 
 import { getServerUrl } from '@/config/url.config'
@@ -19,15 +19,23 @@ const Input = (inputProps: any) => (
 
 const CustomSelect: FC<ICustomSelect> = ({ options }) => {
 	const router = useRouter()
+	const { slug } = router.query
+	const [selectedValue, setSelectedValue] = useState<IOption | null>(null)
 
 	const handleSelect = (newValue: SingleValue<IOption>, actionMeta: ActionMeta<IOption>) => {
-		router.push(getServerUrl(newValue?.value || ''))
+		router.push(getServerUrl(`/${newValue?.value || ''}`))
 	}
+
+	useEffect(() => {
+		setSelectedValue(options.find((el) => el.value === slug) || null)
+	}, [slug])
 
 	return (
 		<Select
 			options={options}
 			placeholder="Выберите сервер"
+			value={selectedValue}
+			isClearable
 			onChange={handleSelect}
 			className="custom-select-container"
 			classNamePrefix="custom-select"
