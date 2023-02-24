@@ -1,0 +1,11 @@
+.container {
+	width: 100%;
+	background-color: var(--nextui-colors-gray200);
+
+	.contentContainer {
+		width: 100%;
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 1.5rem;
+	}
+}

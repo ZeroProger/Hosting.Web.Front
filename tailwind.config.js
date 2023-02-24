@@ -41,6 +41,7 @@ module.exports = {
 		},
 		screens: {
 			sm: { max: '900px' },
+			xs: { max: '440px' },
 		},
 		extend: {
 			spacing: {

@@ -8,7 +8,7 @@ import CustomSelect from '@/components/ui/customSelect/CustomSelect'
 import useMediaQuery from '@/hooks/useMediaQuery'
 
 import { maxWidthMediaQuery } from '@/config/mediaQuery.config'
-import { getServerUrl } from '@/config/url.config'
+import { getServerCreateUrl } from '@/config/url.config'
 
 import Logo from '../logo/Logo'
 import UserMenu from '../menu/userMenu/UserMenu'
@@ -84,8 +84,8 @@ const Header: FC<IHeader> = () => {
 						}}
 						className="sm:w-auto"
 					>
-						<Navbar.Item>
-							<Link href={getServerUrl('/create')} className="btn-primary">
+						<Navbar.Item className="xs:hidden">
+							<Link href={getServerCreateUrl()} className="btn-primary">
 								Создать сервер
 							</Link>
 						</Navbar.Item>

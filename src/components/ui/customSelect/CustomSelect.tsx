@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import Select, { ActionMeta, SingleValue, components } from 'react-select'
 
-import { getServerUrl } from '@/config/url.config'
+import { getServerUrl, getServersUrl } from '@/config/url.config'
 
 interface IOption {
 	label: string
@@ -23,7 +23,7 @@ const CustomSelect: FC<ICustomSelect> = ({ options }) => {
 	const [selectedValue, setSelectedValue] = useState<IOption | null>(null)
 
 	const handleSelect = (newValue: SingleValue<IOption>, actionMeta: ActionMeta<IOption>) => {
-		router.push(getServerUrl(`/${newValue?.value || ''}`))
+		router.push(newValue ? getServerUrl(`${newValue.value}`) : getServersUrl())
 	}
 
 	useEffect(() => {
