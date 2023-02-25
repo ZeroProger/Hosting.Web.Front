@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-const { white } = require('tailwindcss/colors')
+const { white, gray } = require('tailwindcss/colors')
 const colors = require('tailwindcss/colors')
 const plugin = require('tailwindcss/plugin')
 
@@ -10,6 +10,9 @@ const secondaryGray = '#006B6A'
 const secondaryBlue = '#59BAB8'
 const secondaryDirt = '#bb855d'
 const background = '#192024'
+const error = '#f74343'
+const btnBackground = 'var(--bg-gray-800)'
+const btnHover = 'var(--light-gray)'
 
 module.exports = {
 	content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
@@ -21,6 +24,9 @@ module.exports = {
 			secondaryBlue,
 			secondaryDirt,
 			background,
+			error,
+			btnBackground,
+			btnHover,
 			black: colors.black,
 			white: colors.white,
 			transparent: colors.transparent,
@@ -104,12 +110,47 @@ module.exports = {
 					wordWrap: 'normal',
 					whiteSpace: 'nowrap',
 					fontSize: '1.125rem !important',
+					minWidth: 'auto',
 					transition: 'background-color .3s ease-in-out',
 					'&:hover': {
 						backgroundColor: secondary,
 					},
 					'&:active': {
 						backgroundColor: secondary,
+					},
+				},
+				'.btn-error': {
+					backgroundColor: error,
+					color: '#e6e6e6',
+					borderRadius: '0.65rem',
+					padding: '13px 15px',
+					wordWrap: 'normal',
+					whiteSpace: 'nowrap',
+					fontSize: '1.125rem !important',
+					minWidth: 'auto',
+					transition: 'background-color .3s ease-in-out',
+					'&:hover': {
+						backgroundColor: '#dc0909',
+					},
+					'&:active': {
+						backgroundColor: '#dc0909',
+					},
+				},
+				'.btn-default': {
+					backgroundColor: btnBackground,
+					color: '#e6e6e6',
+					borderRadius: '0.65rem',
+					padding: '13px 15px',
+					wordWrap: 'normal',
+					whiteSpace: 'nowrap',
+					fontSize: '1.125rem !important',
+					minWidth: 'auto',
+					transition: 'background-color .3s ease-in-out',
+					'&:hover': {
+						backgroundColor: btnHover,
+					},
+					'&:active': {
+						backgroundColor: btnHover,
 					},
 				},
 				'.text-link': {

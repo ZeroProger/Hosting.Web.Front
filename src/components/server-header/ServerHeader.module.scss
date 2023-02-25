@@ -1,0 +1,85 @@
+.container {
+	.bars {
+		@apply flex flex-col justify-start gap-5;
+		border-bottom: 1px solid var(--light-gray);
+		padding-bottom: 1.25rem;
+
+		.mainBar {
+			@apply flex flex-row flex-wrap justify-between items-center;
+			.mainBarInfo {
+				@apply flex flex-row flex-nowrap items-center gap-4;
+				.backBtn {
+					@apply bg-gray-800 rounded-full w-10 h-10 min-w-0 text-2xl;
+
+					&:hover {
+						background-color: var(--light-gray);
+					}
+
+					span {
+						@apply text-gray-400;
+						margin-left: 9px;
+					}
+				}
+
+				.mainBarName {
+					@apply text-3xl;
+				}
+			}
+
+			.mainBarActions {
+				@apply flex flex-row flex-wrap gap-4;
+			}
+		}
+
+		.subBar {
+			@apply flex flex-row flex-wrap justify-start items-center gap-8;
+
+			.subBarAddress {
+				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-gray-400;
+			}
+
+			.subBarUsers {
+				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-gray-400 z-1;
+			}
+
+			.subBarCore {
+				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-gray-400;
+			}
+
+			.subBarStatus {
+				@apply flex flex-row flex-nowrap gap-1 items-center text-lg text-primary;
+			}
+		}
+	}
+
+	.controls {
+		@apply flex flex-row flex-wrap items-center justify-between;
+
+		.tabs {
+			@apply flex flex-row flex-wrap justify-start items-center gap-x-10 gap-y-0;
+			a {
+				@apply block text-lg py-5 transition-colors;
+
+				&:hover {
+					@apply text-primary;
+				}
+			}
+		}
+
+		.otherActions {
+			@apply flex flex-row flex-nowrap items-center gap-8;
+
+			.otherActionsBtn {
+				@apply flex flex-row flex-nowrap items-center gap-2 text-lg;
+
+				.otherActionsIcon {
+					@apply text-primary text-xl;
+				}
+
+				.otherActionsText {
+					@apply text-gray-200 text-lg;
+				}
+			}
+		}
+	}
+}

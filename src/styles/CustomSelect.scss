@@ -72,15 +72,18 @@
 			background-color: #292a2e !important;
 			color: rgba(white, 0.6) !important;
 			animation: scaleIn 0.35s ease-in-out;
+			z-index: 10000 !important;
 		}
 
 		&__menu-list {
+			z-index: 10000 !important;
 		}
 
 		&__option {
 			cursor: pointer !important;
 			font-size: 1.125rem !important;
 			padding: 12px 15px;
+			z-index: 10000 !important;
 
 			&--is-focused {
 				background-color: lighten(#292a2e, 8%) !important;
