@@ -10,9 +10,11 @@ const secondaryGray = '#006B6A'
 const secondaryBlue = '#59BAB8'
 const secondaryDirt = '#bb855d'
 const background = '#192024'
+const backgroundLight = 'var(--nextui-colors-gray200)'
+const lightGray = 'var(--light-gray)'
+const textLightGray = 'var(--nextui-colors-text)'
 const error = '#f74343'
-const btnBackground = 'var(--bg-gray-800)'
-const btnHover = 'var(--light-gray)'
+const gray800 = 'var(--bg-gray-800)'
 
 module.exports = {
 	content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
@@ -24,9 +26,11 @@ module.exports = {
 			secondaryBlue,
 			secondaryDirt,
 			background,
+			backgroundLight,
+			lightGray,
+			textLightGray,
 			error,
-			btnBackground,
-			btnHover,
+			gray800,
 			black: colors.black,
 			white: colors.white,
 			transparent: colors.transparent,
@@ -137,7 +141,7 @@ module.exports = {
 					},
 				},
 				'.btn-default': {
-					backgroundColor: btnBackground,
+					backgroundColor: gray800,
 					color: '#e6e6e6',
 					borderRadius: '0.65rem',
 					padding: '13px 15px',
@@ -147,10 +151,10 @@ module.exports = {
 					minWidth: 'auto',
 					transition: 'background-color .3s ease-in-out',
 					'&:hover': {
-						backgroundColor: btnHover,
+						backgroundColor: lightGray,
 					},
 					'&:active': {
-						backgroundColor: btnHover,
+						backgroundColor: lightGray,
 					},
 				},
 				'.text-link': {

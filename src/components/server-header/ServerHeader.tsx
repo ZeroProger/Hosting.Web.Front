@@ -2,6 +2,8 @@ import { Avatar, Button, Text } from '@nextui-org/react'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 
+import { IParams } from '@/shared/types/base.types'
+
 import user1 from '@/assets/images/head1.webp'
 import user2 from '@/assets/images/head2.png'
 import user3 from '@/assets/images/head3.webp'
@@ -16,7 +18,7 @@ interface IServerHeader {}
 
 const ServerHeader: FC<IServerHeader> = () => {
 	const router = useRouter()
-	const { slug } = router.query
+	const { slug } = router.query as IParams
 
 	const users = [user1.src, user2.src, user3.src, user4.src]
 
@@ -41,7 +43,19 @@ const ServerHeader: FC<IServerHeader> = () => {
 					<div className={styles.subBarUsers}>
 						<Avatar.Group>
 							{users.map((url, index) => (
-								<Avatar src={url} key={index} bordered stacked squared size="sm" />
+								<Avatar
+									src={url}
+									key={index}
+									bordered
+									stacked
+									squared
+									size="sm"
+									css={{
+										'.nextui-avatar-bg': {
+											backgroundColor: 'transparent',
+										},
+									}}
+								/>
 							))}
 						</Avatar.Group>
 						<span>4/8 игроков</span>

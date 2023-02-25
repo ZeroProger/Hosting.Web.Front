@@ -1,42 +1,40 @@
-import { useRouter } from 'next/router'
 import { FC, useEffect, useId, useState } from 'react'
 import Select, { ActionMeta, SingleValue, components } from 'react-select'
 
-import { getServerUrl, getServersUrl } from '@/config/url.config'
-
-interface IOption {
+export interface IOption {
 	label: string
 	value: string
 }
 
-interface ICustomSelect {
+interface IPropertySelect {
 	options: IOption[]
+	placeholder: string
+	defaultValue?: IOption
 }
 
 const Input = (inputProps: any) => (
 	<components.Input {...inputProps} autoComplete="nope" aria-autocomplete="none" />
 )
 
-const CustomSelect: FC<ICustomSelect> = ({ options }) => {
-	const router = useRouter()
-	const { slug } = router.query
+const PropertySelect: FC<IPropertySelect> = ({ options, placeholder, defaultValue }) => {
 	const [selectedValue, setSelectedValue] = useState<IOption | null>(null)
-	const selectId = useId()
 
 	const handleSelect = (newValue: SingleValue<IOption>, actionMeta: ActionMeta<IOption>) => {
-		router.push(newValue ? getServerUrl(`${newValue.value}`) : getServersUrl())
+		setSelectedValue(newValue)
 	}
 
+	const selectId = useId()
+
 	useEffect(() => {
-		setSelectedValue(options.find((el) => el.value === slug) || null)
-	}, [slug])
+		console.log(defaultValue)
+	}, [])
 
 	return (
 		<Select
 			options={options}
-			placeholder="Выберите сервер"
-			value={selectedValue}
-			isClearable
+			placeholder={placeholder}
+			value={selectedValue || defaultValue}
+			defaultValue={defaultValue}
 			id={selectId}
 			instanceId={selectId}
 			inputId={selectId}
@@ -48,4 +46,4 @@ const CustomSelect: FC<ICustomSelect> = ({ options }) => {
 	)
 }
 
-export default CustomSelect
+export default PropertySelect

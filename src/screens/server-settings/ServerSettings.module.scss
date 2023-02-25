@@ -1,2 +1,69 @@
 .container {
+	.settings {
+		@apply bg-backgroundLight p-5 rounded-layout;
+		.settingsTitle {
+			@apply text-2xl text-textLightGray mb-4;
+		}
+
+		.properties {
+			@apply grid gap-4;
+			grid-template-columns: 1fr 1fr 1fr;
+
+			@media screen and (max-width: 1200px) {
+				grid-template-columns: 1fr 1fr;
+			}
+
+			@media screen and (max-width: 600px) {
+				grid-template-columns: 1fr;
+			}
+
+			.property {
+				@apply rounded-lg flex flex-col justify-start;
+				.propertyInput {
+					@apply flex flex-row items-center bg-gray800 px-4 py-3 gap-x-5 flex-grow rounded-t-lg;
+					.propertyLabel {
+						@apply flex-grow text-xl whitespace-nowrap;
+					}
+					.propertyNumber {
+						input[type='number'] {
+							font-size: 22px;
+							text-align: end;
+							-moz-appearance: textfield;
+
+							&::-webkit-outer-spin-button {
+								-webkit-appearance: none;
+								display: none;
+							}
+							&::-webkit-inner-spin-button {
+								-webkit-appearance: none;
+								display: none;
+							}
+							&:hover {
+								-moz-appearance: number-input;
+							}
+							&:focus {
+								-moz-appearance: number-input;
+							}
+						}
+					}
+
+					.propertySelect {
+					}
+
+					.propertyBoolean {
+					}
+
+					.propertyString {
+						input[type='text'] {
+							font-size: 22px;
+						}
+					}
+				}
+
+				.propertyOutput {
+					@apply bg-gray-950 px-4 py-[2px] rounded-b-lg;
+				}
+			}
+		}
+	}
 }

@@ -29,6 +29,7 @@ const nextUITheme = createTheme({
 			primaryShadow: '$green500',
 			link: '#8d4ede',
 			background: '$gray200',
+			accents2: '$gray600',
 			border: '$gray200',
 		},
 	},
