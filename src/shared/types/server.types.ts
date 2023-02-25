@@ -5,7 +5,7 @@ export enum ServerPropertyType {
 	String,
 }
 
-interface IServerPropertySelect {
+export interface IServerPropertySelect {
 	label: string
 	value: string
 }

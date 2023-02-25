@@ -9,11 +9,11 @@
 			@apply grid gap-4;
 			grid-template-columns: 1fr 1fr 1fr;
 
-			@media screen and (max-width: 1200px) {
+			@media screen and (max-width: 1300px) {
 				grid-template-columns: 1fr 1fr;
 			}
 
-			@media screen and (max-width: 600px) {
+			@media screen and (max-width: 940px) {
 				grid-template-columns: 1fr;
 			}
 
@@ -48,12 +48,15 @@
 					}
 
 					.propertySelect {
+						@apply max-w-[300px];
 					}
 
 					.propertyBoolean {
 					}
 
 					.propertyString {
+						@apply max-w-[300px];
+
 						input[type='text'] {
 							font-size: 22px;
 						}
