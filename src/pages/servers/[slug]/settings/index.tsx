@@ -1,10 +1,13 @@
-import ServerLayout from '@/components/server-layout/ServerLayout'
-import { NextPageWithLayout } from '@/pages/_app'
-import { NextPage } from 'next'
 import { ReactElement } from 'react'
 
+import ServerLayout from '@/components/server-layout/ServerLayout'
+
+import ServerSettings from '@/screens/server-settings/ServerSettings'
+
+import { NextPageWithLayout } from '@/pages/_app'
+
 const SettingsPage: NextPageWithLayout = () => {
-	return <div>SettingsPage</div>
+	return <ServerSettings />
 }
 
 export default SettingsPage

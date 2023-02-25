@@ -11,5 +11,13 @@
 	}
 
 	.contentContainer {
+		width: 100%;
+		background-color: var(--background);
+
+		.content {
+			max-width: 1400px;
+			margin: 0 auto;
+			padding: 1.5rem;
+		}
 	}
 }
