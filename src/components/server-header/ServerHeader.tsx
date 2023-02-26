@@ -15,22 +15,34 @@ interface IServerHeader {}
 const ServerHeader: FC<IServerHeader> = () => {
 	const router = useRouter()
 	const { slug } = router.query as IParams
+	const handleBackBtn = () => {
+		router.back()
+	}
+
+	const handleStopServerBtn = () => {}
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.bars}>
 				<div className={styles.mainBar}>
 					<div className={styles.mainBarInfo}>
-						<Button icon={<Icon name="MdArrowBackIos" />} className={styles.backBtn}></Button>
+						<Button
+							onClick={handleBackBtn}
+							icon={<Icon name="MdArrowBackIos" size={24} />}
+							className={styles.backBtn}
+						></Button>
 						<Text className={styles.mainBarName}>Arcade Sky</Text>
 					</div>
 					<div className={styles.mainBarActions}>
-						<Button className="btn-error">Остановить сервер</Button>
-						<Button icon={<Icon name="BsThreeDots" />} className="btn-default"></Button>
+						<Button className="btn-error" onClick={handleStopServerBtn}>
+							Остановить сервер
+						</Button>
+						<Button icon={<Icon name="BsThreeDots" size={24} />} className="btn-default"></Button>
 					</div>
 				</div>
 				<div className={styles.subBar}>
 					<div className={styles.subBarAddress}>
-						<Icon name="TbWorld" propsIcon={{ size: 24 }} />
+						<Icon name="TbWorld" size={24} />
 						<span>{slug}.simplehost</span>
 					</div>
 					<div className={styles.subBarUsers}>
@@ -53,14 +65,11 @@ const ServerHeader: FC<IServerHeader> = () => {
 				</div>
 				<div className={styles.otherActions}>
 					<button type="button" className={styles.otherActionsBtn}>
-						<Icon name="RxUpdate" propsIcon={{ className: styles.otherActionsIcon, size: 24 }} />
+						<Icon name="RxUpdate" size={24} className={styles.otherActionsIcon} />
 						<span className={styles.otherActionsText}>Изменить версию</span>
 					</button>
 					<button type="button" className={styles.otherActionsBtn}>
-						<Icon
-							name="RiShareForwardFill"
-							propsIcon={{ className: styles.otherActionsIcon, size: 24 }}
-						/>
+						<Icon name="RiShareForwardFill" className={styles.otherActionsIcon} size={24} />
 						<span className={styles.otherActionsText}>Поделиться</span>
 					</button>
 				</div>

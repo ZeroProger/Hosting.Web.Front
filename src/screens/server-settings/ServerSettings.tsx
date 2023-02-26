@@ -1,6 +1,5 @@
 import { FormElement, Input, Switch, SwitchEvent } from '@nextui-org/react'
 import { ChangeEvent, FC, useEffect, useState } from 'react'
-import { SingleValue } from 'react-select'
 
 import PropertySelect, { IOption } from '@/components/ui/customSelect/PropertySelect'
 
@@ -41,7 +40,7 @@ const ServerSettings: FC<IServerSettings> = () => {
 		setProperties(updatedProperties)
 	}
 
-	const handleSelectChange = (newValue: SingleValue<IOption>, name: string) => {
+	const handleSelectChange = (newValue: IOption, name: string) => {
 		let updatedProperties = properties.map((property) => {
 			if (property.name == name) {
 				return { ...property, value: String(newValue?.value) || property.value }
@@ -110,7 +109,9 @@ const ServerSettings: FC<IServerSettings> = () => {
 												value: property.value,
 											} as IOption
 										}
-										onChange={(newValue, actionMeta) => handleSelectChange(newValue, property.name)}
+										onChange={(newValue, actionMeta) =>
+											handleSelectChange(newValue as IOption, property.name)
+										}
 										className={styles.propertySelect}
 										placeholder={`Выберите ${property.label.toLowerCase()}`}
 									/>

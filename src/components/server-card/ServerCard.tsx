@@ -1,4 +1,4 @@
-import { Card } from '@nextui-org/react'
+import { Card, Popover, Text } from '@nextui-org/react'
 import { FC, useRef } from 'react'
 
 import { Icon } from '../ui/Icon'
@@ -35,17 +35,32 @@ export const ServerCard: FC = () => {
 							<span className="mr-2" ref={ipRef}>
 								arcade-sky.ploudos.game
 							</span>
-							<div onClick={() => navigator.clipboard.writeText(ipRef.current?.innerText!)}>
-								<Icon name="FiCopy" />
-							</div>
+							<Popover shouldCloseOnBlur placement={'right'}>
+								<Popover.Trigger>
+									<div onClick={() => navigator.clipboard.writeText(ipRef.current?.innerText!)}>
+										<Icon name="Io5Copy" />
+									</div>
+								</Popover.Trigger>
+								<Popover.Content className="rounded-xl">
+									<Text className="p-1">Скопировано</Text>
+								</Popover.Content>
+							</Popover>
 						</li>
 						<li className="flex items-center h-7">
 							<span className="mr-2" ref={dynIpRef}>
 								dynY6ZHOK.ploudos.cloud:10305
 							</span>
-							<div onClick={() => navigator.clipboard.writeText(dynIpRef.current?.innerText!)}>
-								<Icon name="FiCopy" />
-							</div>
+
+							<Popover shouldCloseOnBlur placement={'right'}>
+								<Popover.Trigger>
+									<div onClick={() => navigator.clipboard.writeText(dynIpRef.current?.innerText!)}>
+										<Icon name="Io5Copy" />
+									</div>
+								</Popover.Trigger>
+								<Popover.Content className="rounded-xl">
+									<Text className="p-1">Скопировано</Text>
+								</Popover.Content>
+							</Popover>
 						</li>
 						<li className="flex items-center h-7">
 							<span className="mr-2">1.16.5</span>
