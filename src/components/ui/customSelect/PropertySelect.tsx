@@ -1,5 +1,5 @@
 import { FC, useId } from 'react'
-import Select, { ActionMeta, SingleValue, components } from 'react-select'
+import Select, { components } from 'react-select'
 import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager'
 
 export interface IOption {
@@ -9,7 +9,6 @@ export interface IOption {
 
 interface IPropertySelect extends StateManagerProps {
 	options: IOption[]
-	onChange: (newValue: SingleValue<IOption>, actionMeta: ActionMeta<IOption>) => void
 	value: IOption
 }
 

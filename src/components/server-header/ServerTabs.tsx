@@ -30,9 +30,16 @@ const ServerTabs: FC<{ slug: string }> = ({ slug }) => {
 			</Link>
 			<Link
 				href={getServerPlayersUrl(`${slug}`)}
-				className={clsx({
-					[styles.isActiveLink]: router.asPath === getServerPlayersUrl(`${slug}`),
-				})}
+				className={clsx(
+					{
+						[styles.isActiveLink]: router.asPath === getServerPlayersUrl(`${slug}`),
+					},
+					{
+						[styles.isActiveLink]:
+							router.asPath ===
+							getServerPlayersUrl(`${slug}`, `/${router.asPath.split('/').at(-1)}`),
+					}
+				)}
 			>
 				Игроки
 			</Link>

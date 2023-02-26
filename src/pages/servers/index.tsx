@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 
 const ServersPage: NextPage = () => {
-	return <div>ServersPage</div>
+	return <div>Список моих серверов</div>
 }
 
 export default ServersPage
