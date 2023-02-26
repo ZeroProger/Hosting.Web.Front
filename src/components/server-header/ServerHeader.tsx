@@ -4,12 +4,8 @@ import { FC } from 'react'
 
 import { IParams } from '@/shared/types/base.types'
 
-import user1 from '@/assets/images/head1.webp'
-import user2 from '@/assets/images/head2.png'
-import user3 from '@/assets/images/head3.webp'
-import user4 from '@/assets/images/head4.webp'
-
 import { Icon } from '../ui/Icon'
+import { AvatarGroup } from '../ui/avatar-group/AvatarGroup'
 
 import styles from './ServerHeader.module.scss'
 import ServerTabs from './ServerTabs'
@@ -19,9 +15,6 @@ interface IServerHeader {}
 const ServerHeader: FC<IServerHeader> = () => {
 	const router = useRouter()
 	const { slug } = router.query as IParams
-
-	const users = [user1.src, user2.src, user3.src, user4.src]
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.bars}>
@@ -41,23 +34,7 @@ const ServerHeader: FC<IServerHeader> = () => {
 						<span>{slug}.simplehost</span>
 					</div>
 					<div className={styles.subBarUsers}>
-						<Avatar.Group>
-							{users.map((url, index) => (
-								<Avatar
-									src={url}
-									key={index}
-									bordered
-									stacked
-									squared
-									size="sm"
-									css={{
-										'.nextui-avatar-bg': {
-											backgroundColor: 'transparent',
-										},
-									}}
-								/>
-							))}
-						</Avatar.Group>
+						<AvatarGroup />
 						<span>4/8 игроков</span>
 					</div>
 					<div className={styles.subBarCore}>
