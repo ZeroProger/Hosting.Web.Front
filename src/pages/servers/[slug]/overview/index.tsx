@@ -1,10 +1,21 @@
-import ServerLayout from '@/components/server-layout/ServerLayout'
-import { NextPageWithLayout } from '@/pages/_app'
-import { NextPage } from 'next'
-import { ReactElement } from 'react'
+import { ReactElement } from 'react';
+
+
+
+import { ServerCard } from '@/components/server-card/ServerCard'
+import ServerLayout from '@/components/server-layout/ServerLayout';
+
+
+
+import { NextPageWithLayout } from '@/pages/_app';
+
 
 const OverviewPage: NextPageWithLayout = () => {
-	return <div>OverviewPage</div>
+	return (
+		<>
+			<ServerCard />
+		</>
+	)
 }
 
 export default OverviewPage
