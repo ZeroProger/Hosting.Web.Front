@@ -1,10 +1,13 @@
-import ServerLayout from '@/components/server-layout/ServerLayout'
-import { NextPageWithLayout } from '@/pages/_app'
-import { NextPage } from 'next'
 import { ReactElement } from 'react'
 
+import ServerLayout from '@/components/server-layout/ServerLayout'
+
+import Players from '@/screens/players/Players'
+
+import { NextPageWithLayout } from '@/pages/_app'
+
 const PlayersPage: NextPageWithLayout = () => {
-	return <div>PlayersPage</div>
+	return <Players />
 }
 
 export default PlayersPage
