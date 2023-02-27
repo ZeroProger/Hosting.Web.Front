@@ -8,4 +8,6 @@ export interface IBasicDB {
 
 export interface IParams extends ParsedUrlQuery {
 	slug: string
+	version: string
+	software: string
 }

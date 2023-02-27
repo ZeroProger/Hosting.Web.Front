@@ -4,13 +4,14 @@ import { FC, useRef } from 'react'
 import { Icon } from '../ui/Icon'
 import { AvatarGroup } from '../ui/avatar-group/AvatarGroup'
 
-import styles from './ServerCard.module.scss'
+import styles from './ServerMiniConsole.module.scss'
 
-export const ServerCard: FC = () => {
+const ServerMiniConsole: FC = () => {
 	const ipRef = useRef<HTMLSpanElement>(null)
 	const dynIpRef = useRef<HTMLSpanElement>(null)
+
 	return (
-		<Card className="border-0 px-3 w-5/12">
+		<Card className={styles.card}>
 			<Card.Header>Сервер</Card.Header>
 			<hr className="bg-lightGray opacity-40" />
 			<Card.Body className="flex flex-row justify-between w-4/5">
@@ -76,3 +77,5 @@ export const ServerCard: FC = () => {
 		</Card>
 	)
 }
+
+export default ServerMiniConsole

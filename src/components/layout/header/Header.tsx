@@ -43,6 +43,7 @@ const Header: FC<IHeader> = () => {
 						height: 'var(--nextui--navbarHeight)',
 						'& .nextui-navbar-container': {
 							columnGap: '1.5rem',
+							maxWidth: 'var(--container-max-width)',
 							'@media screen and (max-width: 900px)': {
 								flexWrap: 'wrap',
 							},
@@ -63,7 +64,7 @@ const Header: FC<IHeader> = () => {
 							w: '100%',
 							maxW: '500px',
 						}}
-						className="sm:order-5 sm:max-w-full"
+						className="md:order-5 md:max-w-full"
 					>
 						<Navbar.Item
 							css={{
@@ -82,7 +83,7 @@ const Header: FC<IHeader> = () => {
 							display: 'flex',
 							justifyContent: 'space-between',
 						}}
-						className="sm:w-auto"
+						className="md:w-auto"
 					>
 						<Navbar.Item className="xs:hidden">
 							<Link href={getServerCreateUrl()} className="btn-primary">
