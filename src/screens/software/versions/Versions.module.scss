@@ -1,0 +1,23 @@
+.container {
+	.versions {
+		@apply flex flex-row flex-wrap gap-3;
+		.version {
+			@apply bg-backgroundLight py-2 px-5 rounded-layout text-2xl flex-grow text-center max-w-[400px] border-transparent transition-colors;
+			border-width: 3px;
+
+			&:hover {
+				@apply border-primary;
+			}
+
+			.name {
+				@apply flex flex-row flex-nowrap gap-4 items-center justify-center;
+			}
+
+			&.latest {
+			}
+
+			&.recomended {
+			}
+		}
+	}
+}

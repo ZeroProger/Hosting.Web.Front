@@ -13,7 +13,9 @@ export interface ICForgeSoftware {
 export interface ICForgeVersion {
 	id: number
 	name: string
-	gameVersion: string
-	latest: boolean
-	recommended: boolean
+	gameVersion?: string
+	versionString?: string
+	latest?: boolean
+	recommended?: boolean
+	type?: number
 }

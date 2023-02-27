@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { FC } from 'react'
 
 interface IHeading {
@@ -8,9 +9,11 @@ interface IHeading {
 const Heading: FC<IHeading> = ({ title, className }) => {
 	return (
 		<h1
-			className={`text-white font-semibold mb-4 ${
-				className?.includes('xl') ? '' : 'text-3xl'
-			} ${className}`}
+			className={clsx(
+				{ 'text-white font-semibold mb-4': true },
+				{ 'text-3xl': !className?.includes('xl') },
+				{ [className || '']: true }
+			)}
 		>
 			{title}
 		</h1>
