@@ -17,3 +17,15 @@ export interface IServerProperty {
 	select?: IServerPropertySelect[]
 	type: ServerPropertyType
 }
+
+export interface IServerMainInfo {
+	label: string
+	value: string
+	otherInfo?: {
+		isOnline?: boolean
+		copyable?: boolean
+		isSoftware?: boolean
+		isVersion?: boolean
+		playersImages?: string[]
+	}
+}

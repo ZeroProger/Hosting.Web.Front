@@ -4,7 +4,7 @@
 
 	.headerContainer {
 		width: 100%;
-		max-width: 1400px;
+		max-width: var(--container-max-width);
 		margin: 0 auto;
 		padding: 1.5rem;
 		padding-bottom: 0;
@@ -15,7 +15,7 @@
 		background-color: var(--background);
 
 		.content {
-			max-width: 1400px;
+			max-width: var(--container-max-width);
 			margin: 0 auto;
 			padding: 1.5rem;
 		}

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-	--max-width: 1200px;
+	--container-max-width: 1600px;
 	--primary: #08c466;
 	--secondary: #005801;
 	--secondary-gray: #006b6a;

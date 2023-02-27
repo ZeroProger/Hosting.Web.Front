@@ -1,4 +1,4 @@
-import { Avatar, Button, Text } from '@nextui-org/react'
+import { Button, Text } from '@nextui-org/react'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 
@@ -15,11 +15,6 @@ interface IServerHeader {}
 const ServerHeader: FC<IServerHeader> = () => {
 	const router = useRouter()
 	const { slug } = router.query as IParams
-	const handleBackBtn = () => {
-		router.back()
-	}
-
-	const handleStopServerBtn = () => {}
 
 	const handleBackBtn = () => {
 		router.back()

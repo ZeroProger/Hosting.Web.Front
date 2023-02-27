@@ -1,5 +1,7 @@
 export const APP_URL = `${process.env.APP_URL}`
 
+export const getServersUrl = () => '/servers'
+
 export const getServerUrl = (slug: string) => `/servers/${slug}/overview`
 
 export const getServerCreateUrl = () => `/servers/create`
@@ -19,4 +21,10 @@ export const getServerBackupsUrl = (slug: string) => `/servers/${slug}/backups`
 
 export const getServerSettingsUrl = (slug: string) => `/servers/${slug}/settings`
 
-export const getServersUrl = () => '/servers'
+export const getServerSoftwareUrl = (slug: string) => `/servers/${slug}/software`
+
+export const getServerVersionsUrl = (slug: string, core: string) =>
+	`${getServerSoftwareUrl(slug)}/${core}`
+
+export const getServerVersionUrl = (slug: string, core: string, version: string) =>
+	`${getServerVersionsUrl(slug, core)}/${version}`

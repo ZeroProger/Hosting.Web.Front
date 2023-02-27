@@ -2,12 +2,12 @@ import { ReactElement } from 'react'
 
 import ServerLayout from '@/components/server-layout/ServerLayout'
 
-import Players from '@/screens/players/Players'
+import ServerPlayers from '@/screens/server-players/ServerPlayers'
 
 import { NextPageWithLayout } from '@/pages/_app'
 
 const PlayersPage: NextPageWithLayout = () => {
-	return <Players />
+	return <ServerPlayers />
 }
 
 export default PlayersPage

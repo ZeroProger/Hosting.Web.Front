@@ -8,11 +8,11 @@ import { IParams } from '@/shared/types/base.types'
 
 import { getServerPlayersUrl } from '@/config/url.config'
 
-import styles from './Players.module.scss'
+import styles from './ServerPlayers.module.scss'
 
-interface IPlayers {}
+interface IServerPlayers {}
 
-const Players: FC<IPlayers> = () => {
+const ServerPlayers: FC<IServerPlayers> = () => {
 	const router = useRouter()
 	const { slug } = router.query as IParams
 
@@ -38,4 +38,4 @@ const Players: FC<IPlayers> = () => {
 	)
 }
 
-export default Players
+export default ServerPlayers
