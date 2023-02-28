@@ -1,7 +1,7 @@
-export enum CForgeModLoaderType {
-	Vanila = 'vanila',
-	Forge = 'forge',
-	Fabric = 'fabric',
+export enum CForgeSoftwareType {
+	Vanila,
+	Forge,
+	Fabric,
 }
 
 export interface ICForgeSoftware {
@@ -10,12 +10,14 @@ export interface ICForgeSoftware {
 	slug: string
 }
 
-export interface ICForgeVersion {
-	id: number
-	name: string
-	gameVersion?: string
-	versionString?: string
+export interface ICForgeModloader extends Omit<ICForgeVersion, 'versions'> {
 	latest?: boolean
 	recommended?: boolean
-	type?: number
+}
+
+export interface ICForgeVersion {
+	id: number
+	label: string
+	slug: string
+	versions?: ICForgeModloader[]
 }

@@ -7,6 +7,8 @@ import { FC } from 'react'
 
 import { IParams } from '@/shared/types/base.types'
 
+import { isUndefined } from '@/utils/objects/isUndefined'
+
 import {
 	getServerOverviewUrl,
 	getServerSoftwareUrl,
@@ -21,8 +23,6 @@ import styles from './ServerMainInfo.module.scss'
 const ServerMainInfo: FC = () => {
 	const router = useRouter()
 	const { slug } = router.query as IParams
-
-	const isUndefined = (obj: any) => typeof obj === 'undefined'
 
 	const handleCopyClick = (event: React.MouseEvent<HTMLElement>) => {
 		const copyText =

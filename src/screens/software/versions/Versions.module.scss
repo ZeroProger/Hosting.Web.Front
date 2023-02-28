@@ -1,3 +1,5 @@
+@import 'styles/mixins.scss';
+
 .container {
 	.versions {
 		@apply flex flex-row flex-wrap gap-3;
@@ -18,6 +20,58 @@
 
 			&.recomended {
 			}
+		}
+
+		.modloader {
+			@apply bg-backgroundLight rounded-layout text-center border-transparent;
+
+			.name {
+				@apply w-full py-2 px-6 text-3xl bg-backgroundLight rounded-t-layout border-2 border-lightGray border-b-0;
+			}
+
+			.modloaderVersions {
+				@apply flex flex-row flex-nowrap;
+
+				.modloaderVersion {
+					@apply flex flex-row flex-nowrap items-center justify-center gap-3 w-full text-xl bg-backgroundLight py-2 px-4 rounded-b-layout border-2 border-lightGray;
+
+					&:hover {
+						@apply border-primary;
+					}
+
+					&:first-child {
+						@apply rounded-br-none border-r-0;
+
+						&:hover {
+							@apply border-r-2;
+
+							& ~ a {
+								@apply border-l-0;
+							}
+						}
+					}
+
+					&:last-child {
+						@apply rounded-bl-none;
+					}
+				}
+			}
+		}
+	}
+
+	.versionsGrid {
+		@apply grid grid-cols-4 gap-4;
+
+		@include md(xl, 'max') {
+			@apply grid-cols-3;
+		}
+
+		@include md(lg, 'max') {
+			@apply grid-cols-2;
+		}
+
+		@include md(sm, 'max') {
+			@apply grid-cols-1;
 		}
 	}
 }

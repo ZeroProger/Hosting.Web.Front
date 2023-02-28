@@ -20,7 +20,7 @@ const Softwares: FC<ISoftwares> = () => {
 
 	return (
 		<div className={styles.container}>
-			<Heading title="Ядро сервера" />
+			<Heading title="Ядро сервера" capitalize />
 			<div className={styles.groups}>
 				{softwares.map((software) => (
 					<Link
