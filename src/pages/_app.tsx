@@ -6,7 +6,7 @@ import MainProvider from '@/providers/MainProvider'
 
 import '@/styles/CustomSelect.scss'
 import '@/styles/Tabs.scss'
-import '@/styles/globals.css'
+import '@/styles/globals.scss'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode

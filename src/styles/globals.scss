@@ -12,6 +12,7 @@
 	--background: #192024;
 	--light-gray: #666666;
 	--bg-gray-800: rgb(77 77 77 / 1);
+	--background-landscape: #171b3d;
 }
 
 * {
@@ -23,7 +24,7 @@
 html,
 body {
 	max-width: 100vw;
-	overflow-x: hidden;
+	scroll-behavior: smooth !important;
 }
 
 a {

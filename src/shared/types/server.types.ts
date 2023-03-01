@@ -5,16 +5,20 @@ export enum ServerPropertyType {
 	String,
 }
 
-export interface IServerPropertySelect {
+export interface IServerPropertyOption {
 	label: string
 	value: string
+}
+
+export interface IServerPropertySelect {
+	options: IServerPropertyOption[]
 }
 
 export interface IServerProperty {
 	name: string
 	value: string
 	label: string
-	select?: IServerPropertySelect[]
+	select?: IServerPropertySelect
 	type: ServerPropertyType
 }
 

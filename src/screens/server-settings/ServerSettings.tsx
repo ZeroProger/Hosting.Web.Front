@@ -1,11 +1,11 @@
 import { FormElement, Input, Switch, SwitchEvent } from '@nextui-org/react'
+import { serverProperties } from 'fakeData/server.data'
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 
 import PropertySelect, { IOption } from '@/components/ui/customSelect/PropertySelect'
+import Heading from '@/components/ui/heading/Heading'
 
 import { ServerPropertyType } from '@/shared/types/server.types'
-
-import { serverProperties } from '@/config/server-properties.config'
 
 import styles from './ServerSettings.module.scss'
 
@@ -57,8 +57,8 @@ const ServerSettings: FC<IServerSettings> = () => {
 
 	return (
 		<div className={styles.container}>
+			<Heading title="server.properties" />
 			<div className={styles.settings}>
-				<h2 className={styles.settingsTitle}>server.properties</h2>
 				<div className={styles.properties}>
 					{properties.map((property, index) => (
 						<div className={styles.property} key={property.name}>
@@ -101,11 +101,12 @@ const ServerSettings: FC<IServerSettings> = () => {
 
 								{property.type === ServerPropertyType.Select && (
 									<PropertySelect
-										options={property.select || []}
+										options={property.select?.options || []}
 										value={
 											{
 												label:
-													property.select?.find((el) => el.value === property.value)?.label || '',
+													property.select?.options.find((el) => el.value === property.value)
+														?.label || '',
 												value: property.value,
 											} as IOption
 										}

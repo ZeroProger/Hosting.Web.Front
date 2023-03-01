@@ -1,16 +1,15 @@
-import { ICForgeMinecraftVersion, ICForgeModloader } from '@/shared/types/curseforge.types'
-
 import { axiosCurseForge } from './../api/interceptors'
 import { getMinecraftVersionsUrl, getModloadersUrl } from './../config/curseforge-api.config'
+import { ICForgeVersion } from './../shared/types/curseforge.types'
 
 export const CurseForgeService = {
 	async getModloaders(version?: string, includeAll?: boolean) {
-		return axiosCurseForge.get<ICForgeModloader[]>(getModloadersUrl(), {
+		return axiosCurseForge.get<{ data: ICForgeVersion[] }>(getModloadersUrl(), {
 			params: { version, includeAll },
 		})
 	},
 
 	async getMinecraftVersions() {
-		return axiosCurseForge.get<ICForgeMinecraftVersion[]>(getMinecraftVersionsUrl())
+		return axiosCurseForge.get<{ data: ICForgeVersion[] }>(getMinecraftVersionsUrl())
 	},
 }
