@@ -22,6 +22,7 @@ const nextUITheme = createTheme({
 			secondaryGray: '#006B6A',
 			secondaryBlue: '#59BAB8',
 			secondaryDirt: '#bb855d',
+			landscape: '#171b3d',
 			primaryBorder: '$green500',
 			primaryBorderHover: '$green600',
 			primarySolidHover: '$green700',

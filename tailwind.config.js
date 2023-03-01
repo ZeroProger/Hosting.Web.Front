@@ -15,6 +15,7 @@ const lightGray = 'var(--light-gray)'
 const textLightGray = 'var(--nextui-colors-text)'
 const error = '#f74343'
 const gray800 = 'var(--bg-gray-800)'
+const backgroundLandscape = '#171b3d'
 
 module.exports = {
 	content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
@@ -31,6 +32,7 @@ module.exports = {
 			textLightGray,
 			error,
 			gray800,
+			backgroundLandscape,
 			black: colors.black,
 			white: colors.white,
 			transparent: colors.transparent,

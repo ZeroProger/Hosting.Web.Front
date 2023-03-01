@@ -1,6 +1,8 @@
 import logo from '/public/favicon.png'
 import { Avatar, Dropdown, Navbar, Text } from '@nextui-org/react'
+import clsx from 'clsx'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { FC, Fragment, useEffect, useState } from 'react'
 
 import CustomSelect from '@/components/ui/customSelect/CustomSelect'
@@ -19,6 +21,8 @@ interface IHeader {}
 
 const Header: FC<IHeader> = () => {
 	const isMobile = useMediaQuery(maxWidthMediaQuery)
+	const router = useRouter()
+	const isHomePage = router.pathname === '/'
 	const [isLoad, setIsLoad] = useState<boolean>(false)
 
 	const options = [
@@ -36,9 +40,10 @@ const Header: FC<IHeader> = () => {
 			{isLoad ? (
 				<Navbar
 					variant={'sticky'}
+					className={clsx({ [styles.navLandscape]: isHomePage })}
 					css={{
-						backgroundColor: '$gray200',
-						$$navbarBackgroundColor: '$gray200',
+						backgroundColor: isHomePage ? 'transparent' : '$gray200',
+						$$navbarBackgroundColor: isHomePage ? 'transparent' : '$gray200',
 						zIndex: 2,
 						height: 'var(--nextui--navbarHeight)',
 						'& .nextui-navbar-container': {

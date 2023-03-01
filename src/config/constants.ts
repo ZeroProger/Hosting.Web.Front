@@ -9,6 +9,7 @@ export const lightGray = 'var(--light-gray)'
 export const textLightGray = 'var(--nextui-colors-text)'
 export const error = '#f74343'
 export const gray800 = 'var(--bg-gray-800)'
+export const backgroundLandscape = '#171b3d'
 
 export const IS_CLIENT = typeof window !== 'undefined'
 export const IS_SERVER = typeof window === 'undefined'

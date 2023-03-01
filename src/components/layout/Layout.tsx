@@ -9,9 +9,7 @@ const Layout: FC<ILayout> = ({ children }) => {
 	return (
 		<Fragment>
 			<Header />
-			<div className={styles.layoutWrapper}>
-				<div className={styles.contentWrapper}>{children}</div>
-			</div>
+			<div className={styles.layoutWrapper}>{children}</div>
 		</Fragment>
 	)
 }
