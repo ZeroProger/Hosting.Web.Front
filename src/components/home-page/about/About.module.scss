@@ -22,7 +22,7 @@
 		@apply flex flex-col items-center gap-8 z-1;
 
 		.title {
-			@apply text-6xl capitalize;
+			@apply text-6xl capitalize font-bold;
 		}
 
 		.description {
