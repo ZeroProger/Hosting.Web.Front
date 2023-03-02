@@ -59,7 +59,6 @@ const Header: FC<IHeader> = () => {
 						},
 					}}
 					disableBlur
-					disableShadow
 				>
 					<Navbar.Brand>
 						<Logo withText showRule="(min-width: 600px)" />
