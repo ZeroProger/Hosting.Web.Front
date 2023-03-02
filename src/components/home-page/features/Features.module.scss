@@ -1,3 +1,45 @@
+@import 'styles/mixins.scss';
+
 .container {
-	
+	.features {
+		@apply grid gap-x-10 gap-y-6;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+		.feature {
+			@apply flex flex-col gap-4 items-start;
+
+			.icon {
+				@apply rounded-layout px-6 py-3;
+				background: linear-gradient(to top right, var(--secondary-gray), var(--background) 90%);
+			}
+
+			.text {
+				@apply flex flex-col gap-2;
+				.title {
+					@apply text-3xl uppercase text-secondaryBlue font-bold;
+				}
+				.description {
+					@apply text-xl text-gray-200;
+				}
+			}
+		}
+
+		@include md(md, 'max') {
+			grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+
+			.feature {
+				@apply flex-row;
+
+				.icon {
+					@apply h-full flex items-center;
+				}
+
+				.text {
+					.title {
+						word-break: break-word;
+					}
+				}
+			}
+		}
+	}
 }

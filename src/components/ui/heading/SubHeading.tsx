@@ -7,9 +7,7 @@ interface ISubHeading {
 }
 
 const SubHeading: FC<ISubHeading> = ({ text, className = '' }) => {
-	return (
-		<div className={clsx('text-lg font-light text-white text-opacity-60', className)}>{text}</div>
-	)
+	return <div className={clsx('font-bold text-gray-200 mb-6', className)}>{text}</div>
 }
 
 export default SubHeading

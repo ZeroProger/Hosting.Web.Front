@@ -2,7 +2,7 @@ $media: (
 	xs: 420px,
 	sm: 660px,
 	md: 768px,
-	lg: 960px,
+	lg: 980px,
 	xl: 1280px,
 	2xl: 1536px,
 	3xl: 1920px,
@@ -23,4 +23,8 @@ $media: (
 			}
 		}
 	}
+}
+
+@function hexToRGBString($hexColor, $alpha) {
+	@return inspect(rgba($hexColor, $alpha));
 }

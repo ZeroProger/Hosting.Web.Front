@@ -18,7 +18,7 @@ const nextUITheme = createTheme({
 			primaryLightActive: '$green400',
 			primaryLightContrast: '$green600',
 			primary: '#08c466',
-			secondary: '#005801',
+			secondary: '#00b303',
 			secondaryGray: '#006B6A',
 			secondaryBlue: '#59BAB8',
 			secondaryDirt: '#bb855d',

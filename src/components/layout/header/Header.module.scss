@@ -1,7 +1,10 @@
+@import 'styles/mixins.scss';
+
 .navLandscape {
 	position: fixed;
-	-webkit-backdrop-filter: blur(5px);
-	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(15px);
+	backdrop-filter: blur(15px);
+	background-color: hexToRGBString(#192024, 0.3);
 }
 
 .avatar {

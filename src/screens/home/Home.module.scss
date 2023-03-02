@@ -1,0 +1,6 @@
+.container {
+	.content {
+		@apply content-container flex flex-col p-layout;
+		gap: 64px;
+	}
+}

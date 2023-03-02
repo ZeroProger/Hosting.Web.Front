@@ -14,10 +14,12 @@ const Home: FC<IHome> = () => {
 	return (
 		<section className={styles.container}>
 			<About />
-			<TestBanner />
-			<Pricing />
-			<Features />
-			<Qualities />
+			<div className={styles.content}>
+				<TestBanner />
+				<Pricing />
+				<Features />
+				<Qualities />
+			</div>
 		</section>
 	)
 }
