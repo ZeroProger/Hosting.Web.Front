@@ -1,11 +1,11 @@
 .container {
-	@apply relative top-0 left-0 right-0 w-full flex flex-row justify-center items-center;
-	/* height: calc(100vh - var(--nextui--navbarHeight)); */
+	@apply relative w-full flex flex-row justify-center items-center p-layout;
 	height: 100vh;
-	background-image: url('/landscape-bg-2.png');
+	background-image: url('/landscape-bg.webp');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	overflow-x: hidden;
 
 	&:before {
 		content: '';
@@ -28,8 +28,8 @@
 		.description {
 			@apply flex flex-col items-center gap-2;
 			p {
-				@apply text-2xl text-center text-gray-200;
-				max-width: 800px;
+				@apply text-3xl text-center text-gray-200;
+				max-width: 1000px;
 			}
 		}
 

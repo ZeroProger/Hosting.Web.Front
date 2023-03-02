@@ -2,10 +2,11 @@
 
 const { white, gray } = require('tailwindcss/colors')
 const colors = require('tailwindcss/colors')
+const { fontFamily } = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
 
 const primary = '#08c466'
-const secondary = '#005801'
+const secondary = '#00b303'
 const secondaryGray = '#006B6A'
 const secondaryBlue = '#59BAB8'
 const secondaryDirt = '#bb855d'
@@ -64,9 +65,12 @@ module.exports = {
 			fontSize: {
 				'2lg': '1.38rem',
 			},
+			fontFamily: {
+				sans: ['var(--font-rubik)', ...fontFamily.sans],
+			},
 			borderRadius: {
 				image: '0.5rem',
-				layout: '0.8rem',
+				layout: '1.25rem',
 			},
 			transitionTimingFunction: {
 				DEFAULT: 'ease-in-out',
@@ -160,6 +164,23 @@ module.exports = {
 						backgroundColor: lightGray,
 					},
 				},
+				'.btn-secondary-gray': {
+					backgroundColor: secondaryBlue,
+					color: '#e6e6e6',
+					borderRadius: '0.65rem',
+					padding: '13px 15px',
+					wordWrap: 'normal',
+					whiteSpace: 'nowrap',
+					fontSize: '1.125rem !important',
+					minWidth: 'auto',
+					transition: 'background-color .3s ease-in-out',
+					'&:hover': {
+						backgroundColor: secondaryGray,
+					},
+					'&:active': {
+						backgroundColor: secondaryGray,
+					},
+				},
 				'.text-link': {
 					textUnderlineOffset: 4,
 					color: 'rgba(255, 255, 255, .9)',
@@ -175,6 +196,11 @@ module.exports = {
 					backgroundColor: theme('colors.gray.950'),
 					color: theme('colors.white'),
 					boxShadow: theme('boxShadow.lg'),
+				},
+				'.content-container': {
+					maxWidth: 'var(--container-max-width)',
+					width: '100%',
+					margin: '0 auto',
 				},
 			}),
 				addUtilities({

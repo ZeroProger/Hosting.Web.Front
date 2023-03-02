@@ -1,2 +1,55 @@
+@import 'styles/mixins.scss';
+
 .container {
+	.tariffs {
+		@apply grid grid-cols-3 gap-4;
+
+		@include md(lg, 'max') {
+			@apply grid-cols-2;
+		}
+
+		@include md(sm, 'max') {
+			@apply grid-cols-1;
+		}
+
+		.tariff {
+			@apply flex flex-col gap-4 items-start bg-backgroundLight rounded-layout p-layout;
+
+			background: linear-gradient(
+				to top right,
+				var(--background) 5%,
+				var(--secondary-gray) 70%,
+				var(--secondary-blue)
+			);
+
+			.title {
+				@apply text-3xl text-gray-200;
+			}
+
+			.options {
+				@apply flex flex-col gap-2 flex-grow;
+				.option {
+					@apply flex flex-row flex-wrap gap-x-4 gap-y-2;
+					.label {
+						@apply text-xl;
+					}
+
+					.value {
+						@apply text-xl;
+					}
+				}
+			}
+
+			.actions {
+				@apply flex flex-row flex-wrap gap-x-4 gap-y-2;
+				.btn {
+					@apply btn-secondary-gray py-1 text-xl;
+				}
+
+				.btnOrder {
+					@apply btn-primary py-1 text-xl;
+				}
+			}
+		}
+	}
 }

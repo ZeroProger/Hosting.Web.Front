@@ -4,7 +4,7 @@ export const getServersUrl = () => '/servers'
 
 export const getServerUrl = (slug: string) => `/servers/${slug}/overview`
 
-export const getServerCreateUrl = () => `/servers/create`
+export const getServerCreateUrl = (query?: string) => `/servers/create${query ? `?${query}` : ''}`
 
 export const getServerOverviewUrl = (slug: string) => `/servers/${slug}/overview`
 
@@ -28,3 +28,5 @@ export const getServerVersionsUrl = (slug: string, core: string) =>
 
 export const getServerVersionUrl = (slug: string, core: string, version: string) =>
 	`${getServerVersionsUrl(slug, core)}/${version}`
+
+export const getTariffUrl = (slug: string) => `/tariffs/${slug}`
