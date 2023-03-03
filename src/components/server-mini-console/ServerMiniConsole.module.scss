@@ -1,2 +1,70 @@
 .card {
+	@apply flex flex-col bg-backgroundLight rounded-layout;
+
+	.header {
+		@apply text-2xl px-6 pt-6 mb-3;
+	}
+
+	.hr {
+		@apply border-gray-500;
+
+		border-width: 1px;
+	}
+
+	.body {
+		.lines {
+			@apply overflow-auto;
+			max-height: 300px;
+
+			.line {
+				@apply w-full text-lg px-2;
+
+				&.error {
+					@apply bg-errorHover text-errorText;
+
+					.info {
+						@apply text-errorText;
+
+						.message {
+							@apply text-errorText;
+						}
+					}
+				}
+
+				&.warn {
+					@apply bg-warn text-warnText;
+
+					.info {
+						@apply text-warnText;
+
+						.message {
+							@apply text-warnText;
+						}
+					}
+				}
+
+				.info {
+					@apply text-lightGray;
+
+					.message {
+						@apply text-gray-200;
+					}
+				}
+			}
+		}
+
+		.enterCommand {
+			@apply p-2;
+			.slash {
+				@apply flex h-7 w-7 items-center text-xl justify-center rounded-md bg-backgroundLight;
+				margin: 0 5px 0 15px;
+				line-height: 24px;
+				box-sizing: content-box;
+			}
+
+			input {
+				@apply text-xl;
+			}
+		}
+	}
 }

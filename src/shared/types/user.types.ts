@@ -5,8 +5,21 @@ export enum PlayersDataListType {
 	BannedIps,
 }
 
+export enum PlayerRoles {
+	Operator,
+	Whitelist,
+}
+
+export interface IPlayerRole {
+	id: number
+	name: string
+	color: string
+	textColor: string
+}
+
 export interface IUser {
 	id: number
 	image: string
 	name: string
+	roles?: IPlayerRole[]
 }

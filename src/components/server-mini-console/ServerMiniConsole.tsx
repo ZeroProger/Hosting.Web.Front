@@ -1,80 +1,93 @@
-import { Card, Popover, Text } from '@nextui-org/react'
-import { FC, useRef } from 'react'
+import { FormElement, Input } from '@nextui-org/react'
+import clsx from 'clsx'
+import { serverConsole } from 'fakeData/server.data'
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 
-import { Icon } from '../ui/Icon'
-import { AvatarGroup } from '../ui/avatar-group/AvatarGroup'
+import { IServerConsoleLine, ServerConsoleLineType } from '@/shared/types/server.types'
+
+import { lightGray } from '@/config/constants'
 
 import styles from './ServerMiniConsole.module.scss'
 
 const ServerMiniConsole: FC = () => {
-	const ipRef = useRef<HTMLSpanElement>(null)
-	const dynIpRef = useRef<HTMLSpanElement>(null)
+	const [serverConsoleData, setServerConsoleData] = useState<IServerConsoleLine[]>(serverConsole)
+	const [inputValue, setInputValue] = useState('')
+
+	const inputRef = useRef<HTMLInputElement>(null)
+	const linesRef = useRef<HTMLDivElement>(null)
+
+	const handleEnter = (value: string) => {
+		//#TODO: Тут будет логика отправки сообщений на сервер
+		const newLine: IServerConsoleLine = {
+			id: Math.random().toString(),
+			message: `/${value}`,
+
+			time: new Date().toLocaleString('ru-RU', {
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit',
+			}),
+			type: ServerConsoleLineType.Info,
+		}
+		setServerConsoleData((oldArray) => [...oldArray, newLine])
+	}
+
+	const handleChange = (e: ChangeEvent<FormElement>) => {
+		setInputValue(e.target.value)
+	}
+
+	useEffect(() => {
+		linesRef?.current?.scrollTo(0, linesRef?.current?.clientHeight)
+	}, [serverConsoleData])
 
 	return (
-		<Card className={styles.card}>
-			<Card.Header>Сервер</Card.Header>
-			<hr className="bg-lightGray opacity-40" />
-			<Card.Body className="flex flex-row justify-between w-4/5">
-				<div className="flex flex-col justify-between w-4/5">
-					<ul className="text-lightGray flex flex-col justify-between h-44">
-						<li className="h-7">Статус</li>
-						<li className="h-7">Игроки</li>
-						<li className="h-7">IP</li>
-						<li className="h-7">Дин. IP</li>
-						<li className="h-7">Версия</li>
-						<li className="h-7">Ядро</li>
-					</ul>
+		<div className={styles.card}>
+			<div className={styles.header}>Консоль</div>
+			<div className={styles.hr}></div>
+			<div className={styles.body}>
+				<div className={styles.lines} ref={linesRef}>
+					{serverConsoleData.map((line) => (
+						<div
+							key={line.id}
+							className={clsx(styles.line, {
+								[styles.error]: line.type === ServerConsoleLineType.Error,
+								[styles.warn]: line.type === ServerConsoleLineType.Warning,
+							})}
+						>
+							<div className={styles.info}>
+								{`[${line.time} - ${line.type}]: `}
+								<span className={styles.message}>{line.message}</span>
+							</div>
+						</div>
+					))}
 				</div>
-				<div className="flex flex-col justify-between">
-					<ul className="flex flex-col justify-between h-44">
-						<li className="text-primary h-7">Онлайн</li>
-						<li className="flex h-7 my-[-2px]">
-							<span className="mr-4">4/8 игроков онлайн</span>
-							<AvatarGroup />
-						</li>
-						<li className="flex items-center h-7">
-							<span className="mr-2" ref={ipRef}>
-								arcade-sky.ploudos.game
-							</span>
-							<Popover shouldCloseOnBlur placement={'right'}>
-								<Popover.Trigger>
-									<div onClick={() => navigator.clipboard.writeText(ipRef.current?.innerText!)}>
-										<Icon name="Io5Copy" />
-									</div>
-								</Popover.Trigger>
-								<Popover.Content className="rounded-xl">
-									<Text className="p-1">Скопировано</Text>
-								</Popover.Content>
-							</Popover>
-						</li>
-						<li className="flex items-center h-7">
-							<span className="mr-2" ref={dynIpRef}>
-								dynY6ZHOK.ploudos.cloud:10305
-							</span>
-
-							<Popover shouldCloseOnBlur placement={'right'}>
-								<Popover.Trigger>
-									<div onClick={() => navigator.clipboard.writeText(dynIpRef.current?.innerText!)}>
-										<Icon name="Io5Copy" />
-									</div>
-								</Popover.Trigger>
-								<Popover.Content className="rounded-xl">
-									<Text className="p-1">Скопировано</Text>
-								</Popover.Content>
-							</Popover>
-						</li>
-						<li className="flex items-center h-7">
-							<span className="mr-2">1.16.5</span>
-							<Icon name="AiFillEdit" />
-						</li>
-						<li className="flex items-center h-7">
-							<span className="mr-2">Paper</span>
-							<Icon name="AiFillEdit" />
-						</li>
-					</ul>
+				<div className={styles.enterCommand}>
+					<Input
+						ref={inputRef}
+						placeholder="Введите команду..."
+						fullWidth
+						value={inputValue}
+						animated={false}
+						shadow={false}
+						contentLeftStyling={false}
+						onKeyDown={(e) => {
+							if (e.key === 'Enter') {
+								handleEnter(inputRef.current?.value || '')
+								setInputValue('')
+							}
+						}}
+						onChange={handleChange}
+						contentLeft={<div className={styles.slash}>/</div>}
+						css={{
+							'& .nextui-input-wrapper': {
+								backgroundColor: lightGray,
+								borderRadius: '16px',
+							},
+						}}
+					/>
 				</div>
-			</Card.Body>
-		</Card>
+			</div>
+		</div>
 	)
 }
 

@@ -23,7 +23,11 @@ const Features: FC<IFeatures> = () => {
 						initial={{ scale: 0, opacity: 0 }}
 						whileInView={{ scale: 1, opacity: 1 }}
 						viewport={{ once: true, amount: 'all' }}
-						transition={{ delay: 0.2 * index, duration: 0.4, ease: 'backInOut' }}
+						transition={{
+							delay: Math.random() * 0.4 * (index % 3),
+							duration: 0.4,
+							ease: 'backInOut',
+						}}
 					>
 						<div className={styles.icon}>
 							<Icon name={feature.icon} size={80} color={secondaryBlue} />

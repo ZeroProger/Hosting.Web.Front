@@ -15,6 +15,10 @@ const backgroundLight = 'var(--nextui-colors-gray200)'
 const lightGray = 'var(--light-gray)'
 const textLightGray = 'var(--nextui-colors-text)'
 const error = '#f74343'
+const errorHover = '#dc0909'
+const errorText = '#fa8585'
+const warn = '#513826'
+const warnText = '#d09f5f'
 const gray800 = 'var(--bg-gray-800)'
 const backgroundLandscape = '#171b3d'
 
@@ -32,6 +36,10 @@ module.exports = {
 			lightGray,
 			textLightGray,
 			error,
+			errorHover,
+			errorText,
+			warn,
+			warnText,
 			gray800,
 			backgroundLandscape,
 			black: colors.black,
@@ -141,10 +149,10 @@ module.exports = {
 					minWidth: 'auto',
 					transition: 'background-color .3s ease-in-out',
 					'&:hover': {
-						backgroundColor: '#dc0909',
+						backgroundColor: errorHover,
 					},
 					'&:active': {
-						backgroundColor: '#dc0909',
+						backgroundColor: errorHover,
 					},
 				},
 				'.btn-default': {
