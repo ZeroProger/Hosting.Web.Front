@@ -66,11 +66,11 @@ const ServerHeader: FC<IServerHeader> = () => {
 				</div>
 				<div className={styles.otherActions}>
 					<button type="button" className={styles.otherActionsBtn}>
-						<Icon name="RxUpdate" size={24} className={styles.otherActionsIcon} />
+						<Icon name="RxUpdate" size={28} className={styles.otherActionsIcon} />
 						<span className={styles.otherActionsText}>Изменить версию</span>
 					</button>
 					<button type="button" className={styles.otherActionsBtn}>
-						<Icon name="RiShareForwardFill" className={styles.otherActionsIcon} size={24} />
+						<Icon name="RiShareForwardFill" className={styles.otherActionsIcon} size={28} />
 						<span className={styles.otherActionsText}>Поделиться</span>
 					</button>
 				</div>

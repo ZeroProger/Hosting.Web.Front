@@ -53,12 +53,12 @@
 	}
 
 	.controls {
-		@apply flex flex-row flex-wrap items-center justify-between;
+		@apply flex flex-row flex-wrap items-center justify-between gap-x-2 gap-y-2;
 
 		.tabs {
 			@apply flex flex-row flex-wrap justify-start items-center gap-x-10 gap-y-0;
 			a {
-				@apply block text-lg py-5 transition-colors;
+				@apply block py-5 transition-colors text-2xl;
 
 				&:hover {
 					@apply text-primary;
@@ -67,17 +67,17 @@
 		}
 
 		.otherActions {
-			@apply flex flex-row flex-nowrap items-center gap-8;
+			@apply flex flex-row flex-nowrap items-center gap-8 py-5;
 
 			.otherActionsBtn {
 				@apply flex flex-row flex-nowrap items-center gap-2 text-lg;
 
 				.otherActionsIcon {
-					@apply text-primary text-xl;
+					@apply text-primary text-2xl;
 				}
 
 				.otherActionsText {
-					@apply text-gray-200 text-lg;
+					@apply text-gray-200 text-2xl;
 				}
 			}
 		}

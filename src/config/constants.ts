@@ -8,6 +8,7 @@ export const backgroundLight = 'var(--nextui-colors-gray200)'
 export const lightGray = 'var(--light-gray)'
 export const textLightGray = 'var(--nextui-colors-text)'
 export const error = '#f74343'
+export const errorHover = '#dc0909'
 export const gray800 = 'var(--bg-gray-800)'
 export const backgroundLandscape = '#171b3d'
 

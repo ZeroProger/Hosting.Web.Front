@@ -1,4 +1,10 @@
-import { IServerProperty, ServerPropertyType } from '@/shared/types/server.types'
+import {
+	IServerConsoleLine,
+	IServerProperty,
+	IServerUsageItem,
+	ServerConsoleLineType,
+	ServerPropertyType,
+} from '@/shared/types/server.types'
 
 import image1 from '@/assets/images/head1.webp'
 import image2 from '@/assets/images/head2.png'
@@ -201,4 +207,74 @@ export const serverProperties: IServerProperty[] = [
 		label: 'Хардкор',
 		type: ServerPropertyType.Boolean,
 	},
+]
+
+export const serverConsole: IServerConsoleLine[] = [
+	{
+		id: '1',
+		message: 'Starting Minecraft server on *:62725',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:20',
+	},
+	{
+		id: '2',
+		message: 'Preparing level world',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:21',
+	},
+	{
+		id: '3',
+		message:
+			'**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!',
+		type: ServerConsoleLineType.Warning,
+		time: '20:24:22',
+	},
+	{
+		id: '4',
+		message: '4epenaDJIa has made the advancement [Monster Hunter]',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:23',
+	},
+	{
+		id: '5',
+		message: `Can't keep up! Is the server overloaded? Running 2003ms or 40 ticks behind`,
+		type: ServerConsoleLineType.Warning,
+		time: '20:24:24',
+	},
+	{
+		id: '6',
+		message: `Unexpected error. Server crashed!`,
+		type: ServerConsoleLineType.Error,
+		time: '20:24:25',
+	},
+	{
+		id: '7',
+		message: `Using 4 threads for Netty based IO. Server stopped.`,
+		type: ServerConsoleLineType.Error,
+		time: '20:24:26',
+	},
+	{
+		id: '8',
+		message: 'Saving players.',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:27',
+	},
+	{
+		id: '9',
+		message: 'Saving level world.',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:28',
+	},
+	{
+		id: '10',
+		message: 'Thread Query Listener stopped',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:29',
+	},
+]
+
+export const serverUsage: IServerUsageItem[] = [
+	{ label: 'Процессор', value: 58, maxValue: 100, color: 'purple', isPercent: true },
+	{ label: 'Опер. память', value: 716, maxValue: 2500, color: 'blue', valueUnit: 'MB' },
+	{ label: 'хранилище', value: 0.23, maxValue: 5, color: 'orange', valueUnit: 'GB' },
 ]

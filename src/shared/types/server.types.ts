@@ -33,3 +33,25 @@ export interface IServerMainInfo {
 		playersImages?: string[]
 	}
 }
+
+export enum ServerConsoleLineType {
+	Error = 'ERROR',
+	Warning = 'WARNING',
+	Info = 'INFO',
+}
+
+export interface IServerConsoleLine {
+	id: string
+	message: string
+	time: string
+	type: ServerConsoleLineType
+}
+
+export interface IServerUsageItem {
+	label: string
+	value: number
+	maxValue: number
+	color: string
+	valueUnit?: string
+	isPercent?: boolean
+}
