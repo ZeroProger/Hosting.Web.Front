@@ -1,6 +1,6 @@
 export const APP_URL = `${process.env.APP_URL}`
 
-export const getServersUrl = () => '/servers'
+export const getServersUrl = (query?: string) => `/servers${query ? `?${query}` : ''}`
 
 export const getServerUrl = (slug: string) => `/servers/${slug}/overview`
 
@@ -14,6 +14,8 @@ export const getServerPlayersUrl = (slug: string, category?: string) =>
 export const getServerModsUrl = (slug: string) => `/servers/${slug}/mods`
 
 export const getServerConsoleUrl = (slug: string) => `/servers/${slug}/console`
+
+export const getServerLogsUrl = (slug: string) => `/servers/${slug}/logs`
 
 export const getServerFilesUrl = (slug: string) => `/servers/${slug}/files`
 

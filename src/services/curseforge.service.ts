@@ -9,6 +9,10 @@ export const CurseForgeService = {
 		})
 	},
 
+	// async getMinecraftVersion() {
+	// 	return axiosCurseForge.get<{ data: string }>(getMinecraftVersionUrl())
+	// },
+
 	async getMinecraftVersions() {
 		return axiosCurseForge.get<{ data: ICForgeVersion[] }>(getMinecraftVersionsUrl())
 	},

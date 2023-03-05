@@ -67,4 +67,25 @@
 			}
 		}
 	}
+
+	&.fullConsole {
+		.header {
+			@apply text-3xl flex flex-row justify-between items-center flex-wrap gap-x-4 gap-y-2 mb-5;
+
+			.headerActions {
+				a {
+					@apply btn-secondary-gray text-2xl py-1 mb-1;
+				}
+			}
+		}
+
+		.lines {
+			height: 600px;
+			max-height: 600px;
+
+			.line {
+				@apply text-xl;
+			}
+		}
+	}
 }

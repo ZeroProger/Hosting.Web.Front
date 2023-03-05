@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 
 import ServerLayout from '@/components/server-layout/ServerLayout'
 
-import ServerPlayers from '@/screens/server-players/ServerPlayers'
+import ServerPlayers from '@/screens/server/players/ServerPlayers'
 
 import { NextPageWithLayout } from '@/pages/_app'
 

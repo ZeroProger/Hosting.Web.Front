@@ -17,7 +17,7 @@ export interface IPlayerRole {
 	textColor: string
 }
 
-export interface IUser {
+export interface IPlayer {
 	id: number
 	image: string
 	name: string

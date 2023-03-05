@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 
 import ServerLayout from '@/components/server-layout/ServerLayout'
 
-import ServerOverview from '@/screens/server-overview/ServerOverview'
+import ServerOverview from '@/screens/server/overview/ServerOverview'
 
 import { NextPageWithLayout } from '@/pages/_app'
 

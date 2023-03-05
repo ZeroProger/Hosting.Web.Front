@@ -5,8 +5,6 @@ export const scrollTo = (id: string) => {
 	const elementPosition = element?.getBoundingClientRect().top || 0
 	const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20
 
-	console.log(header, headerOffset, elementPosition, offsetPosition)
-
 	window.scrollTo({
 		top: offsetPosition,
 		behavior: 'smooth',

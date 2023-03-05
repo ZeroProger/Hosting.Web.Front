@@ -1,10 +1,8 @@
 import { Avatar } from '@nextui-org/react'
-import { serverActivePlayers } from 'fakeData/users.data'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { FC } from 'react'
 
-import { IParams } from '@/shared/types/base.types'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import { error, secondaryGray } from '@/config/constants'
 import { getServerPlayersUrl } from '@/config/url.config'
@@ -14,8 +12,7 @@ import { Icon } from '../ui/Icon'
 import styles from './ServerActivePlayers.module.scss'
 
 const ServerActivePlayers: FC = () => {
-	const router = useRouter()
-	const { slug } = router.query as IParams
+	const server = useTypedSelector((state) => state.serverReducer.server)
 
 	const handleKickClick = () => {}
 	const handleBanClick = () => {}
@@ -25,13 +22,13 @@ const ServerActivePlayers: FC = () => {
 			<div className={styles.header}>
 				<div className={styles.headerTitle}>Активные игроки</div>
 				<div className={styles.headerActions}>
-					<Link href={getServerPlayersUrl(slug)}>Управление</Link>
+					<Link href={getServerPlayersUrl(server.uuid)}>Управление</Link>
 				</div>
 			</div>
 			<hr className={styles.hr} />
 			<div className={styles.body}>
 				<div className={styles.rows}>
-					{serverActivePlayers.map((player) => (
+					{server.activePlayers.map((player) => (
 						<div key={player.id} className={styles.row}>
 							<div className={styles.avatar}>
 								<Avatar

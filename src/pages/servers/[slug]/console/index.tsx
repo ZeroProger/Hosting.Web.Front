@@ -2,10 +2,12 @@ import { ReactElement } from 'react'
 
 import ServerLayout from '@/components/server-layout/ServerLayout'
 
+import ServerConsole from '@/screens/server/console/ServerConsole'
+
 import { NextPageWithLayout } from '@/pages/_app'
 
 const ConsolePage: NextPageWithLayout = () => {
-	return <div>ConsolePage</div>
+	return <ServerConsole />
 }
 
 export default ConsolePage

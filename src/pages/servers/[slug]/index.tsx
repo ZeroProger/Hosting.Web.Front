@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 import { IParams } from '@/shared/types/base.types'
 
-import { getServerUrl } from '@/config/url.config'
+import { getServerOverviewUrl } from '@/config/url.config'
 
 import { NextPageWithLayout } from '@/pages/_app'
 
@@ -12,8 +12,10 @@ const ServerPage: NextPageWithLayout = () => {
 	const { slug } = router.query as IParams
 
 	useEffect(() => {
-		router.push(getServerUrl(`/${slug}/overview/`))
-	}, [])
+		if (slug) {
+			router.push(getServerOverviewUrl(slug))
+		}
+	}, [slug])
 
 	return null
 }

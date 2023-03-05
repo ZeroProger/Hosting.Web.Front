@@ -1,3 +1,7 @@
+import { ICForgeSoftware, ICForgeVersion } from '@/shared/types/curseforge.types'
+
+import { IPlayer } from './user.types'
+
 export enum ServerPropertyType {
 	Select,
 	Boolean,
@@ -43,6 +47,7 @@ export enum ServerConsoleLineType {
 export interface IServerConsoleLine {
 	id: string
 	message: string
+	fullMessage?: string
 	time: string
 	type: ServerConsoleLineType
 }
@@ -54,4 +59,19 @@ export interface IServerUsageItem {
 	color: string
 	valueUnit?: string
 	isPercent?: boolean
+}
+
+export interface IServer {
+	name: string
+	uuid: string
+	ip: string
+	dynamicIp: string
+	software: ICForgeSoftware
+	version: ICForgeVersion
+	online: boolean
+	activePlayers: IPlayer[]
+	mainInfo: IServerMainInfo[]
+	console: IServerConsoleLine[] //#TODO: не уверен что так нужно, возможно надо юзать websocket
+	usage: IServerUsageItem[]
+	settings: IServerProperty[]
 }

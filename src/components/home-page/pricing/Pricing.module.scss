@@ -13,7 +13,7 @@
 		}
 
 		.tariff {
-			@apply flex flex-col gap-4 items-start bg-backgroundLight rounded-layout p-layout;
+			@apply flex flex-col gap-4 items-start p-layout rounded-layout;
 
 			background: linear-gradient(
 				to top right,

@@ -271,6 +271,128 @@ export const serverConsole: IServerConsoleLine[] = [
 		type: ServerConsoleLineType.Info,
 		time: '20:24:29',
 	},
+	{
+		id: '11',
+		message: 'Starting Minecraft server on *:62725',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:20',
+	},
+	{
+		id: '12',
+		message: 'Preparing level world',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:21',
+	},
+	{
+		id: '13',
+		message:
+			'**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!',
+		type: ServerConsoleLineType.Warning,
+		time: '20:24:22',
+	},
+	{
+		id: '14',
+		message: '4epenaDJIa has made the advancement [Monster Hunter]',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:23',
+	},
+	{
+		id: '15',
+		message: `Can't keep up! Is the server overloaded? Running 2003ms or 40 ticks behind`,
+		type: ServerConsoleLineType.Warning,
+		time: '20:24:24',
+	},
+	{
+		id: '16',
+		message: `Unexpected error. Server crashed!`,
+		type: ServerConsoleLineType.Error,
+		time: '20:24:25',
+	},
+	{
+		id: '17',
+		message: `Using 4 threads for Netty based IO. Server stopped.`,
+		type: ServerConsoleLineType.Error,
+		time: '20:24:26',
+	},
+	{
+		id: '18',
+		message: 'Saving players.',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:27',
+	},
+	{
+		id: '19',
+		message: 'Saving level world.',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:28',
+	},
+	{
+		id: '20',
+		message: 'Thread Query Listener stopped',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:29',
+	},
+	{
+		id: '21',
+		message: 'Starting Minecraft server on *:62725',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:20',
+	},
+	{
+		id: '22',
+		message: 'Preparing level world',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:21',
+	},
+	{
+		id: '23',
+		message:
+			'**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!',
+		type: ServerConsoleLineType.Warning,
+		time: '20:24:22',
+	},
+	{
+		id: '24',
+		message: '4epenaDJIa has made the advancement [Monster Hunter]',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:23',
+	},
+	{
+		id: '25',
+		message: `Can't keep up! Is the server overloaded? Running 2003ms or 40 ticks behind`,
+		type: ServerConsoleLineType.Warning,
+		time: '20:24:24',
+	},
+	{
+		id: '26',
+		message: `Unexpected error. Server crashed!`,
+		type: ServerConsoleLineType.Error,
+		time: '20:24:25',
+	},
+	{
+		id: '27',
+		message: `Using 4 threads for Netty based IO. Server stopped.`,
+		type: ServerConsoleLineType.Error,
+		time: '20:24:26',
+	},
+	{
+		id: '28',
+		message: 'Saving players.',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:27',
+	},
+	{
+		id: '29',
+		message: 'Saving level world.',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:28',
+	},
+	{
+		id: '30',
+		message: 'Thread Query Listener stopped',
+		type: ServerConsoleLineType.Info,
+		time: '20:24:29',
+	},
 ]
 
 export const serverUsage: IServerUsageItem[] = [
