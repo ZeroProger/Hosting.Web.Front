@@ -1,11 +1,9 @@
 import { Popover } from '@nextui-org/react'
 import clsx from 'clsx'
-import { serverMainInfo } from 'fakeData/server.data'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { FC } from 'react'
 
-import { IParams } from '@/shared/types/base.types'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import { isUndefined } from '@/utils/objects/isUndefined'
 
@@ -21,8 +19,7 @@ import { AvatarGroup } from '../ui/avatar-group/AvatarGroup'
 import styles from './ServerMainInfo.module.scss'
 
 const ServerMainInfo: FC = () => {
-	const router = useRouter()
-	const { slug } = router.query as IParams
+	const server = useTypedSelector((state) => state.serverReducer.server)
 
 	const handleCopyClick = (event: React.MouseEvent<HTMLElement>) => {
 		const copyText =
@@ -36,7 +33,7 @@ const ServerMainInfo: FC = () => {
 			<hr className={styles.hr} />
 			<div className={styles.body}>
 				<div className={styles.rows}>
-					{serverMainInfo.map((row) => (
+					{server.mainInfo?.map((row) => (
 						<div key={row.label} className={styles.row}>
 							<div className={styles.label}>{row.label}</div>
 							<div className={styles.value}>
@@ -73,10 +70,10 @@ const ServerMainInfo: FC = () => {
 									<Link
 										href={
 											row.otherInfo?.isSoftware
-												? getServerSoftwareUrl(slug)
+												? getServerSoftwareUrl(server.uuid)
 												: row.otherInfo?.isVersion
-												? getServerVersionsUrl(slug, 'fabric')
-												: getServerOverviewUrl(slug)
+												? getServerVersionsUrl(server.uuid, server.software.slug)
+												: getServerOverviewUrl(server.uuid)
 										}
 										className={styles.link}
 									>

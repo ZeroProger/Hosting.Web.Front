@@ -2,10 +2,13 @@ import { NextUIProvider, createTheme } from '@nextui-org/react'
 import { SSRProvider } from '@react-aria/ssr'
 import { FC, PropsWithChildren } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { Provider } from 'react-redux'
 
 import Layout from '@/components/layout/Layout'
 
 import { IS_DARK_THEME } from '@/config/constants'
+
+import { store } from '../store'
 
 const queryClient = new QueryClient()
 
@@ -38,13 +41,15 @@ const nextUITheme = createTheme({
 
 const MainProvider: FC<PropsWithChildren> = ({ children }) => {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<SSRProvider>
-				<NextUIProvider disableBaseline theme={nextUITheme}>
-					<Layout>{children}</Layout>
-				</NextUIProvider>
-			</SSRProvider>
-		</QueryClientProvider>
+		<Provider store={store}>
+			<QueryClientProvider client={queryClient}>
+				<SSRProvider>
+					<NextUIProvider disableBaseline theme={nextUITheme}>
+						<Layout>{children}</Layout>
+					</NextUIProvider>
+				</SSRProvider>
+			</QueryClientProvider>
+		</Provider>
 	)
 }
 

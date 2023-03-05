@@ -12,13 +12,18 @@ interface IAbout {}
 
 const About: FC<IAbout> = () => {
 	return (
-		<div className={styles.container}>
+		<motion.div
+			className={styles.container}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ delay: 0, duration: 1, ease: 'easeInOut' }}
+		>
 			<div className={styles.content}>
 				<motion.div
 					className={styles.title}
 					initial={{ scale: 0, opacity: 0 }}
 					animate={{ scale: 1, opacity: 1 }}
-					transition={{ delay: 0, duration: 0.4 }}
+					transition={{ delay: 0.6, duration: 0.4 }}
 				>
 					<span className="text-primary">Simple</span>
 					<span className="text-secondaryDirt">Host</span>
@@ -27,14 +32,14 @@ const About: FC<IAbout> = () => {
 					<motion.p
 						initial={{ x: -2000 }}
 						animate={{ x: 0 }}
-						transition={{ delay: 0.1, duration: 0.6, ease: 'backInOut' }}
+						transition={{ delay: 0.7, duration: 0.6, ease: 'backInOut' }}
 					>
 						Новый хостинг серверов Minecraft!
 					</motion.p>
 					<motion.p
 						initial={{ x: 2000 }}
 						animate={{ x: 0 }}
-						transition={{ delay: 0.5, duration: 0.6, ease: 'backInOut' }}
+						transition={{ delay: 1.1, duration: 0.6, ease: 'backInOut' }}
 					>
 						Теперь вы сможете создать сервер с модами за{' '}
 						<span className="text-primary">несколько минут!</span>
@@ -42,7 +47,7 @@ const About: FC<IAbout> = () => {
 					<motion.p
 						initial={{ x: -2000 }}
 						animate={{ x: 0 }}
-						transition={{ delay: 0.9, duration: 0.6, ease: 'backInOut' }}
+						transition={{ delay: 1.5, duration: 0.6, ease: 'backInOut' }}
 					>
 						<span className="text-primary">Только у нас:</span> возможность вывести ваш локальный
 						сервер в сеть!
@@ -50,7 +55,7 @@ const About: FC<IAbout> = () => {
 					<motion.div
 						initial={{ x: 2000 }}
 						animate={{ x: 0 }}
-						transition={{ delay: 1.3, duration: 0.6, ease: 'backInOut' }}
+						transition={{ delay: 1.9, duration: 0.6, ease: 'backInOut' }}
 					>
 						<p>
 							<span className="text-primary font-bold">✓</span> Минимальный пинг по России.
@@ -67,7 +72,7 @@ const About: FC<IAbout> = () => {
 					className={styles.start}
 					initial={{ scale: 0, opacity: 0 }}
 					animate={{ scale: 1, opacity: 1 }}
-					transition={{ delay: 1.9, duration: 0.4 }}
+					transition={{ delay: 2.5, duration: 0.4 }}
 				>
 					<Link href={getServerCreateUrl()}>Создать сервер</Link>
 				</motion.div>
@@ -79,12 +84,12 @@ const About: FC<IAbout> = () => {
 					className={styles.scrollLink}
 					initial={{ scale: 0, opacity: 0 }}
 					animate={{ scale: 1, opacity: 1 }}
-					transition={{ delay: 2.2, duration: 0.4 }}
+					transition={{ delay: 2.8, duration: 0.4 }}
 				>
 					Наши тарифы
 				</motion.button>
 			</div>
-		</div>
+		</motion.div>
 	)
 }
 

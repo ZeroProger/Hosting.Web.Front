@@ -12,6 +12,13 @@ export const axiosClassic = axios.create({
 	},
 })
 
+export const axiosAuthClassic = axios.create({
+	baseURL: IS_PRODUCTION ? API_SERVER_URL : API_URL,
+	headers: {
+		'Content-Type': 'application/json',
+	},
+})
+
 export const axiosCurseForge = axios.create({
 	baseURL: API_CURSE_FORGE_URL,
 	headers: {

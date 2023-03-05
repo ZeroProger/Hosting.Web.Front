@@ -2,7 +2,7 @@ import { Button, Text } from '@nextui-org/react'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 
-import { IParams } from '@/shared/types/base.types'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import { Icon } from '../ui/Icon'
 import { AvatarGroup } from '../ui/avatar-group/AvatarGroup'
@@ -14,13 +14,15 @@ interface IServerHeader {}
 
 const ServerHeader: FC<IServerHeader> = () => {
 	const router = useRouter()
-	const { slug } = router.query as IParams
+	const server = useTypedSelector((state) => state.serverReducer.server)
 
 	const handleBackBtn = () => {
 		router.back()
 	}
 
 	const handleStopServerBtn = () => {}
+
+	const handleStartServerBtn = () => {}
 
 	return (
 		<div className={styles.container}>
@@ -32,43 +34,52 @@ const ServerHeader: FC<IServerHeader> = () => {
 							icon={<Icon name="MdArrowBackIos" size={24} />}
 							className={styles.backBtn}
 						></Button>
-						<Text className={styles.mainBarName}>Arcade Sky</Text>
+						<Text className={styles.mainBarName}>{server.name}</Text>
 					</div>
 					<div className={styles.mainBarActions}>
-						<Button className="btn-error" onClick={handleStopServerBtn}>
-							Остановить сервер
-						</Button>
+						{server.online ? (
+							<Button className={styles.btnError} onClick={handleStopServerBtn}>
+								Остановить сервер
+							</Button>
+						) : (
+							<Button className={styles.btnStart} onClick={handleStartServerBtn}>
+								Запустить сервер
+							</Button>
+						)}
+
 						<Button icon={<Icon name="BsThreeDots" size={24} />} className="btn-default"></Button>
 					</div>
 				</div>
 				<div className={styles.subBar}>
 					<div className={styles.subBarAddress}>
 						<Icon name="TbWorld" size={24} />
-						<span>{slug}.simplehost</span>
+						<span>{server.ip}</span>
 					</div>
 					<div className={styles.subBarUsers}>
 						<AvatarGroup />
-						<span>4/8 игроков</span>
+						<span>{server.activePlayers.length} / 10</span>
 					</div>
 					<div className={styles.subBarCore}>
 						<Icon name="BsBookmarkFill" />
-						<span>Paper 1.16.5</span>
+						<span>
+							{server.software.name} {server.version.label}
+						</span>
 					</div>
 					<div className={styles.subBarStatus}>
 						<Icon name="GoPrimitiveDot" />
-						<span>Онлайн</span>
+						{server.online ? (
+							<span className={styles.online}>Онлайн</span>
+						) : (
+							<span className={styles.offline}>Оффлайн</span>
+						)}
 					</div>
 				</div>
 			</div>
 			<div className={styles.controls}>
 				<div className={styles.tabs}>
-					<ServerTabs slug={slug} />
+					<ServerTabs slug={server.uuid} />
 				</div>
 				<div className={styles.otherActions}>
-					<button type="button" className={styles.otherActionsBtn}>
-						<Icon name="RxUpdate" size={28} className={styles.otherActionsIcon} />
-						<span className={styles.otherActionsText}>Изменить версию</span>
-					</button>
 					<button type="button" className={styles.otherActionsBtn}>
 						<Icon name="RiShareForwardFill" className={styles.otherActionsIcon} size={28} />
 						<span className={styles.otherActionsText}>Поделиться</span>

@@ -1,4 +1,5 @@
 .container {
+	//#TODO:Сжать background для AboutSection
 	@apply relative w-full flex flex-row justify-center items-center p-layout;
 	height: 100vh;
 	background-image: url('/landscape-bg.webp');

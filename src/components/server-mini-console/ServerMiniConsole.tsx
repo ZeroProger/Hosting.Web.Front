@@ -1,17 +1,26 @@
 import { FormElement, Input } from '@nextui-org/react'
 import clsx from 'clsx'
-import { serverConsole } from 'fakeData/server.data'
+import Link from 'next/link'
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
+
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import { IServerConsoleLine, ServerConsoleLineType } from '@/shared/types/server.types'
 
 import { lightGray } from '@/config/constants'
+import { getServerLogsUrl } from '@/config/url.config'
 
 import styles from './ServerMiniConsole.module.scss'
 
-const ServerMiniConsole: FC = () => {
-	const [serverConsoleData, setServerConsoleData] = useState<IServerConsoleLine[]>(serverConsole)
+interface IServerMiniConsole {
+	fullConsole?: boolean
+}
+
+const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
+	const [serverConsoleData, setServerConsoleData] = useState<IServerConsoleLine[]>([])
 	const [inputValue, setInputValue] = useState('')
+
+	const { console, uuid } = useTypedSelector((state) => state.serverReducer.server)
 
 	const inputRef = useRef<HTMLInputElement>(null)
 	const linesRef = useRef<HTMLDivElement>(null)
@@ -21,7 +30,6 @@ const ServerMiniConsole: FC = () => {
 		const newLine: IServerConsoleLine = {
 			id: Math.random().toString(),
 			message: `/${value}`,
-
 			time: new Date().toLocaleString('ru-RU', {
 				hour: '2-digit',
 				minute: '2-digit',
@@ -37,12 +45,23 @@ const ServerMiniConsole: FC = () => {
 	}
 
 	useEffect(() => {
-		linesRef?.current?.scrollTo(0, linesRef?.current?.clientHeight)
+		linesRef?.current?.scrollTo(0, linesRef?.current?.scrollHeight)
 	}, [serverConsoleData])
 
+	useEffect(() => {
+		setServerConsoleData(console)
+	}, [console])
+
 	return (
-		<div className={styles.card}>
-			<div className={styles.header}>Консоль</div>
+		<div className={clsx(styles.card, { [styles.fullConsole]: fullConsole })}>
+			<div className={styles.header}>
+				<div className={styles.headerTitle}>Консоль</div>
+				{fullConsole && (
+					<div className={styles.headerActions}>
+						<Link href={getServerLogsUrl(uuid)}>Журнал логов</Link>
+					</div>
+				)}
+			</div>
 			<div className={styles.hr}></div>
 			<div className={styles.body}>
 				<div className={styles.lines} ref={linesRef}>
