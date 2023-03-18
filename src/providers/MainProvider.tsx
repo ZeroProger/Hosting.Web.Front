@@ -10,6 +10,8 @@ import { IS_DARK_THEME } from '@/config/constants'
 
 import { store } from '../store'
 
+// Font files can be colocated inside of `pages`
+
 const queryClient = new QueryClient()
 
 const nextUITheme = createTheme({

@@ -6,6 +6,7 @@ import styles from './Layout.module.scss'
 import Header from './header/Header'
 
 interface ILayout extends PropsWithChildren {}
+
 const rubik = Rubik({
 	subsets: ['latin'],
 	display: 'swap',
