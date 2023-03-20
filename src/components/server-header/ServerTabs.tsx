@@ -37,7 +37,7 @@ const ServerTabs: FC<{ slug: string }> = ({ slug }) => {
 					{
 						[styles.isActiveLink]:
 							router.asPath ===
-							getServerPlayersUrl(`${slug}`, `/${router.asPath.split('/').at(-1)}`),
+							getServerPlayersUrl(`${slug}`, `/${router.asPath.split('/').splice(4).join('/')}`),
 					}
 				)}
 			>
@@ -45,9 +45,16 @@ const ServerTabs: FC<{ slug: string }> = ({ slug }) => {
 			</Link>
 			<Link
 				href={getServerModsUrl(`${slug}`)}
-				className={clsx({
-					[styles.isActiveLink]: router.asPath === getServerModsUrl(`${slug}`),
-				})}
+				className={clsx(
+					{
+						[styles.isActiveLink]: router.asPath === getServerModsUrl(`${slug}`),
+					},
+					{
+						[styles.isActiveLink]:
+							router.asPath ===
+							getServerModsUrl(`${slug}`, `/${router.asPath.split('/').splice(4).join('/')}`),
+					}
+				)}
 			>
 				Моды
 			</Link>

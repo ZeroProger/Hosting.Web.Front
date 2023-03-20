@@ -2,12 +2,10 @@ import { ReactElement } from 'react'
 
 import ServerLayout from '@/components/server-layout/ServerLayout'
 
-import ServerMods from '@/screens/server/mods/ServerMods'
-
 import { NextPageWithLayout } from '@/pages/_app'
 
 const ModsPage: NextPageWithLayout = () => {
-	return <ServerMods />
+	return <div>Подборки модов</div>
 }
 
 export default ModsPage
