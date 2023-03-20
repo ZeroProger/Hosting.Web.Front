@@ -1,6 +1,4 @@
-import { IVersion } from './curseforge.types';
-import { ICForgeModloaderVersion, ICForgeSoftware } from '@/shared/types/curseforge.types'
-
+import { ICForgeSoftware, IVersion } from './curseforge.types'
 import { IPlayer } from './user.types'
 
 export enum ServerPropertyType {
