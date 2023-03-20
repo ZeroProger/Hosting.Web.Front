@@ -18,9 +18,7 @@ const initialState = {
 			slug: '',
 		},
 		version: {
-			id: -1,
-			label: '',
-			slug: '',
+			name: '',
 		},
 		online: false,
 		activePlayers: [],

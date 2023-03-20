@@ -62,7 +62,7 @@ const ServerHeader: FC<IServerHeader> = () => {
 					<div className={styles.subBarCore}>
 						<Icon name="BsBookmarkFill" />
 						<span>
-							{server.software.name} {server.version.label}
+							{server.software.name} {server.version.name}
 						</span>
 					</div>
 					<div className={styles.subBarStatus}>

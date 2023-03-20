@@ -23,37 +23,43 @@
 		}
 
 		.modloader {
-			@apply bg-backgroundLight rounded-layout text-center border-transparent;
+			@apply flex flex-col bg-backgroundLight rounded-layout text-center border-transparent;
 
 			.name {
 				@apply w-full py-2 px-6 text-3xl bg-backgroundLight rounded-t-layout border-2 border-lightGray border-b-0;
 			}
 
 			.modloaderVersions {
-				@apply flex flex-row flex-nowrap;
+				@apply flex flex-col flex-nowrap flex-grow;
 
 				.modloaderVersion {
-					@apply flex flex-row flex-nowrap items-center justify-center gap-3 w-full text-xl bg-backgroundLight py-2 px-4 rounded-b-layout border-2 border-lightGray;
+					@apply flex flex-row flex-nowrap items-center justify-center gap-3 w-full text-xl bg-backgroundLight py-2 px-4 rounded-b-layout border-2 border-lightGray flex-grow;
 
 					&:hover {
 						@apply border-primary;
 					}
 
-					&:first-child {
-						@apply rounded-br-none border-r-0;
+					&:first-child:not(:last-child) {
+						@apply rounded-b-none border-b-0;
+					}
+
+					&:not(:last-child) {
+						@apply rounded-br-none border-b-0;
 
 						&:hover {
-							@apply border-r-2;
+							@apply border-b-2;
 
 							& ~ a {
-								@apply border-l-0;
+								@apply border-t-0;
 							}
 						}
 					}
 
-					&:last-child {
+					/* 
+
+					&:last-child:not(:first-child) {
 						@apply rounded-bl-none;
-					}
+					} */
 				}
 			}
 		}

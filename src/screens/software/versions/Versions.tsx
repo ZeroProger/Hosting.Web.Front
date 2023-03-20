@@ -1,35 +1,30 @@
 import { Tooltip } from '@nextui-org/react'
 import clsx from 'clsx'
-import { fabricVersions, vanilaVersions } from 'fakeData/curseforge.data'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
 import Heading from '@/components/ui/heading/Heading'
 
 import { IParams } from '@/shared/types/base.types'
-import { ICForgeVersion } from '@/shared/types/curseforge.types'
+import { ICForgeMinecraftVersion, ICForgeModloaderVersion } from '@/shared/types/curseforge.types'
 
 import { lightGray, primary } from '@/config/constants'
 import { getServerVersionUrl } from '@/config/url.config'
 
 import styles from './Versions.module.scss'
 
-interface IVersions {}
+interface IVersions {
+	versions: { data: ICForgeMinecraftVersion[] } | { data: ICForgeModloaderVersion[] }
+	type: string
+}
 
-const Versions: FC<IVersions> = () => {
+const Versions: FC<IVersions> = ({ versions, type }) => {
 	const router = useRouter()
-	const [versions, setVersions] = useState<ICForgeVersion[]>([])
 	const { slug, software } = router.query as IParams
-
-	useEffect(() => {
-		if (software === 'vanila') {
-			setVersions(vanilaVersions)
-		} else {
-			setVersions(fabricVersions)
-		}
-	}, [software])
+	const vanilaVersions = versions as { data: ICForgeMinecraftVersion[] }
+	const modloadersVersions = versions as { data: ICForgeModloaderVersion[] }
 
 	return (
 		<div className={styles.container}>
@@ -37,60 +32,83 @@ const Versions: FC<IVersions> = () => {
 			{!versions && <div>Загрузка...</div>}
 			<div
 				className={clsx(styles.versions, {
-					[styles.versionsGrid]: versions[0]?.versions !== undefined,
+					[styles.versionsGrid]: modloadersVersions.data[0].versions !== undefined,
 				})}
 			>
-				{versions.map((version) => (
-					<>
-						{version.versions ? (
-							<div className={styles.modloader}>
-								<div className={styles.name}>{version.label}</div>
-								<div className={styles.modloaderVersions}>
-									{version.versions.map((modloader) => (
-										<Link
-											key={modloader.id}
-											href={getServerVersionUrl(slug, software, modloader.slug)}
-											className={styles.modloaderVersion}
-										>
-											{modloader.label}
-											{modloader.recommended || modloader.latest ? (
-												<Tooltip
-													content={modloader.recommended ? 'Рекомендованная' : 'Последняя'}
-													hideArrow
-													css={{
-														'&.nextui-tooltip-content': {
-															borderWidth: '2px',
-															borderColor: lightGray,
-															'& .nextui-tooltip': {
-																padding: '0 10px',
-																fontSize: '1.25rem',
-															},
-														},
-													}}
-												>
-													{modloader.recommended && (
-														<Icon name="MdStars" size={32} fill={primary} />
-													)}
-													{modloader.latest && (
-														<Icon name="MdNewReleases" size={32} fill={primary} />
-													)}
-												</Tooltip>
-											) : null}
-										</Link>
-									))}
+				<>
+					{type === 'vanila' ? (
+						<>
+							{vanilaVersions.data.map((version) => (
+								<Link
+									key={version.gameVersionId}
+									href={getServerVersionUrl(slug, software, version.version)}
+									className={styles.version}
+								>
+									<div className={styles.name}>{version.version}</div>
+								</Link>
+							))}
+						</>
+					) : (
+						<>
+							{modloadersVersions.data.map((version) => (
+								<div className={styles.modloader} key={version.gameVersion}>
+									<div className={styles.name}>{version.gameVersion}</div>
+									<div className={styles.modloaderVersions}>
+										{version.versions?.map((modloader) => (
+											<Link
+												key={modloader.modloaderVersion}
+												href={getServerVersionUrl(slug, software, modloader.modloaderVersion)}
+												className={styles.modloaderVersion}
+											>
+												{modloader.formattedVersion}
+												{modloader.recommended || modloader.latest ? (
+													<>
+														{modloader.recommended && (
+															<Tooltip
+																content={'Рекомендованная'}
+																hideArrow
+																css={{
+																	'&.nextui-tooltip-content': {
+																		borderWidth: '2px',
+																		borderColor: lightGray,
+																		'& .nextui-tooltip': {
+																			padding: '0 10px',
+																			fontSize: '1.25rem',
+																		},
+																	},
+																}}
+															>
+																<Icon name="MdStars" size={32} fill={primary} />
+															</Tooltip>
+														)}
+														{modloader.latest && (
+															<Tooltip
+																content={'Последняя'}
+																hideArrow
+																css={{
+																	'&.nextui-tooltip-content': {
+																		borderWidth: '2px',
+																		borderColor: lightGray,
+																		'& .nextui-tooltip': {
+																			padding: '0 10px',
+																			fontSize: '1.25rem',
+																		},
+																	},
+																}}
+															>
+																<Icon name="MdNewReleases" size={32} fill={primary} />
+															</Tooltip>
+														)}
+													</>
+												) : null}
+											</Link>
+										))}
+									</div>
 								</div>
-							</div>
-						) : (
-							<Link
-								key={version.id}
-								href={getServerVersionUrl(slug, software, version.slug)}
-								className={styles.version}
-							>
-								<div className={styles.name}>{version.label}</div>
-							</Link>
-						)}
-					</>
-				))}
+							))}
+						</>
+					)}
+				</>
 			</div>
 		</div>
 	)

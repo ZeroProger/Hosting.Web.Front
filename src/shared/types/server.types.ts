@@ -1,4 +1,5 @@
-import { ICForgeSoftware, ICForgeVersion } from '@/shared/types/curseforge.types'
+import { IVersion } from './curseforge.types';
+import { ICForgeModloaderVersion, ICForgeSoftware } from '@/shared/types/curseforge.types'
 
 import { IPlayer } from './user.types'
 
@@ -67,7 +68,7 @@ export interface IServer {
 	ip: string
 	dynamicIp: string
 	software: ICForgeSoftware
-	version: ICForgeVersion
+	version: IVersion
 	online: boolean
 	activePlayers: IPlayer[]
 	mainInfo: IServerMainInfo[]
