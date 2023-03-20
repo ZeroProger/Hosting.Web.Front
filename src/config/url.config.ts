@@ -11,7 +11,8 @@ export const getServerOverviewUrl = (slug: string) => `/servers/${slug}/overview
 export const getServerPlayersUrl = (slug: string, category?: string) =>
 	`/servers/${slug}/players${category || ''}`
 
-export const getServerModsUrl = (slug: string) => `/servers/${slug}/mods`
+export const getServerModsUrl = (slug: string, categories?: string) =>
+	`/servers/${slug}/mods${categories || ''}`
 
 export const getServerConsoleUrl = (slug: string) => `/servers/${slug}/console`
 
