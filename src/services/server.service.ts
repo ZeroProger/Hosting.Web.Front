@@ -17,10 +17,7 @@ export const ServerService = {
 				slug: 'fabric',
 			},
 			version: {
-				id: 9,
-				label: '1.19.2',
-				slug: '1.19.2',
-				recommended: true,
+				name: '1.19.2',
 			},
 			online: true,
 			activePlayers: serverActivePlayers,
