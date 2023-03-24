@@ -1,13 +1,18 @@
 import { serverConsole, serverMainInfo, serverProperties, serverUsage } from 'fakeData/server.data'
 import { serverActivePlayers } from 'fakeData/users.data'
 
+import { capitalize } from '@/utils/string/capitalize'
+
 import { IServer } from './../shared/types/server.types'
 
 export const ServerService = {
 	getServerByUUID(uuid: string) {
 		//return axiosAuthClassic.get<IServer>(getServersUrl(uuid))
 		return {
-			name: uuid,
+			name: uuid
+				.split('-')
+				.map((w) => capitalize(w))
+				.join(' '),
 			uuid: uuid,
 			ip: `${uuid}.simplehost.ru`,
 			dynamicIp: 'dynY6ZHOK.simplehost.cloud:10305',

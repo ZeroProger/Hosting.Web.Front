@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
-import { FC } from 'react'
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
-
-import ActiveLink from '@/components/ui/active-link/ActiveLink'
+import { FC, PropsWithChildren, useEffect, useState } from 'react'
+import { Tab, TabList, Tabs } from 'react-tabs'
 
 import {
 	getServerModFilesUrl,
@@ -11,15 +9,33 @@ import {
 	getServerModUrl,
 } from '@/config/url.config'
 
-import styles from './ServerMod.module.scss'
+import ActiveLink from '../ui/active-link/ActiveLink'
 
-interface IServerMod {
-	description: string
+import styles from './ModLayout.module.scss'
+
+enum ModLayoutPathIndexes {
+	Description,
+	Files,
+	Images,
+	Relations,
 }
 
-const ServerMod: FC<IServerMod> = ({ description }) => {
+const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 	const router = useRouter()
 	const modId = String(router.query?.id!)
+	const [tabIndex, setTabIndex] = useState(0)
+
+	var pathsMap = new Map([
+		[getServerModUrl(modId), ModLayoutPathIndexes.Description],
+		[getServerModFilesUrl(modId), ModLayoutPathIndexes.Files],
+		[getServerModImagesUrl(modId), ModLayoutPathIndexes.Images],
+		[getServerModRelationsUrl(modId), ModLayoutPathIndexes.Relations],
+	])
+
+	useEffect(() => {
+		setTabIndex(pathsMap.get(router.asPath)!)
+	}, [router.asPath])
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.search}></div>
@@ -27,7 +43,7 @@ const ServerMod: FC<IServerMod> = ({ description }) => {
 			<div className={styles.modHeader}></div>
 			<aside className={styles.aside}></aside>
 			<ul className={styles.tabs}>
-				<Tabs>
+				<Tabs selectedIndex={tabIndex || 0} onSelect={(index) => setTabIndex(index)}>
 					<TabList>
 						<Tab>
 							<ActiveLink href={getServerModUrl(modId)} activeClassName="active">
@@ -52,9 +68,9 @@ const ServerMod: FC<IServerMod> = ({ description }) => {
 					</TabList>
 				</Tabs>
 			</ul>
-			<section className={styles.tabContent}></section>
+			<section className={styles.tabContent}>{children}</section>
 		</div>
 	)
 }
 
-export default ServerMod
+export default ModLayout

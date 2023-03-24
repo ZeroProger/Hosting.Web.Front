@@ -6,3 +6,7 @@ export const getMinecraftVersionUrl = (version: string) => `softwares/versions/$
 
 export const getModsSearchUrl = () => 'mods/search'
 export const getModByIdUrl = (id: number) => `mods/${id}`
+export const getModFullDescriptionUrl = (id: number) => `mods/${id}/description`
+
+export const getClassesOfCategories = () => 'categories/grouped-by-class'
+export const getModsCategories = () => 'categories'

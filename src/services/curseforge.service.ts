@@ -6,14 +6,19 @@ import {
 
 import { axiosCurseForge } from './../api/interceptors'
 import {
+	getClassesOfCategories,
 	getMinecraftVersionsUrl,
 	getModByIdUrl,
+	getModFullDescriptionUrl,
 	getModloadersUrl,
+	getModsCategories,
 	getModsSearchUrl,
 } from './../config/curseforge-api.config'
 import {
 	ICForgeMinecraftVersion,
 	ICForgeModloaderVersion,
+	ICategory,
+	IClassOfCategories,
 	IMod,
 } from './../shared/types/curseforge.types'
 
@@ -51,5 +56,23 @@ export const CurseForgeService = {
 
 	async getModById(id: number) {
 		return axiosCurseForge.get<{ data: IMod }>(getModByIdUrl(id))
+	},
+
+	async getModFullDescription(id: number) {
+		return axiosCurseForge.get<{ data: string }>(getModFullDescriptionUrl(id))
+	},
+
+	async getModsCategories() {
+		return axiosCurseForge.get<{ data: ICategory[] }>(getModsCategories(), {
+			data: {
+				gameId: 432,
+				classId: 6,
+				classesOnly: false,
+			},
+		})
+	},
+
+	async getClassesOfModsCategories() {
+		return axiosCurseForge.get<{ data: IClassOfCategories[] }>(getClassesOfCategories())
 	},
 }

@@ -46,7 +46,12 @@ export interface IMod {
 	screenshots: IPicture[]
 	dateCreated: string
 	dateModified: string
-	allowModDistribution: boolean
+	// allowModDistribution: boolean
+}
+
+export interface IClassOfCategories {
+	className: string
+	categories: ICategory[]
 }
 
 export interface ICategory {

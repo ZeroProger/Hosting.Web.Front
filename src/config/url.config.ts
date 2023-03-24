@@ -11,8 +11,17 @@ export const getServerOverviewUrl = (slug: string) => `/servers/${slug}/overview
 export const getServerPlayersUrl = (slug: string, category?: string) =>
 	`/servers/${slug}/players${category || ''}`
 
-export const getServerModsUrl = (slug: string, categories?: string) =>
-	`/servers/${slug}/mods${categories || ''}`
+export const getServerModsUrl = () => `/servers/mods`
+
+export const getServerModUrl = (modId: string) => `/servers/mods/${modId}`
+
+export const getServerModFilesUrl = (modId: string) => `/servers/mods/${modId}/files`
+
+export const getServerModImagesUrl = (modId: string) => `/servers/mods/${modId}/images`
+
+export const getServerModRelationsUrl = (modId: string) => `/servers/mods/${modId}/relations`
+
+export const getServerModSearchUrl = () => `/server/mods/search`
 
 export const getServerConsoleUrl = (slug: string) => `/servers/${slug}/console`
 
@@ -33,3 +42,5 @@ export const getServerVersionUrl = (slug: string, core: string, version: string)
 	`${getServerVersionsUrl(slug, core)}/${version}`
 
 export const getTariffUrl = (slug: string) => `/tariffs/${slug}`
+
+

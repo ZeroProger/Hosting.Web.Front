@@ -1,4 +1,5 @@
-import { ParsedUrlQuery } from 'querystring'
+import { ParsedUrlQuery } from 'querystring';
+
 
 export interface IBasicDB {
 	id: number
@@ -8,6 +9,6 @@ export interface IBasicDB {
 
 export interface IParams extends ParsedUrlQuery {
 	slug: string
-	version: string
-	software: string
+	version?: string
+	software?: string
 }
