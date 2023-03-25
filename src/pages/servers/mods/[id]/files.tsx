@@ -1,16 +1,17 @@
-import { NextPage } from 'next'
 import { ReactElement } from 'react'
 
 import ModLayout from '@/components/mod-layout/ModLayout'
 import ServerLayout from '@/components/server-layout/ServerLayout'
 
+import ServerModFiles from '@/screens/server/mods/files/ServerModFiles'
+
 import { NextPageWithLayout } from '@/pages/_app'
 
-const FilesPage: NextPageWithLayout = () => {
-	return <div>files</div>
+const ModFilesPage: NextPageWithLayout = () => {
+	return <ServerModFiles />
 }
 
-FilesPage.getLayout = function getLayout(page: ReactElement) {
+ModFilesPage.getLayout = function getLayout(page: ReactElement) {
 	return (
 		<ServerLayout>
 			<ModLayout>{page}</ModLayout>
@@ -18,4 +19,4 @@ FilesPage.getLayout = function getLayout(page: ReactElement) {
 	)
 }
 
-export default FilesPage
+export default ModFilesPage

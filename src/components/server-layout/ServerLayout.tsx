@@ -9,7 +9,7 @@ import { IParams } from '@/shared/types/base.types'
 
 import { getServersUrl } from '@/config/url.config'
 
-import { fetchServer } from '@/store/actions/a'
+import { fetchServer } from '@/store/actions/servers'
 
 import ServerHeader from '../server-header/ServerHeader'
 
@@ -24,18 +24,17 @@ const ServerLayout: FC<PropsWithChildren> = ({ children }) => {
 
 	useEffect(() => {
 		if (slug) {
-			if (!server.name) {
-				dispatch(fetchServer(slug!))
-			}
+			setServerUuid(slug)
+			dispatch(fetchServer(slug!))
 		} else {
-			if (!server.name && serverUuid) dispatch(fetchServer(serverUuid))
-			if (!server.name && !serverUuid) router.push(getServersUrl())
+			if (!server.name && serverUuid) {
+				dispatch(fetchServer(serverUuid))
+			}
+			if (!server.name && !serverUuid) {
+				router.push(getServersUrl())
+			}
 		}
 	}, [slug])
-
-	useEffect(() => {
-		setServerUuid(server.uuid)
-	}, [server.uuid])
 
 	return (
 		<>

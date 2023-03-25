@@ -1,16 +1,17 @@
-import { NextPage } from 'next'
 import { ReactElement } from 'react'
 
 import ModLayout from '@/components/mod-layout/ModLayout'
 import ServerLayout from '@/components/server-layout/ServerLayout'
 
+import ServerModRelations from '@/screens/server/mods/relations/ServerModRelations'
+
 import { NextPageWithLayout } from '@/pages/_app'
 
-const RelationsPage: NextPageWithLayout = () => {
-	return <div>relations</div>
+const ModRelationsPage: NextPageWithLayout = () => {
+	return <ServerModRelations />
 }
 
-RelationsPage.getLayout = function getLayout(page: ReactElement) {
+ModRelationsPage.getLayout = function getLayout(page: ReactElement) {
 	return (
 		<ServerLayout>
 			<ModLayout>{page}</ModLayout>
@@ -18,4 +19,4 @@ RelationsPage.getLayout = function getLayout(page: ReactElement) {
 	)
 }
 
-export default RelationsPage
+export default ModRelationsPage

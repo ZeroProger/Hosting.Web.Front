@@ -49,6 +49,10 @@ export interface IMod {
 	// allowModDistribution: boolean
 }
 
+export interface IModDescription {
+	data: string
+}
+
 export interface IClassOfCategories {
 	className: string
 	categories: ICategory[]

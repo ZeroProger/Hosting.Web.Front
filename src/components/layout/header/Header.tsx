@@ -44,7 +44,7 @@ const Header: FC<IHeader> = () => {
 					css={{
 						backgroundColor: isHomePage ? 'transparent' : '$gray200',
 						$$navbarBackgroundColor: isHomePage ? 'transparent' : '$gray200',
-						zIndex: 2,
+						zIndex: 1000,
 						height: 'var(--nextui--navbarHeight)',
 						'& .nextui-navbar-container': {
 							columnGap: '1.5rem',

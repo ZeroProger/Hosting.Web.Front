@@ -24,7 +24,7 @@ import {
 
 export const CurseForgeService = {
 	async getModloaders(dto: IGetModloadersRequest) {
-		return axiosCurseForge.get<{ data: ICForgeModloaderVersion[] }>(getModloadersUrl(), {
+		return axiosCurseForge.post<{ data: ICForgeModloaderVersion[] }>(getModloadersUrl(), {
 			data: { dto },
 		})
 	},
@@ -34,14 +34,13 @@ export const CurseForgeService = {
 	// },
 
 	async getMinecraftVersions(dto?: IGetMinecraftVersionRequest) {
-		return await axiosCurseForge.get<{ data: ICForgeMinecraftVersion[] }>(
+		return await axiosCurseForge.post<{ data: ICForgeMinecraftVersion[] }>(
 			getMinecraftVersionsUrl(),
 			{ data: { dto } }
 		)
 	},
 
 	async getSoftwaresVersions(software?: string) {
-		console.log(software)
 		if (software === 'vanila') {
 			return this.getMinecraftVersions()
 		}
@@ -49,9 +48,7 @@ export const CurseForgeService = {
 	},
 
 	async getMods(requestParams: ISearchModsRequest) {
-		return axiosCurseForge.get<{ data: IMod[] }>(getModsSearchUrl(), {
-			data: requestParams,
-		})
+		return axiosCurseForge.post<{ data: IMod[] }>(getModsSearchUrl(), requestParams)
 	},
 
 	async getModById(id: number) {
@@ -63,7 +60,7 @@ export const CurseForgeService = {
 	},
 
 	async getModsCategories() {
-		return axiosCurseForge.get<{ data: ICategory[] }>(getModsCategories(), {
+		return axiosCurseForge.post<{ data: ICategory[] }>(getModsCategories(), {
 			data: {
 				gameId: 432,
 				classId: 6,
