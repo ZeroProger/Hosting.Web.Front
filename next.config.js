@@ -17,7 +17,7 @@ const nextConfig = {
 		APP_SERVER_URL: process.env.REACT_APP_SERVER_URL,
 	},
 	images: {
-		domains: ['cdn.snowshock35.com'],
+		domains: ['cdn.snowshock35.com', 'media.forgecdn.net'],
 		unoptimized: false,
 	},
 	async rewrites() {

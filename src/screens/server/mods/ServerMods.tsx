@@ -1,44 +1,127 @@
-import { Button, Card, Input, Popover } from '@nextui-org/react'
+import clsx from 'clsx'
 import Link from 'next/link'
-import { FC, useEffect } from 'react'
+import { FC, useRef, useState } from 'react'
 
+import ModsCompilation from '@/components/mods-compilation/ModsCompilation'
 import { Icon } from '@/components/ui/Icon'
 
-import { useAppDispatch } from '@/hooks/useAppDispatch'
-import { useTypedSelector } from '@/hooks/useTypedSelector'
+import useOnClickOutside from '@/hooks/useOnClickOutside'
 
-import { getServerModUrl } from '@/config/url.config'
+import { getModsSearchUrl } from '@/config/curseforge-api.config'
 
-import { fetchMods, fetchModsClassesWithCategories } from '@/store/actions/mods'
+import styles from './ServerMods.module.scss'
+import { useGroupedCategories } from './hooks/useGroupedCategories'
+import { usePopularModpacks } from './hooks/usePopularModpacks'
+import { usePopularMods } from './hooks/usePopularMods'
+import { usePopularPlugins } from './hooks/usePopularPlugins'
+import { usePopularResourcePacks } from './hooks/usePopularResourcePacks'
+import { usePopularWorlds } from './hooks/usePopularWorlds'
 
 interface IServerMods {}
 
 const ServerMods: FC<IServerMods> = () => {
-	const dispatch = useAppDispatch()
-	const classes = useTypedSelector((state) => state.modsReducer.classes)
-	const mods = useTypedSelector((state) => state.modsReducer.mods)
+	const { data: groupedCategories } = useGroupedCategories()
+	const mods = usePopularMods()
+	const modpacks = usePopularModpacks()
+	const resourcePacks = usePopularResourcePacks()
+	const worlds = usePopularWorlds()
+	const plugins = usePopularPlugins()
 
-	useEffect(() => {
-		if (mods.length === 0) {
-			dispatch(
-				fetchMods({
-					gameId: 432,
-					sortField: 2,
-					sortOrder: 'desc',
-					index: 0,
-					pageSize: 20,
-					classId: 6,
-				})
-			)
-		}
-		if (mods.length === 0) {
-			dispatch(fetchModsClassesWithCategories())
-		}
-	}, [])
+	const [classesOpen, setClassesOpen] = useState(false)
+	const [classesExpanded, setClassesExpanded] = useState(false)
+	const classesRef = useRef(null)
+
+	const handleClassesOpen = () => {
+		setClassesOpen((prev) => !prev)
+	}
+
+	const handleClickOutside = () => {
+		setClassesOpen(false)
+	}
+
+	const handleClassesExpand = () => {
+		setClassesExpanded(true)
+	}
+
+	useOnClickOutside(classesRef, handleClickOutside)
 
 	return (
-		<div>
-			<div className="flex justify-around">
+		<div className={styles.container}>
+			<nav className={styles.modNav}>
+				<div
+					className={clsx(
+						styles.classes,
+						{ [styles.isOpen]: classesOpen },
+						{ [styles.isExpanded]: classesExpanded }
+					)}
+					ref={classesRef}
+				>
+					<button className={styles.classesOpen} onClick={handleClassesOpen}>
+						Категории
+						<Icon name="MdKeyboardArrowDown" size={28} color="#fff" />
+					</button>
+					<div className={styles.classesMenu}>
+						<ul>
+							{groupedCategories?.map((group) => (
+								<li key={group.className}>
+									<div className={styles.group}>
+										<ul className={styles.categories}>
+											<h3 className={styles.class}>
+												<Link href={getModsSearchUrl()}>
+													{group.className}
+													<Icon name="MdKeyboardArrowRight" size={24} color="#fff" />
+												</Link>
+											</h3>
+											{group.categories.map((category) => (
+												<li key={category.id}>
+													<Link href={getModsSearchUrl()}>{category.name}</Link>
+												</li>
+											))}
+										</ul>
+									</div>
+								</li>
+							))}
+						</ul>
+						<button type="button" className={styles.classesExpand} onClick={handleClassesExpand}>
+							Посмотреть все
+						</button>
+					</div>
+				</div>
+				<div className={styles.divider}></div>
+				<div className={styles.search}>
+					<div className={styles.searchInput}>
+						<input type="search" className={styles.searchInputField} />
+						<button className={styles.searchInputBtn}>
+							<Icon name="MdSearch" size={24}></Icon>
+						</button>
+					</div>
+				</div>
+			</nav>
+			<ModsCompilation title="Популярные моды" link={getModsSearchUrl()} mods={mods.data || []} />
+			<ModsCompilation
+				title="Популярные модпаки"
+				link={getModsSearchUrl()}
+				mods={modpacks.data || []}
+			/>
+			<ModsCompilation title="Популярные миры" link={getModsSearchUrl()} mods={worlds.data || []} />
+			<ModsCompilation
+				title="Популярные ресурс-паки"
+				link={getModsSearchUrl()}
+				mods={resourcePacks.data || []}
+			/>
+			<ModsCompilation
+				title="Популярные Bukkit плагины"
+				link={getModsSearchUrl()}
+				mods={plugins.data || []}
+			/>
+		</div>
+	)
+}
+
+export default ServerMods
+
+{
+	/* <div className="flex justify-around">
 				<Popover placement="bottom-left">
 					<Popover.Trigger>
 						<Button className="btn-default">Категории</Button>
@@ -76,9 +159,5 @@ const ServerMods: FC<IServerMods> = () => {
 						</Card>
 					</Link>
 				))}
-			</div>
-		</div>
-	)
+			</div> */
 }
-
-export default ServerMods

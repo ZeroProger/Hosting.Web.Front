@@ -4,6 +4,14 @@ export enum CForgeSoftwareType {
 	Fabric,
 }
 
+export enum CForgeModClassType {
+	BukkitPlugins = 5,
+	Mods = 6,
+	Modpacks = 4471,
+	ResourcePacks = 12,
+	Worlds = 17,
+}
+
 export interface ICForgeSoftware {
 	id: string
 	name: string
@@ -53,7 +61,7 @@ export interface IModDescription {
 	data: string
 }
 
-export interface IClassOfCategories {
+export interface ICategoryGroup {
 	className: string
 	categories: ICategory[]
 }

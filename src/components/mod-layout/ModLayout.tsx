@@ -2,9 +2,6 @@ import { useRouter } from 'next/router'
 import { FC, PropsWithChildren, useEffect, useState } from 'react'
 import { Tab, TabList, Tabs } from 'react-tabs'
 
-import { useAppDispatch } from '@/hooks/useAppDispatch'
-import { useTypedSelector } from '@/hooks/useTypedSelector'
-
 import {
 	getServerModFilesUrl,
 	getServerModImagesUrl,
@@ -12,11 +9,10 @@ import {
 	getServerModUrl,
 } from '@/config/url.config'
 
-import { fetchModDescription } from '@/store/actions/mods'
-
 import ActiveLink from '../ui/active-link/ActiveLink'
 
 import styles from './ModLayout.module.scss'
+import { useModData } from './useModData'
 
 enum ModLayoutPathIndexes {
 	Description,
@@ -26,12 +22,11 @@ enum ModLayoutPathIndexes {
 }
 
 const ModLayout: FC<PropsWithChildren> = ({ children }) => {
-	const dispatch = useAppDispatch()
 	const router = useRouter()
 	const modIdString = String(router.query?.id!)
 	const modId = parseInt(modIdString)
 	const [tabIndex, setTabIndex] = useState(0)
-	const description = useTypedSelector((state) => state.modsReducer.modDescription)
+	const { data: mod, isLoading, error } = useModData(modId)
 
 	var pathsMap = new Map([
 		[getServerModUrl(modIdString), ModLayoutPathIndexes.Description],
@@ -44,11 +39,9 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 		setTabIndex(pathsMap.get(router.asPath)!)
 	}, [router.asPath])
 
-	useEffect(() => {
-		if (!Number.isNaN(modId)) {
-			dispatch(fetchModDescription(modId))
-		}
-	}, [modId])
+	//#TODO: Заменить
+	if (isLoading) return <div>Загрузка...</div>
+	if (error || !mod) return <div>Ошибка</div>
 
 	return (
 		<div className={styles.container}>

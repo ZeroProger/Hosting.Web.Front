@@ -71,6 +71,7 @@ module.exports = {
 				layout: '2rem',
 			},
 			fontSize: {
+				md: '1rem',
 				'2lg': '1.38rem',
 			},
 			fontFamily: {
@@ -164,6 +165,9 @@ module.exports = {
 					whiteSpace: 'nowrap',
 					fontSize: '1.125rem !important',
 					minWidth: 'auto',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
 					transition: 'background-color .3s ease-in-out',
 					'&:hover': {
 						backgroundColor: lightGray,
