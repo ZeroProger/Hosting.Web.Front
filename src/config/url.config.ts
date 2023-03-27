@@ -21,7 +21,8 @@ export const getServerModImagesUrl = (modId: string) => `/servers/mods/${modId}/
 
 export const getServerModRelationsUrl = (modId: string) => `/servers/mods/${modId}/relations`
 
-export const getServerModSearchUrl = () => `/server/mods/search`
+export const getServerModSearchUrl = () => `/servers
+/mods/search`
 
 export const getServerConsoleUrl = (slug: string) => `/servers/${slug}/console`
 
@@ -43,4 +44,16 @@ export const getServerVersionUrl = (slug: string, core: string, version: string)
 
 export const getTariffUrl = (slug: string) => `/tariffs/${slug}`
 
+export const breadcrumbsMap = new Map<string, string>([
+	['servers', 'Сервера'],
+	['mods', 'Моды'],
+	['files', 'Файлы'],
+	['images', 'Изображения'],
+])
 
+export const getProfileUrl = () => '/profile'
+export const getSettingsUrl = () => '/settings'
+export const getHelpUrl = () => '/help'
+export const getFeedbackUrl = () => '/feedback'
+export const getLogoutUrl = () => '/logout'
+export const getAdminUrl = () => '/admin'

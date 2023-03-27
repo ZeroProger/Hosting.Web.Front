@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { FC, useEffect, useId, useState } from 'react';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FC, useEffect, useId, useState } from 'react'
 import Select, { components } from 'react-select'
 
 import { useTypedSelector } from '@/hooks/useTypedSelector'
@@ -34,12 +34,13 @@ const CustomSelect: FC<ICustomSelect> = ({ options }) => {
 	const server = useTypedSelector((state) => state.serverReducer.server)
 
 	useEffect(() => {
+		console.log(slug, router.asPath)
 		if (!slug) {
 			if (router.asPath.includes(getServerModsUrl()))
 				setSelectedValue({ label: server.name, value: server.uuid } as IOption)
 			else setSelectedValue(null)
 		} else setSelectedValue(options.find((el) => el.value === slug) || null)
-	}, [slug])
+	}, [router])
 
 	return (
 		<Select

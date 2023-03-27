@@ -1,0 +1,11 @@
+.breadcrumbs {
+	@apply flex flex-row flex-wrap items-center gap-1;
+
+	.breadcrumb {
+		&:not(:last-child) {
+			> a {
+				@apply flex flex-row flex-nowrap items-center gap-1;
+			}
+		}
+	}
+}

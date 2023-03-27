@@ -11,7 +11,6 @@ function useOnClickOutside<T extends HTMLElement = HTMLElement>(
 ): void {
 	useEventListener(mouseEvent, (event) => {
 		const el = ref?.current
-		console.log(el, event.target)
 
 		if (!el || el.contains(event.target as Node)) {
 			return

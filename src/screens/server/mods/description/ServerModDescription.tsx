@@ -7,14 +7,14 @@ import { useModDescription } from './useModDescription'
 const ServerModDescription: FC = () => {
 	const router = useRouter()
 	const id = Number.parseInt(String(router.query.id!))
-	const { data: description, isLoading, error } = useModDescription(id)
-
-	//#TODO: Заменить
-	if (isLoading) return <div>Загрузка...</div>
-	if (!description || error) return <div>Ошибка</div>
+	const { data: description } = useModDescription(id)
 
 	return (
-		<div className={styles.description} dangerouslySetInnerHTML={{ __html: description }}></div>
+		<>
+			{description && (
+				<div className={styles.description} dangerouslySetInnerHTML={{ __html: description }}></div>
+			)}
+		</>
 	)
 }
 

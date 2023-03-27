@@ -1,6 +1,5 @@
 .description {
 	@apply text-lg;
-	max-width: 1000px;
 
 	p,
 	h1,
@@ -38,4 +37,8 @@
 	ul {
 		list-style: unset;
 	}
+}
+
+.loading {
+	@apply flex flex-col gap-2;
 }

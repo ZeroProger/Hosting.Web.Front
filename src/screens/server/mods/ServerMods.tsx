@@ -4,6 +4,7 @@ import { FC, useRef, useState } from 'react'
 
 import ModsCompilation from '@/components/mods-compilation/ModsCompilation'
 import { Icon } from '@/components/ui/Icon'
+import SearchMods from '@/components/ui/search-mods/SearchMods'
 
 import useOnClickOutside from '@/hooks/useOnClickOutside'
 
@@ -89,12 +90,7 @@ const ServerMods: FC<IServerMods> = () => {
 				</div>
 				<div className={styles.divider}></div>
 				<div className={styles.search}>
-					<div className={styles.searchInput}>
-						<input type="search" className={styles.searchInputField} />
-						<button className={styles.searchInputBtn}>
-							<Icon name="MdSearch" size={24}></Icon>
-						</button>
-					</div>
+					<SearchMods />
 				</div>
 			</nav>
 			<ModsCompilation title="Популярные моды" link={getModsSearchUrl()} mods={mods.data || []} />
