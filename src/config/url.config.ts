@@ -1,3 +1,5 @@
+import { ISearchModsQuery } from '@/shared/types/curseforge.types'
+
 export const APP_URL = `${process.env.APP_URL}`
 
 export const getServersUrl = (query?: string) => `/servers${query ? `?${query}` : ''}`
@@ -13,6 +15,19 @@ export const getServerPlayersUrl = (slug: string, category?: string) =>
 
 export const getServerModsUrl = () => `/servers/mods`
 
+export const getServerModSearchUrl = (query?: ISearchModsQuery) => {
+	const resultQuery: ISearchModsQuery = { ...searchModsBaseQuery, ...query }
+	const resultQueryString = Object.entries(resultQuery)
+		.map((item, index) => {
+			return `${index === 0 ? '?' : ''}${item[0]}=${item[1]}${
+				index !== Object.keys(resultQuery).length - 1 ? '&' : ''
+			}`
+		})
+		.join('')
+
+	return `/servers/mods/search${resultQueryString}`
+}
+
 export const getServerModUrl = (modId: string) => `/servers/mods/${modId}`
 
 export const getServerModFilesUrl = (modId: string) => `/servers/mods/${modId}/files`
@@ -20,9 +35,6 @@ export const getServerModFilesUrl = (modId: string) => `/servers/mods/${modId}/f
 export const getServerModImagesUrl = (modId: string) => `/servers/mods/${modId}/images`
 
 export const getServerModRelationsUrl = (modId: string) => `/servers/mods/${modId}/relations`
-
-export const getServerModSearchUrl = () => `/servers
-/mods/search`
 
 export const getServerConsoleUrl = (slug: string) => `/servers/${slug}/console`
 
@@ -50,6 +62,13 @@ export const breadcrumbsMap = new Map<string, string>([
 	['files', 'Файлы'],
 	['images', 'Изображения'],
 ])
+
+export const searchModsBaseQuery: ISearchModsQuery = {
+	sortField: 1,
+	sortOrder: 'desc',
+	index: 0,
+	pageSize: 20,
+}
 
 export const getProfileUrl = () => '/profile'
 export const getSettingsUrl = () => '/settings'

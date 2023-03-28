@@ -1,18 +1,22 @@
-.searchInput {
-	@apply relative flex h-14;
+.container {
+	@apply relative;
 
-	.searchInputField {
-		@apply w-full text-2xl px-6 border-none outline outline-1 outline-transparent -outline-offset-1 text-white bg-backgroundLight;
+	.searchInput {
+		@apply relative flex h-14;
 
-		height: inherit;
+		.searchInputField {
+			@apply w-full text-2xl px-6 border-none outline outline-1 outline-transparent -outline-offset-1 text-white bg-backgroundLight;
 
-		&:focus,
-		&:active {
-			@apply outline-primary;
+			height: inherit;
+
+			&:focus,
+			&:active {
+				@apply outline-primary;
+			}
 		}
-	}
 
-	.searchInputBtn {
-		@apply btn-primary rounded-none p-4;
+		.searchInputBtn {
+			@apply btn-primary rounded-none p-4;
+		}
 	}
 }

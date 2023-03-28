@@ -1,3 +1,5 @@
+import { ISearchModsRequest } from './requests/curseforge-requests.types'
+
 export enum CForgeSoftwareType {
 	Vanila,
 	Forge,
@@ -62,6 +64,7 @@ export interface IModDescription {
 }
 
 export interface ICategoryGroup {
+	classId: number
 	className: string
 	categories: ICategory[]
 }
@@ -92,3 +95,5 @@ export interface IAuthor {
 	name: string
 	url: string
 }
+
+export interface ISearchModsQuery extends Omit<ISearchModsRequest, 'gameId'> {}

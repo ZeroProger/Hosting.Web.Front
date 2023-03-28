@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -11,13 +12,14 @@ import SearchMods from '@/components/ui/search-mods/SearchMods'
 
 import { useModDescription } from '@/screens/server/mods/description/useModDescription'
 
+import siteLogo from '@/assets/images/logo-green.png'
+
 import { error } from '@/config/constants'
 import { modClassesMap } from '@/config/curseforge-api.config'
 import {
 	getFeedbackUrl,
 	getServerModFilesUrl,
 	getServerModImagesUrl,
-	getServerModRelationsUrl,
 	getServerModSearchUrl,
 	getServerModUrl,
 } from '@/config/url.config'
@@ -51,7 +53,6 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 		[getServerModUrl(modIdString), ModLayoutPathIndexes.Description],
 		[getServerModFilesUrl(modIdString), ModLayoutPathIndexes.Files],
 		[getServerModImagesUrl(modIdString), ModLayoutPathIndexes.Images],
-		[getServerModRelationsUrl(modIdString), ModLayoutPathIndexes.Relations],
 	])
 
 	//const dataLoading = true
@@ -94,9 +95,9 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 								<Breadcrumbs />
 							</nav>
 							<div className={styles.modHeader}>
-								<div className={styles.modImage}>
+								<div className={clsx(styles.modImage, { [styles.siteLogo]: mod.logo === null })}>
 									<Image
-										src={mod.logo.url}
+										src={(mod.logo && mod.logo.url) || siteLogo.src}
 										alt={`Логотип мода ${mod.name}`}
 										width={80}
 										height={80}
@@ -108,7 +109,9 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 										От <Link href={mod.authors.at(0)?.url!}>{mod.authors.at(0)?.name}</Link>
 									</li>
 									<li className={styles.classTag}>
-										<Link href={getServerModSearchUrl()}>{modClassesMap.get(mod.classId)}</Link>
+										<Link href={getServerModSearchUrl({ classId: mod.classId })}>
+											{modClassesMap.get(mod.classId)}
+										</Link>
 									</li>
 									<li className={styles.detailsDownloads}>
 										<Icon name="MdFileDownload" size={24} />
@@ -148,7 +151,14 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 									<ul className={styles.categoriesLinks}>
 										{mod.categories.map((category) => (
 											<li key={category.id}>
-												<Link href={getServerModSearchUrl()}>{category.name}</Link>
+												<Link
+													href={getServerModSearchUrl({
+														categoryId: category.id,
+														classId: category.classId,
+													})}
+												>
+													{category.name}
+												</Link>
 											</li>
 										))}
 									</ul>

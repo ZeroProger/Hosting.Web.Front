@@ -9,7 +9,9 @@ import SkeletonLoaderList from '@/components/ui/skeleton-loader/SkeletonLoaderLi
 
 import useOnClickOutside from '@/hooks/useOnClickOutside'
 
-import { getModsSearchUrl } from '@/config/curseforge-api.config'
+import { CForgeModClassType } from '@/shared/types/curseforge.types'
+
+import { getServerModSearchUrl } from '@/config/url.config'
 
 import styles from './ServerMods.module.scss'
 import { useGroupedCategories } from './hooks/useGroupedCategories'
@@ -70,14 +72,21 @@ const ServerMods: FC<IServerMods> = () => {
 										<div className={styles.group}>
 											<ul className={styles.categories}>
 												<h3 className={styles.class}>
-													<Link href={getModsSearchUrl()}>
+													<Link href={getServerModSearchUrl({ classId: group.classId })}>
 														{group.className}
 														<Icon name="MdKeyboardArrowRight" size={24} color="#fff" />
 													</Link>
 												</h3>
 												{group.categories.map((category) => (
 													<li key={category.id}>
-														<Link href={getModsSearchUrl()}>{category.name}</Link>
+														<Link
+															href={getServerModSearchUrl({
+																classId: group.classId,
+																categoryId: category.id,
+															})}
+														>
+															{category.name}
+														</Link>
 													</li>
 												))}
 											</ul>
@@ -100,21 +109,29 @@ const ServerMods: FC<IServerMods> = () => {
 					<SkeletonLoaderList count={1} height={56} />
 				</div>
 			)}
-			<ModsCompilation title="Популярные моды" link={getModsSearchUrl()} mods={mods.data || []} />
+			<ModsCompilation
+				title="Популярные моды"
+				link={getServerModSearchUrl({ classId: CForgeModClassType.Mods })}
+				mods={mods.data || []}
+			/>
 			<ModsCompilation
 				title="Популярные модпаки"
-				link={getModsSearchUrl()}
+				link={getServerModSearchUrl({ classId: CForgeModClassType.Modpacks })}
 				mods={modpacks.data || []}
 			/>
-			<ModsCompilation title="Популярные миры" link={getModsSearchUrl()} mods={worlds.data || []} />
+			<ModsCompilation
+				title="Популярные миры"
+				link={getServerModSearchUrl({ classId: CForgeModClassType.Worlds })}
+				mods={worlds.data || []}
+			/>
 			<ModsCompilation
 				title="Популярные ресурс-паки"
-				link={getModsSearchUrl()}
+				link={getServerModSearchUrl({ classId: CForgeModClassType.ResourcePacks })}
 				mods={resourcePacks.data || []}
 			/>
 			<ModsCompilation
 				title="Популярные Bukkit плагины"
-				link={getModsSearchUrl()}
+				link={getServerModSearchUrl({ classId: CForgeModClassType.BukkitPlugins })}
 				mods={plugins.data || []}
 			/>
 		</div>

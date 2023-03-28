@@ -60,6 +60,14 @@ export const popularPluginsRequest: ISearchModsRequest = {
 	pageSize: 12,
 }
 
+export const searchModsBaseRequest: ISearchModsRequest = {
+	gameId: 432,
+	sortField: 1,
+	sortOrder: 'desc',
+	index: 0,
+	pageSize: 12,
+}
+
 export const modClassesMap = new Map<number, string>([
 	[CForgeModClassType.BukkitPlugins, 'BukkitPlugins'],
 	[CForgeModClassType.Modpacks, 'Modpacks'],
