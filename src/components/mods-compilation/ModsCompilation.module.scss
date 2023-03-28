@@ -1,3 +1,5 @@
+@import 'styles/mixins.scss';
+
 .container {
 	@apply flex flex-col gap-4;
 
@@ -22,6 +24,34 @@
 	}
 }
 
-.emptyContainer {
-	@apply grid grid-cols-6 gap-4;
+@include md(xl, 'max') {
+	.container {
+		.mods {
+			@apply grid-cols-5;
+		}
+	}
+}
+
+@include md(lg, 'max') {
+	.container {
+		.mods {
+			@apply grid-cols-4;
+		}
+	}
+}
+
+@include md(md, 'max') {
+	.container {
+		.mods {
+			@apply grid-cols-3;
+		}
+	}
+}
+
+@include md(sm, 'max') {
+	.container {
+		.mods {
+			@apply grid-cols-2;
+		}
+	}
 }

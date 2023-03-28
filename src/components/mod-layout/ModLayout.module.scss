@@ -2,6 +2,7 @@
 	@apply grid;
 
 	grid-template-columns: 1fr 340px;
+	grid-template-rows: auto auto auto 60px auto auto;
 	grid-template-areas:
 		'search search'
 		'breadcrumbs breadcrumbs'
@@ -47,11 +48,18 @@
 		}
 
 		.modDetails {
-			@apply flex flex-row gap-6 justify-start items-center;
+			@apply flex flex-row gap-6 justify-start items-end text-gray-300;
 
 			grid-area: details;
 
 			.detailsAuthor {
+				a {
+					@apply transition-all;
+
+					&:hover {
+						@apply text-white underline underline-offset-4;
+					}
+				}
 			}
 
 			.classTag {
@@ -59,12 +67,12 @@
 				line-height: 26px;
 
 				a {
-					@apply block border border-lightGray text-white px-2 h-6 text-md rounded-[2px] align-middle transition-all;
+					@apply block border border-lightGray text-gray-300 px-2 h-6 text-md rounded-[2px] align-middle transition-all;
 
 					line-height: 23px;
 
 					&:hover {
-						@apply border-white;
+						@apply border-white text-white;
 					}
 				}
 			}

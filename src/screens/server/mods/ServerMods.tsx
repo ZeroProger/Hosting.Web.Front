@@ -5,6 +5,7 @@ import { FC, useRef, useState } from 'react'
 import ModsCompilation from '@/components/mods-compilation/ModsCompilation'
 import { Icon } from '@/components/ui/Icon'
 import SearchMods from '@/components/ui/search-mods/SearchMods'
+import SkeletonLoaderList from '@/components/ui/skeleton-loader/SkeletonLoaderList'
 
 import useOnClickOutside from '@/hooks/useOnClickOutside'
 
@@ -48,51 +49,57 @@ const ServerMods: FC<IServerMods> = () => {
 
 	return (
 		<div className={styles.container}>
-			<nav className={styles.modNav}>
-				<div
-					className={clsx(
-						styles.classes,
-						{ [styles.isOpen]: classesOpen },
-						{ [styles.isExpanded]: classesExpanded }
-					)}
-					ref={classesRef}
-				>
-					<button className={styles.classesOpen} onClick={handleClassesOpen}>
-						Категории
-						<Icon name="MdKeyboardArrowDown" size={28} color="#fff" />
-					</button>
-					<div className={styles.classesMenu}>
-						<ul>
-							{groupedCategories?.map((group) => (
-								<li key={group.className}>
-									<div className={styles.group}>
-										<ul className={styles.categories}>
-											<h3 className={styles.class}>
-												<Link href={getModsSearchUrl()}>
-													{group.className}
-													<Icon name="MdKeyboardArrowRight" size={24} color="#fff" />
-												</Link>
-											</h3>
-											{group.categories.map((category) => (
-												<li key={category.id}>
-													<Link href={getModsSearchUrl()}>{category.name}</Link>
-												</li>
-											))}
-										</ul>
-									</div>
-								</li>
-							))}
-						</ul>
-						<button type="button" className={styles.classesExpand} onClick={handleClassesExpand}>
-							Посмотреть все
+			{groupedCategories ? (
+				<nav className={styles.modNav}>
+					<div
+						className={clsx(
+							styles.classes,
+							{ [styles.isOpen]: classesOpen },
+							{ [styles.isExpanded]: classesExpanded }
+						)}
+						ref={classesRef}
+					>
+						<button className={styles.classesOpen} onClick={handleClassesOpen}>
+							Категории
+							<Icon name="MdKeyboardArrowDown" size={28} color="#fff" />
 						</button>
+						<div className={styles.classesMenu}>
+							<ul>
+								{groupedCategories?.map((group) => (
+									<li key={group.className}>
+										<div className={styles.group}>
+											<ul className={styles.categories}>
+												<h3 className={styles.class}>
+													<Link href={getModsSearchUrl()}>
+														{group.className}
+														<Icon name="MdKeyboardArrowRight" size={24} color="#fff" />
+													</Link>
+												</h3>
+												{group.categories.map((category) => (
+													<li key={category.id}>
+														<Link href={getModsSearchUrl()}>{category.name}</Link>
+													</li>
+												))}
+											</ul>
+										</div>
+									</li>
+								))}
+							</ul>
+							<button type="button" className={styles.classesExpand} onClick={handleClassesExpand}>
+								Посмотреть все
+							</button>
+						</div>
 					</div>
+					<div className={styles.divider}></div>
+					<div className={styles.search}>
+						<SearchMods />
+					</div>
+				</nav>
+			) : (
+				<div className="w-full">
+					<SkeletonLoaderList count={1} height={56} />
 				</div>
-				<div className={styles.divider}></div>
-				<div className={styles.search}>
-					<SearchMods />
-				</div>
-			</nav>
+			)}
 			<ModsCompilation title="Популярные моды" link={getModsSearchUrl()} mods={mods.data || []} />
 			<ModsCompilation
 				title="Популярные модпаки"
