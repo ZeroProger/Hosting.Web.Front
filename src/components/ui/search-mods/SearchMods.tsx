@@ -1,6 +1,9 @@
+import Link from 'next/link'
 import { FC, useRef, useState } from 'react'
 
 import useOnClickOutside from '@/hooks/useOnClickOutside'
+
+import { getServerModSearchUrl } from '@/config/url.config'
 
 import { Icon } from '../Icon'
 
@@ -31,9 +34,16 @@ const SearchMods: FC<ISearchMods> = () => {
 					onChange={handleSearch}
 					onFocus={handleInputFocus}
 				/>
-				<button className={styles.searchInputBtn}>
+				<Link
+					className={styles.searchInputBtn}
+					href={
+						searchTerm.length > 0
+							? getServerModSearchUrl({ searchFilter: searchTerm })
+							: getServerModSearchUrl()
+					}
+				>
 					<Icon name="MdSearch" size={24}></Icon>
-				</button>
+				</Link>
 			</div>
 			{isSuccess && <SearchList data={mods || []} searchTerm={searchTerm} showList={showList} />}
 		</div>
