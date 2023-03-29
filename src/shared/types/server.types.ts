@@ -74,3 +74,13 @@ export interface IServer {
 	usage: IServerUsageItem[]
 	settings: IServerProperty[]
 }
+
+export interface IFileNode {
+	path: string
+	name: string
+	type: string
+	changeable?: boolean
+	size: number
+	children?: IFileNode[]
+	extension?: string
+}

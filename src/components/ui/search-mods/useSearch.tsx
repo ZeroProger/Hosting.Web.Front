@@ -10,7 +10,7 @@ import { getModsSearchUrl, searchModsBaseRequest } from '@/config/curseforge-api
 
 export const useSearch = () => {
 	const [searchTerm, setSearchTerm] = useState<string>('')
-	const debouncedSearch = useDebounce(searchTerm, 600)
+	const debouncedSearch = useDebounce(searchTerm, searchTerm.trim().length === 0 ? 0 : 600)
 
 	const { isSuccess, data } = useQuery(
 		[getModsSearchUrl() + debouncedSearch, debouncedSearch],
