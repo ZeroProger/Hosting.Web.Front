@@ -21,7 +21,7 @@ export const useSearch = () => {
 		}
 	)
 
-	const handleSearch = (event: ChangeEvent<FormElement>) => {
+	const handleInput = (event: ChangeEvent<FormElement>) => {
 		setSearchTerm(event.target.value)
 	}
 
@@ -29,5 +29,5 @@ export const useSearch = () => {
 		setSearchTerm('')
 	}
 
-	return { isSuccess, handleSearch, resetSearch, data, searchTerm }
+	return { isSuccess, handleInput, resetSearch, data, searchTerm }
 }

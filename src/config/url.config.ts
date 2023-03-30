@@ -1,4 +1,5 @@
-import { ISearchModsQuery } from '@/shared/types/curseforge.types'
+import { ISearchModsQuery } from '@/shared/types/curseforge.types';
+
 
 export const APP_URL = `${process.env.APP_URL}`
 
@@ -19,9 +20,9 @@ export const getServerModSearchUrl = (query?: ISearchModsQuery) => {
 	const resultQuery: ISearchModsQuery = { ...searchModsBaseQuery, ...query }
 	const resultQueryString = Object.entries(resultQuery)
 		.map((item, index) => {
-			return `${index === 0 ? '?' : ''}${item[0]}=${item[1]}${
-				index !== Object.keys(resultQuery).length - 1 ? '&' : ''
-			}`
+			return `${index === 0 ? '?' : ''}${item[0] === 'searchFilter' ? 'search' : item[0]}=${
+				item[1]
+			}${index !== Object.keys(resultQuery).length - 1 ? '&' : ''}`
 		})
 		.join('')
 
@@ -59,6 +60,7 @@ export const getTariffUrl = (slug: string) => `/tariffs/${slug}`
 export const breadcrumbsMap = new Map<string, string>([
 	['servers', 'Сервера'],
 	['mods', 'Моды'],
+	['search', 'Поиск'],
 	['files', 'Файлы'],
 	['images', 'Изображения'],
 ])
