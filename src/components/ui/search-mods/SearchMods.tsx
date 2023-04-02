@@ -1,7 +1,7 @@
-import { useRouter } from 'next/router'
-import { FC, useState } from 'react'
+import Link from 'next/link'
+import { FC, useRef, useState } from 'react'
 
-import useOutside from '@/hooks/useOutside'
+import useOnClickOutside from '@/hooks/useOnClickOutside'
 
 import { getServerModSearchUrl } from '@/config/url.config'
 
@@ -14,29 +14,38 @@ import { useSearch } from './useSearch'
 interface ISearchMods {}
 
 const SearchMods: FC<ISearchMods> = () => {
-	const { push } = useRouter()
-	const { isSuccess, handleInput, resetSearch, data: mods, searchTerm } = useSearch()
-	const handleSearch = () => {
-		push(getServerModSearchUrl(searchTerm ? { searchFilter: searchTerm } : {}))
-	}
-	// const { ref, isFocused } = useOutside(true)
-	const [isFocused, setIsFocused] = useState(false)
+	const { isSuccess, handleSearch, resetSearch, data: mods, searchTerm } = useSearch()
+	const [showList, setShowList] = useState(false)
+	const ref = useRef(null)
+
+	const handleClickOutside = () => setShowList(false)
+
+	const handleInputFocus = () => setShowList(true)
+
+	useOnClickOutside(ref, handleClickOutside)
+
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} ref={ref}>
 			<div className={styles.searchInput}>
 				<input
 					type="search"
 					className={styles.searchInputField}
 					value={searchTerm}
-					onChange={handleInput}
-					onFocus={() => setIsFocused(true)}
-					onBlur={() => setIsFocused(false)}
+					onChange={handleSearch}
+					onFocus={handleInputFocus}
 				/>
-				<button className={styles.searchInputBtn} onClick={handleSearch}>
+				<Link
+					className={styles.searchInputBtn}
+					href={
+						searchTerm.length > 0
+							? getServerModSearchUrl({ searchFilter: searchTerm })
+							: getServerModSearchUrl()
+					}
+				>
 					<Icon name="MdSearch" size={24}></Icon>
-				</button>
+				</Link>
 			</div>
-			{isSuccess && isFocused && <SearchList data={mods || []} />}
+			{isSuccess && <SearchList data={mods || []} searchTerm={searchTerm} showList={showList} />}
 		</div>
 	)
 }

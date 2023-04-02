@@ -19,11 +19,13 @@ export const getServerModsUrl = () => `/servers/mods`
 export const getServerModSearchUrl = (query?: ISearchModsQuery) => {
 	const resultQuery: ISearchModsQuery = { ...searchModsBaseQuery, ...query }
 	const resultQueryString = Object.entries(resultQuery)
-		.map((item, index) => {
-			return `${index === 0 ? '?' : ''}${item[0] === 'searchFilter' ? 'search' : item[0]}=${
-				item[1]
-			}${index !== Object.keys(resultQuery).length - 1 ? '&' : ''}`
-		})
+		.filter((item) => item[1])
+		.map(
+			(item, index) =>
+				`${index === 0 ? '?' : ''}${item[0]}=${item[1]}${
+					index !== Object.keys(resultQuery).length - 1 ? '&' : ''
+				}`
+		)
 		.join('')
 
 	return `/servers/mods/search${resultQueryString}`

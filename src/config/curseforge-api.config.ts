@@ -1,6 +1,9 @@
-import { ISearchModsRequest } from '@/shared/types/requests/curseforge-requests.types'
+import { ISearchModsRequest } from '@/shared/types/requests/curseforge-requests.types';
 
-import { CForgeModClassType } from './../shared/types/curseforge.types'
+
+
+import { CForgeModClassType } from './../shared/types/curseforge.types';
+
 
 export const getModloadersUrl = () => 'softwares/modloaders'
 export const getModloaderUrl = (name: string) => `softwares/modloaders/${name}`
@@ -69,9 +72,9 @@ export const searchModsBaseRequest: ISearchModsRequest = {
 }
 
 export const modClassesMap = new Map<number, string>([
-	[CForgeModClassType.BukkitPlugins, 'BukkitPlugins'],
+	[CForgeModClassType.BukkitPlugins, 'Bukkit Plugins'],
 	[CForgeModClassType.Modpacks, 'Modpacks'],
 	[CForgeModClassType.Mods, 'Mods'],
-	[CForgeModClassType.ResourcePacks, 'ResourcePacks'],
+	[CForgeModClassType.ResourcePacks, 'Resource Packs'],
 	[CForgeModClassType.Worlds, 'Worlds'],
 ])

@@ -1,26 +1,11 @@
-import {
-	IGetMinecraftVersionRequest,
-	IGetModloadersRequest,
-	ISearchModsRequest,
-} from '@/shared/types/requests/curseforge-requests.types'
+import { IGetMinecraftVersionRequest, IGetModloadersRequest, ISearchModsRequest } from '@/shared/types/requests/curseforge-requests.types';
 
-import { axiosCurseForge } from './../api/interceptors'
-import {
-	getGroupedCategories,
-	getMinecraftVersionsUrl,
-	getModByIdUrl,
-	getModFullDescriptionUrl,
-	getModloadersUrl,
-	getModsCategories,
-	getModsSearchUrl,
-} from './../config/curseforge-api.config'
-import {
-	ICForgeMinecraftVersion,
-	ICForgeModloaderVersion,
-	ICategory,
-	ICategoryGroup,
-	IMod,
-} from './../shared/types/curseforge.types'
+
+
+import { axiosCurseForge } from './../api/interceptors';
+import { getGroupedCategories, getMinecraftVersionsUrl, getModByIdUrl, getModFullDescriptionUrl, getModloadersUrl, getModsCategories, getModsSearchUrl } from './../config/curseforge-api.config';
+import { ICForgeMinecraftVersion, ICForgeModloaderVersion, ICategory, ICategoryGroup, IMod } from './../shared/types/curseforge.types';
+
 
 export const CurseForgeService = {
 	async getModloaders(dto: IGetModloadersRequest) {
@@ -36,7 +21,7 @@ export const CurseForgeService = {
 	async getMinecraftVersions(dto?: IGetMinecraftVersionRequest) {
 		return await axiosCurseForge.post<{ data: ICForgeMinecraftVersion[] }>(
 			getMinecraftVersionsUrl(),
-			{ data: { dto } }
+			dto
 		)
 	},
 
@@ -59,13 +44,11 @@ export const CurseForgeService = {
 		return axiosCurseForge.get<{ data: string }>(getModFullDescriptionUrl(id))
 	},
 
-	async getModsCategories() {
+	async getModsCategories(classId: number) {
 		return axiosCurseForge.post<{ data: ICategory[] }>(getModsCategories(), {
-			data: {
-				gameId: 432,
-				classId: 6,
-				classesOnly: false,
-			},
+			gameId: 432,
+			classId,
+			classesOnly: false,
 		})
 	},
 
