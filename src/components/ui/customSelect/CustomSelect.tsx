@@ -7,7 +7,7 @@ import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import { getServerModsUrl, getServerUrl } from '@/config/url.config'
 
-interface IOption {
+export interface IOption {
 	label: string
 	value: string
 }

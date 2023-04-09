@@ -14,6 +14,8 @@ import { useModDescription } from '@/screens/server/mods/description/useModDescr
 
 import siteLogo from '@/assets/images/logo-green.png'
 
+import { russifyUTC } from '@/utils/string/russifyUTC'
+
 import { error } from '@/config/constants'
 import { modClassesMap } from '@/config/curseforge-api.config'
 import {
@@ -60,19 +62,9 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 
 	const numeralOptions = mod?.downloadCount! < 1000 ? '' : '0.0a'
 	const formattedDownloadsCount = numeral(mod?.downloadCount!).format(numeralOptions).toUpperCase()
-	const dateOptions: Intl.DateTimeFormatOptions = {
-		month: 'short',
-		year: 'numeric',
-		day: 'numeric',
-	}
-	const formattedDateCreated = new Date(String(mod?.dateCreated)).toLocaleString(
-		'ru-RU',
-		dateOptions
-	)
-	const formattedDateModified = new Date(String(mod?.dateModified)).toLocaleString(
-		'ru-RU',
-		dateOptions
-	)
+
+	const formattedDateCreated = russifyUTC(mod?.dateCreated!)
+	const formattedDateModified = russifyUTC(mod?.dateModified!)
 
 	useEffect(() => {
 		setTabIndex(pathsMap.get(router.asPath)!)

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { FC, useRef, useState } from 'react'
 
 import useOnClickOutside from '@/hooks/useOnClickOutside'
@@ -11,12 +12,11 @@ import styles from './SearchMods.module.scss'
 import SearchList from './search-list/SearchList'
 import { useSearch } from './useSearch'
 
-interface ISearchMods {}
-
-const SearchMods: FC<ISearchMods> = () => {
+const SearchMods: FC = () => {
 	const { isSuccess, handleSearch, resetSearch, data: mods, searchTerm } = useSearch()
 	const [showList, setShowList] = useState(false)
 	const ref = useRef(null)
+	const { query } = useRouter()
 
 	const handleClickOutside = () => setShowList(false)
 
