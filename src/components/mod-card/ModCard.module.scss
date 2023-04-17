@@ -1,5 +1,5 @@
 .container {
-	@apply border rounded-xl p-5 mb-10 max-w-[1000px];
+	@apply border rounded-xl p-5 mb-10 z-2 max-w-[1000px];
 }
 
 .header {
@@ -11,11 +11,11 @@
 }
 
 .number {
-  @apply flex mr-6
+	@apply flex mr-6;
 }
 
 .icon {
-  @apply mr-2
+	@apply mr-2;
 }
 
 .info {
@@ -27,5 +27,5 @@
 }
 
 .category {
-  @apply ml-6
+	@apply ml-6 z-5;
 }

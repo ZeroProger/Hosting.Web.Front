@@ -1,7 +1,7 @@
-import Link from 'next/link';
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
-import Select, { OnChangeValue, OptionProps } from 'react-select'
+import Select, { OnChangeValue, OptionProps, components } from 'react-select'
 
 import { ModCard } from '@/components/mod-card/ModCard'
 import { IOption } from '@/components/ui/customSelect/CustomSelect'
@@ -52,9 +52,9 @@ const ServerModsSearch: FC = () => {
 			data: { label, value },
 		} = props
 		return (
-			<Link href={getServerModSearchUrl({ ...query, gameVersion: value })}>
-				<div>{label}</div>
-			</Link>
+			<components.Option {...props}>
+				<Link href={getServerModSearchUrl({ ...query, gameVersion: value })}>{label}</Link>
+			</components.Option>
 		)
 	}
 
@@ -63,9 +63,9 @@ const ServerModsSearch: FC = () => {
 			data: { label, value },
 		} = props
 		return (
-			<Link href={getServerModSearchUrl({ ...query, sortField: +value })}>
-				<div>{label}</div>
-			</Link>
+			<components.Option {...props}>
+				<Link href={getServerModSearchUrl({ ...query, sortField: +value })}>{label}</Link>
+			</components.Option>
 		)
 	}
 
@@ -159,9 +159,9 @@ const ServerModsSearch: FC = () => {
 									options={sortOptions}
 									components={{ Option: SortOption }}
 									value={curSortField}
-									onChange={(newValue: OnChangeValue<IOption, boolean>) =>
+									onChange={(newValue: OnChangeValue<IOption, boolean>) => {
 										setCurSortField(newValue as IOption)
-									}
+									}}
 								/>
 							</div>
 						</div>
@@ -172,7 +172,7 @@ const ServerModsSearch: FC = () => {
 								{mods.map((mod) => (
 									<div key={mod.id} className={styles.mod}>
 										<Link href={getServerModUrl(mod.id.toString())}>
-											<ModCard {...mod} />
+											<ModCard mod={mod} />
 										</Link>
 									</div>
 								))}

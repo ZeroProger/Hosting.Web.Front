@@ -7,6 +7,7 @@ import { CurseForgeService } from './../../../../services/curseforge.service'
 
 export const useCategoriesByClassId = () => {
 	const { query } = useRouter()
+
 	const {
 		data: categories,
 		isLoading,
@@ -14,7 +15,8 @@ export const useCategoriesByClassId = () => {
 	} = useQuery(
 		[getModsCategories() + JSON.stringify(query?.classId), query?.classId],
 		() => CurseForgeService.getModsCategories(+query?.classId!),
-		{ select: ({ data }) => data.data }
+		{ select: ({ data }) => data.data.sort((a, b) => a.name.localeCompare(b.name)) }
 	)
+
 	return { categories, isLoading, error }
 }
