@@ -1,7 +1,9 @@
 import { NextPage } from 'next'
 
+import Help from '@/screens/help/Help'
+
 const HelpPage: NextPage = () => {
-	return <div>HelpPage</div>
+	return <Help />
 }
 
 export default HelpPage

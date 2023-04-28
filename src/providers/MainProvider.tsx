@@ -2,6 +2,7 @@ import { NextUIProvider, createTheme } from '@nextui-org/react'
 import { SSRProvider } from '@react-aria/ssr'
 import { FC, PropsWithChildren } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import { Provider } from 'react-redux'
 
 import Layout from '@/components/layout/Layout'
@@ -10,9 +11,16 @@ import { IS_DARK_THEME } from '@/config/constants'
 
 import { store } from '../store'
 
-// Font files can be colocated inside of `pages`
-
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			staleTime: 5 * 60 * 1000,
+			cacheTime: 5 * 60 * 1000,
+			refetchOnMount: false,
+			refetchOnWindowFocus: false,
+		},
+	},
+})
 
 const nextUITheme = createTheme({
 	type: IS_DARK_THEME ? 'dark' : 'light',
@@ -50,6 +58,7 @@ const MainProvider: FC<PropsWithChildren> = ({ children }) => {
 						<Layout>{children}</Layout>
 					</NextUIProvider>
 				</SSRProvider>
+				<ReactQueryDevtools />
 			</QueryClientProvider>
 		</Provider>
 	)

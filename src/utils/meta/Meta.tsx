@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 
-import siteLogo from '@/assets/images/logo.png'
+import siteLogo from '@/assets/images/logo-green.png'
 
 import { ISeo } from '@/utils/meta/meta.interface'
 import { clearText } from '@/utils/string/clearText'

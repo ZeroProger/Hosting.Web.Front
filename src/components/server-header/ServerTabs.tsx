@@ -44,15 +44,15 @@ const ServerTabs: FC<{ slug: string }> = ({ slug }) => {
 				Игроки
 			</Link>
 			<Link
-				href={getServerModsUrl(`${slug}`)}
+				href={getServerModsUrl()}
 				className={clsx(
 					{
-						[styles.isActiveLink]: router.asPath === getServerModsUrl(`${slug}`),
+						[styles.isActiveLink]: router.asPath === getServerModsUrl(),
 					},
 					{
 						[styles.isActiveLink]:
 							router.asPath ===
-							getServerModsUrl(`${slug}`, `/${router.asPath.split('/').splice(4).join('/')}`),
+							getServerModsUrl(),
 					}
 				)}
 			>

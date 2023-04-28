@@ -106,3 +106,8 @@ a {
 		color: #192024;
 	}
 }
+
+input[type='search']::-webkit-search-cancel-button {
+	display: none;
+}
+

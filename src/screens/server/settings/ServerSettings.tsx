@@ -7,6 +7,8 @@ import Heading from '@/components/ui/heading/Heading'
 
 import { ServerPropertyType } from '@/shared/types/server.types'
 
+import Meta from '@/utils/meta/Meta'
+
 import styles from './ServerSettings.module.scss'
 
 interface IServerSettings {}
@@ -56,78 +58,80 @@ const ServerSettings: FC<IServerSettings> = () => {
 	}, [properties])
 
 	return (
-		<div className={styles.container}>
-			<Heading title="server.properties" />
-			<div className={styles.settings}>
-				<div className={styles.properties}>
-					{properties.map((property, index) => (
-						<div className={styles.property} key={property.name}>
-							<div className={styles.propertyInput}>
-								<div className={styles.propertyLabel}>{property.label}</div>
-								{property.type === ServerPropertyType.Boolean && (
-									<Switch
-										className={styles.propertyBoolean}
-										initialChecked={property.value === 'true'}
-										onChange={(ev: SwitchEvent) => handleSwitchChange(ev, property.name)}
-										id={`react-input-${property.name}`}
-									/>
-								)}
-								{property.type === ServerPropertyType.Number && (
-									<Input
-										type="number"
-										value={parseInt(property.value)}
-										onChange={(e: ChangeEvent<FormElement>) =>
-											handleTextChange(e, property.name, '0')
-										}
-										width="100px"
-										inputMode="numeric"
-										animated={false}
-										id={`react-input-${property.name}`}
-										className={styles.propertyNumber}
-									/>
-								)}
-								{property.type === ServerPropertyType.String && (
-									<Input
-										type="text"
-										value={property.value}
-										onChange={(e: ChangeEvent<FormElement>) =>
-											handleTextChange(e, property.name, '')
-										}
-										animated={false}
-										id={`react-input-${property.name}`}
-										className={styles.propertyString}
-									/>
-								)}
+		<Meta title="Настройки сервера">
+			<div className={styles.container}>
+				<Heading title="server.properties" />
+				<div className={styles.settings}>
+					<div className={styles.properties}>
+						{properties.map((property, index) => (
+							<div className={styles.property} key={property.name}>
+								<div className={styles.propertyInput}>
+									<div className={styles.propertyLabel}>{property.label}</div>
+									{property.type === ServerPropertyType.Boolean && (
+										<Switch
+											className={styles.propertyBoolean}
+											initialChecked={property.value === 'true'}
+											onChange={(ev: SwitchEvent) => handleSwitchChange(ev, property.name)}
+											id={`react-input-${property.name}`}
+										/>
+									)}
+									{property.type === ServerPropertyType.Number && (
+										<Input
+											type="number"
+											value={parseInt(property.value)}
+											onChange={(e: ChangeEvent<FormElement>) =>
+												handleTextChange(e, property.name, '0')
+											}
+											width="100px"
+											inputMode="numeric"
+											animated={false}
+											id={`react-input-${property.name}`}
+											className={styles.propertyNumber}
+										/>
+									)}
+									{property.type === ServerPropertyType.String && (
+										<Input
+											type="text"
+											value={property.value}
+											onChange={(e: ChangeEvent<FormElement>) =>
+												handleTextChange(e, property.name, '')
+											}
+											animated={false}
+											id={`react-input-${property.name}`}
+											className={styles.propertyString}
+										/>
+									)}
 
-								{property.type === ServerPropertyType.Select && (
-									<PropertySelect
-										options={property.select?.options || []}
-										value={
-											{
-												label:
-													property.select?.options.find((el) => el.value === property.value)
-														?.label || '',
-												value: property.value,
-											} as IOption
-										}
-										onChange={(newValue, actionMeta) =>
-											handleSelectChange(newValue as IOption, property.name)
-										}
-										className={styles.propertySelect}
-										placeholder={`Выберите ${property.label.toLowerCase()}`}
-									/>
-								)}
+									{property.type === ServerPropertyType.Select && (
+										<PropertySelect
+											options={property.select?.options || []}
+											value={
+												{
+													label:
+														property.select?.options.find((el) => el.value === property.value)
+															?.label || '',
+													value: property.value,
+												} as IOption
+											}
+											onChange={(newValue, actionMeta) =>
+												handleSelectChange(newValue as IOption, property.name)
+											}
+											className={styles.propertySelect}
+											placeholder={`Выберите ${property.label.toLowerCase()}`}
+										/>
+									)}
+								</div>
+								<div className={styles.propertyOutput}>
+									<span>
+										{property.name}={property.value}
+									</span>
+								</div>
 							</div>
-							<div className={styles.propertyOutput}>
-								<span>
-									{property.name}={property.value}
-								</span>
-							</div>
-						</div>
-					))}
+						))}
+					</div>
 				</div>
 			</div>
-		</div>
+		</Meta>
 	)
 }
 

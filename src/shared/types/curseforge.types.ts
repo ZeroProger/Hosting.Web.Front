@@ -1,7 +1,17 @@
+import { ISearchModsRequest } from './requests/curseforge-requests.types'
+
 export enum CForgeSoftwareType {
 	Vanila,
 	Forge,
 	Fabric,
+}
+
+export enum CForgeModClassType {
+	BukkitPlugins = 5,
+	Mods = 6,
+	Modpacks = 4471,
+	ResourcePacks = 12,
+	Worlds = 17,
 }
 
 export interface ICForgeSoftware {
@@ -46,7 +56,17 @@ export interface IMod {
 	screenshots: IPicture[]
 	dateCreated: string
 	dateModified: string
-	allowModDistribution: boolean
+	// allowModDistribution: boolean
+}
+
+export interface IModDescription {
+	data: string
+}
+
+export interface ICategoryGroup {
+	classId: number
+	className: string
+	categories: ICategory[]
 }
 
 export interface ICategory {
@@ -75,3 +95,5 @@ export interface IAuthor {
 	name: string
 	url: string
 }
+
+export interface ISearchModsQuery extends Omit<ISearchModsRequest, 'gameId'> {}

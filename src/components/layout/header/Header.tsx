@@ -1,4 +1,3 @@
-import logo from '/public/favicon.png'
 import { Avatar, Dropdown, Navbar, Text } from '@nextui-org/react'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -9,8 +8,15 @@ import CustomSelect from '@/components/ui/customSelect/CustomSelect'
 
 import useMediaQuery from '@/hooks/useMediaQuery'
 
+import logo from '@/assets/images/logo-green.png'
+
 import { maxWidthMediaQuery } from '@/config/mediaQuery.config'
-import { getServerCreateUrl } from '@/config/url.config'
+import {
+	getAuthUrl,
+	getPublicServersUrl,
+	getServerCreateUrl,
+	getServersUrl,
+} from '@/config/url.config'
 
 import Logo from '../logo/Logo'
 import UserMenu from '../menu/userMenu/UserMenu'
@@ -24,6 +30,7 @@ const Header: FC<IHeader> = () => {
 	const router = useRouter()
 	const isHomePage = router.pathname === '/'
 	const [isLoad, setIsLoad] = useState<boolean>(false)
+	const isAuth = true
 
 	const options = [
 		{ value: 'sky-block', label: 'Sky Block' },
@@ -44,16 +51,16 @@ const Header: FC<IHeader> = () => {
 					css={{
 						backgroundColor: isHomePage ? 'transparent' : '$gray200',
 						$$navbarBackgroundColor: isHomePage ? 'transparent' : '$gray200',
-						zIndex: 2,
+						zIndex: 1000,
 						height: 'var(--nextui--navbarHeight)',
 						'& .nextui-navbar-container': {
 							columnGap: '1.5rem',
 							maxWidth: 'var(--container-max-width)',
-							'@media screen and (max-width: 900px)': {
+							'@media screen and (max-width: 1200px)': {
 								flexWrap: 'wrap',
 							},
 						},
-						'@media screen and (max-width: 900px)': {
+						'@media screen and (max-width: 1200px)': {
 							height: 'calc(var(--nextui--navbarHeight) * 2)',
 							alignItems: 'start',
 						},
@@ -64,24 +71,32 @@ const Header: FC<IHeader> = () => {
 					<Navbar.Brand>
 						<Logo withText showRule="(min-width: 600px)" />
 					</Navbar.Brand>
-					<Navbar.Content
-						css={{
-							w: '100%',
-							maxW: '500px',
-						}}
-						className="md:order-5 md:max-w-full"
-					>
-						<Navbar.Item
+					{isAuth && (
+						<Navbar.Content
 							css={{
-								width: '100%',
-								'& :first-child': {
-									boxSizing: 'border-box',
+								w: '100%',
+								maxW: '500px',
+								'@media screen and (max-width: 1200px)': {
+									maxW: '600px',
+								},
+								'@media screen and (max-width: 900px)': {
+									maxW: '500px',
 								},
 							}}
+							className="md:order-5 md:max-w-full"
 						>
-							<CustomSelect options={options}></CustomSelect>
-						</Navbar.Item>
-					</Navbar.Content>
+							<Navbar.Item
+								css={{
+									width: '100%',
+									'& :first-child': {
+										boxSizing: 'border-box',
+									},
+								}}
+							>
+								<CustomSelect options={options}></CustomSelect>
+							</Navbar.Item>
+						</Navbar.Content>
+					)}
 					<Navbar.Content
 						css={{
 							width: '100%',
@@ -90,37 +105,63 @@ const Header: FC<IHeader> = () => {
 						}}
 						className="md:w-auto"
 					>
-						<Navbar.Item className="xs:hidden">
-							<Link href={getServerCreateUrl()} className="btn-primary">
-								Создать сервер
-							</Link>
-						</Navbar.Item>
-						<Dropdown placement="bottom-right" isBordered>
-							<Navbar.Item>
-								<Dropdown.Trigger>
-									<div className="flex flex-row gap-x-3 flex-nowrap items-center cursor-pointer">
-										<Avatar
-											className={styles.avatar}
-											as="button"
-											squared
-											size="md"
-											text="ZeroProger"
-											textColor="white"
-											src={logo.src}
-											css={{
-												img: {
-													borderColor: '$gray600',
-												},
-											}}
-										/>
-										<Text className="text-lg font-semibold" css={{ color: '$gray900' }}>
-											ZeroProger
-										</Text>
-									</div>
-								</Dropdown.Trigger>
+						<div className="flex flex-row gap-6">
+							{isAuth && (
+								<Navbar.Item className="md:hidden text-xl">
+									<Link href={getServersUrl()} className="w-max">
+										Мои сервера
+									</Link>
+								</Navbar.Item>
+							)}
+							<Navbar.Item className="md:hidden text-xl">
+								<Link href={getPublicServersUrl()} className="w-max">
+									Публичные сервера
+								</Link>
 							</Navbar.Item>
-							<UserMenu />
-						</Dropdown>
+						</div>
+						<div className="flex flex-row gap-6">
+							<Navbar.Item className="xs:hidden">
+								<Link href={getServerCreateUrl()} className="btn-primary">
+									Создать сервер
+								</Link>
+							</Navbar.Item>
+							{isAuth ? (
+								<Dropdown placement="bottom-right" isBordered offset={18}>
+									<Navbar.Item>
+										<Dropdown.Trigger>
+											<div className="flex flex-row gap-x-3 flex-nowrap items-center cursor-pointer">
+												<Avatar
+													className={styles.avatar}
+													as="button"
+													squared
+													size="md"
+													text="ZeroProger"
+													textColor="white"
+													src={logo.src}
+													css={{
+														img: {
+															borderColor: '$gray600',
+														},
+													}}
+												/>
+												<Text className="text-lg font-semibold" css={{ color: '$gray900' }}>
+													ZeroProger
+												</Text>
+											</div>
+										</Dropdown.Trigger>
+									</Navbar.Item>
+									<UserMenu />
+								</Dropdown>
+							) : (
+								<Navbar.Item>
+									<div className="flex flex-row items-center">
+										<Link href={getAuthUrl()} className="text-xl">
+											Авторизоваться
+										</Link>
+									</div>
+								</Navbar.Item>
+							)}
+						</div>
 					</Navbar.Content>
 				</Navbar>
 			) : null}

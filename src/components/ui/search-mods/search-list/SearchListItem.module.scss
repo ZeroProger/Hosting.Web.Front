@@ -1,0 +1,11 @@
+.link {
+	@apply flex items-center gap-2 py-1 px-4 relative text-lg transition-all;
+
+	&:hover {
+		@apply bg-lightGray;
+	}
+
+	> span {
+		min-width: 50px;
+	}
+}

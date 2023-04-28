@@ -3,9 +3,11 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useId, useState } from 'react'
 import Select, { components } from 'react-select'
 
-import { getServerUrl } from '@/config/url.config'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 
-interface IOption {
+import { getServerModsUrl, getServerUrl } from '@/config/url.config'
+
+export interface IOption {
 	label: string
 	value: string
 }
@@ -29,10 +31,15 @@ const CustomSelect: FC<ICustomSelect> = ({ options }) => {
 	const { slug } = router.query
 	const [selectedValue, setSelectedValue] = useState<IOption | null>(null)
 	const selectId = useId()
+	const server = useTypedSelector((state) => state.serverReducer.server)
 
 	useEffect(() => {
-		setSelectedValue(options.find((el) => el.value === slug) || null)
-	}, [slug])
+		if (!slug) {
+			if (router.asPath.includes(getServerModsUrl()))
+				setSelectedValue({ label: server.name, value: server.uuid } as IOption)
+			else setSelectedValue(null)
+		} else setSelectedValue(options.find((el) => el.value === slug) || null)
+	}, [router])
 
 	return (
 		<Select

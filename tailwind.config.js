@@ -62,8 +62,10 @@ module.exports = {
 		},
 		screens: {
 			md: { max: '900px' },
+			'md-min': { min: '900px' },
+			'md-header': { max: '768px' },
 			sm: { max: '600px' },
-			xs: { max: '440px' },
+			xs: { max: '480px' },
 		},
 		extend: {
 			spacing: {
@@ -71,6 +73,7 @@ module.exports = {
 				layout: '2rem',
 			},
 			fontSize: {
+				md: '1rem',
 				'2lg': '1.38rem',
 			},
 			fontFamily: {
@@ -128,7 +131,7 @@ module.exports = {
 					padding: '13px 15px',
 					wordWrap: 'normal',
 					whiteSpace: 'nowrap',
-					fontSize: '1.125rem !important',
+					fontSize: '1.25rem !important',
 					minWidth: 'auto',
 					transition: 'background-color .3s ease-in-out',
 					'&:hover': {
@@ -164,6 +167,9 @@ module.exports = {
 					whiteSpace: 'nowrap',
 					fontSize: '1.125rem !important',
 					minWidth: 'auto',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
 					transition: 'background-color .3s ease-in-out',
 					'&:hover': {
 						backgroundColor: lightGray,

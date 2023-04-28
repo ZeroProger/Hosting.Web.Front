@@ -1,0 +1,44 @@
+.description {
+	@apply text-lg;
+
+	p,
+	h1,
+	h2,
+	h3,
+	h4,
+	hr,
+	ul {
+		margin-bottom: 1rem;
+	}
+
+	p,
+	span,
+	ul,
+	li {
+		@apply text-gray-300;
+	}
+
+	h1 {
+		@apply text-2xl font-bold;
+	}
+
+	h2,
+	h3 {
+		@apply text-xl font-bold;
+	}
+
+	img {
+		height: auto;
+		display: inline;
+		vertical-align: top;
+		max-width: 100%;
+	}
+
+	ul {
+		list-style: unset;
+	}
+}
+
+.loading {
+	@apply flex flex-col gap-2;
+}

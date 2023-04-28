@@ -1,19 +1,28 @@
-import { Tooltip } from '@nextui-org/react'
-import clsx from 'clsx'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { Tooltip } from '@nextui-org/react';
+import clsx from 'clsx';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { FC } from 'react';
 
-import { Icon } from '@/components/ui/Icon'
-import Heading from '@/components/ui/heading/Heading'
 
-import { IParams } from '@/shared/types/base.types'
-import { ICForgeMinecraftVersion, ICForgeModloaderVersion } from '@/shared/types/curseforge.types'
 
-import { lightGray, primary } from '@/config/constants'
-import { getServerVersionUrl } from '@/config/url.config'
+import { Icon } from '@/components/ui/Icon';
+import Heading from '@/components/ui/heading/Heading';
 
-import styles from './Versions.module.scss'
+
+
+import { IParams } from '@/shared/types/base.types';
+import { ICForgeMinecraftVersion, ICForgeModloaderVersion } from '@/shared/types/curseforge.types';
+
+
+
+import { lightGray, primary } from '@/config/constants';
+import { getServerVersionUrl } from '@/config/url.config';
+
+
+
+import styles from './Versions.module.scss';
+
 
 interface IVersions {
 	versions: { data: ICForgeMinecraftVersion[] } | { data: ICForgeModloaderVersion[] }
@@ -22,7 +31,8 @@ interface IVersions {
 
 const Versions: FC<IVersions> = ({ versions, type }) => {
 	const router = useRouter()
-	const { slug, software } = router.query as IParams
+	const slug = (router.query as IParams).slug
+	const software = (router.query as IParams)?.software!
 	const vanilaVersions = versions as { data: ICForgeMinecraftVersion[] }
 	const modloadersVersions = versions as { data: ICForgeModloaderVersion[] }
 

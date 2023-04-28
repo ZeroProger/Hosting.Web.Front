@@ -1,7 +1,9 @@
 import { NextPage } from 'next'
 
+import CreateServer from '@/screens/server/create/CreateServer'
+
 const CreateServerPage: NextPage = () => {
-	return <div>CreateServerPage</div>
+	return <CreateServer />
 }
 
 export default CreateServerPage
