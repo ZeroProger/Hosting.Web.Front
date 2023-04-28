@@ -6,7 +6,7 @@ import { FC } from 'react'
 
 import { IMod } from '@/shared/types/curseforge.types'
 
-import { modClassesMap } from '@/config/curseforge-api.config'
+import { modClassesMap } from '@/config/api/curseforge-api.config'
 import { getServerModUrl } from '@/config/url.config'
 
 import { Icon } from '../ui/Icon'

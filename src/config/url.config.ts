@@ -1,9 +1,10 @@
-import { ISearchModsQuery } from '@/shared/types/curseforge.types';
-
+import { ISearchModsQuery } from '@/shared/types/curseforge.types'
 
 export const APP_URL = `${process.env.APP_URL}`
 
 export const getServersUrl = (query?: string) => `/servers${query ? `?${query}` : ''}`
+
+export const getPublicServersUrl = (query?: string) => `/public-servers${query ? `?${query}` : ''}`
 
 export const getServerUrl = (slug: string) => `/servers/${slug}/overview`
 
@@ -74,6 +75,7 @@ export const searchModsBaseQuery: ISearchModsQuery = {
 	pageSize: 20,
 }
 
+export const getAuthUrl = () => '/auth'
 export const getProfileUrl = () => '/profile'
 export const getSettingsUrl = () => '/settings'
 export const getHelpUrl = () => '/help'

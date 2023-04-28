@@ -1,7 +1,9 @@
 import { NextPage } from 'next'
 
+import Feedback from '@/screens/feedback/Feedback'
+
 const FeedbackPage: NextPage = () => {
-	return <div>FeedbackPage</div>
+	return <Feedback />
 }
 
 export default FeedbackPage

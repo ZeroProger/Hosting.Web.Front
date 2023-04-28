@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
 
-import { getModsCategories } from '@/config/curseforge-api.config'
+import { getModsCategories } from '@/config/api/curseforge-api.config'
 
 import { CurseForgeService } from './../../../../services/curseforge.service'
 

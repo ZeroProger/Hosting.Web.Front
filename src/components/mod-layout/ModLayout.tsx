@@ -16,8 +16,8 @@ import siteLogo from '@/assets/images/logo-green.png'
 
 import { russifyUTC } from '@/utils/string/russifyUTC'
 
+import { modClassesMap } from '@/config/api/curseforge-api.config'
 import { error } from '@/config/constants'
-import { modClassesMap } from '@/config/curseforge-api.config'
 import {
 	getFeedbackUrl,
 	getServerModFilesUrl,

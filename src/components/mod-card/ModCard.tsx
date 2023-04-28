@@ -9,7 +9,7 @@ import siteLogo from '@/assets/images/logo-green.png'
 
 import { russifyUTC } from '@/utils/string/russifyUTC'
 
-import { modClassesMap } from '@/config/curseforge-api.config'
+import { modClassesMap } from '@/config/api/curseforge-api.config'
 import { getServerModSearchUrl } from '@/config/url.config'
 
 import { Icon } from '../ui/Icon'

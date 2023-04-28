@@ -1,14 +1,9 @@
-import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
+import { useRouter } from 'next/router'
+import { useQuery } from 'react-query'
 
+import { CurseForgeService } from '@/services/curseforge.service'
 
-
-import { CurseForgeService } from '@/services/curseforge.service';
-
-
-
-import { getModsSearchUrl, searchModsBaseRequest } from '@/config/curseforge-api.config';
-
+import { getModsSearchUrl, searchModsBaseRequest } from '@/config/api/curseforge-api.config'
 
 export const useSearchResults = () => {
 	const { query } = useRouter()

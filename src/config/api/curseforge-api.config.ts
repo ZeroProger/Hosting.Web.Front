@@ -1,9 +1,5 @@
-import { ISearchModsRequest } from '@/shared/types/requests/curseforge-requests.types';
-
-
-
-import { CForgeModClassType } from './../shared/types/curseforge.types';
-
+import { CForgeModClassType } from '@/shared/types/curseforge.types'
+import { ISearchModsRequest } from '@/shared/types/requests/curseforge-requests.types'
 
 export const getModloadersUrl = () => 'softwares/modloaders'
 export const getModloaderUrl = (name: string) => `softwares/modloaders/${name}`

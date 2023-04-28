@@ -4,7 +4,7 @@ import { ISearchModsRequest } from '@/shared/types/requests/curseforge-requests.
 
 import { CurseForgeService } from '@/services/curseforge.service'
 
-import { getModsSearchUrl } from '@/config/curseforge-api.config'
+import { getModsSearchUrl } from '@/config/api/curseforge-api.config'
 
 export const useModsSearch = (request: ISearchModsRequest) => {
 	const queryResult = useQuery(

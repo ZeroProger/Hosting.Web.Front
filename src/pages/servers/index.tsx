@@ -1,7 +1,9 @@
 import { NextPage } from 'next'
 
+import Servers from '@/screens/servers/Servers'
+
 const ServersPage: NextPage = () => {
-	return <div>Список моих серверов</div>
+	return <Servers />
 }
 
 export default ServersPage

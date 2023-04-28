@@ -6,7 +6,7 @@ import { useDebounce } from '@/hooks/useDebounce'
 
 import { CurseForgeService } from '@/services/curseforge.service'
 
-import { getModsSearchUrl, searchModsBaseRequest } from '@/config/curseforge-api.config'
+import { getModsSearchUrl, searchModsBaseRequest } from '@/config/api/curseforge-api.config'
 
 export const useSearch = () => {
 	const [searchTerm, setSearchTerm] = useState<string>('')

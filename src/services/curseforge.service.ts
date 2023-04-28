@@ -1,11 +1,27 @@
-import { IGetMinecraftVersionRequest, IGetModloadersRequest, ISearchModsRequest } from '@/shared/types/requests/curseforge-requests.types';
+import {
+	ICForgeMinecraftVersion,
+	ICForgeModloaderVersion,
+	ICategory,
+	ICategoryGroup,
+	IMod,
+} from '@/shared/types/curseforge.types'
+import {
+	IGetMinecraftVersionRequest,
+	IGetModloadersRequest,
+	ISearchModsRequest,
+} from '@/shared/types/requests/curseforge-requests.types'
 
+import {
+	getGroupedCategories,
+	getMinecraftVersionsUrl,
+	getModByIdUrl,
+	getModFullDescriptionUrl,
+	getModloadersUrl,
+	getModsCategories,
+	getModsSearchUrl,
+} from '@/config/api/curseforge-api.config'
 
-
-import { axiosCurseForge } from './../api/interceptors';
-import { getGroupedCategories, getMinecraftVersionsUrl, getModByIdUrl, getModFullDescriptionUrl, getModloadersUrl, getModsCategories, getModsSearchUrl } from './../config/curseforge-api.config';
-import { ICForgeMinecraftVersion, ICForgeModloaderVersion, ICategory, ICategoryGroup, IMod } from './../shared/types/curseforge.types';
-
+import { axiosCurseForge } from '@/api/interceptors'
 
 export const CurseForgeService = {
 	async getModloaders(dto: IGetModloadersRequest) {

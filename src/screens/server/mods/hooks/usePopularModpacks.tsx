@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 
 import { CurseForgeService } from '@/services/curseforge.service'
 
-import { getModsSearchUrl, popularModpacksRequest } from '@/config/curseforge-api.config'
+import { getModsSearchUrl, popularModpacksRequest } from '@/config/api/curseforge-api.config'
 
 export const usePopularModpacks = () => {
 	const queryResult = useQuery(

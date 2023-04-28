@@ -62,8 +62,10 @@ module.exports = {
 		},
 		screens: {
 			md: { max: '900px' },
+			'md-min': { min: '900px' },
+			'md-header': { max: '768px' },
 			sm: { max: '600px' },
-			xs: { max: '440px' },
+			xs: { max: '480px' },
 		},
 		extend: {
 			spacing: {
@@ -129,7 +131,7 @@ module.exports = {
 					padding: '13px 15px',
 					wordWrap: 'normal',
 					whiteSpace: 'nowrap',
-					fontSize: '1.125rem !important',
+					fontSize: '1.25rem !important',
 					minWidth: 'auto',
 					transition: 'background-color .3s ease-in-out',
 					'&:hover': {

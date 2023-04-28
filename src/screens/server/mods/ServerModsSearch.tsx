@@ -7,6 +7,8 @@ import { ModCard } from '@/components/mod-card/ModCard'
 import { IOption } from '@/components/ui/customSelect/CustomSelect'
 import SearchMods from '@/components/ui/search-mods/SearchMods'
 
+import Meta from '@/utils/meta/Meta'
+
 import { getServerModSearchUrl, getServerModUrl } from '@/config/url.config'
 
 import styles from './ServerModsSearch.module.scss'
@@ -70,120 +72,123 @@ const ServerModsSearch: FC = () => {
 	}
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.search}>
-				<SearchMods />
-			</div>
-			<div className={styles.content}>
-				<div className={styles.sidebar}>
-					<div className={styles.filters}>
-						<div className={styles.classes}>
-							<h1 className={styles.title}> Искать среди:</h1>
-							<Link
-								href={getServerModSearchUrl({ ...query, classId: null!, categoryId: null! })}
-								className={styles.filterLink}
-							>
-								All
-							</Link>
-							{classes?.map(({ classId, className }) => (
+		//#TODO: Придумать описание
+		<Meta title="Поиск модов" description="Поиск модов">
+			<div className={styles.container}>
+				<div className={styles.search}>
+					<SearchMods />
+				</div>
+				<div className={styles.content}>
+					<div className={styles.sidebar}>
+						<div className={styles.filters}>
+							<div className={styles.classes}>
+								<h1 className={styles.title}> Искать среди:</h1>
 								<Link
-									key={classId}
-									href={getServerModSearchUrl({ ...query, classId, categoryId: null! })}
+									href={getServerModSearchUrl({ ...query, classId: null!, categoryId: null! })}
 									className={styles.filterLink}
 								>
-									{className}
+									All
 								</Link>
-							))}
-						</div>
-						{query?.classId && (
-							<div className={styles.categories}>
-								<h1 className={styles.title}>Категории:</h1>
-								{categories?.map(({ id, name }) => (
+								{classes?.map(({ classId, className }) => (
 									<Link
-										key={id}
-										href={getServerModSearchUrl({ ...query, categoryId: id })}
+										key={classId}
+										href={getServerModSearchUrl({ ...query, classId, categoryId: null! })}
 										className={styles.filterLink}
 									>
-										{name}
+										{className}
 									</Link>
 								))}
 							</div>
-						)}
-						<div className={styles.modloaders}>
-							<h1 className={styles.title}>Ядра:</h1>
-							<Link
-								href={getServerModSearchUrl({ ...query, modLoaderType: null! })}
-								className={styles.filterLink}
-							>
-								All
-							</Link>
-							{Object.entries({ forge: '1', fabric: '4' }).map(([ml, type]) => (
+							{query?.classId && (
+								<div className={styles.categories}>
+									<h1 className={styles.title}>Категории:</h1>
+									{categories?.map(({ id, name }) => (
+										<Link
+											key={id}
+											href={getServerModSearchUrl({ ...query, categoryId: id })}
+											className={styles.filterLink}
+										>
+											{name}
+										</Link>
+									))}
+								</div>
+							)}
+							<div className={styles.modloaders}>
+								<h1 className={styles.title}>Ядра:</h1>
 								<Link
-									key={type}
-									href={getServerModSearchUrl({ ...query, modLoaderType: +type })}
+									href={getServerModSearchUrl({ ...query, modLoaderType: null! })}
 									className={styles.filterLink}
 								>
-									{ml}
+									All
 								</Link>
-							))}
-						</div>
-						<div className={styles.versions}>
-							<h1 className={styles.title}>Версии:</h1>
-							<Select
-								className="custom-select-container"
-								classNamePrefix="custom-select"
-								options={[
-									{ label: 'All', value: null! },
-									...(!isVLoading
-										? versions?.map(({ version }) => ({ label: version, value: version }))!
-										: []),
-								]}
-								components={{ Option: OptionVersion }}
-								value={curVersion}
-								onChange={(newValue: OnChangeValue<IOption, boolean>) =>
-									setCurVersion(newValue as IOption)
-								}
-							/>
-						</div>
-					</div>
-				</div>
-				<div className={styles.results}>
-					<div>
-						<div>10000 проектов найдено</div>
-						<div className={styles.sort}>
-							<h1>Сортировать по</h1>
-							<div className={styles.sortFields}>
+								{Object.entries({ forge: '1', fabric: '4' }).map(([ml, type]) => (
+									<Link
+										key={type}
+										href={getServerModSearchUrl({ ...query, modLoaderType: +type })}
+										className={styles.filterLink}
+									>
+										{ml}
+									</Link>
+								))}
+							</div>
+							<div className={styles.versions}>
+								<h1 className={styles.title}>Версии:</h1>
 								<Select
 									className="custom-select-container"
 									classNamePrefix="custom-select"
-									options={sortOptions}
-									components={{ Option: SortOption }}
-									value={curSortField}
-									onChange={(newValue: OnChangeValue<IOption, boolean>) => {
-										setCurSortField(newValue as IOption)
-									}}
+									options={[
+										{ label: 'All', value: null! },
+										...(!isVLoading
+											? versions?.map(({ version }) => ({ label: version, value: version }))!
+											: []),
+									]}
+									components={{ Option: OptionVersion }}
+									value={curVersion}
+									onChange={(newValue: OnChangeValue<IOption, boolean>) =>
+										setCurVersion(newValue as IOption)
+									}
 								/>
 							</div>
 						</div>
 					</div>
-					<div>
-						{mods ? (
-							<div className={styles.mods}>
-								{mods.map((mod) => (
-									<div key={mod.id} className={styles.mod}>
-										<Link href={getServerModUrl(mod.id.toString())}>
-											<ModCard mod={mod} />
-										</Link>
-									</div>
-								))}
+					<div className={styles.results}>
+						<div>
+							<div>10000 проектов найдено</div>
+							<div className={styles.sort}>
+								<h1>Сортировать по</h1>
+								<div className={styles.sortFields}>
+									<Select
+										className="custom-select-container"
+										classNamePrefix="custom-select"
+										options={sortOptions}
+										components={{ Option: SortOption }}
+										value={curSortField}
+										onChange={(newValue: OnChangeValue<IOption, boolean>) => {
+											setCurSortField(newValue as IOption)
+										}}
+									/>
+								</div>
 							</div>
-						) : (
-							<div className={styles.notFound}></div>
-						)}
+						</div>
+						<div>
+							{mods ? (
+								<div className={styles.mods}>
+									{mods.map((mod) => (
+										<div key={mod.id} className={styles.mod}>
+											<Link href={getServerModUrl(mod.id.toString())}>
+												<ModCard mod={mod} />
+											</Link>
+										</div>
+									))}
+								</div>
+							) : (
+								<div className={styles.notFound}></div>
+							)}
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</Meta>
 	)
 }
 
