@@ -1,5 +1,5 @@
 import { ICForgeSoftware, IVersion } from './curseforge.types'
-import { IPlayer } from './user.types'
+import { IPlayer } from './player.types'
 
 export enum ServerPropertyType {
 	Select,

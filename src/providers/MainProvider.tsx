@@ -4,6 +4,7 @@ import { FC, PropsWithChildren } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { Provider } from 'react-redux'
+import ReduxToastr from 'react-redux-toastr'
 
 import Layout from '@/components/layout/Layout'
 
@@ -60,6 +61,16 @@ const MainProvider: FC<PropsWithChildren> = ({ children }) => {
 				</SSRProvider>
 				<ReactQueryDevtools />
 			</QueryClientProvider>
+			<ReduxToastr
+				timeOut={2000}
+				newestOnTop={false}
+				preventDuplicates
+				position="bottom-right"
+				transitionIn="fadeIn"
+				transitionOut="fadeOut"
+				progressBar
+				closeOnToastrClick
+			/>
 		</Provider>
 	)
 }

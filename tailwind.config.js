@@ -122,6 +122,7 @@ module.exports = {
 		},
 	},
 	plugins: [
+		require('@tailwindcss/forms'),
 		plugin(({ addComponents, theme, addUtilities }) => {
 			addComponents({
 				'.btn-primary': {

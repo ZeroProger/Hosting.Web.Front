@@ -4,7 +4,7 @@ import { bannedIps, whiteListUsers } from 'fakeData/users.data'
 import Image from 'next/image'
 import { FC } from 'react'
 
-import { PlayersDataListType } from '@/shared/types/user.types'
+import { PlayersDataListType } from '@/shared/types/player.types'
 
 import Meta from '@/utils/meta/Meta'
 

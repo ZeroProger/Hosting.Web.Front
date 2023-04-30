@@ -75,7 +75,7 @@ export const searchModsBaseQuery: ISearchModsQuery = {
 	pageSize: 20,
 }
 
-export const getAuthUrl = () => '/auth'
+export const getAuthUrl = (action: 'login' | 'register' = 'login') => `/auth?action=${action}`
 export const getProfileUrl = () => '/profile'
 export const getSettingsUrl = () => '/settings'
 export const getHelpUrl = () => '/help'

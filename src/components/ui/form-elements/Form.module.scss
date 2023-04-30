@@ -1,0 +1,27 @@
+.button {
+	@apply btn-primary py-2 px-6;
+}
+
+.field {
+	@apply relative w-full text-left mb-14 border-b border-gray-600 transition-colors focus-within:border-primary;
+
+	> label {
+		@apply block;
+		> span {
+			@apply text-sm uppercase text-gray-600 block;
+		}
+
+		> input {
+			@apply outline-border-none focus:ring-0 bg-transparent text-2xl text-gray-300 w-full m-0 px-2 py-2;
+
+			&:-internal-autofill-previewed,
+			&:-internal-autofill-previewed::placeholder {
+				font-size: 1.5rem !important;
+			}
+		}
+	}
+
+	.error {
+		@apply absolute -bottom-8 left-0 text-md w-full text-error;
+	}
+}

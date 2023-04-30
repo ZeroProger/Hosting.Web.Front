@@ -30,7 +30,7 @@ const Header: FC<IHeader> = () => {
 	const router = useRouter()
 	const isHomePage = router.pathname === '/'
 	const [isLoad, setIsLoad] = useState<boolean>(false)
-	const isAuth = true
+	const isAuth = false
 
 	const options = [
 		{ value: 'sky-block', label: 'Sky Block' },
@@ -57,11 +57,11 @@ const Header: FC<IHeader> = () => {
 							columnGap: '1.5rem',
 							maxWidth: 'var(--container-max-width)',
 							'@media screen and (max-width: 1200px)': {
-								flexWrap: 'wrap',
+								flexWrap: isAuth ? 'wrap' : 'nowrap',
 							},
 						},
 						'@media screen and (max-width: 1200px)': {
-							height: 'calc(var(--nextui--navbarHeight) * 2)',
+							height: isAuth ? 'calc(var(--nextui--navbarHeight) * 2)' : 'auto',
 							alignItems: 'start',
 						},
 					}}
@@ -108,13 +108,13 @@ const Header: FC<IHeader> = () => {
 						<div className="flex flex-row gap-6">
 							{isAuth && (
 								<Navbar.Item className="md:hidden text-xl">
-									<Link href={getServersUrl()} className="w-max">
+									<Link href={getServersUrl()} className="w-max hover:text-primary">
 										Мои сервера
 									</Link>
 								</Navbar.Item>
 							)}
 							<Navbar.Item className="md:hidden text-xl">
-								<Link href={getPublicServersUrl()} className="w-max">
+								<Link href={getPublicServersUrl()} className="w-max hover:text-primary">
 									Публичные сервера
 								</Link>
 							</Navbar.Item>
@@ -154,9 +154,12 @@ const Header: FC<IHeader> = () => {
 								</Dropdown>
 							) : (
 								<Navbar.Item>
-									<div className="flex flex-row items-center">
+									<div className="flex flex-row items-center gap-4">
 										<Link href={getAuthUrl()} className="text-xl">
-											Авторизоваться
+											Вход
+										</Link>
+										<Link href={getAuthUrl('register')} className="text-xl">
+											Регистрация
 										</Link>
 									</div>
 								</Navbar.Item>

@@ -3,7 +3,7 @@ import { ReactElement } from 'react'
 import PlayersDataList from '@/components/players-data-list/PlayersDataList'
 import ServerLayout from '@/components/server-layout/ServerLayout'
 
-import { PlayersDataListType } from '@/shared/types/user.types'
+import { PlayersDataListType } from '@/shared/types/player.types'
 
 import { NextPageWithLayout } from '@/pages/_app'
 

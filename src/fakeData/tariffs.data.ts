@@ -1,4 +1,4 @@
-import { ITariff } from './../shared/types/tarif.types'
+import { ITariff } from '../shared/types/tariff.types'
 
 export const tariffs: ITariff[] = [
 	{

@@ -23,14 +23,14 @@
 		}
 
 		a::after {
-			content: "";
+			content: '';
 			position: absolute;
 			left: 0;
 			right: 0;
 			bottom: 0;
 			height: 0;
-			transform: scaleX(.001);
-			transition: transform .15s ease-in;
+			transform: scaleX(0.001);
+			transition: transform 0.15s ease-in;
 			background-color: var(--primary);
 			width: 100%;
 			display: block;

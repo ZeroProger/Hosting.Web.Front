@@ -5,6 +5,10 @@
 	-webkit-backdrop-filter: blur(15px);
 	backdrop-filter: blur(15px);
 	background-color: hexToRGBString(#192024, 0.3);
+
+	a {
+		@apply transition-colors;
+	}
 }
 
 .avatar {
