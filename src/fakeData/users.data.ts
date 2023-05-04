@@ -1,4 +1,4 @@
-import { IPlayer } from '@/shared/types/user.types'
+import { IPlayer } from '@/shared/types/player.types'
 
 import user1 from '@/assets/images/head1.webp'
 import user2 from '@/assets/images/head2.png'
