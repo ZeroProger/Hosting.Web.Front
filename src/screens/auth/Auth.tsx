@@ -1,14 +1,13 @@
-import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { toastr } from 'react-redux-toastr'
 
 import Button from '@/components/ui/form-elements/Button'
 import Heading from '@/components/ui/heading/Heading'
 
 import { useAuth } from '@/hooks/auth/useAuth'
 import { useAuthRedirect } from '@/hooks/auth/useAuthRedirect'
+import { useActions } from '@/hooks/useActions'
 
 import Meta from '@/utils/meta/Meta'
 
@@ -42,23 +41,7 @@ const Auth: FC<IAuth> = () => {
 		watch: watchRegister,
 	} = useForm<IRegisterInput>({ mode: 'onChange' })
 
-	const login = (data: ILoginInput) => {
-		toastr.success('Вход', 'Вы успешно вошли в аккаунт')
-		const timer = setTimeout(() => toastr.removeByType('success'), 2000)
-
-		return () => {
-			clearTimeout(timer)
-		}
-	}
-	const register = (data: IRegisterInput) => {
-		toastr.success('Регистрация', 'Регистрация прошла успешно')
-
-		const timer = setTimeout(() => toastr.removeByType('success'), 2000)
-
-		return () => {
-			clearTimeout(timer)
-		}
-	}
+	const { login, register } = useActions()
 
 	const onLoginSubmit: SubmitHandler<ILoginInput> = (data) => {
 		if (type === 'login') {
@@ -69,6 +52,7 @@ const Auth: FC<IAuth> = () => {
 	}
 
 	const onRegisterSubmit: SubmitHandler<IRegisterInput> = (data) => {
+		console.log(data)
 		if (type === 'register') {
 			register(data)
 		}
@@ -96,38 +80,40 @@ const Auth: FC<IAuth> = () => {
 	return (
 		<Meta title={type === 'login' ? 'Вход' : 'Регистрация'}>
 			<div className={styles.container}>
-				<Heading title={type === 'login' ? 'Вход' : 'Регистрация'} />
-				{type === 'login' && (
-					<form onSubmit={handleSubmitLogin(onLoginSubmit)} className={styles.loginForm}>
-						<LoginFields formState={formStateLogin} register={registerInputLogin} />
-						<Button type="submit">Войти</Button>
-					</form>
-				)}
-				{type === 'register' && (
-					<form onSubmit={handleSubmitRegister(onRegisterSubmit)} className={styles.registerForm}>
-						<RegisterFields
-							formState={formStateRegister}
-							register={registerInputRegister}
-							watch={watchRegister}
-						/>
-						<Button type="submit">Зарегистрироваться</Button>
-					</form>
-				)}
-				<div className={styles.actions}>
-					<Button
-						type="button"
-						className={clsx({ [styles.activeBtn]: type === 'login' })}
-						onClick={handleSetLoginForm}
-					>
-						Вход
-					</Button>
-					<Button
-						type="button"
-						className={clsx({ [styles.activeBtn]: type === 'register' })}
-						onClick={handleSetRegisterForm}
-					>
-						Регистрация
-					</Button>
+				<div className={styles.formWrapper}>
+					<Heading title={type === 'login' ? 'Вход' : 'Регистрация'} />
+					{type === 'login' && (
+						<form onSubmit={handleSubmitLogin(onLoginSubmit)} className={styles.loginForm}>
+							<LoginFields formState={formStateLogin} register={registerInputLogin} />
+							<Button type="submit" disabled={isLoading}>
+								Войти
+							</Button>
+						</form>
+					)}
+					{type === 'register' && (
+						<form onSubmit={handleSubmitRegister(onRegisterSubmit)} className={styles.registerForm}>
+							<RegisterFields
+								formState={formStateRegister}
+								register={registerInputRegister}
+								watch={watchRegister}
+							/>
+							<Button type="submit" disabled={isLoading}>
+								Зарегистрироваться
+							</Button>
+						</form>
+					)}
+					<div className={styles.actions}>
+						{type === 'register' && (
+							<button type="button" onClick={handleSetLoginForm}>
+								Вход
+							</button>
+						)}
+						{type === 'login' && (
+							<button type="button" onClick={handleSetRegisterForm}>
+								Регистрация
+							</button>
+						)}
+					</div>
 				</div>
 			</div>
 		</Meta>

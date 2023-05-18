@@ -1,13 +1,11 @@
+import { register } from './user/user.actions';
 import { configureStore } from '@reduxjs/toolkit'
-import { reducer as toastrReducer } from 'react-redux-toastr'
+import { reducers } from './rootReducer'
+import { userActions } from './user/user.slice'
 
-import { serverReducer } from './slices/server.slice'
 
 export const store = configureStore({
-	reducer: {
-		serverReducer,
-		toastr: toastrReducer,
-	},
+	reducer: reducers,
 })
 
 export type RootState = ReturnType<typeof store.getState>

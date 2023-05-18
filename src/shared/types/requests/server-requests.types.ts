@@ -1,83 +1,114 @@
-export interface IServerPortItem {
+import { IResponseResult } from '../base.types'
+import { IServer } from '../server.types'
+import { IGameTariffs } from '../tariff.types'
+
+export interface IServerPort {
+	id: number
+	creationDate: number
+	updateDate: number
 	portKind: string
 	port: string
 }
 
 export interface IServerCreateRequest {
+	gameId: number
 	name: string
-	version: string
-	tariffId: string
-	rentTime: string
-	slotsCount: number
+	locationId: number
+	tariffId: number
+	period: number
+	isTestPeriod: boolean
+	promoCode: string
+	slots: number
 }
 
-export interface IServerCreateResponse {
+export interface IServerCreateResponse extends IResponseResult {
 	gameServerHash: string
-	success: boolean
-	error: string
+}
+
+export interface ITariffsResponse {
+	games: IGameTariffs[]
 }
 
 export interface IServerStartContainerRequest {
-	gameServerId: string
+	gameServerHash: string
 }
 
-export interface IServerStartContainerResponse {
-	gameServerId: string
-	ip: string
-	ports: IServerPortItem[]
-	success: boolean
-	error: string
+export interface IServerStartContainerResponse extends IResponseResult {
+	gameServerHash: string
+	serverIp: string
+	serverPorts: IServerPort[]
 }
 
 export interface IServerStopContainerRequest {
-	gameServerId: string
+	gameServerHash: string
 }
 
-export interface IServerStopContainerResponse {
-	success: boolean
-	error: string
-}
+export interface IServerStopContainerResponse extends IResponseResult {}
 
 export interface IServerRemoveRequest {
-	gameServerId: string
+	gameServerHash: string
 }
 
-export interface IServerRemoveResponse {
-	success: boolean
-	error: string
-}
+export interface IServerRemoveResponse extends IResponseResult {}
 
 export interface IServerUpdateRequest {
-	serverHash: string
+	gameServerHash: string
 	isPublic: boolean
 }
 
-export interface IServerUpdateResponse {
-	success: boolean
-	error: string
-}
+export interface IServerUpdateResponse extends IResponseResult {}
 
 export interface IServerGetListRequest {
 	kind: string
 	isPublic: boolean
 }
 
-export interface IServerGetListResponse {}
+export interface IServerGetListResponse {
+	servers: IServer[]
+}
+
+export interface IGetServerRequest {
+	gameServerHash: string
+}
 
 export interface IServerStartRequest {
-	gameServerId: string
+	gameServerHash: string
 }
 
-export interface IServerStartResponse {
-	success: boolean
-	error: string
-}
+export interface IServerStartResponse extends IResponseResult {}
 
 export interface IServerStopRequest {
-	gameServerId: string
+	gameServerHash: string
 }
 
-export interface IServerStopResponse {
-	success: boolean
-	error: string
+export interface IServerStopResponse extends IResponseResult {}
+
+export interface IServerGetActivePlayersRequest {
+	gameServerHash: string
 }
+
+export interface IServerGetActivePlayersResponse {}
+
+export interface IServerGetServerCurrentUsageRequest {
+	gameServerHash: string
+}
+
+export interface IServerGetServerCurrentUsageResponse {}
+
+export interface IServerGetServerConsoleRequest {
+	gameServerHash: string
+}
+
+export interface IServerGetServerConsoleResponse {}
+
+export interface IServerGetServerMainInfoRequest {
+	gameServerHash: string
+}
+
+export interface IServerGetServerMainInfoResponse {}
+
+export interface IServerGetServerPropertiesRequest {
+	gameServerHash: string
+}
+
+export interface IServerGetServerPropertiesResponse {}

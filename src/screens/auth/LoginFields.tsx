@@ -3,8 +3,6 @@ import { FormState, UseFormRegister } from 'react-hook-form'
 
 import Field from '@/components/ui/form-elements/Field'
 
-import { validEmail } from '@/shared/regexp'
-
 interface ILoginFields {
 	register: UseFormRegister<any>
 	formState: FormState<any>
@@ -15,18 +13,17 @@ const LoginFields: FC<ILoginFields> = ({ register, formState: { errors }, isPass
 	return (
 		<>
 			<Field
-				{...register('email', {
-					required: 'Введите почту',
-					pattern: { value: validEmail, message: 'Введите корректную почту' },
+				{...register('login', {
+					required: 'Введите имя пользователя',
 				})}
-				type="email"
-				placeholder="Почта"
-				error={errors.email}
+				type="text"
+				placeholder="Имя пользователя"
+				error={errors.login}
 			/>
 			<Field
 				{...register('password', {
 					required: 'Введите пароль',
-					minLength: { value: 8, message: 'Минимальная длина пароля 8 символов' },
+					minLength: { value: 6, message: 'Минимальная длина пароля 6 символов' },
 				})}
 				type="password"
 				placeholder="Пароль"

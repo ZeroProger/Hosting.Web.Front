@@ -25,9 +25,9 @@ const RegisterFields: FC<IRegisterFields> = ({ register, formState: { errors }, 
 			/>
 			<Field
 				{...register('login', {
-					required: 'Введите логин',
+					required: 'Введите имя пользователя',
 				})}
-				placeholder="Логин"
+				placeholder="Имя пользователя"
 				error={errors.login}
 			/>
 			<Field
@@ -40,7 +40,7 @@ const RegisterFields: FC<IRegisterFields> = ({ register, formState: { errors }, 
 				error={errors.password}
 			/>
 			<Field
-				{...register('repeatPassword', {
+				{...register('confirmPassword', {
 					required: 'Повторите пароль',
 					minLength: { value: 8, message: 'Минимальная длина пароля 8 символов' },
 					validate: (val: string) => {
@@ -51,7 +51,7 @@ const RegisterFields: FC<IRegisterFields> = ({ register, formState: { errors }, 
 				})}
 				type="password"
 				placeholder="Повторите пароль"
-				error={errors.repeatPassword}
+				error={errors.confirmPassword}
 			/>
 		</>
 	)

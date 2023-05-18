@@ -7,7 +7,7 @@ interface IServerOverviewCard extends PropsWithChildren {
 	isConsole: boolean
 	isActivePlayers: boolean
 }
-//#TODO: Доделать переиспользуемый компонент
+//#TODO: Доделать переиспользуемый компонент ??? это что ???
 
 const ServerOverviewCard: FC<IServerOverviewCard> = ({ headerTitle, children }) => {
 	return (

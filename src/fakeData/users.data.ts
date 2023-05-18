@@ -1,8 +1,19 @@
-import { IPlayer } from '@/shared/types/player.types'
+import { IPlayer, IPlayerRole, PlayerRoles } from '@/shared/types/player.types'
 
 import user1 from '@/assets/images/head1.webp'
 import user2 from '@/assets/images/head2.png'
 import user3 from '@/assets/images/head3.webp'
+
+export const playerRoles = new Map<number, IPlayerRole>([
+	[
+		PlayerRoles.Operator,
+		{ id: 1, name: 'Оператор', backgroundColor: '#3f388a', textColor: '#fff' },
+	],
+	[
+		PlayerRoles.WhiteList,
+		{ id: 2, name: 'Белый список', backgroundColor: '#0d6e91', textColor: '#fff' },
+	],
+])
 
 export const whiteListUsers: IPlayer[] = [
 	{ id: 1, image: user1.src, name: 'ZeroProger' },
@@ -33,10 +44,7 @@ export const serverActivePlayers: IPlayer[] = [
 		id: 1,
 		image: user1.src,
 		name: 'ZeroProger',
-		roles: [
-			{ id: 1, name: 'Оператор', color: '#3f388a', textColor: '#fff' },
-			{ id: 2, name: 'Белый список', color: '#0d6e91', textColor: '#fff' },
-		],
+		roles: [playerRoles.get(PlayerRoles.Operator), playerRoles.get(PlayerRoles.WhiteList)],
 	},
 	{
 		id: 2,
@@ -47,6 +55,6 @@ export const serverActivePlayers: IPlayer[] = [
 		id: 3,
 		image: user3.src,
 		name: '4epanadjia',
-		roles: [{ id: 1, name: 'Белый список', color: '#0d6e91', textColor: '#fff' }],
+		roles: [playerRoles.get(PlayerRoles.WhiteList)],
 	},
 ]

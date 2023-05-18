@@ -1,22 +1,27 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
-import { API_SERVER_URL, API_URL } from '@/config/api/api.config'
+import { getLocalStorageData } from '@/utils/localStorage/localStorage'
 
-import { IS_PRODUCTION } from './../config/constants'
+import { API_SERVER_URL } from '@/config/api/api.config'
 
 export const axiosClassic = axios.create({
 	baseURL: API_SERVER_URL,
 	headers: {
 		'Content-Type': 'application/json',
+		Accept: 'application/json',
 	},
 })
 
-export const axiosAuthClassic = axios.create({
-	baseURL: API_SERVER_URL,
-	headers: {
-		'Content-Type': 'application/json',
-	},
-})
+export const axiosAuth = () =>
+	axios.create({
+		baseURL: API_SERVER_URL,
+		headers: {
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+			'X-Auth-Token': Cookies.get('authToken') || getLocalStorageData('authToken'),
+		},
+	})
 
 export const axiosCurseForge = axios.create({
 	baseURL: `${API_SERVER_URL}/external/curseforge/`,

@@ -14,7 +14,7 @@ interface IFeatures {}
 const Features: FC<IFeatures> = () => {
 	return (
 		<div className={styles.container}>
-			<SubHeading text="Особенности" className="text-5xl text-secondary" />
+			<SubHeading text="Особенности" className="text-5xl sm:text-4xl text-secondary" />
 			<div className={styles.features}>
 				{features.map((feature, index) => (
 					<motion.div

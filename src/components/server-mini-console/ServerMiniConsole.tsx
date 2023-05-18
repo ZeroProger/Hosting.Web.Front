@@ -7,6 +7,8 @@ import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import { IServerConsoleLine, ServerConsoleLineType } from '@/shared/types/server.types'
 
+import { ServerService } from '@/services/server.service'
+
 import { lightGray } from '@/config/constants'
 import { getServerLogsUrl } from '@/config/url.config'
 
@@ -17,10 +19,10 @@ interface IServerMiniConsole {
 }
 
 const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
-	const [serverConsoleData, setServerConsoleData] = useState<IServerConsoleLine[]>([])
+	const [serverConsole, setServerConsole] = useState<IServerConsoleLine[]>([])
 	const [inputValue, setInputValue] = useState('')
 
-	const { console, uuid } = useTypedSelector((state) => state.serverReducer.server)
+	const server = useTypedSelector((state) => state.server.server)
 
 	const inputRef = useRef<HTMLInputElement>(null)
 	const linesRef = useRef<HTMLDivElement>(null)
@@ -37,7 +39,7 @@ const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
 			}),
 			type: ServerConsoleLineType.Info,
 		}
-		setServerConsoleData((oldArray) => [...oldArray, newLine])
+		setServerConsole((oldArray) => [...oldArray, newLine])
 	}
 
 	const handleChange = (e: ChangeEvent<FormElement>) => {
@@ -46,66 +48,76 @@ const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
 
 	useEffect(() => {
 		linesRef?.current?.scrollTo(0, linesRef?.current?.scrollHeight)
-	}, [serverConsoleData])
+	}, [serverConsole])
 
 	useEffect(() => {
-		setServerConsoleData(console)
-	}, [console])
+		if (server) {
+			const data = ServerService.controller.getServerConsole({
+				gameServerHash: server.gameServerHash,
+			})
+
+			setServerConsole(data)
+		}
+	}, [server])
 
 	return (
 		<div className={clsx(styles.card, { [styles.fullConsole]: fullConsole })}>
-			<div className={styles.header}>
-				<div className={styles.headerTitle}>Консоль</div>
-				{fullConsole && (
-					<div className={styles.headerActions}>
-						<Link href={getServerLogsUrl(uuid)}>Журнал логов</Link>
-					</div>
-				)}
-			</div>
-			<div className={styles.hr}></div>
-			<div className={styles.body}>
-				<div className={styles.lines} ref={linesRef}>
-					{serverConsoleData.map((line) => (
-						<div
-							key={line.id}
-							className={clsx(styles.line, {
-								[styles.error]: line.type === ServerConsoleLineType.Error,
-								[styles.warn]: line.type === ServerConsoleLineType.Warning,
-							})}
-						>
-							<div className={styles.info}>
-								{`[${line.time} - ${line.type}]: `}
-								<span className={styles.message}>{line.message}</span>
+			{server && (
+				<>
+					<div className={styles.header}>
+						<div className={styles.headerTitle}>Консоль</div>
+						{fullConsole && (
+							<div className={styles.headerActions}>
+								<Link href={getServerLogsUrl(server.gameServerHash)}>Журнал логов</Link>
 							</div>
+						)}
+					</div>
+					<div className={styles.hr}></div>
+					<div className={styles.body}>
+						<div className={styles.lines} ref={linesRef}>
+							{serverConsole.map((line) => (
+								<div
+									key={line.id}
+									className={clsx(styles.line, {
+										[styles.error]: line.type === ServerConsoleLineType.Error,
+										[styles.warn]: line.type === ServerConsoleLineType.Warning,
+									})}
+								>
+									<div className={styles.info}>
+										{`[${line.time} - ${line.type}]: `}
+										<span className={styles.message}>{line.message}</span>
+									</div>
+								</div>
+							))}
 						</div>
-					))}
-				</div>
-				<div className={styles.enterCommand}>
-					<Input
-						ref={inputRef}
-						placeholder="Введите команду..."
-						fullWidth
-						value={inputValue}
-						animated={false}
-						shadow={false}
-						contentLeftStyling={false}
-						onKeyDown={(e) => {
-							if (e.key === 'Enter') {
-								handleEnter(inputRef.current?.value || '')
-								setInputValue('')
-							}
-						}}
-						onChange={handleChange}
-						contentLeft={<div className={styles.slash}>/</div>}
-						css={{
-							'& .nextui-input-wrapper': {
-								backgroundColor: lightGray,
-								borderRadius: '16px',
-							},
-						}}
-					/>
-				</div>
-			</div>
+						<div className={styles.enterCommand}>
+							<Input
+								ref={inputRef}
+								placeholder="Введите команду..."
+								fullWidth
+								value={inputValue}
+								animated={false}
+								shadow={false}
+								contentLeftStyling={false}
+								onKeyDown={(e) => {
+									if (e.key === 'Enter') {
+										handleEnter(inputRef.current?.value || '')
+										setInputValue('')
+									}
+								}}
+								onChange={handleChange}
+								contentLeft={<div className={styles.slash}>/</div>}
+								css={{
+									'& .nextui-input-wrapper': {
+										backgroundColor: lightGray,
+										borderRadius: '16px',
+									},
+								}}
+							/>
+						</div>
+					</div>
+				</>
+			)}
 		</div>
 	)
 }

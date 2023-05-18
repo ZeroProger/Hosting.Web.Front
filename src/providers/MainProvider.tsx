@@ -2,9 +2,8 @@ import { NextUIProvider, createTheme } from '@nextui-org/react'
 import { SSRProvider } from '@react-aria/ssr'
 import { FC, PropsWithChildren } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
 import { Provider } from 'react-redux'
-import ReduxToastr from 'react-redux-toastr'
+import { ToastContainer } from 'react-toastify'
 
 import Layout from '@/components/layout/Layout'
 
@@ -59,17 +58,18 @@ const MainProvider: FC<PropsWithChildren> = ({ children }) => {
 						<Layout>{children}</Layout>
 					</NextUIProvider>
 				</SSRProvider>
-				<ReactQueryDevtools />
 			</QueryClientProvider>
-			<ReduxToastr
-				timeOut={2000}
-				newestOnTop={false}
-				preventDuplicates
+			<ToastContainer
 				position="bottom-right"
-				transitionIn="fadeIn"
-				transitionOut="fadeOut"
-				progressBar
-				closeOnToastrClick
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				rtl={false}
+				closeOnClick
+				pauseOnFocusLoss
+				pauseOnHover
+				draggable
+				theme="dark"
 			/>
 		</Provider>
 	)
