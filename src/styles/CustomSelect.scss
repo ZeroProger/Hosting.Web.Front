@@ -1,6 +1,7 @@
 .custom-select-container {
 	width: 100%;
 	box-sizing: border-box !important;
+	z-index: 9999 !important;
 
 	.custom-select {
 		&__control {
@@ -82,14 +83,8 @@
 		&__option {
 			cursor: pointer !important;
 			font-size: 1.125rem !important;
-			padding: 0 0 !important;
+			padding: 8px 15px !important;
 			z-index: 10000 !important;
-
-			a {
-				width: 100% !important;
-				padding: 12px 15px !important;
-				display: block !important;
-			}
 
 			&--is-focused {
 				background-color: lighten(#292a2e, 8%) !important;
@@ -97,6 +92,16 @@
 
 			&--is-selected {
 				background-color: var(--primary) !important;
+			}
+
+			&--link {
+				padding: 0 0 !important;
+
+				a {
+					width: 100% !important;
+					padding: 12px 15px !important;
+					display: block !important;
+				}
 			}
 		}
 

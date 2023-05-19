@@ -60,6 +60,8 @@ export const getServerVersionUrl = (slug: string, core: string, version: string)
 
 export const getTariffUrl = (slug: string) => `/tariffs/${slug}`
 
+export const getGameUrl = (gameId: number) => `/games/${gameId}`
+
 export const breadcrumbsMap = new Map<string, string>([
 	['servers', 'Сервера'],
 	['mods', 'Моды'],

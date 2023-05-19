@@ -3,13 +3,21 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, Fragment, useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
 
-import CustomSelect from '@/components/ui/customSelect/CustomSelect'
+import CustomSelect, { IOption } from '@/components/ui/customSelect/CustomSelect'
 
+import { useAuth } from '@/hooks/auth/useAuth'
 import useMediaQuery from '@/hooks/useMediaQuery'
+
+import { ServerService } from '@/services/server.service'
 
 import logo from '@/assets/images/logo-green.png'
 
+import {
+	getMinecraftUserServersRequest,
+	getServersUrl as getServersApiUrl,
+} from '@/config/api/servers-api.config'
 import { maxWidthMediaQuery } from '@/config/mediaQuery.config'
 import {
 	getAuthUrl,
@@ -30,17 +38,30 @@ const Header: FC<IHeader> = () => {
 	const router = useRouter()
 	const isHomePage = router.pathname === '/'
 	const [isLoad, setIsLoad] = useState<boolean>(false)
-	const isAuth = false
+	const [selectOptions, setSelectOptions] = useState<IOption[]>([])
+	const { authToken, user } = useAuth()
 
-	const options = [
-		{ value: 'sky-block', label: 'Sky Block' },
-		{ value: 'classic-vanila', label: 'Classic Vanila' },
-		{ value: 'industrial-craft', label: 'Industrial Craft' },
-	]
+	const { data: userServers } = useQuery(
+		getServersApiUrl(JSON.stringify(getMinecraftUserServersRequest)),
+		() => ServerService.compositor.getServers(getMinecraftUserServersRequest),
+		{ select: (data) => data.data.servers, enabled: !!authToken }
+	)
 
 	useEffect(() => {
 		setIsLoad(true)
 	}, [])
+
+	useEffect(() => {
+		if (userServers && userServers.length > 0) {
+			let options: IOption[] = []
+
+			userServers.map((server) => {
+				options.push({ label: server.gameServerName, value: server.gameServerHash })
+			})
+
+			setSelectOptions(options)
+		}
+	}, [userServers])
 
 	return (
 		<Fragment>
@@ -56,12 +77,12 @@ const Header: FC<IHeader> = () => {
 						'& .nextui-navbar-container': {
 							columnGap: '1.5rem',
 							maxWidth: 'var(--container-max-width)',
-							'@media screen and (max-width: 1200px)': {
-								flexWrap: isAuth ? 'wrap' : 'nowrap',
+							'@media screen and (max-width: 1250px)': {
+								flexWrap: authToken ? 'wrap' : 'nowrap',
 							},
 						},
-						'@media screen and (max-width: 1200px)': {
-							height: isAuth ? 'calc(var(--nextui--navbarHeight) * 2)' : 'auto',
+						'@media screen and (max-width: 1250px)': {
+							height: authToken ? 'calc(var(--nextui--navbarHeight) * 2)' : 'auto',
 							alignItems: 'start',
 						},
 					}}
@@ -69,14 +90,14 @@ const Header: FC<IHeader> = () => {
 					disableShadow={!isHomePage}
 				>
 					<Navbar.Brand>
-						<Logo withText showRule="(min-width: 600px)" />
+						<Logo withText showRule="(min-width: 700px)" />
 					</Navbar.Brand>
-					{isAuth && (
+					{authToken && (
 						<Navbar.Content
 							css={{
 								w: '100%',
 								maxW: '500px',
-								'@media screen and (max-width: 1200px)': {
+								'@media screen and (max-width: 1250px)': {
 									maxW: '600px',
 								},
 								'@media screen and (max-width: 900px)': {
@@ -93,7 +114,7 @@ const Header: FC<IHeader> = () => {
 									},
 								}}
 							>
-								<CustomSelect options={options}></CustomSelect>
+								<CustomSelect options={selectOptions || []} />
 							</Navbar.Item>
 						</Navbar.Content>
 					)}
@@ -106,7 +127,7 @@ const Header: FC<IHeader> = () => {
 						className="md:w-auto"
 					>
 						<div className="flex flex-row gap-6">
-							{isAuth && (
+							{authToken && (
 								<Navbar.Item className="md:hidden text-xl">
 									<Link href={getServersUrl()} className="w-max hover:text-primary">
 										Мои сервера
@@ -125,7 +146,7 @@ const Header: FC<IHeader> = () => {
 									Создать сервер
 								</Link>
 							</Navbar.Item>
-							{isAuth ? (
+							{user ? (
 								<Dropdown placement="bottom-right" isBordered offset={18}>
 									<Navbar.Item>
 										<Dropdown.Trigger>
@@ -137,7 +158,7 @@ const Header: FC<IHeader> = () => {
 													size="md"
 													text="ZeroProger"
 													textColor="white"
-													src={logo.src}
+													src={user?.avatarUrl || logo.src}
 													css={{
 														img: {
 															borderColor: '$gray600',
@@ -145,7 +166,7 @@ const Header: FC<IHeader> = () => {
 													}}
 												/>
 												<Text className="text-lg font-semibold" css={{ color: '$gray900' }}>
-													ZeroProger
+													{user?.userName}
 												</Text>
 											</div>
 										</Dropdown.Trigger>

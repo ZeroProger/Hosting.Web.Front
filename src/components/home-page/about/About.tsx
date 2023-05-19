@@ -44,14 +44,6 @@ const About: FC<IAbout> = () => {
 						Теперь вы сможете создать сервер с модами за{' '}
 						<span className="text-primary">несколько минут!</span>
 					</motion.p>
-					<motion.p
-						initial={{ x: -2000 }}
-						animate={{ x: 0 }}
-						transition={{ delay: 1.5, duration: 0.6, ease: 'backInOut' }}
-					>
-						<span className="text-primary">Только у нас:</span> возможность вывести ваш локальный
-						сервер в сеть!
-					</motion.p>
 					<motion.div
 						initial={{ x: 2000 }}
 						animate={{ x: 0 }}

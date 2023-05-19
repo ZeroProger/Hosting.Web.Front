@@ -17,11 +17,11 @@ const Qualities: FC<IQualities> = () => {
 		<div className={styles.container}>
 			<SubHeading
 				text="Почему игроки выбирают"
-				className={clsx('text-3xl uppercase text-center mb-2', styles.whyHeading)}
+				className={clsx('text-3xl sm:text-2xl uppercase text-center mb-2', styles.whyHeading)}
 			/>
 			<SubHeading
 				text="Наш хостинг игровых серверов"
-				className="text-5xl uppercase text-center mb-12"
+				className="text-5xl sm:text-3xl uppercase text-center mb-12"
 			/>
 			<div className={styles.qualities}>
 				{qualities.map((quality, index) => (

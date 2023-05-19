@@ -1,93 +1,129 @@
-import { serverConsole, serverMainInfo, serverProperties, serverUsage } from 'fakeData/server.data'
+import {
+	serverConsole,
+	serverCurrentUsage,
+	serverMainInfo,
+	serverProperties,
+} from 'fakeData/server.data'
 import { serverActivePlayers } from 'fakeData/users.data'
 
 import {
 	IServerCreateRequest,
 	IServerCreateResponse,
+	IServerGetActivePlayersRequest,
 	IServerGetListRequest,
 	IServerGetListResponse,
+	IServerGetServerConsoleRequest,
+	IServerGetServerCurrentUsageRequest,
+	IServerGetServerMainInfoRequest,
+	IServerGetServerPropertiesRequest,
 	IServerRemoveRequest,
 	IServerRemoveResponse,
 	IServerStartContainerRequest,
 	IServerStartContainerResponse,
+	IServerStartRequest,
+	IServerStartResponse,
 	IServerStopContainerRequest,
 	IServerStopContainerResponse,
+	IServerStopRequest,
+	IServerStopResponse,
 	IServerUpdateRequest,
 	IServerUpdateResponse,
 } from '@/shared/types/requests/server-requests.types'
 import { IServer } from '@/shared/types/server.types'
 
-import { capitalize } from '@/utils/string/capitalize'
-
 import {
 	getCreateServerUrl,
 	getRemoveServerUrl,
-	getServersListUrl,
+	getServersUrl,
+	getStartGameServerUrl,
 	getStartServerContainerUrl,
+	getStopGameServerUrl,
 	getStopServerContainerUrl,
 	getUpdateServerUrl,
 } from '@/config/api/servers-api.config'
 
-import { axiosAuthClassic } from '@/api/interceptors'
+import { axiosAuth } from '@/api/interceptors'
 
 export const ServerService = {
 	compositor: {
 		createServer(data: IServerCreateRequest) {
-			return axiosAuthClassic.post<IServerCreateResponse>(getCreateServerUrl(), data)
+			return axiosAuth().post<IServerCreateResponse>(getCreateServerUrl(), data)
 		},
 
-		getServerByUUID(uuid: string) {
-			return {
-				name: uuid
-					.split('-')
-					.map((w) => capitalize(w))
-					.join(' '),
-				uuid: uuid,
-				ip: `${uuid}.simplehost.ru`,
-				dynamicIp: 'dynY6ZHOK.simplehost.cloud:10305',
-				software: {
-					id: '2',
-					name: 'Fabric',
-					slug: 'fabric',
-				},
-				version: {
-					name: '1.19.2',
-				},
-				online: true,
-				activePlayers: serverActivePlayers,
-				mainInfo: serverMainInfo,
-				console: serverConsole,
-				usage: serverUsage,
-				settings: serverProperties,
-			} as IServer
+		getServerByHash(hash: string) {
+			return axiosAuth().post<IServer>(getServersUrl(hash))
+			// return {
+			// 	name: uuid
+			// 		.split('-')
+			// 		.map((w) => capitalize(w))
+			// 		.join(' '),
+			// 	uuid: uuid,
+			// 	ip: `${uuid}.simplehost.ru`,
+			// 	dynamicIp: 'dynY6ZHOK.simplehost.cloud:10305',
+			// 	software: {
+			// 		id: '2',
+			// 		name: 'Fabric',
+			// 		slug: 'fabric',
+			// 	},
+			// 	version: {
+			// 		name: '1.19.2',
+			// 	},
+			// 	online: true,
+			// 	activePlayers: serverActivePlayers,
+			// 	mainInfo: serverMainInfo,
+			// 	console: serverConsole,
+			// 	usage: serverUsage,
+			// 	settings: serverProperties,
+			// } as IServer
 		},
 
 		getServers(data: IServerGetListRequest) {
-			return axiosAuthClassic.post<IServerGetListResponse>(getServersListUrl(), data)
+			return axiosAuth().post<IServerGetListResponse>(getServersUrl(), data)
 		},
 
 		startServerContainer(data: IServerStartContainerRequest) {
-			return axiosAuthClassic.post<IServerStartContainerResponse>(
-				getStartServerContainerUrl(),
-				data
-			)
+			return axiosAuth().post<IServerStartContainerResponse>(getStartServerContainerUrl(), data)
 		},
 
 		stopServerContainer(data: IServerStopContainerRequest) {
-			return axiosAuthClassic.post<IServerStopContainerResponse>(getStopServerContainerUrl(), data)
+			return axiosAuth().post<IServerStopContainerResponse>(getStopServerContainerUrl(), data)
 		},
 
 		removeServer(data: IServerRemoveRequest) {
-			return axiosAuthClassic.post<IServerRemoveResponse>(getRemoveServerUrl(), data)
+			return axiosAuth().post<IServerRemoveResponse>(getRemoveServerUrl(), data)
 		},
 
 		updateServer(data: IServerUpdateRequest) {
-			return axiosAuthClassic.post<IServerUpdateResponse>(getUpdateServerUrl(), data)
+			return axiosAuth().post<IServerUpdateResponse>(getUpdateServerUrl(), data)
 		},
 	},
 	controller: {
-		startGameServer() {},
+		startGameServer(data: IServerStartRequest) {
+			return axiosAuth().post<IServerStartResponse>(getStartGameServerUrl(), data)
+		},
 
-		stopGameServer() {},
+		stopGameServer(data: IServerStopRequest) {
+			return axiosAuth().post<IServerStopResponse>(getStopGameServerUrl(), data)
+		},
+
+		getServerActivePlayers(data: IServerGetActivePlayersRequest) {
+			return serverActivePlayers
+		},
+
+		getServerCurrentUsage(data: IServerGetServerCurrentUsageRequest) {
+			return serverCurrentUsage
+		},
+
+		getServerConsole(data: IServerGetServerConsoleRequest) {
+			return serverConsole
+		},
+
+		getServerMainInfo(data: IServerGetServerMainInfoRequest) {
+			return serverMainInfo
+		},
+
+		getServerProperties(data: IServerGetServerPropertiesRequest) {
+			return serverProperties
+		},
 	},
 }

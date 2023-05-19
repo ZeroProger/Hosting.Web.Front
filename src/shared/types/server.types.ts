@@ -1,5 +1,4 @@
-import { ICForgeSoftware, IVersion } from './curseforge.types'
-import { IPlayer } from './player.types'
+import { IServerPort } from './requests/server-requests.types'
 
 export enum ServerPropertyType {
 	Select,
@@ -51,7 +50,7 @@ export interface IServerConsoleLine {
 	type: ServerConsoleLineType
 }
 
-export interface IServerUsageItem {
+export interface IServerCurrentUsageItem {
 	label: string
 	value: number
 	maxValue: number
@@ -61,18 +60,22 @@ export interface IServerUsageItem {
 }
 
 export interface IServer {
-	name: string
-	uuid: string
-	ip: string
-	dynamicIp: string
-	software: ICForgeSoftware
-	version: IVersion
-	online: boolean
-	activePlayers: IPlayer[]
-	mainInfo: IServerMainInfo[]
-	console: IServerConsoleLine[] //#TODO: не уверен что так нужно, возможно надо юзать websocket
-	usage: IServerUsageItem[]
-	settings: IServerProperty[]
+	gameServerName: string
+	gameServerHash: string
+	serverIp: string
+	serverPorts: IServerPort[]
+	gameKind: string
+	isOnline: boolean
+	//dynamicIp: string
+	//software: ICForgeSoftware
+	//version: IVersion
+	//#TODO: Всё что ниже убрать, должно отдельно запрашиваться по надобности
+	// кешируем в react query что-то???
+	// activePlayers: IPlayer[]
+	// mainInfo: IServerMainInfo[]
+	// console: IServerConsoleLine[]
+	// usage: IServerUsageItem[]
+	// settings: IServerProperty[]
 }
 
 export interface IFileNode {

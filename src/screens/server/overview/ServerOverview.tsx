@@ -14,10 +14,16 @@ import styles from './ServerOverview.module.scss'
 interface IServerOverview {}
 
 const ServerOverview: FC<IServerOverview> = () => {
-	const server = useTypedSelector((state) => state.serverReducer.server)
+	const server = useTypedSelector((state) => state.server.server)
 
 	return (
-		<Meta title={`Основная информация о сервере ${server.name}`}>
+		<Meta
+			title={
+				server
+					? `Основная информация о сервере ${server.gameServerName}`
+					: 'Основная информация о сервере'
+			}
+		>
 			<div className={styles.container}>
 				<div className={styles.column}>
 					<ServerMainInfo />

@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'styles/toastr/index.scss';
-
 :root {
 	--container-max-width: 1600px;
 	--primary: #08c466;
@@ -20,6 +18,7 @@
 	--hover-error: #dc0909;
 	--warn: #513826;
 	--warn-text: #d09f5f;
+	--toastify-color-dark: var(--nextui-colors-gray200);
 }
 
 * {

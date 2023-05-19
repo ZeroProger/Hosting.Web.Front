@@ -23,23 +23,23 @@
 		@apply flex flex-col items-center gap-8 z-1;
 
 		.title {
-			@apply text-6xl capitalize font-bold;
+			@apply text-6xl capitalize font-bold sm:text-4xl;
 		}
 
 		.description {
 			@apply flex flex-col items-center gap-2;
 			p {
-				@apply text-3xl text-center text-gray-200;
+				@apply text-3xl text-center text-gray-200 sm:text-2xl;
 				max-width: 1000px;
 			}
 		}
 
 		.start {
-			@apply btn-primary rounded-full text-2xl text-gray-200;
+			@apply btn-primary rounded-full text-2xl text-gray-200 sm:text-xl;
 		}
 
 		.scrollLink {
-			@apply absolute bottom-4 btn-primary rounded-full text-2xl;
+			@apply absolute bottom-4 btn-primary rounded-full text-2xl sm:text-xl;
 		}
 	}
 }

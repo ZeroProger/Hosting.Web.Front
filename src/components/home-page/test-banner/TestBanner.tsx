@@ -17,7 +17,7 @@ const TestBanner: FC<ITestBanner> = () => {
 			viewport={{ once: true }}
 			transition={{ delay: 0, duration: 0.6, ease: 'backInOut' }}
 		>
-			<div className={styles.title}>3 дня полностью бесплатно!</div>
+			<div className={styles.title}>1 день полностью бесплатно!</div>
 			<div className={styles.description}>Тестирование игрового сервера</div>
 			<Link href={getServerCreateUrl('test=true')} className={styles.btn}>
 				Начать тестировать

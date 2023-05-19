@@ -2,8 +2,8 @@
 
 .container {
 	.features {
-		@apply grid gap-x-10 gap-y-6;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		@apply grid gap-x-10 gap-y-6 sm:grid-cols-1;
 
 		.feature {
 			@apply flex flex-col gap-4 items-start;
@@ -25,10 +25,24 @@
 		}
 
 		@include md(md, 'max') {
-			grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-
 			.feature {
 				@apply flex-row;
+
+				.icon {
+					@apply h-full flex items-center;
+				}
+
+				.text {
+					.title {
+						word-break: break-word;
+					}
+				}
+			}
+		}
+
+		@include md(sm, 'max') {
+			.feature {
+				@apply flex-col;
 
 				.icon {
 					@apply h-full flex items-center;

@@ -7,13 +7,13 @@ export enum PlayersDataListType {
 
 export enum PlayerRoles {
 	Operator,
-	Whitelist,
+	WhiteList,
 }
 
 export interface IPlayerRole {
 	id: number
 	name: string
-	color: string
+	backgroundColor: string
 	textColor: string
 }
 
@@ -21,5 +21,5 @@ export interface IPlayer {
 	id: number
 	image: string
 	name: string
-	roles?: IPlayerRole[]
+	roles?: (IPlayerRole | undefined)[]
 }

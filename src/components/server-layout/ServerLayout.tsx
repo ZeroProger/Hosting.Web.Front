@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { FC, PropsWithChildren, useEffect } from 'react'
 
-import { useAppDispatch } from '@/hooks/useAppDispatch'
+import { useActions } from '@/hooks/useActions'
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 
@@ -9,29 +9,29 @@ import { IParams } from '@/shared/types/base.types'
 
 import { getServersUrl } from '@/config/url.config'
 
-import { fetchServer } from '@/store/actions/servers'
-
 import ServerHeader from '../server-header/ServerHeader'
 
 import styles from './ServerLayout.module.scss'
 
 const ServerLayout: FC<PropsWithChildren> = ({ children }) => {
-	const dispatch = useAppDispatch()
 	const router = useRouter()
 	const { slug } = router.query as IParams
-	const server = useTypedSelector((state) => state.serverReducer.server)
-	const [serverUuid, setServerUuid] = useLocalStorage('serverUuid', '')
+	const server = useTypedSelector((state) => state.server.server)
+	const { getServer } = useActions()
+	const [gameServerHash, setGameServerHash] = useLocalStorage('gameServerHash', '')
 
 	useEffect(() => {
 		if (slug) {
-			setServerUuid(slug)
-			dispatch(fetchServer(slug!))
+			setGameServerHash(slug)
+			getServer({ gameServerHash: slug })
 		} else {
-			if (!server.name && serverUuid) {
-				dispatch(fetchServer(serverUuid))
-			}
-			if (!server.name && !serverUuid) {
-				router.push(getServersUrl())
+			if (server) {
+				if (!server.gameServerName && gameServerHash) {
+					getServer({ gameServerHash: slug })
+				}
+				if (!server.gameServerName && !gameServerHash) {
+					router.push(getServersUrl())
+				}
 			}
 		}
 	}, [slug])

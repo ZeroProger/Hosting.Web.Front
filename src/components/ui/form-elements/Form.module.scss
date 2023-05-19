@@ -3,20 +3,43 @@
 }
 
 .field {
-	@apply relative w-full text-left mb-14 border-b border-gray-600 transition-colors focus-within:border-primary;
+	@apply relative w-full text-left mb-10 border-b border-gray-600 transition-colors focus-within:border-primary;
 
 	> label {
 		@apply block;
 		> span {
-			@apply text-sm uppercase text-gray-600 block;
+			@apply text-sm uppercase text-gray-600 block flex-grow;
 		}
 
-		> input {
-			@apply outline-border-none focus:ring-0 bg-transparent text-2xl text-gray-300 w-full m-0 px-2 py-2;
+		.inputWrapper {
+			@apply flex flex-row relative items-center;
 
-			&:-internal-autofill-previewed,
-			&:-internal-autofill-previewed::placeholder {
-				font-size: 1.5rem !important;
+			.togglePasswordBtn {
+				@apply absolute;
+
+				right: 16px;
+				bottom: 0;
+				top: 0;
+			}
+
+			> input {
+				@apply outline-border-none focus:ring-0 bg-transparent text-2xl text-gray-300 w-full m-0 px-2 py-2 pr-12;
+
+				&:-internal-autofill-previewed,
+				&:-internal-autofill-previewed::placeholder {
+					transition: background-color 0s ease-in-out 36000s;
+				}
+
+				&::placeholder {
+					font-size: 1.5rem;
+				}
+
+				&:-webkit-autofill,
+				&:-webkit-autofill:hover,
+				&:-webkit-autofill:focus,
+				&:-webkit-autofill:active {
+					transition: background-color 0s ease-in-out 36000s;
+				}
 			}
 		}
 	}

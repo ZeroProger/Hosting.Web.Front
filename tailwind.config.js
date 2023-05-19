@@ -65,7 +65,7 @@ module.exports = {
 			'md-min': { min: '900px' },
 			'md-header': { max: '768px' },
 			sm: { max: '600px' },
-			xs: { max: '480px' },
+			xs: { max: '500px' },
 		},
 		extend: {
 			spacing: {
@@ -122,7 +122,6 @@ module.exports = {
 		},
 	},
 	plugins: [
-		require('@tailwindcss/forms'),
 		plugin(({ addComponents, theme, addUtilities }) => {
 			addComponents({
 				'.btn-primary': {

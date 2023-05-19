@@ -1,8 +1,8 @@
 import {
 	IFileNode,
 	IServerConsoleLine,
+	IServerCurrentUsageItem,
 	IServerProperty,
-	IServerUsageItem,
 	ServerConsoleLineType,
 	ServerPropertyType,
 } from '@/shared/types/server.types'
@@ -396,7 +396,7 @@ export const serverConsole: IServerConsoleLine[] = [
 	},
 ]
 
-export const serverUsage: IServerUsageItem[] = [
+export const serverCurrentUsage: IServerCurrentUsageItem[] = [
 	{ label: 'Процессор', value: 58, maxValue: 100, color: 'purple', isPercent: true },
 	{ label: 'Опер. память', value: 716, maxValue: 2500, color: 'blue', valueUnit: 'MB' },
 	{ label: 'хранилище', value: 0.23, maxValue: 5, color: 'orange', valueUnit: 'GB' },

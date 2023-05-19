@@ -1,27 +1,29 @@
 .container {
-	@apply w-full mx-auto flex flex-col items-center justify-center p-8 gap-8;
+	@apply w-full mx-auto flex flex-col items-center justify-center p-8;
 
 	max-width: var(--container-max-width);
 	min-height: calc(100vh - var(--nextui--navbarHeight));
 
-	form {
-		@apply flex flex-col items-center w-full max-w-[500px];
-	}
+	.formWrapper {
+		@apply p-8 bg-backgroundLight rounded-lg flex flex-col items-center gap-8 w-full max-w-[500px];
 
-	.actions {
-		.activeBtn {
-			@apply bg-secondaryGray cursor-default;
+		form {
+			@apply flex flex-col items-center w-full;
 		}
 
-		> button {
-			@apply transition-all;
+		.actions {
+			@apply w-full flex flex-row justify-end;
 
-			&:first-child {
-				@apply rounded-r-none;
-			}
+			> button {
+				@apply transition-all text-xl;
 
-			&:last-child {
-				@apply rounded-l-none;
+				&:first-child {
+					@apply rounded-r-none;
+				}
+
+				&:last-child {
+					@apply rounded-l-none;
+				}
 			}
 		}
 	}

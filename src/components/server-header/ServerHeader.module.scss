@@ -56,6 +56,14 @@
 
 			.subBarStatus {
 				@apply flex flex-row flex-nowrap gap-1 items-center text-lg text-primary;
+
+				&.online {
+					@apply text-primary;
+				}
+
+				&.offline {
+					@apply text-error;
+				}
 			}
 		}
 	}
