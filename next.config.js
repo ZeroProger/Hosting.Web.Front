@@ -3,7 +3,7 @@
 const isProd = process.env.REACT_APP_ENV === 'production'
 
 const nextConfig = {
-	reactStrictMode: true,
+	reactStrictMode: false,
 	poweredByHeader: false,
 	optimizeFonts: false,
 	//skipMiddlewareUrlNormalize: false,
@@ -17,8 +17,13 @@ const nextConfig = {
 		APP_SERVER_URL: process.env.REACT_APP_SERVER_URL,
 	},
 	images: {
-		domains: ['cdn.snowshock35.com', 'media.forgecdn.net'],
-		unoptimized: false,
+		unoptimized: true,
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: '**',
+			},
+		],
 	},
 	async rewrites() {
 		return [

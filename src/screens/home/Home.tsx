@@ -14,7 +14,7 @@ interface IHome {}
 
 const Home: FC<IHome> = () => {
 	return (
-		<Meta title="Главная" description="{остинг игровых серверов SimpleHost.">
+		<Meta title="Главная" description="Хостинг игровых серверов SimpleHost.">
 			<section className={styles.container}>
 				<About />
 				<div className={styles.content}>

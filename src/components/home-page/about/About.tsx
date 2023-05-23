@@ -50,7 +50,7 @@ const About: FC<IAbout> = () => {
 						transition={{ delay: 1.9, duration: 0.6, ease: 'backInOut' }}
 					>
 						<p>
-							<span className="text-primary font-bold">✓</span> Минимальный пинг по России.
+							<span className="text-primary font-bold">✓</span> Минимальный пинг по всей России.
 						</p>
 						<p>
 							<span className="text-primary font-bold">✓</span> Множество шаблонов создания сервера.
