@@ -1,0 +1,23 @@
+.container {
+	@apply flex flex-col gap-6;
+
+	.tariffDescription {
+		@apply text-xl;
+	}
+
+	.tariffProperties {
+		@apply flex flex-col gap-4;
+
+		.property {
+			@apply flex flex-col gap-2;
+
+			.propertyLabel {
+				@apply flex flex-row gap-3 items-center text-2xl;
+			}
+
+			.propertyValue {
+				@apply text-xl;
+			}
+		}
+	}
+}

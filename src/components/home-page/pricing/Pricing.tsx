@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import numeral from 'numeral'
 import { FC, Fragment, useRef } from 'react'
 import { useQuery } from 'react-query'
 
@@ -9,6 +8,8 @@ import SubHeading from '@/components/ui/heading/SubHeading'
 import { IGameTariffs, ITariff } from '@/shared/types/tariff.types'
 
 import { TariffService } from '@/services/tariff.service'
+
+import { formatMemoryToGB, getCpuCoresCount, getTariffPriceString } from '@/utils/tariffs/tariffs'
 
 import { getTariffsGroupedByGamesUrl } from '@/config/api/tariffs-api.config'
 import { getGameUrl, getServerCreateUrl } from '@/config/url.config'
@@ -46,22 +47,6 @@ const Pricing: FC<IPricing> = () => {
 		})
 
 		return data
-	}
-
-	const formatMemoryToGB = (megaBytes: number): string => {
-		const data = numeral(megaBytes * 1024 * 1024)
-
-		return data.format('0 ib').replace('GiB', 'GB')
-	}
-
-	const getCpuCoresCount = (percentage: number): string => {
-		return (percentage / 100).toFixed(1)
-	}
-
-	const getPriceString = (tariff: ITariff): string => {
-		return tariff.isPricePerPlayer
-			? `${tariff.monthPrice} ₽ / слот (в месяц)`
-			: `${tariff.monthPrice} ₽ / месяц`
 	}
 
 	return (
@@ -108,7 +93,7 @@ const Pricing: FC<IPricing> = () => {
 										)}
 									</div>
 									<div className={styles.pricing}>
-										Цена: {game.tariff && getPriceString(game.tariff)}
+										Цена: {game.tariff && getTariffPriceString(game.tariff)}
 									</div>
 									<div className={styles.actions}>
 										<Link href={getGameUrl(game.gameId)} className={styles.btn}>

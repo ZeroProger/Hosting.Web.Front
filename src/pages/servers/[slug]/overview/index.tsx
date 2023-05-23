@@ -4,14 +4,18 @@ import ServerLayout from '@/components/server-layout/ServerLayout'
 
 import ServerOverview from '@/screens/server/overview/ServerOverview'
 
+import { NextPageAuth } from '@/providers/auth-provider/auth-provider.types'
+
 import { NextPageWithLayout } from '@/pages/_app'
 
-const OverviewPage: NextPageWithLayout = () => {
+const OverviewPage: NextPageWithLayout & NextPageAuth = () => {
 	return <ServerOverview />
 }
 
-export default OverviewPage
+OverviewPage.isOnlyUser = true
 
 OverviewPage.getLayout = function getLayout(page: ReactElement) {
 	return <ServerLayout>{page}</ServerLayout>
 }
+
+export default OverviewPage

@@ -16,8 +16,8 @@ export interface IServerCreateRequest {
 	locationId: number
 	tariffId: number
 	period: number
-	isTestPeriod: boolean
-	promoCode: string
+	isTestPeriod?: boolean
+	promoCode?: string
 	slots: number
 }
 

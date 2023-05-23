@@ -16,3 +16,5 @@ export interface IResponseResult {
 	success: boolean
 	error: string
 }
+
+export type Nullable<T> = { [K in keyof T]: T[K] | null };
