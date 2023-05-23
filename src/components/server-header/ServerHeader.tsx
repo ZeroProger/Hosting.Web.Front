@@ -28,7 +28,23 @@ const ServerHeader: FC<IServerHeader> = () => {
 
 	const handleStopServerBtn = () => {}
 
-	const handleStartServerBtn = () => {}
+	const handleStartServerBtn = () => {
+		if (server) {
+			const startContainerPromise = ServerService.compositor.startServerContainer({
+				gameServerHash: server.gameServerHash,
+			})
+
+			startContainerPromise.then((data) => {
+				if (data.data.success === true) {
+					const startGameServerPromise = ServerService.controller.startGameServer({
+						gameServerHash: data.data.gameServerHash,
+					})
+
+					startGameServerPromise.then((data) => {})
+				}
+			})
+		}
+	}
 
 	useEffect(() => {
 		if (server) {
@@ -38,7 +54,7 @@ const ServerHeader: FC<IServerHeader> = () => {
 
 			setActivePlayers(data)
 		}
-	}, [])
+	}, [server])
 
 	return (
 		<div className={styles.container}>

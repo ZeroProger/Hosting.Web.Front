@@ -24,6 +24,7 @@ const backgroundLandscape = '#171b3d'
 
 module.exports = {
 	content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
+	safelist: ['text-lg', 'text-xl', 'text-2xl', 'text-3xl'],
 	theme: {
 		colors: {
 			primary,
