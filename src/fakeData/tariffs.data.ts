@@ -4,7 +4,7 @@ export const groupedTariffs: IGameTariffs[] = [
 	{
 		gameId: 1,
 		gameName: 'Fortnite',
-		gameIconUrl: 'https://example.com/fortnite.png',
+		gameImageUrl: 'https://example.com/fortnite.png',
 		gameDescription: 'Fortnite is a popular battle royale game developed by Epic Games.',
 		tariffs: [
 			{
@@ -27,11 +27,13 @@ export const groupedTariffs: IGameTariffs[] = [
 					{
 						id: 1,
 						name: 'North America',
+						description: "",
 						testIp: '192.168.0.1',
 					},
 					{
 						id: 2,
 						name: 'Europe',
+						description: "",
 						testIp: '192.168.0.2',
 					},
 				],
@@ -56,11 +58,13 @@ export const groupedTariffs: IGameTariffs[] = [
 					{
 						id: 1,
 						name: 'North America',
+						description: "",
 						testIp: '192.168.0.1',
 					},
 					{
 						id: 3,
 						name: 'Asia',
+						description: "",
 						testIp: '192.168.0.3',
 					},
 				],
@@ -70,7 +74,7 @@ export const groupedTariffs: IGameTariffs[] = [
 	{
 		gameId: 2,
 		gameName: 'Minecraft',
-		gameIconUrl: 'https://example.com/minecraft.png',
+		gameImageUrl: 'https://example.com/minecraft.png',
 		gameDescription:
 			'Minecraft is a sandbox game that allows players to build and explore virtual worlds.',
 		tariffs: [
@@ -95,11 +99,13 @@ export const groupedTariffs: IGameTariffs[] = [
 						id: 1,
 						name: 'North America',
 						testIp: '192.168.0.1',
+						description: "",
 					},
 					{
 						id: 4,
 						name: 'South America',
 						testIp: '192.168.0.4',
+						description: "",
 					},
 				],
 			},
@@ -123,12 +129,14 @@ export const groupedTariffs: IGameTariffs[] = [
 					{
 						id: 1,
 						name: 'North America',
+						description: "",
 						testIp: '192.168.0.1',
 					},
 					{
 						id: 5,
 						name: 'Oceania',
 						testIp: '192.168.0.5',
+						description: "",
 					},
 				],
 			},
@@ -137,7 +145,7 @@ export const groupedTariffs: IGameTariffs[] = [
 	{
 		gameId: 3,
 		gameName: 'League of Legends',
-		gameIconUrl: 'https://example.com/leagueoflegends.png',
+		gameImageUrl: 'https://example.com/leagueoflegends.png',
 		gameDescription: 'League of Legends is a popular multiplayer online battle arena (MOBA) game.',
 		tariffs: [
 			{
@@ -161,10 +169,12 @@ export const groupedTariffs: IGameTariffs[] = [
 						id: 1,
 						name: 'North America',
 						testIp: '192.168.0.1',
+						description: "",
 					},
 					{
 						id: 6,
 						name: 'Africa',
+						description: "",
 						testIp: '192.168.0.6',
 					},
 				],
@@ -190,12 +200,14 @@ export const groupedTariffs: IGameTariffs[] = [
 					{
 						id: 1,
 						name: 'North America',
+						description: "",
 						testIp: '192.168.0.1',
 					},
 					{
 						id: 7,
 						name: 'Europe',
 						testIp: '192.168.0.7',
+						description: "",
 					},
 				],
 			},
@@ -204,7 +216,7 @@ export const groupedTariffs: IGameTariffs[] = [
 	{
 		gameId: 4,
 		gameName: 'Call of Duty: Warzone',
-		gameIconUrl: 'https://example.com/warzone.png',
+		gameImageUrl: 'https://example.com/warzone.png',
 		gameDescription: 'Call of Duty: Warzone is a popular free-to-play battle royale game.',
 		tariffs: [
 			{
@@ -228,11 +240,13 @@ export const groupedTariffs: IGameTariffs[] = [
 					{
 						id: 1,
 						name: 'North America',
+						description: "",
 						testIp: '192.168.0.1',
 					},
 					{
 						id: 8,
 						name: 'Asia',
+						description: "",
 						testIp: '192.168.0.8',
 					},
 				],
@@ -259,10 +273,12 @@ export const groupedTariffs: IGameTariffs[] = [
 						id: 1,
 						name: 'North America',
 						testIp: '192.168.0.1',
+						description: "",
 					},
 					{
 						id: 8,
 						name: 'Asia',
+						description: "",
 						testIp: '192.168.0.8',
 					},
 				],
@@ -292,11 +308,13 @@ export const tariffs: ITariff[] = [
 			{
 				id: 1,
 				name: 'North America',
+				description: "",
 				testIp: '192.168.0.1',
 			},
 			{
 				id: 2,
 				name: 'Europe',
+				description: "",
 				testIp: '192.168.0.2',
 			},
 		],
@@ -322,11 +340,13 @@ export const tariffs: ITariff[] = [
 				id: 1,
 				name: 'North America',
 				testIp: '192.168.0.1',
+				description: "",
 			},
 			{
 				id: 3,
 				name: 'Asia',
 				testIp: '192.168.0.3',
+				description: "",
 			},
 		],
 	},
@@ -351,11 +371,13 @@ export const tariffs: ITariff[] = [
 				id: 1,
 				name: 'North America',
 				testIp: '192.168.0.1',
+				description: "",
 			},
 			{
 				id: 4,
 				name: 'South America',
 				testIp: '192.168.0.4',
+				description: "",
 			},
 		],
 	},
@@ -380,11 +402,13 @@ export const tariffs: ITariff[] = [
 				id: 1,
 				name: 'North America',
 				testIp: '192.168.0.1',
+				description: "",
 			},
 			{
 				id: 5,
 				name: 'Oceania',
 				testIp: '192.168.0.5',
+				description: "",
 			},
 		],
 	},
@@ -409,11 +433,13 @@ export const tariffs: ITariff[] = [
 				id: 1,
 				name: 'North America',
 				testIp: '192.168.0.1',
+				description: "",
 			},
 			{
 				id: 6,
 				name: 'Africa',
 				testIp: '192.168.0.6',
+				description: "",
 			},
 		],
 	},
@@ -438,11 +464,13 @@ export const tariffs: ITariff[] = [
 				id: 1,
 				name: 'North America',
 				testIp: '192.168.0.1',
+				description: "",
 			},
 			{
 				id: 7,
 				name: 'Europe',
 				testIp: '192.168.0.7',
+				description: "",
 			},
 		],
 	},
@@ -468,11 +496,13 @@ export const tariffs: ITariff[] = [
 				id: 1,
 				name: 'North America',
 				testIp: '192.168.0.1',
+				description: "",
 			},
 			{
 				id: 8,
 				name: 'Asia',
 				testIp: '192.168.0.8',
+				description: "",
 			},
 		],
 	},
@@ -498,11 +528,13 @@ export const tariffs: ITariff[] = [
 				id: 1,
 				name: 'North America',
 				testIp: '192.168.0.1',
+				description: "",
 			},
 			{
 				id: 8,
 				name: 'Asia',
 				testIp: '192.168.0.8',
+				description: "",
 			},
 		],
 	},

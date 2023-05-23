@@ -3,6 +3,7 @@
 const isProd = process.env.REACT_APP_ENV === 'production'
 
 const nextConfig = {
+	output: 'export',
 	reactStrictMode: true,
 	poweredByHeader: false,
 	optimizeFonts: false,
@@ -18,7 +19,7 @@ const nextConfig = {
 	},
 	images: {
 		domains: ['cdn.snowshock35.com', 'media.forgecdn.net'],
-		unoptimized: false,
+		unoptimized: true,
 	},
 	async rewrites() {
 		return [
