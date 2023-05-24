@@ -1,0 +1,11 @@
+.container {
+	@apply flex flex-row items-center bg-secondaryGray p-4 rounded-layout;
+
+	.icon {
+		@apply basis-[80px];
+	}
+
+	.text {
+		@apply flex-grow text-xl;
+	}
+}

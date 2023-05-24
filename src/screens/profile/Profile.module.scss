@@ -1,0 +1,52 @@
+@import 'styles/mixins.scss';
+
+.container {
+	@apply content-container p-layout;
+
+	.settings {
+		@apply grid grid-cols-2 gap-6;
+
+		@include md(xl, 'max') {
+			@apply grid-cols-1;
+		}
+
+		.column {
+			@apply flex flex-col gap-6;
+
+			.block {
+				@apply flex flex-col bg-backgroundLight p-4 rounded-layout;
+
+				.blockHeader {
+					@apply flex flex-row justify-between items-center gap-4 border-b-lightGray border-b-2 py-4;
+
+					.actions {
+						@apply flex flex-row gap-4;
+
+						button {
+							@apply px-2 py-1;
+						}
+					}
+				}
+
+				.blockContent {
+					@apply flex flex-col gap-6 pt-6;
+
+					.innerBlock {
+						@apply flex flex-row items-center gap-4;
+
+						&.top {
+							@apply items-start;
+						}
+
+						.innerBlockTitle {
+							flex-basis: 250px;
+						}
+
+						.innerBlockContent {
+						}
+					}
+				}
+			}
+		}
+	}
+}
