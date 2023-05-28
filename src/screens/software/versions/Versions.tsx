@@ -1,46 +1,42 @@
-import { Tooltip } from '@nextui-org/react';
-import clsx from 'clsx';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { FC } from 'react';
+import { useRouter } from 'next/router'
+import { FC } from 'react'
+import { useQuery } from 'react-query'
 
+import Heading from '@/components/ui/heading/Heading'
 
+import { IParams } from '@/shared/types/base.types'
 
-import { Icon } from '@/components/ui/Icon';
-import Heading from '@/components/ui/heading/Heading';
+import { CurseForgeService } from '@/services/curseforge.service'
 
+import { getMinecraftVersionsUrl, getModloadersUrl } from '@/config/api/curseforge-api.config'
 
+import styles from './Versions.module.scss'
 
-import { IParams } from '@/shared/types/base.types';
-import { ICForgeMinecraftVersion, ICForgeModloaderVersion } from '@/shared/types/curseforge.types';
+interface IVersions {}
 
-
-
-import { lightGray, primary } from '@/config/constants';
-import { getServerVersionUrl } from '@/config/url.config';
-
-
-
-import styles from './Versions.module.scss';
-
-
-interface IVersions {
-	versions: { data: ICForgeMinecraftVersion[] } | { data: ICForgeModloaderVersion[] }
-	type: string
-}
-
-const Versions: FC<IVersions> = ({ versions, type }) => {
+const Versions: FC<IVersions> = () => {
 	const router = useRouter()
 	const slug = (router.query as IParams).slug
+
+	const { data: vanilaVersions } = useQuery(
+		getMinecraftVersionsUrl(),
+		() => CurseForgeService.getMinecraftVersions(),
+		{ select: (data) => data.data }
+	)
+
+	const { data: softwareVersions } = useQuery(
+		getModloadersUrl(),
+		() => CurseForgeService.getSoftwaresVersions(),
+		{ select: (data) => data.data }
+	)
+
 	const software = (router.query as IParams)?.software!
-	const vanilaVersions = versions as { data: ICForgeMinecraftVersion[] }
-	const modloadersVersions = versions as { data: ICForgeModloaderVersion[] }
 
 	return (
 		<div className={styles.container}>
 			<Heading title={software} capitalize />
-			{!versions && <div>Загрузка...</div>}
-			<div
+			{!vanilaVersions && <div>Загрузка...</div>}
+			{/* <div
 				className={clsx(styles.versions, {
 					[styles.versionsGrid]: modloadersVersions.data[0].versions !== undefined,
 				})}
@@ -119,7 +115,7 @@ const Versions: FC<IVersions> = ({ versions, type }) => {
 						</>
 					)}
 				</>
-			</div>
+			</div> */}
 		</div>
 	)
 }

@@ -13,10 +13,10 @@
 		.column {
 			@apply flex flex-col gap-6;
 
-			.block {
+			.dataBlock {
 				@apply flex flex-col bg-backgroundLight p-4 rounded-layout;
 
-				.blockHeader {
+				.dataBlockHeader {
 					@apply flex flex-row justify-between items-center gap-4 border-b-lightGray border-b-2 py-4;
 
 					.actions {
@@ -28,25 +28,64 @@
 					}
 				}
 
-				.blockContent {
-					@apply flex flex-col gap-6 pt-6;
+				.dataBlockContent {
+					@apply flex flex-col gap-10 pt-6;
 
 					.innerBlock {
-						@apply flex flex-row items-center gap-4;
+						@apply flex flex-row items-start gap-4;
 
 						&.top {
 							@apply items-start;
 						}
 
 						.innerBlockTitle {
+							@apply mt-3;
 							flex-basis: 250px;
 						}
 
 						.innerBlockContent {
+							@apply w-full;
 						}
 					}
 				}
 			}
 		}
+	}
+}
+
+.field {
+	@apply relative w-full text-left mb-4;
+
+	> label {
+		display: block;
+		@apply rounded-2xl border-lightGray border-2 max-w-[350px];
+
+		> input {
+			@apply outline-border-none focus:ring-0 bg-transparent text-xl text-white w-full m-0 px-4 py-2;
+
+			&:disabled {
+				@apply text-lightGray;
+			}
+
+			&:-internal-autofill-previewed,
+			&:-internal-autofill-previewed::placeholder {
+				transition: background-color 0s ease-in-out 36000s;
+			}
+
+			&::placeholder {
+				font-size: 1.5rem;
+			}
+
+			&:-webkit-autofill,
+			&:-webkit-autofill:hover,
+			&:-webkit-autofill:focus,
+			&:-webkit-autofill:active {
+				transition: background-color 0s ease-in-out 36000s;
+			}
+		}
+	}
+
+	.error {
+		@apply absolute -bottom-7 left-0 text-md w-full text-error;
 	}
 }

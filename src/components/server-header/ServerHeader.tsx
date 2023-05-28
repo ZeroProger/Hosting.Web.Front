@@ -1,13 +1,18 @@
-import { Button, Text } from '@nextui-org/react'
+import { Badge, Button, Modal, Text } from '@nextui-org/react'
 import clsx from 'clsx'
+import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 
+import { useActions } from '@/hooks/useActions'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import { IPlayer } from '@/shared/types/player.types'
 
 import { ServerService } from '@/services/server.service'
+
+import { getServerModUrl } from '@/config/url.config'
 
 import { Icon } from '../ui/Icon'
 import { AvatarGroup } from '../ui/avatar-group/AvatarGroup'
@@ -20,7 +25,15 @@ interface IServerHeader {}
 const ServerHeader: FC<IServerHeader> = () => {
 	const router = useRouter()
 	const server = useTypedSelector((state) => state.server.server)
+	const modsCart = useTypedSelector((state) => state.mods.cart)
+	const { submitCart, resetCart } = useActions()
 	const [activePlayers, setActivePlayers] = useState<IPlayer[]>([])
+
+	const [isModalOpen, setIsModalOpen] = useState(false)
+
+	const handleModalOpen = () => setIsModalOpen(true)
+
+	const handleModalClose = () => setIsModalOpen(false)
 
 	const handleBackBtn = () => {
 		router.back()
@@ -46,6 +59,16 @@ const ServerHeader: FC<IServerHeader> = () => {
 		}
 	}
 
+	const handleSubmitCart = () => {
+		handleModalClose()
+		submitCart()
+	}
+
+	const handleResetCart = () => {
+		handleModalClose()
+		resetCart()
+	}
+
 	useEffect(() => {
 		if (server) {
 			const data = ServerService.controller.getServerActivePlayers({
@@ -55,6 +78,10 @@ const ServerHeader: FC<IServerHeader> = () => {
 			setActivePlayers(data)
 		}
 	}, [server])
+
+	useEffect(() => {
+		setIsModalOpen(false)
+	}, [router.asPath])
 
 	return (
 		<div className={styles.container}>
@@ -120,11 +147,57 @@ const ServerHeader: FC<IServerHeader> = () => {
 						<div className={styles.tabs}>
 							<ServerTabs slug={server.gameServerHash} />
 						</div>
-						<div className={styles.otherActions}>
-							<button type="button" className={styles.otherActionsBtn}>
+						<div className={styles.cart}>
+							{/* <button type="button" className={styles.otherActionsBtn}>
 								<Icon name="RiShareForwardFill" className={styles.otherActionsIcon} size={28} />
 								<span className={styles.otherActionsText}>Поделиться</span>
-							</button>
+							</button> */}
+							{modsCart.length > 0 && (
+								<Badge size="lg" color="primary" content={modsCart.length}>
+									<button className={styles.modsCartBtn} onClick={handleModalOpen}>
+										Моды к установке
+									</button>
+								</Badge>
+							)}
+							<Modal
+								closeButton
+								onClose={handleModalClose}
+								open={isModalOpen}
+								aria-labelledby="Установка выбранных модификаций"
+								className="bg-backgroundLight border-lightGray border-2"
+								width="600px"
+							>
+								<Modal.Header className="text-2xl">Установка выбранных модификаций</Modal.Header>
+								<Modal.Body>
+									<div className={styles.cartMods}>
+										{modsCart.map((mod) => (
+											<Link
+												key={mod.id}
+												className={styles.cartMod}
+												href={getServerModUrl(String(mod.id))}
+											>
+												<div className={styles.cartModImage}>
+													<Image
+														src={mod.logo.thumbnailUrl}
+														alt={mod.summary}
+														width={40}
+														height={40}
+													/>
+												</div>
+												<div className={styles.cartModTitle}>{mod.name}</div>
+											</Link>
+										))}
+										<div className={styles.cartActions}>
+											<button className={styles.cartSubmitBtn} onClick={handleSubmitCart}>
+												Установить
+											</button>
+											<button className={styles.cartResetBtn} onClick={handleResetCart}>
+												Очистить
+											</button>
+										</div>
+									</div>
+								</Modal.Body>
+							</Modal>
 						</div>
 					</div>
 				</>

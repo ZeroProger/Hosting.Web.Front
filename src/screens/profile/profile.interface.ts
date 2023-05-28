@@ -1,6 +1,5 @@
-export interface IPersonalInfoChange {
-	newAvatar: string
-	userName: string
+export interface ILoginChange {
+	login: string
 }
 
 export interface IEmailChange {

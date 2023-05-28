@@ -1,5 +1,110 @@
+.card {
+	@apply bg-backgroundLight p-6 relative z-1 transition-colors h-[225px];
+
+	display: grid;
+	grid-template-areas:
+		'image . name author add-btn'
+		'image . desc desc add-btn'
+		'image . details details details'
+		'categories categories categories categories categories';
+	grid-template-columns: 100px 20px auto 1fr auto;
+	grid-template-rows: 24px 60px 25px 36px;
+	grid-gap: 10px 0;
+	gap: 10px 0;
+
+	&:hover {
+		@apply bg-gray-800;
+
+		.add {
+			@apply opacity-100;
+		}
+	}
+
+	.image {
+		grid-area: image;
+		height: 100px;
+		width: 100px;
+	}
+
+	.name {
+		@apply text-xl;
+
+		grid-area: name;
+	}
+
+	.author {
+		@apply flex flex-row items-center h-[28px] text-md text-lightGray;
+
+		grid-area: author;
+
+		&::before {
+			@apply mx-2;
+
+			content: '|';
+		}
+	}
+
+	.add {
+		@apply transition-opacity opacity-0 z-20 ml-2;
+
+		grid-area: add-btn;
+
+		.addBtn {
+			@apply btn-primary flex flex-row gap-2 flex-nowrap items-center py-1 px-2;
+		}
+
+		&.remove {
+			@apply opacity-100;
+
+			.removeBtn {
+				@apply btn-error flex flex-row gap-2 flex-nowrap items-center py-1 px-2;
+			}
+		}
+	}
+
+	.description {
+		@apply text-lg;
+
+		grid-area: desc;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.details {
+		@apply flex flex-row gap-x-5 gap-y-2 items-center;
+		grid-area: details;
+
+		> li {
+			@apply flex flex-row gap-2 items-center;
+		}
+	}
+
+	.categories {
+		grid-area: categories;
+
+		@apply border-t-2 border-lightGray -mx-6 px-6 py-3 overflow-hidden text-ellipsis h-[50px];
+
+		.classTag {
+			@apply inline-block border-2 border-lightGray px-2 py-1;
+		}
+
+		.categoryTag {
+			@apply inline-block text-lightGray;
+		}
+
+		> * {
+			&:not(:last-child) {
+				@apply mr-3;
+			}
+		}
+	}
+}
+
 .container {
-	@apply border rounded-xl p-5 mb-10 z-2 max-w-[1000px];
+	@apply border rounded-xl p-5 z-2 max-w-[1000px];
 }
 
 .header {

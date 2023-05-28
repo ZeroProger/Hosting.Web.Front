@@ -30,7 +30,7 @@ const SearchMods: FC = () => {
 				<input
 					type="search"
 					className={styles.searchInputField}
-					value={searchTerm}
+					defaultValue={String(query.searchFilter || '')}
 					onChange={handleSearch}
 					onFocus={handleInputFocus}
 				/>

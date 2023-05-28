@@ -27,16 +27,18 @@ const ServerLayout: FC<PropsWithChildren> = ({ children }) => {
 				getServer({ gameServerHash: slug })
 			}
 		} else {
-			if (server) {
-				if (!server.gameServerName && gameServerHash) {
-					getServer({ gameServerHash: slug })
-				}
-				if (!server.gameServerName && !gameServerHash) {
-					router.push(getServersUrl())
-				}
+			if (!server && gameServerHash.length > 0) {
+				getServer({ gameServerHash: gameServerHash })
+			}
+			if (!server && gameServerHash.length === 0) {
+				router.push(getServersUrl())
 			}
 		}
 	}, [slug])
+
+	// useEffect(() => {
+	// 	if (gameServerHash.length > 0) getServer({ gameServerHash: gameServerHash })
+	// }, [])
 
 	return (
 		<>

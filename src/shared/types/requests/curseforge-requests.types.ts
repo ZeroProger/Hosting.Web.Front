@@ -3,7 +3,7 @@ export interface ISearchModsRequest {
 	searchFilter?: string
 	sortField?: number
 	sortOrder?: string
-	modLoaderType?: number
+	modLoaderType?: string
 	gameVersion?: string
 	slug?: string
 	index?: number

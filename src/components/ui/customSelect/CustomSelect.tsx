@@ -44,6 +44,15 @@ const CustomSelect: FC<ICustomSelect> = ({ options }) => {
 		} else setSelectedValue(options.find((el) => el.value === slug) || null)
 	}, [router])
 
+	useEffect(() => {
+		if (server) {
+			setSelectedValue({
+				label: server?.gameServerName,
+				value: server?.gameServerHash,
+			} as IOption)
+		}
+	}, [server])
+
 	const handleChange = (newValue: SingleValue<IOption>, actionMeta: ActionMeta<IOption>) => {
 		if (actionMeta.action === 'clear') {
 			setSelectedValue(null)

@@ -58,11 +58,7 @@ export const ServerService = {
 		},
 
 		getServerByHash(hash: string) {
-			return axiosAuth().post<IServer>(getServersUrl(hash), {
-				headers: {
-					'X-Auth-Token': Cookies.get('authToken') || getLocalStorageData('authToken'),
-				},
-			})
+			return axiosAuth().post<IServer>(getServersUrl(hash))
 			// return {
 			// 	name: uuid
 			// 		.split('-')

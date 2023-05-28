@@ -12,6 +12,9 @@ import SearchMods from '@/components/ui/search-mods/SearchMods'
 
 import { useModDescription } from '@/screens/server/mods/description/useModDescription'
 
+import { useActions } from '@/hooks/useActions'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
+
 import siteLogo from '@/assets/images/logo-green.png'
 
 import { russifyUTC } from '@/utils/string/russifyUTC'
@@ -41,6 +44,8 @@ enum ModLayoutPathIndexes {
 
 const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 	const router = useRouter()
+	const { addModToCart, removeModFromCart } = useActions()
+	const modsCart = useTypedSelector((state) => state.mods.cart)
 	const modIdString = String(router.query?.id!)
 	const modId = parseInt(modIdString)
 	const [tabIndex, setTabIndex] = useState(0)
@@ -65,6 +70,16 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 
 	const formattedDateCreated = russifyUTC(mod?.dateCreated!)
 	const formattedDateModified = russifyUTC(mod?.dateModified!)
+
+	const handleToggleModInCart = () => {
+		if (mod === undefined) return
+
+		if (modsCart.find((cartMod) => cartMod.id === mod.id)) {
+			removeModFromCart(mod)
+		} else {
+			addModToCart(mod)
+		}
+	}
 
 	useEffect(() => {
 		setTabIndex(pathsMap.get(router.asPath)!)
@@ -114,9 +129,26 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 									<button type="button" className={styles.favoriteBtn}>
 										<Icon name="FaRegHeart" size={24} />
 									</button>
-									<button type="button" className={styles.addModBtn}>
-										<Icon name="HiOutlinePlusCircle" size={32} />
-										Добавить
+									<button
+										type="button"
+										className={
+											modsCart.find((cartMod) => cartMod.id === mod.id)
+												? styles.removeModBtn
+												: styles.addModBtn
+										}
+										onClick={handleToggleModInCart}
+									>
+										{modsCart.find((cartMod) => cartMod.id === mod.id) ? (
+											<>
+												<Icon name="HiOutlineMinusCircle" size={32} />
+												Убрать
+											</>
+										) : (
+											<>
+												<Icon name="HiOutlinePlusCircle" size={32} />
+												Добавить
+											</>
+										)}
 									</button>
 								</div>
 							</div>

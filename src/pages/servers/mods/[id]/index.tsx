@@ -1,18 +1,11 @@
-import { ReactElement } from 'react';
+import { ReactElement } from 'react'
 
+import ModLayout from '@/components/mod-layout/ModLayout'
+import ServerLayout from '@/components/server-layout/ServerLayout'
 
+import ServerModDescription from '@/screens/server/mods/description/ServerModDescription'
 
-import ModLayout from '@/components/mod-layout/ModLayout';
-import ServerLayout from '@/components/server-layout/ServerLayout';
-
-
-
-import ServerModDescription from '@/screens/server/mods/description/ServerModDescription';
-
-
-
-import { NextPageWithLayout } from '@/pages/_app';
-
+import { NextPageWithLayout } from '@/pages/_app'
 
 const ModDescriptionPage: NextPageWithLayout = () => {
 	return <ServerModDescription />

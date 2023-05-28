@@ -98,6 +98,10 @@
 			.addModBtn {
 				@apply btn-primary flex flex-row items-center gap-2 px-4 py-2 text-xl h-[48px];
 			}
+
+			.removeModBtn {
+				@apply btn-error flex flex-row items-center gap-2 px-4 py-2 text-xl h-[48px];
+			}
 		}
 	}
 
