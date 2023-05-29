@@ -3,7 +3,7 @@ export const getStartServerContainerUrl = () => '/servers/compositor/start-serve
 export const getStopServerContainerUrl = () => '/servers/compositor/stop-server'
 export const getRemoveServerUrl = () => '/servers/compositor/remove-server'
 export const getServersUrl = (hash?: string) =>
-	`/servers/compositor/get-server${hash ? `/${hash}/` : ''}`
+	`/servers/compositor/get-server${hash ? `/${hash}` : ''}`
 export const getUpdateServerUrl = () => '/servers/compositor/update-server'
 
 export const getStartGameServerUrl = () => '/servers/controller/start-server'
