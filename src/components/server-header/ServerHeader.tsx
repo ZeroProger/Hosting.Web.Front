@@ -1,10 +1,9 @@
-import { Badge, Button, Modal, Text } from '@nextui-org/react'
+import { Badge, Button, Loading, Modal, Text } from '@nextui-org/react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 
 import { useActions } from '@/hooks/useActions'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
@@ -25,9 +24,10 @@ interface IServerHeader {}
 
 const ServerHeader: FC<IServerHeader> = () => {
 	const router = useRouter()
-	const server = useTypedSelector((state) => state.server.server)
+	const { server, isLoading } = useTypedSelector((state) => state.server)
 	const modsCart = useTypedSelector((state) => state.mods.cart)
-	const { submitCart, resetCart } = useActions()
+	const { submitCart, resetCart, getServer, startServer, stopServer } = useActions()
+	const [serverPort, setServerPort] = useState<number | null>(null)
 	const [activePlayers, setActivePlayers] = useState<IPlayer[]>([])
 
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -41,37 +41,44 @@ const ServerHeader: FC<IServerHeader> = () => {
 	}
 
 	const handleStopServerBtn = () => {
-		if (server) {
-			const stopGamePromise = ServerService.controller.stopGameServer({
-				gameServerHash: server.gameServerHash,
-			})
+		if (server && !isLoading) {
+			stopServer({ gameServerHash: server.gameServerHash })
+			// const stopGamePromise = ServerService.controller.stopGameServer({
+			// 	gameServerHash: server.gameServerHash,
+			// })
 
-			stopGamePromise.then((data) => {
-				if (data.data.error.length > 0) {
-					toast(data.data.error)
-				}
-				if (data.data.success) {
-					router.reload()
-				}
-			})
+			// stopGamePromise.then((data) => {
+			// 	if (data.data.error.length > 0) {
+			// 		toast(data.data.error)
+			// 		return
+			// 	}
+			// 	if (data.data.success) {
+			// 		getServer({ gameServerHash: server.gameServerHash })
+			// 	}
+			// })
 		}
 	}
 
 	const handleStartServerBtn = () => {
-		if (server) {
-			const startContainerPromise = ServerService.compositor.startServerContainer({
-				gameServerHash: server.gameServerHash,
-			})
+		if (server && !isLoading) {
+			startServer({ gameServerHash: server.gameServerHash })
+			// const startContainerPromise = ServerService.compositor.startServerContainer({
+			// 	gameServerHash: server.gameServerHash,
+			// })
 
-			startContainerPromise.then((data) => {
-				if (data.data.success === true) {
-					const startGameServerPromise = ServerService.controller.startGameServer({
-						gameServerHash: data.data.gameServerHash,
-					})
+			// startContainerPromise.then((data) => {
+			// 	if (data.data.success === true) {
+			// 		const startGameServerPromise = ServerService.controller.startGameServer({
+			// 			gameServerHash: data.data.gameServerHash,
+			// 		})
 
-					startGameServerPromise.then((data) => {})
-				}
-			})
+			// 		startGameServerPromise.then((data) => {
+			// 			if (data.data.success) {
+			// 				getServer({ gameServerHash: server.gameServerHash })
+			// 			}
+			// 		})
+			// 	}
+			// })
 		}
 	}
 
@@ -90,6 +97,16 @@ const ServerHeader: FC<IServerHeader> = () => {
 			const data = ServerService.controller.getServerActivePlayers({
 				gameServerHash: server.gameServerHash,
 			})
+
+			const controllerPort = server.serverPorts.find((port) => port.portKind === 'controller')
+
+			if (controllerPort) {
+				const gameServerPort = server.serverPorts.find((port) => port.port !== controllerPort?.port)
+
+				if (gameServerPort) {
+					setServerPort(gameServerPort.port)
+				}
+			}
 
 			setActivePlayers(data)
 		}
@@ -115,12 +132,22 @@ const ServerHeader: FC<IServerHeader> = () => {
 							</div>
 							<div className={styles.mainBarActions}>
 								{server.isOnline ? (
-									<Button className={styles.btnError} onClick={handleStopServerBtn}>
+									<Button
+										className={styles.btnStop}
+										onClick={handleStopServerBtn}
+										disabled={isLoading}
+									>
 										Остановить сервер
+										{isLoading && <Loading color={'white'} />}
 									</Button>
 								) : (
-									<Button className={styles.btnStart} onClick={handleStartServerBtn}>
+									<Button
+										className={styles.btnStart}
+										onClick={handleStartServerBtn}
+										disabled={isLoading}
+									>
 										Запустить сервер
+										{isLoading && <Loading color={'white'} />}
 									</Button>
 								)}
 
@@ -133,7 +160,13 @@ const ServerHeader: FC<IServerHeader> = () => {
 						<div className={styles.subBar}>
 							<div className={styles.subBarAddress}>
 								<Icon name="TbWorld" size={24} />
-								<span>{server.serverIp}</span>
+								<span>
+									{server.serverPorts.length > 0 && (
+										<>
+											{server.serverIp}:{serverPort}
+										</>
+									)}
+								</span>
 							</div>
 							<div className={styles.subBarUsers}>
 								<AvatarGroup />

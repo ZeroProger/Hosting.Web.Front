@@ -21,6 +21,7 @@ export const axiosAuth = () =>
 			Accept: 'application/json',
 			'X-Auth-Token': Cookies.get('authToken') || getLocalStorageData('authToken'),
 		},
+		timeout: 60000,
 	})
 
 export const axiosCurseForge = axios.create({

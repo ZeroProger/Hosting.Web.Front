@@ -5,7 +5,6 @@ import {
 	serverProperties,
 } from 'fakeData/server.data'
 import { serverActivePlayers } from 'fakeData/users.data'
-import Cookies from 'js-cookie'
 
 import {
 	IServerCreateRequest,
@@ -32,8 +31,6 @@ import {
 } from '@/shared/types/requests/server-requests.types'
 import { IServer } from '@/shared/types/server.types'
 
-import { getLocalStorageData } from '@/utils/localStorage/localStorage'
-
 import {
 	getCreateServerUrl,
 	getRemoveServerUrl,
@@ -50,11 +47,7 @@ import { axiosAuth } from '@/api/interceptors'
 export const ServerService = {
 	compositor: {
 		createServer(data: IServerCreateRequest) {
-			return axiosAuth().post<IServerCreateResponse>(getCreateServerUrl(), data, {
-				headers: {
-					'X-Auth-Token': Cookies.get('authToken') || getLocalStorageData('authToken'),
-				},
-			})
+			return axiosAuth().post<IServerCreateResponse>(getCreateServerUrl(), data)
 		},
 
 		getServerByHash(hash: string) {
@@ -85,11 +78,7 @@ export const ServerService = {
 		},
 
 		getServers(data: IServerGetListRequest) {
-			return axiosAuth().post<IServerGetListResponse>(getServersUrl(), data, {
-				headers: {
-					'X-Auth-Token': Cookies.get('authToken') || getLocalStorageData('authToken'),
-				},
-			})
+			return axiosAuth().post<IServerGetListResponse>(getServersUrl(), data)
 		},
 
 		startServerContainer(data: IServerStartContainerRequest) {

@@ -41,10 +41,14 @@ const nextUITheme = createTheme({
 			primarySolidHover: '$green700',
 			primarySolidContrast: '$white',
 			primaryShadow: '$green500',
-			link: '#8d4ede',
+			link: '#08c466',
 			background: '$gray200',
 			accents2: '$gray600',
 			border: '$gray200',
+		},
+		zIndices: {
+			max: '99999',
+			maxDropdown: '100000',
 		},
 	},
 })

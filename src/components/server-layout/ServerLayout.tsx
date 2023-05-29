@@ -21,11 +21,10 @@ const ServerLayout: FC<PropsWithChildren> = ({ children }) => {
 	const [gameServerHash, setGameServerHash] = useLocalStorage('gameServerHash', '')
 
 	useEffect(() => {
+		console.log(slug, server)
 		if (slug) {
-			if (!server) {
-				setGameServerHash(slug)
-				getServer({ gameServerHash: slug })
-			}
+			setGameServerHash(slug)
+			getServer({ gameServerHash: slug })
 		} else {
 			if (!server && gameServerHash.length > 0) {
 				getServer({ gameServerHash: gameServerHash })

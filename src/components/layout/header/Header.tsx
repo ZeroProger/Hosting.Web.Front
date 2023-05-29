@@ -44,7 +44,7 @@ const Header: FC<IHeader> = () => {
 	const { data: userServers } = useQuery(
 		getServersApiUrl(JSON.stringify(getMinecraftUserServersRequest)),
 		() => ServerService.compositor.getServers(getMinecraftUserServersRequest),
-		{ select: (data) => data.data.servers, enabled: !!authToken }
+		{ select: (data) => data.data.servers, enabled: authToken !== null }
 	)
 
 	useEffect(() => {
@@ -72,7 +72,7 @@ const Header: FC<IHeader> = () => {
 					css={{
 						backgroundColor: isHomePage ? 'transparent' : '$gray200',
 						$$navbarBackgroundColor: isHomePage ? 'transparent' : '$gray200',
-						zIndex: 1000,
+						zIndex: '$max',
 						height: 'var(--nextui--navbarHeight)',
 						'& .nextui-navbar-container': {
 							columnGap: '1.5rem',
@@ -147,7 +147,12 @@ const Header: FC<IHeader> = () => {
 								</Link>
 							</Navbar.Item>
 							{user ? (
-								<Dropdown placement="bottom-right" isBordered offset={18}>
+								<Dropdown
+									placement="bottom-right"
+									isBordered
+									offset={18}
+									css={{ zIndex: '$maxDropdown' }}
+								>
 									<Navbar.Item>
 										<Dropdown.Trigger>
 											<div className="flex flex-row gap-x-3 flex-nowrap items-center cursor-pointer">

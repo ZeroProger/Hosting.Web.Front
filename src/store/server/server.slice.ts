@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getServer } from './server.actions'
+import { getServer, startServer, stopServer } from './server.actions'
 import { IInitialState } from './server.interface'
 
 const initialState: IInitialState = {
@@ -23,6 +23,24 @@ const serverSlice = createSlice({
 			})
 			.addCase(getServer.rejected, (state) => {
 				state.server = null
+				state.isLoading = false
+			})
+			.addCase(startServer.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(startServer.fulfilled, (state) => {
+				state.isLoading = false
+			})
+			.addCase(startServer.rejected, (state) => {
+				state.isLoading = false
+			})
+			.addCase(stopServer.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(stopServer.fulfilled, (state) => {
+				state.isLoading = false
+			})
+			.addCase(stopServer.rejected, (state) => {
 				state.isLoading = false
 			})
 	},

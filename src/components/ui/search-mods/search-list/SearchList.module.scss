@@ -1,5 +1,5 @@
 .container {
-	@apply absolute border-2 border-lightGray bg-backgroundLight w-full animate-fade z-10;
+	@apply absolute border-2 border-lightGray bg-backgroundLight w-full animate-fade z-[10000];
 	top: calc(100% + 15px);
 
 	animation: fade 0.1s ease-in;

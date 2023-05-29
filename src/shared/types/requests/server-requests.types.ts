@@ -7,7 +7,7 @@ export interface IServerPort {
 	creationDate: number
 	updateDate: number
 	portKind: string
-	port: string
+	port: number
 }
 
 export interface IServerCreateRequest {

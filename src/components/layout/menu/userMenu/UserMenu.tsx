@@ -25,12 +25,7 @@ const UserMenu: FC = () => {
 	}
 
 	return (
-		<Dropdown.Menu
-			aria-label="User menu actions"
-			style={{
-				backgroundColor: '#fff',
-			}}
-		>
+		<Dropdown.Menu aria-label="User menu actions">
 			{userMenu.items.map((item) => (
 				<Dropdown.Item
 					key={item.link}
