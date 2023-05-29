@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { useActions } from '@/hooks/useActions'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
@@ -39,7 +40,22 @@ const ServerHeader: FC<IServerHeader> = () => {
 		router.back()
 	}
 
-	const handleStopServerBtn = () => {}
+	const handleStopServerBtn = () => {
+		if (server) {
+			const stopGamePromise = ServerService.controller.stopGameServer({
+				gameServerHash: server.gameServerHash,
+			})
+
+			stopGamePromise.then((data) => {
+				if (data.data.error.length > 0) {
+					toast(data.data.error)
+				}
+				if (data.data.success) {
+					router.reload()
+				}
+			})
+		}
+	}
 
 	const handleStartServerBtn = () => {
 		if (server) {
