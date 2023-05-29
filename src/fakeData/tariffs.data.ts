@@ -120,10 +120,10 @@ export const groupedTariffs: IGameTariffs[] = [
 		],
 	},
 	{
-		gameId: 2,
-		gameName: "Garry's Mod",
-		gameImageUrl: 'https://mobimg.b-cdn.net/v2/fetch/e1/e1b6bcab086182254acc1733c0e27281.png',
-		gameDescription: "Garry's mod",
+		gameId: 4,
+		gameName: 'Call of Duty: Warzone',
+		gameImageUrl: 'https://example.com/warzone.png',
+		gameDescription: 'Call of Duty: Warzone is a popular free-to-play battle royale game.',
 		tariffs: [
 			{
 				id: 4,
