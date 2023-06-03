@@ -83,10 +83,11 @@ a {
 
 	body {
 		background-color: #192024;
+		color: #fff;
 	}
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
 	html {
 		color-scheme: dark;
 	}
@@ -94,17 +95,6 @@ a {
 	body {
 		background-color: #192024;
 		color: #fff;
-	}
-}
-
-@media (prefers-color-scheme: light) {
-	html {
-		color-scheme: light;
-	}
-
-	body {
-		background-color: #fff;
-		color: #192024;
 	}
 }
 

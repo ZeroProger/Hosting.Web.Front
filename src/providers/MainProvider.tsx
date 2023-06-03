@@ -7,8 +7,6 @@ import { ToastContainer } from 'react-toastify'
 
 import Layout from '@/components/layout/Layout'
 
-import { IS_DARK_THEME } from '@/config/constants'
-
 import { store } from '../store'
 
 const queryClient = new QueryClient({
@@ -23,7 +21,8 @@ const queryClient = new QueryClient({
 })
 
 const nextUITheme = createTheme({
-	type: IS_DARK_THEME ? 'dark' : 'light',
+	// type: IS_DARK_THEME ? 'dark' : 'light',
+	type: 'dark',
 	theme: {
 		colors: {
 			primaryLight: '$green200',
