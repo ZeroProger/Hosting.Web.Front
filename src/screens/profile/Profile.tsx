@@ -104,19 +104,21 @@ const Profile: FC<IProfile> = () => {
 												</div>
 											</div>
 											<div className={styles.dataBlockContent}>
-												<div className={clsx(styles.innerBlock, styles.top)}>
-													<div className={styles.innerBlockTitle}>
-														<SubHeading text="Аватар" className="text-lg" />
+												{user.avatarUrl.length > 0 && (
+													<div className={clsx(styles.innerBlock, styles.top)}>
+														<div className={styles.innerBlockTitle}>
+															<SubHeading text="Аватар" className="text-lg" />
+														</div>
+														<div className={styles.innerBlockContent}>
+															<Image
+																src={user.avatarUrl}
+																alt={`Аватар ${user.userName}`}
+																width={180}
+																height={180}
+															/>
+														</div>
 													</div>
-													<div className={styles.innerBlockContent}>
-														<Image
-															src={user.avatarUrl}
-															alt={`Аватар ${user.userName}`}
-															width={180}
-															height={180}
-														/>
-													</div>
-												</div>
+												)}
 												<LoginFields register={registerInputLogin} formState={formStateLogin} />
 											</div>
 										</form>

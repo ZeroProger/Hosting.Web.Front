@@ -10,6 +10,7 @@ interface ISkeletonLoaderList {
 
 const SkeletonLoaderList: FC<ISkeletonLoaderList> = ({ count, height, className }) => {
 	const arr = new Array(count).fill(1)
+
 	return (
 		<>
 			{arr.map((item, index) => (

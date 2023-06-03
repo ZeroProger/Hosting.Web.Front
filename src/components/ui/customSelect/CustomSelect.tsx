@@ -62,19 +62,26 @@ const CustomSelect: FC<ICustomSelect> = ({ options }) => {
 	}
 
 	return (
-		<Select
-			options={options}
-			placeholder="Выберите сервер"
-			value={selectedValue}
-			isClearable
-			id={selectId}
-			instanceId={selectId}
-			inputId={selectId}
-			onChange={handleChange}
-			className="custom-select-container"
-			classNamePrefix="custom-select"
-			components={{ Input, Option }}
-		></Select>
+		<>
+			{options.length > 0 ? (
+				<Select
+					options={options}
+					placeholder="Выберите сервер"
+					noOptionsMessage={() => <span>У вас нет активных серверов</span>}
+					value={selectedValue}
+					isClearable
+					id={selectId}
+					instanceId={selectId}
+					inputId={selectId}
+					onChange={handleChange}
+					className="custom-select-container"
+					classNamePrefix="custom-select"
+					components={{ Input, Option }}
+				></Select>
+			) : (
+				<></>
+			)}
+		</>
 	)
 }
 
