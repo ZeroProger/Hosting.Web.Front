@@ -39,6 +39,7 @@ const Header: FC<IHeader> = () => {
 	const isHomePage = router.pathname === '/'
 	const [isLoad, setIsLoad] = useState<boolean>(false)
 	const [selectOptions, setSelectOptions] = useState<IOption[]>([])
+	const [isUserDropdownOpen, setIsUserDropdownOpen] = useState<boolean>(false)
 	const { authToken, user } = useAuth()
 
 	const { data: userServers } = useQuery(
@@ -49,6 +50,12 @@ const Header: FC<IHeader> = () => {
 
 	useEffect(() => {
 		setIsLoad(true)
+
+		window.addEventListener('scroll', handleCloseMenu)
+
+		return () => {
+			window.removeEventListener('scroll', handleCloseMenu)
+		}
 	}, [])
 
 	useEffect(() => {
@@ -62,6 +69,10 @@ const Header: FC<IHeader> = () => {
 			setSelectOptions(options)
 		}
 	}, [userServers])
+
+	const handleCloseMenu = () => {
+		setIsUserDropdownOpen(false)
+	}
 
 	return (
 		<Fragment>
@@ -151,7 +162,8 @@ const Header: FC<IHeader> = () => {
 									placement="bottom-right"
 									isBordered
 									offset={18}
-									css={{ zIndex: '$maxDropdown' }}
+									isOpen={isUserDropdownOpen}
+									onOpenChange={() => setIsUserDropdownOpen((prev) => !prev)}
 								>
 									<Navbar.Item>
 										<Dropdown.Trigger>
@@ -161,7 +173,7 @@ const Header: FC<IHeader> = () => {
 													as="button"
 													squared
 													size="md"
-													text="ZeroProger"
+													text={user?.userName}
 													textColor="white"
 													src={user?.avatarUrl || logo.src}
 													css={{

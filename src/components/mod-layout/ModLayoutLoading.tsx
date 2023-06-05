@@ -12,9 +12,9 @@ const ModLayoutLoading: FC = () => {
 				<SkeletonLoaderList count={1} height={52} />
 			</div>
 			<nav className={styles.breadcrumbs}>
-				<div className="w-[400px]">
-					<SkeletonLoaderList count={1} height={24} />
-				</div>
+			<div className="w-[400px]">
+				<SkeletonLoaderList count={1} height={24} />
+			</div>
 			</nav>
 			<div className={styles.modHeader}>
 				<div className={clsx(styles.modImage, 'w-[80px]', 'h-[80px]')}>

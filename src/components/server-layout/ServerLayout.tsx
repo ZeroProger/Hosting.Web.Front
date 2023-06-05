@@ -10,7 +10,9 @@ import { IParams } from '@/shared/types/base.types'
 import { getServersUrl } from '@/config/url.config'
 
 import ServerHeader from '../server-header/ServerHeader'
+import ServerHeaderLoading from '../server-header/ServerHeaderLoading'
 
+import ServerContentLoading from './ServerContentLoading'
 import styles from './ServerLayout.module.scss'
 
 const ServerLayout: FC<PropsWithChildren> = ({ children }) => {
@@ -39,6 +41,24 @@ const ServerLayout: FC<PropsWithChildren> = ({ children }) => {
 	// useEffect(() => {
 	// 	if (gameServerHash.length > 0) getServer({ gameServerHash: gameServerHash })
 	// }, [])
+
+	if (!server)
+		return (
+			<>
+				<div className={styles.container}>
+					<div className={styles.headerContainer}>
+						<ServerHeaderLoading />
+					</div>
+				</div>
+				<div className={styles.container}>
+					<div className={styles.contentContainer}>
+						<div className={styles.content}>
+							<ServerContentLoading />
+						</div>
+					</div>
+				</div>
+			</>
+		)
 
 	return (
 		<>
