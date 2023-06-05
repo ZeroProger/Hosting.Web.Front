@@ -34,7 +34,6 @@ const CustomSelect: FC<ICustomSelect> = ({ options }) => {
 	const server = useTypedSelector((state) => state.server.server)
 
 	useEffect(() => {
-		console.log(slug)
 		if (!slug) {
 			if (router.asPath.includes(getServerModsUrl()))
 				setSelectedValue({

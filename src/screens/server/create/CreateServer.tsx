@@ -27,6 +27,7 @@ import { formatPrice } from '@/utils/tariffs/tariffs'
 
 import { getTariffsGroupedByGamesUrl } from '@/config/api/tariffs-api.config'
 import { primary } from '@/config/constants'
+import { getServerUrl } from '@/config/url.config'
 
 import styles from './CreateServer.module.scss'
 import TariffData from './tariff-data/TariffData'
@@ -68,7 +69,7 @@ const CreateServer: FC<ICreateServer> = () => {
 
 		if (data.error.length === 0 && data.success) {
 			toast.success('Сервер успешно создан')
-			//router.push(getServerUrl(data.gameServerHash))
+			router.push(getServerUrl(data.gameServerHash))
 		}
 	}
 

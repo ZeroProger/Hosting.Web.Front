@@ -26,7 +26,7 @@ const ServerHeader: FC<IServerHeader> = () => {
 	const router = useRouter()
 	const { server, isLoading } = useTypedSelector((state) => state.server)
 	const modsCart = useTypedSelector((state) => state.mods.cart)
-	const { submitCart, resetCart, getServer, startServer, stopServer } = useActions()
+	const { submitCart, resetCart, startServer, stopServer } = useActions()
 	const [serverPort, setServerPort] = useState<number | null>(null)
 	const [activePlayers, setActivePlayers] = useState<IPlayer[]>([])
 
@@ -98,13 +98,17 @@ const ServerHeader: FC<IServerHeader> = () => {
 				gameServerHash: server.gameServerHash,
 			})
 
-			const controllerPort = server.serverPorts.find((port) => port.portKind === 'controller')
+			if (server.serverPorts.length > 0) {
+				const controllerPort = server.serverPorts.find((port) => port.portKind === 'controller')
 
-			if (controllerPort) {
-				const gameServerPort = server.serverPorts.find((port) => port.port !== controllerPort?.port)
+				if (controllerPort) {
+					const gameServerPort = server.serverPorts.find(
+						(port) => port.port !== controllerPort?.port
+					)
 
-				if (gameServerPort) {
-					setServerPort(gameServerPort.port)
+					if (gameServerPort) {
+						setServerPort(gameServerPort.port)
+					}
 				}
 			}
 
@@ -161,10 +165,12 @@ const ServerHeader: FC<IServerHeader> = () => {
 							<div className={styles.subBarAddress}>
 								<Icon name="TbWorld" size={24} />
 								<span>
-									{server.serverPorts.length > 0 && (
+									{server.serverPorts.length > 0 ? (
 										<>
 											{server.serverIp}:{serverPort}
 										</>
+									) : (
+										<>Запустите сервер для получения IP</>
 									)}
 								</span>
 							</div>
