@@ -56,6 +56,7 @@ const CreateServer: FC<ICreateServer> = () => {
 	})
 	const [pickedTariff, setPickedTariff] = useState<ITariff | null>(null)
 	const [pickedLocation, setPickedLocation] = useState<ILocation | null>(null)
+	const [finalPrice, setFinalPrice] = useState<number | null>(null)
 
 	const onCreateServerSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -108,6 +109,16 @@ const CreateServer: FC<ICreateServer> = () => {
 		setFormData({ ...formData, slots: parseInt(e.target.value) })
 	}
 
+	const checkFinalPrice = () => {
+		if (pickedTariff) {
+			if (pickedTariff.isPricePerPlayer) {
+				setFinalPrice((formData.slots! * formData.period! * pickedTariff.monthPrice) / 30)
+			} else {
+				setFinalPrice((formData.period! * pickedTariff.monthPrice) / 30)
+			}
+		}
+	}
+
 	const getTariffById = (tariffId: number) => {
 		if (formData.gameId === null) return null
 
@@ -131,25 +142,18 @@ const CreateServer: FC<ICreateServer> = () => {
 	useEffect(() => {
 		if (pickedTariff) {
 			const location = pickedTariff?.locations.at(0) || null
+
 			setPickedLocation(location)
 
-			if (location !== null) {
-				setFormData({
-					...formData,
-					tariffId: pickedTariff.id,
-					locationId: location?.id,
-					period: 30,
-					slots: pickedTariff.minSlots,
-				})
-			} else {
-				setFormData({
-					...formData,
-					tariffId: pickedTariff.id,
-					locationId: null,
-					period: 30,
-					slots: pickedTariff.minSlots,
-				})
-			}
+			setFormData({
+				...formData,
+				tariffId: pickedTariff.id,
+				locationId: location?.id || null,
+				period: 30,
+				slots: pickedTariff.minSlots,
+			})
+
+			checkFinalPrice()
 		}
 	}, [pickedTariff])
 
@@ -165,16 +169,20 @@ const CreateServer: FC<ICreateServer> = () => {
 				}
 			}
 		}
+
+		checkFinalPrice()
 	}, [formData.gameId])
 
 	useEffect(() => {
 		if (groupedTariffs && groupedTariffs.length > 0) {
 			setFormData({ ...formData, gameId: groupedTariffs[0].gameId })
 		}
+
+		checkFinalPrice()
 	}, [groupedTariffs])
 
 	useEffect(() => {
-		console.table(formData)
+		checkFinalPrice()
 	}, [formData])
 
 	const periodOptions: IOption[] = [
@@ -382,7 +390,7 @@ const CreateServer: FC<ICreateServer> = () => {
 							<div className={styles.finalPriceBar}>
 								<div className={styles.finalPriceWrapper}>
 									<span>Итого к оплате:</span>
-									<div className={styles.finalPrice}>{formatPrice(1650)}</div>
+									<div className={styles.finalPrice}>{formatPrice(finalPrice || 0)}</div>
 								</div>
 								<Button type="submit" className={styles.submitBtn}>
 									Создать

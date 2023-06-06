@@ -3,7 +3,7 @@
 	.tariffCategory {
 		@apply flex flex-row gap-2 flex-wrap;
 		.tariff {
-			@apply flex flex-col gap-2 items-center justify-center bg-secondaryGray px-4 py-2 rounded-lg cursor-pointer hover:bg-primary;
+			@apply flex flex-col gap-2 items-center justify-center bg-secondaryGray px-4 py-2 rounded-lg cursor-pointer hover:bg-primary transition-colors;
 
 			flex: 1 1 auto;
 

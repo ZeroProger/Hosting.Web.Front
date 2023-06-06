@@ -25,9 +25,7 @@ const ServerLayout: FC<PropsWithChildren> = ({ children }) => {
 	useEffect(() => {
 		if (slug) {
 			setGameServerHash(slug)
-			if (!server) {
-				getServer({ gameServerHash: slug })
-			}
+			getServer({ gameServerHash: slug })
 		} else {
 			if (!server && gameServerHash.length > 0) {
 				getServer({ gameServerHash: gameServerHash })

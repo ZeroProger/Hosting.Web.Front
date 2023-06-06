@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useId, useState } from 'react'
 import Select, { ActionMeta, SingleValue, components } from 'react-select'
 
+import { useActions } from '@/hooks/useActions'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import { getServerModsUrl, getServerUrl, getServersUrl } from '@/config/url.config'
@@ -31,6 +32,7 @@ const CustomSelect: FC<ICustomSelect> = ({ options }) => {
 	const { slug } = router.query
 	const [selectedValue, setSelectedValue] = useState<IOption | null>(null)
 	const selectId = useId()
+	const { getServer } = useActions()
 	const server = useTypedSelector((state) => state.server.server)
 
 	useEffect(() => {
@@ -57,7 +59,10 @@ const CustomSelect: FC<ICustomSelect> = ({ options }) => {
 		if (actionMeta.action === 'clear') {
 			setSelectedValue(null)
 			router.push(getServersUrl())
+			return
 		}
+
+		//if (newValue) getServer({ gameServerHash: newValue?.value })
 	}
 
 	return (

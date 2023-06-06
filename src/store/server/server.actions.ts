@@ -28,8 +28,6 @@ export const getServer = createAsyncThunk<IServer, IGetServerRequest>(
 
 			const response = await ServerService.compositor.getServerByHash(String(gameServerHash))
 
-			toast.success('Сервер успешно получен')
-
 			return response.data
 		} catch (error) {
 			toastError(error)
@@ -60,7 +58,7 @@ export const startServer = createAsyncThunk<IServerStartResponse, IServerStartRe
 
 			window.location.reload()
 
-			toast.success('Сервер успешно запущен')
+			toast.success('Сервер запущен')
 
 			return startGameServerResponse.data
 		} catch (error) {
@@ -86,7 +84,7 @@ export const stopServer = createAsyncThunk<IServerStopResponse, IServerStopReque
 
 			window.location.reload()
 
-			toast.success('Сервер успешно остановлен')
+			toast.success('Сервер остановлен')
 
 			return stopGameServerResponse.data
 		} catch (error) {

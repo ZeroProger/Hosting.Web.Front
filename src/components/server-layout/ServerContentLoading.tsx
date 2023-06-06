@@ -1,13 +1,11 @@
 import { FC } from 'react'
 
-import styles from './ServerLayoutLoading.module.scss'
+import styles from './ServerContentLoading.module.scss'
 
 const ServerContentLoading: FC = () => {
 	return (
 		<>
-			<div className={styles.container}>
-				
-			</div>
+			<div className={styles.container}></div>
 		</>
 	)
 }
