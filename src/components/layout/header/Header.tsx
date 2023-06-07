@@ -182,7 +182,7 @@ const Header: FC<IHeader> = () => {
 														},
 													}}
 												/>
-												<Text className="text-lg font-semibold" css={{ color: '$gray900' }}>
+												<Text className="text-lg font-semibold w-max" css={{ color: '$gray900' }}>
 													{user?.userName}
 												</Text>
 											</div>
