@@ -43,7 +43,7 @@ const Header: FC<IHeader> = () => {
 	const { authToken, user } = useAuth()
 
 	const { data: userServers } = useQuery(
-		getServersApiUrl(JSON.stringify(getMinecraftUserServersRequest)),
+		getServersApiUrl(String(authToken)),
 		() => ServerService.compositor.getServers(getMinecraftUserServersRequest),
 		{ select: (data) => data.data.servers, enabled: authToken !== null }
 	)

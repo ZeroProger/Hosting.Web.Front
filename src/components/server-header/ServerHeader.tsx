@@ -12,6 +12,8 @@ import { IPlayer } from '@/shared/types/player.types'
 
 import { ServerService } from '@/services/server.service'
 
+import { getServerFullAddress } from '@/utils/servers/getServerFullAddress'
+
 import { getServerModUrl } from '@/config/url.config'
 
 import { Icon } from '../ui/Icon'
@@ -27,9 +29,7 @@ const ServerHeader: FC<IServerHeader> = () => {
 	const { server, isLoading } = useTypedSelector((state) => state.server)
 	const modsCart = useTypedSelector((state) => state.mods.cart)
 	const { submitCart, resetCart, startServer, stopServer } = useActions()
-	const [serverPort, setServerPort] = useState<number | null>(null)
 	const [activePlayers, setActivePlayers] = useState<IPlayer[]>([])
-
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	const handleModalOpen = () => setIsModalOpen(true)
@@ -98,20 +98,6 @@ const ServerHeader: FC<IServerHeader> = () => {
 				gameServerHash: server.gameServerHash,
 			})
 
-			if (server.serverPorts.length > 0) {
-				const controllerPort = server.serverPorts.find((port) => port.portKind === 'controller')
-
-				if (controllerPort) {
-					const gameServerPort = server.serverPorts.find(
-						(port) => port.port !== controllerPort?.port
-					)
-
-					if (gameServerPort) {
-						setServerPort(gameServerPort.port)
-					}
-				}
-			}
-
 			setActivePlayers(data)
 		}
 	}, [server])
@@ -166,9 +152,7 @@ const ServerHeader: FC<IServerHeader> = () => {
 								<Icon name="TbWorld" size={24} />
 								<span>
 									{server.serverPorts.length > 0 ? (
-										<>
-											{server.serverIp}:{serverPort}
-										</>
+										<>{getServerFullAddress(server)}</>
 									) : (
 										<>Запустите сервер для получения IP</>
 									)}
