@@ -2,10 +2,10 @@ import numeral from 'numeral'
 
 import { ITariff } from '@/shared/types/tariff.types'
 
-export const formatMemoryToGB = (megaBytes: number): string => {
+export const formatMemory = (megaBytes: number): string => {
 	const data = numeral(megaBytes * 1024 * 1024)
 
-	return data.format('0 ib').replace('GiB', 'GB')
+	return data.format('0 ib').replace('GiB', 'GB').replace('MiB', 'MB').replace('KiB', 'KB')
 }
 
 export const getCpuCoresCount = (percentage: number): string => {

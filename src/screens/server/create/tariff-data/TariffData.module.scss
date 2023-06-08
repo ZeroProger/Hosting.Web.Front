@@ -16,7 +16,7 @@
 			}
 
 			.propertyValue {
-				@apply text-xl;
+				@apply flex flex-row gap-3 items-center text-xl;
 			}
 		}
 	}

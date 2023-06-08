@@ -9,7 +9,7 @@ import { IGameTariffs, ITariff } from '@/shared/types/tariff.types'
 
 import { TariffService } from '@/services/tariff.service'
 
-import { formatMemoryToGB, getCpuCoresCount, getTariffPriceString } from '@/utils/tariffs/tariffs'
+import { formatMemory, getCpuCoresCount, getTariffPriceString } from '@/utils/tariffs/tariffs'
 
 import { getTariffsGroupedByGamesUrl } from '@/config/api/tariffs-api.config'
 import { getGameUrl, getServerCreateUrl } from '@/config/url.config'
@@ -80,13 +80,13 @@ const Pricing: FC<IPricing> = () => {
 												<div className={styles.option}>
 													<div className={styles.label}>RAM:</div>
 													<div className={styles.value}>
-														{formatMemoryToGB(game.tariff.allocatedMemory)}
+														{formatMemory(game.tariff.allocatedMemory)}
 													</div>
 												</div>
 												<div className={styles.option}>
 													<div className={styles.label}>Диск:</div>
 													<div className={styles.value}>
-														{formatMemoryToGB(game.tariff.allocatedDiskSpace)}
+														{formatMemory(game.tariff.allocatedDiskSpace)}
 													</div>
 												</div>
 											</Fragment>
