@@ -75,9 +75,11 @@ const CreateServer: FC<ICreateServer> = () => {
 	}
 
 	const handleGameChangeClick = (gameId: number) => {
-		setPickedTariff(null)
-		setPickedLocation(null)
-		setFormData({ ...formData, gameId: gameId })
+		if (gameId !== formData.gameId) {
+			setPickedTariff(null)
+			setPickedLocation(null)
+			setFormData({ ...formData, gameId: gameId })
+		}
 	}
 
 	const handleTariffChangeClick = (tariffId: number) => {
@@ -257,8 +259,11 @@ const CreateServer: FC<ICreateServer> = () => {
 										key={game.gameId}
 										className={clsx(styles.gameRadioBtn, {
 											[styles.gameRadioBtnActive]: game.gameId === formData.gameId,
+											[styles.gameRadioBtnDisabled]: game.gameId !== 1,
 										})}
-										onClick={() => handleGameChangeClick(game.gameId)}
+										onClick={() => {
+											if (game.gameId === 1) handleGameChangeClick(game.gameId)
+										}}
 									>
 										<Image
 											src={game.gameImageUrl}
@@ -267,6 +272,7 @@ const CreateServer: FC<ICreateServer> = () => {
 											height={48}
 										/>
 										<span>{game.gameName}</span>
+										{game.gameId !== 1 && <span>(в разработке)</span>}
 									</div>
 								))}
 							</div>
