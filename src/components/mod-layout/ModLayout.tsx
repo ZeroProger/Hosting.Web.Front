@@ -96,7 +96,7 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<>
 			<Joyride
-				run={mod !== undefined && !isGuideCompleted}
+				run={!dataLoading && !isGuideCompleted}
 				hideCloseButton
 				hideBackButton
 				continuous
@@ -108,7 +108,7 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 						(document.querySelector('#add-mod-btn-step') as HTMLButtonElement)?.click()
 					else if (callback.action === 'next' && callback.step.target === '#remove-mod-btn-step')
 						(document.querySelector('.nextui-modal-close-icon') as HTMLButtonElement)?.click()
-					if (callback.status === 'finished') {
+					if (callback.status === 'finished' && callback.step.target === '#remove-mod-btn-step') {
 						;(document.querySelector('#remove-mod-btn-step') as HTMLButtonElement)?.click()
 						router.push(getServerConsoleUrl(server?.gameServerHash!))
 					}
