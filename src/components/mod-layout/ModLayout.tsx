@@ -1,4 +1,3 @@
-import { Modal } from '@nextui-org/react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,6 +14,7 @@ import SearchMods from '@/components/ui/search-mods/SearchMods'
 import { useModDescription } from '@/screens/server/mods/description/useModDescription'
 
 import { useActions } from '@/hooks/useActions'
+import useLocalStorage from '@/hooks/useLocalStorage'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import siteLogo from '@/assets/images/logo-green.png'
@@ -22,7 +22,7 @@ import siteLogo from '@/assets/images/logo-green.png'
 import { russifyUTC } from '@/utils/string/russifyUTC'
 
 import { modClassesMap } from '@/config/api/curseforge-api.config'
-import { error } from '@/config/constants'
+import { error, joyrideStylesOptions, joyrideStylesTooltip } from '@/config/constants'
 import {
 	getFeedbackUrl,
 	getServerConsoleUrl,
@@ -53,6 +53,7 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 	const modIdString = String(router.query?.id!)
 	const modId = parseInt(modIdString)
 	const [tabIndex, setTabIndex] = useState(0)
+	const [isGuideCompleted, setIsGuideCompleted] = useLocalStorage('isGuideCompleted', false)
 	const { data: mod, isLoading: modLoading, error: modError } = useModData(modId)
 	const isModInCart = modsCart.find((cartMod) => cartMod.id === mod?.id)
 	const {
@@ -95,26 +96,26 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<>
 			<Joyride
-				run
+				run={mod !== undefined && !isGuideCompleted}
 				hideCloseButton
 				hideBackButton
 				continuous
 				scrollOffset={200}
-				callback={({ step, status }) => {
-					if (step.content === '11')
+				disableOverlayClose
+				styles={{ options: joyrideStylesOptions, tooltip: joyrideStylesTooltip }}
+				callback={(callback) => {
+					if (callback.action === 'next' && callback.step.target === '#add-mod-btn-step')
 						(document.querySelector('#add-mod-btn-step') as HTMLButtonElement)?.click()
-					else if (step.content === '13')
-						(document.querySelector('#mods-cart-step') as HTMLButtonElement)?.click()
-					else if (step.content === '14')
+					else if (callback.action === 'next' && callback.step.target === '#remove-mod-btn-step')
 						(document.querySelector('.nextui-modal-close-icon') as HTMLButtonElement)?.click()
-					if (status === 'finished') {
+					if (callback.status === 'finished') {
 						;(document.querySelector('#remove-mod-btn-step') as HTMLButtonElement)?.click()
 						router.push(getServerConsoleUrl(server?.gameServerHash!))
 					}
 				}}
 				steps={[
 					{
-						content: '10',
+						content: 'Добавляем модификацию в список для установки',
 						target: '#add-mod-btn-step',
 						disableBeacon: true,
 						placement: 'auto',
@@ -124,8 +125,8 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 						},
 					},
 					{
-						content: '11',
-						target: `.${styles.favoriteBtn}`,
+						content: 'Если модификация понравилась вам - можете добавить её в избранное',
+						target: `#add-to-favorites-btn-step`,
 						disableBeacon: true,
 						placement: 'auto',
 						locale: {
@@ -134,32 +135,19 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 						},
 					},
 					{
-						content: '12',
+						content:
+							'Список модификаций выбранных для установки, после того, как выберите все нужные модификации - кликните сюда и в появившемся окне нажмите кнопку "Установить"',
 						target: '#mods-cart-step',
 						disableBeacon: true,
 						placement: 'auto',
+						styles: { options: { width: 600 } },
 						locale: {
 							next: <strong>Дальше</strong>,
 							back: <strong>Назад</strong>,
 						},
 					},
 					{
-						content: '13',
-						target: 'body',
-						disableBeacon: true,
-						locale: {
-							next: <strong>Дальше</strong>,
-							back: <strong>Назад</strong>,
-						},
-						styles: {
-							options: {
-								zIndex: 100000,
-							},
-						},
-						offset: 0,
-					},
-					{
-						content: '14',
+						content: 'Также можете удалить модификацию из списка для установки',
 						target: '#remove-mod-btn-step',
 						disableBeacon: true,
 						placement: 'auto',
@@ -208,7 +196,11 @@ const ModLayout: FC<PropsWithChildren> = ({ children }) => {
 										</li>
 									</ul>
 									<div className={styles.modActions}>
-										<button type="button" className={styles.favoriteBtn}>
+										<button
+											type="button"
+											className={styles.favoriteBtn}
+											id="add-to-favorites-btn-step"
+										>
 											<Icon name="FaRegHeart" size={24} />
 										</button>
 										<button

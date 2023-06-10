@@ -1,16 +1,18 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { FC } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FC, useEffect, useState } from 'react'
 import Joyride from 'react-joyride'
 
 import { Icon } from '@/components/ui/Icon'
 
+import useLocalStorage from '@/hooks/useLocalStorage'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import { IParams } from '@/shared/types/base.types'
 
 import Meta from '@/utils/meta/Meta'
 
+import { joyrideStylesOptions, joyrideStylesTooltip } from '@/config/constants'
 import { getServerPlayersUrl } from '@/config/url.config'
 
 import styles from './ServerPlayers.module.scss'
@@ -21,20 +23,38 @@ const ServerPlayers: FC<IServerPlayers> = () => {
 	const router = useRouter()
 	const { slug } = router.query as IParams
 	const server = useTypedSelector((state) => state.server.server)
+	const [pageLoaded, setPageLoaded] = useState<boolean>(false)
+	const [isGuideCompleted, setIsGuideCompleted] = useLocalStorage('isGuideCompleted', false)
+
+	useEffect(() => {
+		setTimeout(() => {
+			setPageLoaded(true)
+		}, 1000)
+	}, [])
 
 	return (
 		<>
 			<Joyride
-				run
+				run={server !== null && pageLoaded && !isGuideCompleted}
 				hideCloseButton
+				hideBackButton
+				disableOverlayClose
 				continuous
+				scrollOffset={185}
 				callback={({ status }) =>
 					status === 'finished' &&
 					router.push(getServerPlayersUrl(server?.gameServerHash!, '/white-list'))
 				}
+				styles={{ options: joyrideStylesOptions, tooltip: joyrideStylesTooltip }}
 				steps={[
 					{
-						content: '6',
+						content: (
+							<div>
+								Здесь вы можете управлять вашими игроками: внести в белый список, выдать или забрать
+								статус оператора сервера, забанить/разбанить по нику или IP-адресу
+							</div>
+						),
+						styles: { options: { width: 600 } },
 						target: '#server-players-step',
 						disableBeacon: true,
 						placement: 'auto',

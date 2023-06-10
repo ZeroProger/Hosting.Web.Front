@@ -6,10 +6,13 @@ import { useRouter } from 'next/router'
 import { FC } from 'react'
 import Joyride from 'react-joyride'
 
+import useLocalStorage from '@/hooks/useLocalStorage'
+
 import { PlayersDataListType } from '@/shared/types/player.types'
 
 import Meta from '@/utils/meta/Meta'
 
+import { joyrideStylesOptions, joyrideStylesTooltip } from '@/config/constants'
 import { getServerModsUrl } from '@/config/url.config'
 
 import { Icon } from '../ui/Icon'
@@ -25,24 +28,33 @@ interface IPlayersDataList {
 
 const PlayersDataList: FC<IPlayersDataList> = ({ title, addDataPlaceholder, dataType }) => {
 	const router = useRouter()
+	const [isGuideCompleted, setIsGuideCompleted] = useLocalStorage('isGuideCompleted', false)
+
 	return (
 		<>
 			<Joyride
-				run
+				run={!isGuideCompleted}
 				hideCloseButton
+				hideBackButton
 				continuous
+				disableOverlayClose
+				scrollOffset={150}
 				callback={({ status }) => status === 'finished' && router.push(getServerModsUrl())}
+				styles={{ options: joyrideStylesOptions, tooltip: joyrideStylesTooltip }}
 				steps={[
 					{
-						content: '7',
+						content: 'Введите ник игрока или его IP-адрес и нажмите добавить.',
 						target: '#add-player-step',
 						disableBeacon: true,
 						placement: 'auto',
 						locale: { next: <strong>Дальше</strong> },
 					},
 					{
-						content: '8',
+						content: 'Нажав на эту кнопку вы удалите игрока из соответствующей категории',
 						target: '.btn-error',
+						disableBeacon: true,
+						placement: 'auto',
+						locale: { next: <strong>Дальше</strong> },
 					},
 				]}
 			/>

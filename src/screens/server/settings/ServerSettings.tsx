@@ -1,21 +1,31 @@
-import { FormElement, Input, Switch, SwitchEvent } from '@nextui-org/react';
-import { serverProperties } from 'fakeData/server.data';
+import { FormElement, Input, Switch, SwitchEvent } from '@nextui-org/react'
+import { serverProperties } from 'fakeData/server.data'
+import { useRouter } from 'next/router'
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import Joyride from 'react-joyride'
 
 import PropertySelect, { IOption } from '@/components/ui/customSelect/PropertySelect'
 import Heading from '@/components/ui/heading/Heading'
 
+import useLocalStorage from '@/hooks/useLocalStorage'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
+
 import { ServerPropertyType } from '@/shared/types/server.types'
 
 import Meta from '@/utils/meta/Meta'
+
+import { joyrideStylesOptions, joyrideStylesTooltip } from '@/config/constants'
+import { getServerOverviewUrl } from '@/config/url.config'
 
 import styles from './ServerSettings.module.scss'
 
 interface IServerSettings {}
 
 const ServerSettings: FC<IServerSettings> = () => {
+	const router = useRouter()
 	const [properties, setProperties] = useState(serverProperties)
+	const [isGuideCompleted, setIsGuideCompleted] = useLocalStorage('isGuideCompleted', false)
+	const server = useTypedSelector((state) => state.server.server)
 
 	const handleSwitchChange = (event: SwitchEvent, name: string) => {
 		let updatedProperties = properties.map((property) => {
@@ -61,18 +71,30 @@ const ServerSettings: FC<IServerSettings> = () => {
 	return (
 		<>
 			<Joyride
-				run
+				run={!isGuideCompleted}
 				continuous
+				hideCloseButton
+				hideBackButton
 				disableOverlayClose
+				scrollOffset={150}
+				callback={({ status }) => {
+					if (status === 'finished') {
+						router.push(getServerOverviewUrl(server?.gameServerHash!))
+						setIsGuideCompleted(true)
+					}
+				}}
 				steps={[
 					{
-						content: '16',
+						content:
+							'На данной странице вы можете управлять основным конфигурационным файлом вашего игрового сервера, в зависимости от игры он будет отличаться',
 						target: '#server-settings-step',
 						disableBeacon: true,
 						placement: 'auto',
-						locale: { last: <strong>Дальше</strong> },
+						styles: { options: { width: 600 } },
+						locale: { last: <strong>Завершить</strong> },
 					},
 				]}
+				styles={{ options: joyrideStylesOptions, tooltip: joyrideStylesTooltip }}
 			/>
 			<Meta title="Настройки сервера">
 				<div className={styles.container}>

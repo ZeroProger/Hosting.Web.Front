@@ -1,13 +1,10 @@
-import Link from 'next/link';
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
-import Joyride from 'react-joyride'
 
 import { Icon } from '@/components/ui/Icon'
 
 import { IMod } from '@/shared/types/curseforge.types'
-
-import { getServerModUrl } from '@/config/url.config'
 
 import SkeletonLoaderList from '../ui/skeleton-loader/SkeletonLoaderList'
 
@@ -22,27 +19,9 @@ interface IModsCompilation {
 
 const ModsCompilation: FC<IModsCompilation> = ({ title, link, mods }) => {
 	const modsEmpty = mods.length === 0
-	const { push } = useRouter()
+
 	return (
 		<>
-			<Joyride
-				disableOverlay
-				scrollOffset={100}
-				run
-				hideCloseButton
-				continuous
-				callback={({ status }) => status === 'finished' && push(getServerModUrl(`${mods[0].id}`))}
-				steps={[
-					{
-						content: '9',
-						target: '#mods-compilation-step',
-						disableBeacon: true,
-						placement: 'auto',
-						locale: { last: <strong>Дальше</strong> },
-						styles: { options: { zIndex: 1000000 } },
-					},
-				]}
-			/>
 			<div className={styles.container} id="mods-compilation-step">
 				{!modsEmpty ? (
 					<>

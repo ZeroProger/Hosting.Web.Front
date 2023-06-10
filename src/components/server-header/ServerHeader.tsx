@@ -209,11 +209,10 @@ const ServerHeader: FC<IServerHeader> = () => {
 								aria-labelledby="Установка выбранных модификаций"
 								className="bg-backgroundLight border-lightGray border-2"
 								width="600px"
-								id="mods-modal-step"
 							>
 								<Modal.Header className="text-2xl">Установка выбранных модификаций</Modal.Header>
 								<Modal.Body>
-									<div className={styles.cartMods}>
+									<div className={styles.cartMods} id="modal-mods-cart">
 										{modsCart.map((mod) => (
 											<Link
 												key={mod.id}
