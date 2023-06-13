@@ -9,5 +9,9 @@ export const getUpdateServerUrl = () => '/servers/compositor/update-server'
 export const getStartGameServerUrl = () => '/servers/controller/start-server'
 export const getStopGameServerUrl = () => '/servers/controller/stop-server'
 
+export const getMessagingSendUrl = () => '/servers/messaging/send'
+export const getMessagingLogsChunkUrl = () => '/servers/messaging/get-logs'
+export const getMessagingLogsAllUrl = () => '/servers/messaging/get-all-logs'
+
 export const getMinecraftPublicServersRequest = { kind: 'minecraft', isPublic: true }
 export const getMinecraftUserServersRequest = { kind: 'minecraft', isPublic: false }

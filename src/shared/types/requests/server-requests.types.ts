@@ -1,5 +1,5 @@
 import { IResponseResult } from '../base.types'
-import { IServer } from '../server.types'
+import { IServer, IServerConsoleLine } from '../server.types'
 import { IGameTariffs } from '../tariff.types'
 
 export interface IServerPort {
@@ -112,3 +112,27 @@ export interface IServerGetServerPropertiesRequest {
 }
 
 export interface IServerGetServerPropertiesResponse {}
+
+export interface IServerMessagingSendRequest {
+	gameServerHash: string
+	postSystem: 'rcon'
+	message: string
+}
+
+export interface IServerMessagingSendResponse extends IResponseResult {}
+
+export interface IServerMessagingGetLogsChunkRequest {
+	gameServerHash: string
+}
+
+export interface IServerMessagingGetLogsChunkResponse extends IResponseResult {
+	data: IServerConsoleLine[]
+}
+
+export interface IServerMessagingGetLogsAllRequest {
+	gameServerHash: string
+}
+
+export interface IServerMessagingGetLogsAllResponse extends IResponseResult {
+	data: IServerConsoleLine[]
+}

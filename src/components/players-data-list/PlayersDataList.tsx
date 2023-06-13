@@ -54,7 +54,7 @@ const PlayersDataList: FC<IPlayersDataList> = ({ title, addDataPlaceholder, data
 						target: '.btn-error',
 						disableBeacon: true,
 						placement: 'auto',
-						locale: { next: <strong>Дальше</strong> },
+						locale: { last: <strong>Дальше</strong> },
 					},
 				]}
 			/>

@@ -1,6 +1,6 @@
 import { Modal, useModal } from '@nextui-org/react'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import Joyride from 'react-joyride'
 
 import ServerActivePlayers from '@/components/server-active-players/ServerActivePlayers'
@@ -36,10 +36,6 @@ const ServerOverview: FC<IServerOverview> = () => {
 		setVisible(false)
 		setIsGuideCompleted(true)
 	}
-
-	useEffect(() => {
-		console.log(isGuideCompleted)
-	}, [])
 
 	return (
 		<>

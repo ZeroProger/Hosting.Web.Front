@@ -1,9 +1,4 @@
-import {
-	serverConsole,
-	serverCurrentUsage,
-	serverMainInfo,
-	serverProperties,
-} from 'fakeData/server.data'
+import { serverCurrentUsage, serverMainInfo, serverProperties } from 'fakeData/server.data'
 import { serverActivePlayers } from 'fakeData/users.data'
 
 import {
@@ -16,6 +11,12 @@ import {
 	IServerGetServerCurrentUsageRequest,
 	IServerGetServerMainInfoRequest,
 	IServerGetServerPropertiesRequest,
+	IServerMessagingGetLogsAllRequest,
+	IServerMessagingGetLogsAllResponse,
+	IServerMessagingGetLogsChunkRequest,
+	IServerMessagingGetLogsChunkResponse,
+	IServerMessagingSendRequest,
+	IServerMessagingSendResponse,
 	IServerRemoveRequest,
 	IServerRemoveResponse,
 	IServerStartContainerRequest,
@@ -33,6 +34,9 @@ import { IServer } from '@/shared/types/server.types'
 
 import {
 	getCreateServerUrl,
+	getMessagingLogsAllUrl,
+	getMessagingLogsChunkUrl,
+	getMessagingSendUrl,
 	getRemoveServerUrl,
 	getServersUrl,
 	getStartGameServerUrl,
@@ -52,29 +56,6 @@ export const ServerService = {
 
 		getServerByHash(hash: string) {
 			return axiosAuth().post<IServer>(getServersUrl(hash))
-			// return {
-			// 	name: uuid
-			// 		.split('-')
-			// 		.map((w) => capitalize(w))
-			// 		.join(' '),
-			// 	uuid: uuid,
-			// 	ip: `${uuid}.simplehost.ru`,
-			// 	dynamicIp: 'dynY6ZHOK.simplehost.cloud:10305',
-			// 	software: {
-			// 		id: '2',
-			// 		name: 'Fabric',
-			// 		slug: 'fabric',
-			// 	},
-			// 	version: {
-			// 		name: '1.19.2',
-			// 	},
-			// 	online: true,
-			// 	activePlayers: serverActivePlayers,
-			// 	mainInfo: serverMainInfo,
-			// 	console: serverConsole,
-			// 	usage: serverUsage,
-			// 	settings: serverProperties,
-			// } as IServer
 		},
 
 		getServers(data: IServerGetListRequest) {
@@ -114,16 +95,26 @@ export const ServerService = {
 			return serverCurrentUsage
 		},
 
-		getServerConsole(data: IServerGetServerConsoleRequest) {
-			return serverConsole
-		},
-
 		getServerMainInfo(data: IServerGetServerMainInfoRequest) {
 			return serverMainInfo
 		},
 
 		getServerProperties(data: IServerGetServerPropertiesRequest) {
 			return serverProperties
+		},
+	},
+	messaging: {
+		send(data: IServerMessagingSendRequest) {
+			return axiosAuth().post<IServerMessagingSendResponse>(getMessagingSendUrl(), data)
+		},
+		getLogsChunk(data: IServerMessagingGetLogsChunkRequest) {
+			return axiosAuth().post<IServerMessagingGetLogsChunkResponse>(
+				getMessagingLogsChunkUrl(),
+				data
+			)
+		},
+		getLogsAll(data: IServerMessagingGetLogsAllRequest) {
+			return axiosAuth().post<IServerMessagingGetLogsAllResponse>(getMessagingLogsAllUrl(), data)
 		},
 	},
 }

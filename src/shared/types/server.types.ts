@@ -43,11 +43,8 @@ export enum ServerConsoleLineType {
 }
 
 export interface IServerConsoleLine {
-	id: string
+	id: number
 	message: string
-	fullMessage?: string
-	time: string
-	type: ServerConsoleLineType
 }
 
 export interface IServerCurrentUsageItem {

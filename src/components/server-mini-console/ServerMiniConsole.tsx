@@ -1,17 +1,24 @@
+'use client'
+
 import { FormElement, Input } from '@nextui-org/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 import Joyride from 'react-joyride'
+import { useQuery } from 'react-query'
+import { toast } from 'react-toastify'
 
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 
-import { IServerConsoleLine, ServerConsoleLineType } from '@/shared/types/server.types'
+import { IServerConsoleLine } from '@/shared/types/server.types'
 
 import { ServerService } from '@/services/server.service'
 
+import { toastError } from '@/utils/toast/toast-error'
+
+import { getMessagingLogsChunkUrl } from '@/config/api/servers-api.config'
 import { joyrideStylesOptions, joyrideStylesTooltip, lightGray } from '@/config/constants'
 import { getServerLogsUrl, getServerSettingsUrl } from '@/config/url.config'
 
@@ -22,6 +29,7 @@ interface IServerMiniConsole {
 }
 
 const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
+	const logsRefetchInterval = 2000
 	const [serverConsole, setServerConsole] = useState<IServerConsoleLine[]>([])
 	const [inputValue, setInputValue] = useState('')
 	const [isGuideCompleted, setIsGuideCompleted] = useLocalStorage('isGuideCompleted', false)
@@ -31,19 +39,37 @@ const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
 	const inputRef = useRef<HTMLInputElement>(null)
 	const linesRef = useRef<HTMLDivElement>(null)
 
-	const handleEnter = (value: string) => {
-		//#TODO: Тут будет логика отправки сообщений на сервер
-		const newLine: IServerConsoleLine = {
-			id: Math.random().toString(),
-			message: `/${value}`,
-			time: new Date().toLocaleString('ru-RU', {
-				hour: '2-digit',
-				minute: '2-digit',
-				second: '2-digit',
-			}),
-			type: ServerConsoleLineType.Info,
+	const { isSuccess: isGetLogsChunkSuccess, data: logsChunk } = useQuery(
+		getMessagingLogsChunkUrl(),
+		() => ServerService.messaging.getLogsChunk({ gameServerHash: String(server?.gameServerHash) }),
+		{
+			select: ({ data }) => data.data,
+			enabled: server !== null,
+			refetchInterval: logsRefetchInterval,
 		}
-		setServerConsole((oldArray) => [...oldArray, newLine])
+	)
+
+	const handleEnter = (value: string) => {
+		const sendPromise = ServerService.messaging.send({
+			gameServerHash: String(server?.gameServerHash),
+			message: value,
+			postSystem: 'rcon',
+		})
+
+		sendPromise
+			.then(({ data }) => {
+				if (data.success) {
+					toast.success('Команда успешно применена')
+					return
+				}
+				if (data.error.length > 0) {
+					toast.error('Ошибка, проверьте введенную команду')
+					return
+				}
+			})
+			.catch((error) => {
+				toastError(error)
+			})
 	}
 
 	const handleChange = (e: ChangeEvent<FormElement>) => {
@@ -56,11 +82,19 @@ const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
 
 	useEffect(() => {
 		if (server) {
-			const data = ServerService.controller.getServerConsole({
+			const getLogsChunkPromise = ServerService.messaging.getLogsChunk({
 				gameServerHash: server.gameServerHash,
 			})
 
-			setServerConsole(data)
+			getLogsChunkPromise
+				.then(({ data }) => {
+					if (data.success) {
+						setServerConsole((prev) => [...prev, ...data.data])
+					}
+				})
+				.catch((error) => {
+					toastError(error)
+				})
 		}
 	}, [server])
 
@@ -85,7 +119,7 @@ const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
 							target: '#server-console-step',
 							disableBeacon: true,
 							placement: 'auto',
-							locale: { last: <strong>Дальше</strong> },
+							locale: { next: <strong>Дальше</strong> },
 							styles: { options: { width: 800 } },
 						},
 						{
@@ -121,12 +155,11 @@ const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
 									<div
 										key={line.id}
 										className={clsx(styles.line, {
-											[styles.error]: line.type === ServerConsoleLineType.Error,
-											[styles.warn]: line.type === ServerConsoleLineType.Warning,
+											[styles.error]: line.message.includes('ERROR'),
+											[styles.warn]: line.message.includes('WARN'),
 										})}
 									>
 										<div className={styles.info}>
-											{`[${line.time} - ${line.type}]: `}
 											<span className={styles.message}>{line.message}</span>
 										</div>
 									</div>
