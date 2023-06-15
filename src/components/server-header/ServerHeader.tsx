@@ -107,7 +107,7 @@ const ServerHeader: FC<IServerHeader> = () => {
 	}, [router.asPath])
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} id="server-header-step">
 			{server && (
 				<>
 					<div className={styles.bars}>
@@ -193,7 +193,11 @@ const ServerHeader: FC<IServerHeader> = () => {
 							</button> */}
 							{modsCart.length > 0 && (
 								<Badge size="lg" color="primary" content={modsCart.length}>
-									<button className={styles.modsCartBtn} onClick={handleModalOpen}>
+									<button
+										className={styles.modsCartBtn}
+										id="mods-cart-step"
+										onClick={handleModalOpen}
+									>
 										Моды к установке
 									</button>
 								</Badge>
@@ -208,7 +212,7 @@ const ServerHeader: FC<IServerHeader> = () => {
 							>
 								<Modal.Header className="text-2xl">Установка выбранных модификаций</Modal.Header>
 								<Modal.Body>
-									<div className={styles.cartMods}>
+									<div className={styles.cartMods} id="modal-mods-cart">
 										{modsCart.map((mod) => (
 											<Link
 												key={mod.id}

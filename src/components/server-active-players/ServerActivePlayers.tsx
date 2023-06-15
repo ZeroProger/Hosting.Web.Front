@@ -1,6 +1,6 @@
-import { Avatar } from '@nextui-org/react'
+import { Avatar } from '@nextui-org/react';
 import Link from 'next/link'
-import { FC, useEffect, useState } from 'react'
+import { FC, Fragment, useEffect, useState } from 'react'
 
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 
@@ -64,17 +64,16 @@ const ServerActivePlayers: FC = () => {
 									<div className={styles.userName}>{player.name}</div>
 									<div className={styles.roles}>
 										{player.roles?.map((role) => (
-											<>
+											<Fragment key={`user-${player.id}-role-${role?.id}`}>
 												{role && (
 													<span
-														key={`user-${player.id}-role-${role.id}`}
 														className={styles.role}
 														style={{ color: role.textColor, backgroundColor: role.backgroundColor }}
 													>
 														{role.name}
 													</span>
 												)}
-											</>
+											</Fragment>
 										))}
 									</div>
 									<div className={styles.actions}>
