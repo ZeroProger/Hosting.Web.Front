@@ -85,7 +85,7 @@ const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
 							target: '#server-console-step',
 							disableBeacon: true,
 							placement: 'auto',
-							locale: { last: <strong>Дальше</strong> },
+							locale: { next: <strong>Дальше</strong> },
 							styles: { options: { width: 800 } },
 						},
 						{
