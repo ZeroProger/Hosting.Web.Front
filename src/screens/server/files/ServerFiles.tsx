@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
+import Heading from '@/components/ui/heading/Heading'
 
 import { IFileNode } from '@/shared/types/server.types'
 
@@ -72,6 +73,7 @@ const ServerFiles: FC<IServerFiles> = ({ nestedList }) => {
 	return (
 		<Meta title="Файлы сервера">
 			<div className={styles.container}>
+				<Heading title="Файлы сервера" />
 				<div className={styles.header}>
 					<div className={styles.home}>
 						<button type="button" className={styles.headerBaseBtn} onClick={handleGoHomeClick}>

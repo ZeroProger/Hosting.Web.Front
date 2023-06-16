@@ -88,7 +88,7 @@ const ServerTabs: FC<{ slug: string }> = ({ slug }) => {
 					[styles.isActiveLink]: router.asPath === getServerBackupsUrl(`${slug}`),
 				})}
 			>
-				Бэкапы
+				Резервные копии
 			</Link>
 			<Link
 				href={getServerSettingsUrl(`${slug}`)}

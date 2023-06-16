@@ -30,9 +30,9 @@ const NestedFilesPage: NextPageWithLayout = () => {
 		let path = '/'
 
 		if (Array.isArray(slug)) {
-			path = `/${slug.join('/')}`
+			path += slug.join('/')
 		} else {
-			path = `/${slug}`
+			path += slug
 		}
 
 		const node = deepSearch(filesTree, 'path', (k, v) => v === path)
