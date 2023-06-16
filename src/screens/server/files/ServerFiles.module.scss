@@ -1,0 +1,60 @@
+.container {
+	@apply flex flex-col gap-2;
+
+	.header {
+		@apply flex flex-row items-center gap-2 bg-backgroundLight p-2 rounded-lg;
+
+		.home {
+		}
+
+		.filesCount {
+			@apply flex flex-row items-center gap-1 bg-lightGray rounded-md text-lg px-1 py-0;
+		}
+
+		.pathParts {
+			@apply flex flex-row items-center gap-2;
+		}
+
+		.headerActions {
+			@apply flex flex-row items-center gap-3 flex-1 justify-end;
+
+			.headerActionBtn {
+				@apply p-2 bg-primary rounded-lg;
+			}
+		}
+	}
+
+	.list {
+		@apply flex flex-col gap-1;
+
+		.listEmpty {
+			@apply flex flex-row items-center gap-2 py-2 px-4 justify-start text-xl text-white bg-error rounded-lg;
+		}
+
+		.fileContent {
+			@apply text-xl;
+		}
+
+		.listItem {
+			@apply flex flex-row items-center gap-2 flex-nowrap bg-backgroundLight px-4 rounded-lg;
+
+			.listItemName {
+				@apply text-lg flex-1 py-2;
+			}
+
+			.listItemSize {
+				@apply bg-lightGray rounded-md text-lg px-1 py-0;
+			}
+
+			.listItemRemoveBtn {
+			}
+
+			.listItemDownloadBtn {
+			}
+		}
+	}
+}
+
+.headerBaseBtn {
+	@apply p-2 bg-lightGray rounded-lg flex flex-row gap-2 items-center w-max;
+}

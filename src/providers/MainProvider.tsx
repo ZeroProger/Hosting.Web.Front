@@ -9,7 +9,7 @@ import Layout from '@/components/layout/Layout'
 
 import { store } from '../store'
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
 			staleTime: 5 * 60 * 1000,

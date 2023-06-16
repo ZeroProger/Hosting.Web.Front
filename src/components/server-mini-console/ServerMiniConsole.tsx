@@ -60,7 +60,9 @@ const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
 				gameServerHash: server.gameServerHash,
 			})
 
-			setServerConsole(data)
+			const isEmptyTest = Math.random() > 0.5
+
+			setServerConsole(isEmptyTest ? data : [])
 		}
 	}, [server])
 
@@ -117,6 +119,16 @@ const ServerMiniConsole: FC<IServerMiniConsole> = ({ fullConsole }) => {
 						<div className={styles.hr}></div>
 						<div className={clsx(styles.body, { [styles.mini]: !fullConsole })}>
 							<div className={clsx(styles.lines, { [styles.mini]: !fullConsole })} ref={linesRef}>
+								{serverConsole.length === 0 && (
+									<div
+										className={clsx(styles.consoleEmpty, {
+											[styles.consoleEmptyFull]: fullConsole,
+										})}
+									>
+										<span>Здесь пока пусто</span>
+										<span>Запустите сервер для просмотра логов</span>
+									</div>
+								)}
 								{serverConsole.map((line) => (
 									<div
 										key={line.id}

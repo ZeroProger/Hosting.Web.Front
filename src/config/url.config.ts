@@ -32,7 +32,8 @@ export const getServerModSearchUrl = (query?: ISearchModsQuery) => {
 	return `/servers/mods/search${resultQueryString}`
 }
 
-export const getServerModUrl = (modId: string) => `/servers/mods/${modId}`
+export const getServerModUrl = (modId: string, category?: string) =>
+	`/servers/mods/${modId}${category && category.length > 1 ? `${category}` : ''}`
 
 export const getServerModFilesUrl = (modId: string) => `/servers/mods/${modId}/files`
 
@@ -44,7 +45,8 @@ export const getServerConsoleUrl = (slug: string) => `/servers/${slug}/console`
 
 export const getServerLogsUrl = (slug: string) => `/servers/${slug}/logs`
 
-export const getServerFilesUrl = (slug: string) => `/servers/${slug}/files`
+export const getServerFilesUrl = (slug: string, path: string = '') =>
+	`/servers/${slug}/files${path}`
 
 export const getServerBackupsUrl = (slug: string) => `/servers/${slug}/backups`
 
