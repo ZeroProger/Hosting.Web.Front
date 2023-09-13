@@ -16,20 +16,12 @@
 		"incremental": true,
 		"baseUrl": "./src-fsd/",
 		"paths": {
-			"@/components/*": ["components/*"],
-			"@/ui/*": ["ui/*"],
-			"@/api/*": ["api/*"],
-			"@/hooks/*": ["hooks/*"],
-			"@/shared/*": ["shared/*"],
+			"@/app/*": ["app/*"],
+			"@/entities/*": ["entities/*"],
+			"@/features/*": ["features/*"],
 			"@/pages/*": ["pages/*"],
-			"@/screens/*": ["screens/*"],
-			"@/services/*": ["services/*"],
-			"@/config/*": ["config/*"],
-			"@/assets/*": ["assets/*"],
-			"@/store/*": ["store/*"],
-			"@/utils/*": ["utils/*"],
-			"@/providers/*": ["providers/*"],
-			"@/styles/*": ["styles/*"]
+			"@/shared/*": ["shared/*"],
+			"@/widgets/*": ["widgets/*"]
 		},
 		"plugins": [
 			{

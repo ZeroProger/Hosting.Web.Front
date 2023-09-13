@@ -8,9 +8,9 @@ const nextConfig = {
 	poweredByHeader: false,
 	optimizeFonts: false,
 	//skipMiddlewareUrlNormalize: false,
-	assetPrefix: isProd ? `${process.env.REACT_APP_SERVER_URL}/assets` : undefined,
+	//assetPrefix: isProd ? `${process.env.REACT_APP_SERVER_URL}/assets` : undefined,
 	//basePath: isProd ? '/src' : undefined,
-	trailingSlash: false,
+	//trailingSlash: false,
 	//publicRuntimeConfig: { basePath: isProd ? '/src' : undefined },
 	env: {
 		APP_URL: process.env.REACT_APP_URL,
