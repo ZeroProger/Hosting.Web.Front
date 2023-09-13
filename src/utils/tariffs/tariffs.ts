@@ -8,6 +8,12 @@ export const formatMemory = (megaBytes: number): string => {
 	return data.format('0 ib').replace('GiB', 'GB').replace('MiB', 'MB').replace('KiB', 'KB')
 }
 
+export const formatMemoryBytes = (bytes: number): string => {
+	const data = numeral(bytes)
+
+	return data.format('0 ib').replace('GiB', 'GB').replace('MiB', 'MB').replace('KiB', 'KB')
+}
+
 export const getCpuCoresCount = (percentage: number): string => {
 	return (percentage / 100).toFixed(1)
 }

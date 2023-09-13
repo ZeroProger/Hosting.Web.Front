@@ -72,6 +72,8 @@ body {
 }
 
 a {
+	@apply transition-colors;
+
 	color: inherit;
 	text-decoration: none;
 }

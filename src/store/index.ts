@@ -3,7 +3,6 @@ import { configureStore } from '@reduxjs/toolkit'
 import { reducers } from './rootReducer'
 import { userActions } from './user/user.slice'
 
-
 export const store = configureStore({
 	reducer: reducers,
 })

@@ -1,3 +1,9 @@
+.serversEmpty {
+	div {
+		@apply text-xl;
+	}
+}
+
 .servers {
 	@apply grid grid-cols-2 gap-4;
 

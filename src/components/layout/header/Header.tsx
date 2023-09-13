@@ -3,9 +3,11 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, Fragment, useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 
 import CustomSelect, { IOption } from '@/components/ui/customSelect/CustomSelect'
+
+import { queryClient } from '@/providers/MainProvider'
 
 import { useAuth } from '@/hooks/auth/useAuth'
 import useMediaQuery from '@/hooks/useMediaQuery'
@@ -43,9 +45,19 @@ const Header: FC<IHeader> = () => {
 	const { authToken, user } = useAuth()
 
 	const { data: userServers } = useQuery(
-		getServersApiUrl(String(authToken)),
+		getServersApiUrl('user-servers'),
 		() => ServerService.compositor.getServers(getMinecraftUserServersRequest),
 		{ select: (data) => data.data.servers, enabled: authToken !== null }
+	)
+
+	const userServersMutation = useMutation(
+		() => ServerService.compositor.getServers(getMinecraftUserServersRequest),
+		{
+			onSuccess: () => {
+				console.log('success')
+				queryClient.invalidateQueries(getServersApiUrl('user-servers'))
+			},
+		}
 	)
 
 	useEffect(() => {
@@ -59,16 +71,18 @@ const Header: FC<IHeader> = () => {
 	}, [])
 
 	useEffect(() => {
-		if (userServers && userServers.length > 0) {
-			let options: IOption[] = []
+		let options: IOption[] = []
 
-			userServers.map((server) => {
-				options.push({ label: server.gameServerName, value: server.gameServerHash })
-			})
+		userServers?.map((server) => {
+			options.push({ label: server.gameServerName, value: server.gameServerHash })
+		})
 
-			setSelectOptions(options)
-		}
+		setSelectOptions(options)
 	}, [userServers])
+
+	useEffect(() => {
+		userServersMutation.mutate()
+	}, [authToken])
 
 	const handleCloseMenu = () => {
 		setIsUserDropdownOpen(false)

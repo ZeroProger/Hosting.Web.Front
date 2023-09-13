@@ -1,0 +1,74 @@
+.container {
+	@apply flex flex-col gap-4;
+
+	.header {
+		@apply flex flex-row gap-4 items-center justify-between;
+
+		.autoCopy {
+			@apply flex flex-row items-center gap-3;
+
+			span {
+				@apply text-xl;
+			}
+
+			.autoCopyInput {
+				@apply w-[80px] py-1 px-2 text-lg outline-none;
+			}
+		}
+	}
+
+	.createBackup {
+		@apply relative flex h-14;
+
+		.createBackupInput {
+			@apply w-full text-2xl px-6 border-none outline outline-1 outline-transparent -outline-offset-1 text-white bg-backgroundLight;
+
+			height: inherit;
+
+			&:focus,
+			&:active {
+				@apply outline-primary;
+			}
+		}
+
+		.createBackupBtn {
+			@apply btn-primary rounded-none p-4 flex items-center;
+		}
+	}
+
+	.backupsTitle {
+		@apply text-2xl;
+	}
+
+	.backups {
+		@apply flex flex-col gap-1;
+
+		.backup {
+			@apply flex flex-row items-center gap-3 bg-backgroundLight py-2 px-4 rounded-lg;
+
+			.backupName {
+				@apply text-xl;
+			}
+
+			.backupDate {
+				@apply text-lg text-lightGray flex-1;
+			}
+
+			.backupAuthor {
+				@apply bg-lightGray rounded-md text-md px-2 py-0;
+			}
+
+			.backupSize {
+				@apply bg-lightGray rounded-md text-md px-2 py-0;
+			}
+
+			.restoreBackupBtn {
+				@apply btn-primary py-1 px-2 rounded-md;
+			}
+
+			.deleteBackupBtn {
+				@apply btn-error py-1 px-2 rounded-md;
+			}
+		}
+	}
+}

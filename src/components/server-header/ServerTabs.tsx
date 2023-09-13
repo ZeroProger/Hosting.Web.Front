@@ -7,6 +7,8 @@ import {
 	getServerBackupsUrl,
 	getServerConsoleUrl,
 	getServerFilesUrl,
+	getServerModSearchUrl,
+	getServerModUrl,
 	getServerModsUrl,
 	getServerOverviewUrl,
 	getServerPlayersUrl,
@@ -17,6 +19,7 @@ import styles from './ServerTabs.module.scss'
 
 const ServerTabs: FC<{ slug: string }> = ({ slug }) => {
 	const router = useRouter()
+	const modId = String(router.query?.id!)
 
 	return (
 		<>
@@ -52,7 +55,11 @@ const ServerTabs: FC<{ slug: string }> = ({ slug }) => {
 					{
 						[styles.isActiveLink]:
 							router.asPath ===
-							getServerModsUrl(),
+							getServerModUrl(modId, `/${router.asPath.split('/').splice(4).join('/')}`),
+					},
+					{
+						[styles.isActiveLink]:
+							router.asPath.split('?').at(0) === getServerModSearchUrl().split('?').at(0),
 					}
 				)}
 			>
@@ -69,7 +76,8 @@ const ServerTabs: FC<{ slug: string }> = ({ slug }) => {
 			<Link
 				href={getServerFilesUrl(`${slug}`)}
 				className={clsx({
-					[styles.isActiveLink]: router.asPath === getServerFilesUrl(`${slug}`),
+					[styles.isActiveLink]:
+						router.asPath.split('/').slice(0, 4).join('/') === getServerFilesUrl(`${slug}`),
 				})}
 			>
 				Файлы
@@ -80,7 +88,7 @@ const ServerTabs: FC<{ slug: string }> = ({ slug }) => {
 					[styles.isActiveLink]: router.asPath === getServerBackupsUrl(`${slug}`),
 				})}
 			>
-				Бэкапы
+				Резервные копии
 			</Link>
 			<Link
 				href={getServerSettingsUrl(`${slug}`)}
