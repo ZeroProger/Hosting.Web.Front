@@ -3,18 +3,17 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
 
 import { useActions } from '@/hooks/useActions'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
-
-import { IPlayer } from '@/shared/types/player.types'
 
 import { ServerService } from '@/services/server.service'
 
 import { getServerFullAddress } from '@/utils/servers/getServerFullAddress'
 
-import { getServerModUrl } from '@/config/url.config'
+import { getServerModUrl, getServerPlayersUrl } from '@/config/url.config'
 
 import { Icon } from '../ui/Icon'
 import { AvatarGroup } from '../ui/avatar-group/AvatarGroup'
@@ -29,81 +28,48 @@ const ServerHeader: FC<IServerHeader> = () => {
 	const { server, isLoading } = useTypedSelector((state) => state.server)
 	const modsCart = useTypedSelector((state) => state.mods.cart)
 	const { submitCart, resetCart, startServer, stopServer } = useActions()
-	const [activePlayers, setActivePlayers] = useState<IPlayer[]>([])
+	const { data: activePlayers } = useQuery(
+		getServerPlayersUrl(server?.gameServerHash || '', 'getServerActivePlayers'),
+		() =>
+			ServerService.controller.getServerActivePlayers({
+				gameServerHash: String(server?.gameServerHash),
+			}),
+		{ enabled: server !== null }
+	)
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
-	const handleModalOpen = () => setIsModalOpen(true)
+	const handleModalOpen = useCallback(() => setIsModalOpen(true), [server])
 
-	const handleModalClose = () => setIsModalOpen(false)
+	const handleModalClose = useCallback(() => setIsModalOpen(false), [server])
 
-	const handleBackBtn = () => {
+	const handleBackBtn = useCallback(() => {
 		router.back()
-	}
+	}, [server])
 
-	const handleStopServerBtn = () => {
+	const handleStopServerBtn = useCallback(() => {
 		if (server && !isLoading) {
 			stopServer({ gameServerHash: server.gameServerHash })
-			// const stopGamePromise = ServerService.controller.stopGameServer({
-			// 	gameServerHash: server.gameServerHash,
-			// })
-
-			// stopGamePromise.then((data) => {
-			// 	if (data.data.error.length > 0) {
-			// 		toast(data.data.error)
-			// 		return
-			// 	}
-			// 	if (data.data.success) {
-			// 		getServer({ gameServerHash: server.gameServerHash })
-			// 	}
-			// })
-		}
-	}
-
-	const handleStartServerBtn = () => {
-		if (server && !isLoading) {
-			startServer({ gameServerHash: server.gameServerHash })
-			// const startContainerPromise = ServerService.compositor.startServerContainer({
-			// 	gameServerHash: server.gameServerHash,
-			// })
-
-			// startContainerPromise.then((data) => {
-			// 	if (data.data.success === true) {
-			// 		const startGameServerPromise = ServerService.controller.startGameServer({
-			// 			gameServerHash: data.data.gameServerHash,
-			// 		})
-
-			// 		startGameServerPromise.then((data) => {
-			// 			if (data.data.success) {
-			// 				getServer({ gameServerHash: server.gameServerHash })
-			// 			}
-			// 		})
-			// 	}
-			// })
-		}
-	}
-
-	const handleSubmitCart = () => {
-		handleModalClose()
-		submitCart()
-	}
-
-	const handleResetCart = () => {
-		handleModalClose()
-		resetCart()
-	}
-
-	useEffect(() => {
-		if (server) {
-			const data = ServerService.controller.getServerActivePlayers({
-				gameServerHash: server.gameServerHash,
-			})
-
-			setActivePlayers(data)
 		}
 	}, [server])
 
+	const handleStartServerBtn = useCallback(() => {
+		if (server && !isLoading) {
+			startServer({ gameServerHash: server.gameServerHash })
+		}
+	}, [server])
+
+	const handleSubmitCart = useCallback(() => {
+		handleModalClose()
+		submitCart()
+	}, [server])
+
+	const handleResetCart = useCallback(() => {
+		handleModalClose()
+		resetCart()
+	}, [server])
+
 	useEffect(() => {
-		setIsModalOpen(false)
+		if (isModalOpen) setIsModalOpen(false)
 	}, [router.asPath])
 
 	return (
@@ -158,10 +124,12 @@ const ServerHeader: FC<IServerHeader> = () => {
 									)}
 								</span>
 							</div>
-							<div className={styles.subBarUsers}>
-								<AvatarGroup />
-								<span>{activePlayers.length} / 10</span>
-							</div>
+							{activePlayers && (
+								<div className={styles.subBarUsers}>
+									<AvatarGroup translate="no" animated={false} />
+									<span>{activePlayers.length} / 10</span>
+								</div>
+							)}
 							<div className={styles.subBarCore}>
 								<Icon name="BsBookmarkFill" />
 								<span>

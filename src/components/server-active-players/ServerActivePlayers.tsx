@@ -1,4 +1,4 @@
-import { Avatar } from '@nextui-org/react';
+import { Avatar } from '@nextui-org/react'
 import Link from 'next/link'
 import { FC, Fragment, useEffect, useState } from 'react'
 
