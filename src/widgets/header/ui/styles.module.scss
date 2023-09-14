@@ -1,0 +1,11 @@
+.headerWrapper {
+	@apply relative bg-background top-0 left-0 right-0 z-[60] h-[--header-height];
+
+	.header {
+		@apply content-container flex flex-row items-center gap-8 px-layout-sm sm:px-layout py-3;
+
+		.row {
+			@apply flex gap-4 items-center;
+		}
+	}
+}

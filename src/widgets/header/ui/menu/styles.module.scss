@@ -1,0 +1,10 @@
+.container {
+	@apply top-0 left-0 fixed bg-background opacity-0 invisible md:hidden;
+
+	width: 100dvw;
+	height: 100dvh;
+
+	&.open {
+		@apply opacity-100 visible;
+	}
+}

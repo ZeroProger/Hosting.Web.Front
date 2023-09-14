@@ -4,7 +4,7 @@ const isProd = process.env.REACT_APP_ENV === 'production'
 
 const nextConfig = {
 	reactStrictMode: false,
-	output: 'export',
+	//output: 'export',
 	poweredByHeader: false,
 	optimizeFonts: false,
 	//skipMiddlewareUrlNormalize: false,
