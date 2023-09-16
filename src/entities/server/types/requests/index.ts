@@ -1,13 +1,6 @@
-// import { IGameTariffs } from '../tariff.types'
+import { Server } from '..'
 
-export interface Server {
-	gameServerName: string
-	gameServerHash: string
-	serverIp: string
-	serverPorts: ServerPort[]
-	gameKind: string
-	isOnline: boolean
-}
+// import { IGameTariffs } from '../tariff.types'
 
 export interface ServerPort {
 	id: number

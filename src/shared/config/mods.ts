@@ -1,8 +1,8 @@
-import { ISearchModsRequest } from '@/shared/api/curse-forge'
+import { SearchModsRequest } from '@/shared/api/curse-forge'
 
 import { CForgeModClassType } from './curse-forge'
 
-export const searchModsBaseRequest: ISearchModsRequest = {
+export const searchModsBaseRequest: SearchModsRequest = {
 	gameId: 432,
 	sortField: 1,
 	sortOrder: 'desc',
@@ -10,7 +10,7 @@ export const searchModsBaseRequest: ISearchModsRequest = {
 	pageSize: 12,
 }
 
-export const popularModsRequest: ISearchModsRequest = {
+export const popularModsRequest: SearchModsRequest = {
 	gameId: 432,
 	sortField: 2,
 	sortOrder: 'desc',
@@ -19,7 +19,7 @@ export const popularModsRequest: ISearchModsRequest = {
 	pageSize: 12,
 }
 
-export const popularModpacksRequest: ISearchModsRequest = {
+export const popularModpacksRequest: SearchModsRequest = {
 	gameId: 432,
 	sortField: 2,
 	sortOrder: 'desc',
@@ -28,7 +28,7 @@ export const popularModpacksRequest: ISearchModsRequest = {
 	pageSize: 12,
 }
 
-export const popularResourcePacksRequest: ISearchModsRequest = {
+export const popularResourcePacksRequest: SearchModsRequest = {
 	gameId: 432,
 	sortField: 2,
 	sortOrder: 'desc',
@@ -37,7 +37,7 @@ export const popularResourcePacksRequest: ISearchModsRequest = {
 	pageSize: 12,
 }
 
-export const popularWorldsRequest: ISearchModsRequest = {
+export const popularWorldsRequest: SearchModsRequest = {
 	gameId: 432,
 	sortField: 2,
 	sortOrder: 'desc',
@@ -46,7 +46,7 @@ export const popularWorldsRequest: ISearchModsRequest = {
 	pageSize: 12,
 }
 
-export const popularPluginsRequest: ISearchModsRequest = {
+export const popularPluginsRequest: SearchModsRequest = {
 	gameId: 432,
 	sortField: 2,
 	sortOrder: 'desc',

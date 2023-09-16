@@ -1,4 +1,3 @@
-import { IResponseResult } from '../base.types'
 import { IServer } from '../server.types'
 import { IGameTariffs } from '../tariff.types'
 
@@ -21,7 +20,7 @@ export interface IServerCreateRequest {
 	slots: number
 }
 
-export interface IServerCreateResponse extends IResponseResult {
+export interface IServerCreateResponse extends ResponseResult {
 	gameServerHash: string
 }
 
@@ -33,7 +32,7 @@ export interface IServerStartContainerRequest {
 	gameServerHash: string
 }
 
-export interface IServerStartContainerResponse extends IResponseResult {
+export interface IServerStartContainerResponse extends ResponseResult {
 	gameServerHash: string
 	serverIp: string
 	serverPorts: IServerPort[]
@@ -43,20 +42,20 @@ export interface IServerStopContainerRequest {
 	gameServerHash: string
 }
 
-export interface IServerStopContainerResponse extends IResponseResult {}
+export interface IServerStopContainerResponse extends ResponseResult {}
 
 export interface IServerRemoveRequest {
 	gameServerHash: string
 }
 
-export interface IServerRemoveResponse extends IResponseResult {}
+export interface IServerRemoveResponse extends ResponseResult {}
 
 export interface IServerUpdateRequest {
 	gameServerHash: string
 	isPublic: boolean
 }
 
-export interface IServerUpdateResponse extends IResponseResult {}
+export interface IServerUpdateResponse extends ResponseResult {}
 
 export interface IServerGetListRequest {
 	kind: string
@@ -75,13 +74,13 @@ export interface IServerStartRequest {
 	gameServerHash: string
 }
 
-export interface IServerStartResponse extends IResponseResult {}
+export interface IServerStartResponse extends ResponseResult {}
 
 export interface IServerStopRequest {
 	gameServerHash: string
 }
 
-export interface IServerStopResponse extends IResponseResult {}
+export interface IServerStopResponse extends ResponseResult {}
 
 export interface IServerGetActivePlayersRequest {
 	gameServerHash: string
