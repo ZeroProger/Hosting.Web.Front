@@ -13,10 +13,21 @@ export const CurseForgeApiUrls = {
 	groupedCategories: () => 'categories/grouped-by-class',
 }
 
-export const AuthApiUrls = {}
+export const AuthApiUrls = {
+	signIn: () => '/account/login',
+	signUp: () => '/account/register',
+	logout: () => '/account/logout',
+}
 
-export const ModApiUrls = {}
-
-export const ServerApiUrls = {}
+//#TODO: не забыть
+export const ServerApiUrls = {
+	create: () => '/server/create',
+	start: () => '/server/start',
+	stop: () => '/server/stop',
+	update: () => '/server/update',
+	remove: () => '/server/remove',
+	server: (hash: string) => `/server/${hash}`,
+	servers: () => '/server',
+}
 
 export const SubscriptionApiUrls = {}

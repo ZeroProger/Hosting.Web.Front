@@ -23,9 +23,6 @@ export interface IGetMinecraftVersionRequest {
 	sortDescending?: boolean
 }
 
-
-
-
 export interface ICForgeSoftware {
 	id: string
 	name: string
