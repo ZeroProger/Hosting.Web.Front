@@ -1,21 +1,24 @@
+'use client'
+
 import { useRouter } from 'next/navigation'
 import { CallBackProps } from 'react-joyride'
 
 import { useServer } from '@/entities/server/model'
 
-import { overviewSteps } from '@/shared/lib/react-joyride/constants/overview'
-import { JoyrideGuide } from '@/shared/lib/react-joyride/ui'
+import { JoyrideGuide, overviewSteps } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'
 
+import ServerActivePlayers from '@/widgets/server/active-players/ui'
 import ServerCurrentUsage from '@/widgets/server/current-usage/ui'
 import ServerMainInfo from '@/widgets/server/main-info/ui'
 import ServerMiniConsole from '@/widgets/server/mini-console/ui'
 
-import styles from './ServerOverview.module.scss'
+import styles from './styles.module.scss'
 
 export function ServerOverview() {
 	const { push } = useRouter()
 	const { server } = useServer()
+
 	const onGuideFinish = ({ status }: CallBackProps) =>
 		status === 'finished' && push(ServerUrls.server.players(server?.gameServerHash!))
 
@@ -28,9 +31,7 @@ export function ServerOverview() {
 						<ServerMainInfo />
 					</div>
 					<div className="active-players">
-						{/* #TODO entities/players */}
-						{/* <ServerActivePlayers /> */}
-						<h1>TODO entities/player</h1>
+						<ServerActivePlayers />
 					</div>
 				</div>
 				<div className={styles.column}>

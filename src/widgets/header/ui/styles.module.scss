@@ -1,7 +1,19 @@
-.headerWrapper {
-	@apply relative bg-background top-0 left-0 right-0 z-[60] h-[--header-height];
+@import '@/app/styles/_mixins.scss';
 
-	.header {
+.header {
+	@apply sticky w-full bg-background top-0 left-0 right-0 z-header;
+
+	transition: transform 0.3s;
+
+	&.fixed {
+		transform: translateY(-100%);
+
+		@include md(lg, 'max') {
+			transform: translateX(0%);
+		}
+	}
+
+	.content {
 		@apply content-container flex flex-row items-center gap-8 px-layout-sm sm:px-layout py-3;
 
 		.row {

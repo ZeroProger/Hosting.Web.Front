@@ -67,7 +67,8 @@ export const ProfileUrls = {
 	settings: () => '/settings',
 }
 
-export const HelpUrls = {
+export const CommonUrls = {
+	home: () => '/',
 	help: () => '/help',
 	feedback: () => '/feedback',
 }

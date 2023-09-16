@@ -1,3 +1,5 @@
+'use client'
+
 // import { Popover } from '@nextui-org/react'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -5,8 +7,7 @@ import { FC, useEffect, useState } from 'react'
 
 import { ServerMainInfo } from '@/entities/server/types'
 
-// #TODO Avatar
-// import { AvatarGroup } from '../ui/avatar-group/AvatarGroup'
+// #TODO Avata
 import { Icon } from '@/shared/ui/icon'
 
 import { useServer } from '@/entities/server/model'
@@ -14,7 +15,7 @@ import { ServerService } from '@/entities/server/service'
 import { ServerUrls } from '@/shared/routes/urls'
 import { isUndefined } from '@/shared/utils/isUndefined'
 import { getServerOverviewUrl } from '../../../../../src-old/config/url.config'
-import styles from './ServerMainInfo.module.scss'
+import styles from './styles.module.scss'
 
 const ServerMainInfo: FC = () => {
   const {server} = useServer()

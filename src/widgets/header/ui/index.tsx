@@ -1,4 +1,8 @@
+'use client'
+
 import { cn } from '@/shared/lib/utils'
+
+import { useHeaderFixed } from '../lib'
 
 import { Burger } from './burger'
 import { Logo } from './logo'
@@ -9,15 +13,15 @@ import { ServerSelect } from './server-select'
 import styles from './styles.module.scss'
 
 export function Header() {
-	const isFixed = false
+	const { isFixed } = useHeaderFixed()
 
 	return (
 		<header
-			className={cn(styles.headerWrapper, {
+			className={cn(styles.header, {
 				[styles.fixed]: isFixed,
 			})}
 		>
-			<div className={styles.header}>
+			<div className={styles.content}>
 				<div className={styles.row}>
 					<Logo />
 					<ServerSelect />

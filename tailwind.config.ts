@@ -57,6 +57,10 @@ const config: Config = {
 				3: '3',
 				4: '4',
 				5: '5',
+				header: 'var(--z-index-header)',
+				modal: 'var(--z-index-modal)',
+				menu: 'var(--z-index-menu)',
+				select: 'var(--z-index-select)',
 			},
 			spacing: {
 				layout: '2rem',

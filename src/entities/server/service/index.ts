@@ -1,10 +1,16 @@
-// import { serverActivePlayers } from 'fakeData/users.data'
 import { axiosAuth } from '@/shared/api/auth'
 import { ServerApiUrls } from '@/shared/api/urls'
 
-import { serverConsole, serverCurrentUsage, serverMainInfo, serverProperties } from '../fakeData'
+import {
+	serverActivePlayers,
+	serverConsole,
+	serverCurrentUsage,
+	serverMainInfo,
+	serverProperties,
+} from '../fakeData'
 import { Server } from '../types'
 import {
+	ServerActivePlayersRequest,
 	ServerConsoleRequest,
 	ServerCreateRequest,
 	ServerCreateResponse,
@@ -52,10 +58,9 @@ export const ServerService = {
 		return axiosAuth().post<ServerUpdateResponse>(ServerApiUrls.update(), data)
 	},
 
-	// #TODO entities/player
-	// getServerActivePlayers(data: ActivePlayersRequest) {
-	// 	return serverActivePlayers
-	// },
+	activePlayers(data: ServerActivePlayersRequest) {
+		return serverActivePlayers
+	},
 
 	currentUsage(data: ServerCurrentUsageRequest) {
 		return serverCurrentUsage

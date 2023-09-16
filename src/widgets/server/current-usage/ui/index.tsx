@@ -1,11 +1,14 @@
-// import { Progress } from '@nextui-org/react'
+'use client'
+
 import { FC, useEffect, useState } from 'react'
 
 import { useServer } from '@/entities/server/model'
 import { ServerService } from '@/entities/server/service'
 import { ServerCurrentUsageItem } from '@/entities/server/types'
 
-import styles from './ServerCurrentUsage.module.scss'
+import { Progress } from '@/shared/ui/progress'
+
+import styles from './styles.module.scss'
 
 const ServerCurrentUsage: FC = () => {
 	const { server } = useServer()
@@ -36,18 +39,7 @@ const ServerCurrentUsage: FC = () => {
 									? `${item.value} %`
 									: `${item.value} / ${item.maxValue} ${item.valueUnit}`}
 							</div>
-
-							<h1>TODO Progress</h1>
-							{/* <Progress
-								value={item.value}
-								max={item.maxValue}
-								className={styles.progress}
-								css={{
-									'& .nextui-progress-wrapper-enter': {
-										backgroundColor: item.color,
-									},
-								}}
-							/> */}
+							<Progress value={item.value} max={item.maxValue} className={styles.progress} />
 						</div>
 					))}
 				</div>

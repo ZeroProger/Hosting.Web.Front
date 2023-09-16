@@ -1,7 +1,8 @@
-// import { FormElement, Input } from '@nextui-org/react'
+'use client'
+
 import clsx from 'clsx'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { CallBackProps } from 'react-joyride'
 
@@ -9,13 +10,11 @@ import { useServer } from '@/entities/server/model'
 import { ServerService } from '@/entities/server/service'
 import { ServerConsoleLine, ServerConsoleLineType } from '@/entities/server/types'
 
-import { useLocalStorage } from '@/shared/hooks'
-import { consoleSteps } from '@/shared/lib/react-joyride/constants/console'
-import { JoyrideGuide } from '@/shared/lib/react-joyride/ui'
+import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'
 import { Input } from '@/shared/ui/input'
 
-import styles from './ServerMiniConsole.module.scss'
+import styles from './styles.module.scss'
 
 interface IServerMiniConsole {
 	fullConsole?: boolean
@@ -24,7 +23,6 @@ interface IServerMiniConsole {
 export function ServerMiniConsole({ fullConsole }: IServerMiniConsole) {
 	const [serverConsole, setServerConsole] = useState<ServerConsoleLine[]>([])
 	const [inputValue, setInputValue] = useState('')
-	const [isGuideCompleted, setIsGuideCompleted] = useLocalStorage('isGuideCompleted', false)
 
 	const { push } = useRouter()
 	const { server } = useServer()
@@ -80,7 +78,6 @@ export function ServerMiniConsole({ fullConsole }: IServerMiniConsole) {
 					hideBackButton
 					hideCloseButton
 					scrollOffset={150}
-					run={!isGuideCompleted}
 				/>
 			)}
 			<div
@@ -127,29 +124,18 @@ export function ServerMiniConsole({ fullConsole }: IServerMiniConsole) {
 							</div>
 							{fullConsole && (
 								<div className={styles.enterCommand}>
-									{/* #TODO Input */}
 									<Input
 										ref={inputRef}
 										placeholder="Введите команду..."
-										// fullWidth
 										value={inputValue}
-										// animated={false}
-										// shadow={false}
-										// contentLeftStyling={false}
 										onKeyDown={(e) => {
 											if (e.key === 'Enter') {
 												handleEnter(inputRef.current?.value || '')
 												setInputValue('')
 											}
 										}}
+										className="w-full"
 										onChange={handleChange}
-										// contentLeft={<div className={styles.slash}>/</div>}
-										// css={{
-										// 	'& .nextui-input-wrapper': {
-										// 		backgroundColor: lightGray,
-										// 		borderRadius: '16px',
-										// 	},
-										// }}
 									/>
 								</div>
 							)}

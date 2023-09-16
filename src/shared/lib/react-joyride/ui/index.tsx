@@ -1,36 +1,24 @@
 'use-client'
 
-import { joyrideStylesOptions, joyrideStylesTooltip } from '..'
-import { useState } from 'react'
-import Joyride, { CallBackProps, Props, Step } from 'react-joyride'
+import Joyride, { CallBackProps, Step } from 'react-joyride'
 
-import { useLocalStorage } from '@/shared/hooks'
 import { Button } from '@/shared/ui/button'
 import { Dialog, DialogContent, DialogFooter, DialogHeader } from '@/shared/ui/dialog'
+
+import { useJoyrideGuide } from '../hooks'
+import { joyrideStylesOptions, joyrideStylesTooltip } from '../config'
 
 import styles from './styles.module.scss'
 
 export function JoyrideGuide({
 	steps,
 	callback,
-	run,
 }: {
 	steps: Step[]
 	callback?: (data: CallBackProps) => void
-} & Props) {
-	const [isGuideStarted, setIsGuideStarted] = useState(false)
-	const [isGuideCompleted, setIsGuideCompleted] = useLocalStorage('isGuideCompleted', false)
-	const [visible, setVisible] = useState(false)
-
-	const handleStartGuide = () => {
-		setVisible(false)
-		setIsGuideStarted(true)
-	}
-
-	const handleSkipGuide = () => {
-		setVisible(false)
-		setIsGuideCompleted(true)
-	}
+}) {
+	const { isGuideCompleted, isGuideStarted, modalVisible, functions } = useJoyrideGuide()
+	const { handleSkipGuide, handleStartGuide } = functions
 
 	return (
 		<>
@@ -39,18 +27,20 @@ export function JoyrideGuide({
 				hideBackButton
 				continuous
 				disableOverlayClose
-				run={run ?? (isGuideStarted && !isGuideCompleted)}
+				run={isGuideStarted && !isGuideCompleted}
 				scrollOffset={200}
 				callback={callback}
 				styles={{ options: joyrideStylesOptions, tooltip: joyrideStylesTooltip }}
 				steps={steps}
 			/>
-			<Dialog open={visible}>
-				<DialogHeader className="text-2xl">Ознакомление с панелью управления сервером</DialogHeader>
+			<Dialog open={modalVisible}>
 				<DialogContent
 					className="bg-backgroundLight border-lightGray border-2 w-[600px] text-xl text-left"
 					aria-labelledby="Ознакомление с панелью управления сервером"
 				>
+					<DialogHeader className="text-2xl">
+						Ознакомление с панелью управления сервером
+					</DialogHeader>
 					<p>Поздравляем вас с созданием собственного сервера!</p>
 					<p>
 						Предлагаем вам пройти обучение и ознакомиться с возможностями панели управления игровым
@@ -65,15 +55,15 @@ export function JoyrideGuide({
 						<li>Взаимодействовать с консолью управления игровым сервером</li>
 						<li>Настраивать основной файл конфигурации игрового сервера</li>
 					</ul>
+					<DialogFooter className="flex flex-row items-center justify-center gap-4">
+						<Button className="py-1 px-3 text-xl" variant={'secondary'} onClick={handleSkipGuide}>
+							Пропустить обучение
+						</Button>
+						<Button className="py-1 px-3 text-xl" variant={'outline'} onClick={handleStartGuide}>
+							Начать обучение
+						</Button>
+					</DialogFooter>
 				</DialogContent>
-				<DialogFooter className="flex flex-row items-center justify-center gap-4">
-					<Button className="py-1 px-3 text-xl" variant={'secondary'} onClick={handleSkipGuide}>
-						Пропустить обучение
-					</Button>
-					<Button className="py-1 px-3 text-xl" variant={'outline'} onClick={handleStartGuide}>
-						Начать обучение
-					</Button>
-				</DialogFooter>
 			</Dialog>
 		</>
 	)

@@ -1,0 +1,52 @@
+.card {
+	@apply flex flex-col gap-3 p-6 bg-card rounded-layout;
+
+	.header {
+		@apply text-2xl;
+	}
+
+	.hr {
+		@apply border-gray-500;
+
+		border-width: 1px;
+	}
+
+	.body {
+		.rows {
+			@apply flex flex-col justify-start gap-4;
+
+			.row {
+				@apply flex flex-row flex-nowrap items-center justify-start;
+
+				.label {
+					@apply text-xl;
+					flex-basis: 125px;
+				}
+
+				.value {
+					@apply flex flex-row justify-start items-center gap-3 text-xl;
+
+					.online {
+						@apply text-primary;
+					}
+
+					.offline {
+						@apply text-destructive;
+					}
+
+					.copyable {
+						@apply text-xl;
+					}
+
+					.link {
+						@apply text-xl;
+					}
+
+					.avatarGroup {
+						@apply ml-2;
+					}
+				}
+			}
+		}
+	}
+}

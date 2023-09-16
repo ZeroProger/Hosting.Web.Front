@@ -1,10 +1,11 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 import { scrollTo } from '@/shared/lib/utils'
 import { ServerUrls } from '@/shared/routes/urls'
+import { Button } from '@/shared/ui/button'
 
 import styles from './styles.module.scss'
 
@@ -64,20 +65,24 @@ export function About() {
 					animate={{ scale: 1, opacity: 1 }}
 					transition={{ delay: 2.5, duration: 0.4 }}
 				>
-					<Link href={ServerUrls.create()}>Создать сервер</Link>
+					<Button asChild>
+						<Link href={ServerUrls.createServer()}>Создать сервер</Link>
+					</Button>
 				</motion.div>
-				<motion.button
-					type="button"
-					onClick={() => {
-						scrollTo('pricing')
-					}}
+				<motion.div
 					className={styles.scrollLink}
 					initial={{ scale: 0, opacity: 0 }}
 					animate={{ scale: 1, opacity: 1 }}
 					transition={{ delay: 2.8, duration: 0.4 }}
 				>
-					Наши тарифы
-				</motion.button>
+					<Button
+						onClick={() => {
+							scrollTo('pricing')
+						}}
+					>
+						Наши тарифы
+					</Button>
+				</motion.div>
 			</div>
 		</motion.div>
 	)

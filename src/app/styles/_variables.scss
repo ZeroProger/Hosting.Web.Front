@@ -20,6 +20,19 @@
     --input: 240 5.9% 90%;
     --ring: 142.1 76.2% 36.3%;
     --radius: 0.5rem;
+
+    // z-index
+    --z-index-header: 100;
+    --z-index-modal: 1000;
+    --z-index-menu: 150;
+    --z-index-select: 50;
+
+    // container
+    --container-max-width: 1760px;
+
+    // scrollbar
+		--scrollbar: 217.2 91.2% 59.8%;
+		--scrollbar-hover: 217, 91%, 50%;
   }
  
   .dark {

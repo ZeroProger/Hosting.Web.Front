@@ -1,7 +1,7 @@
-import { MainProvider } from '@/app/providers/main-provider'
 import { Rubik } from 'next/font/google'
 
-import '@/app/(styles)/globals.scss'
+import { MainProvider } from '@/app/providers/main-provider'
+import '@/app/styles/_globals.scss'
 
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'

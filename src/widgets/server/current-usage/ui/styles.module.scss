@@ -1,7 +1,7 @@
-@import 'styles/mixins.scss';
+@import '@/app/styles/_mixins.scss';
 
 .card {
-	@apply flex flex-col gap-3 p-6 bg-backgroundLight rounded-layout;
+	@apply flex flex-col gap-3 p-6 bg-card rounded-layout;
 
 	.header {
 		@apply text-2xl;
