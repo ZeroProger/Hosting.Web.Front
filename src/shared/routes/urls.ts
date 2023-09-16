@@ -1,3 +1,6 @@
+import { SearchModsQuery } from '../api/curse-forge'
+import { searchModsBaseQuery } from '../config/mods'
+
 export const ServerUrls = {
 	server: {
 		overview: (slug: string) => `/servers/${slug}/overview`,
@@ -37,10 +40,18 @@ export const ModUrls = {
 	files: (id: number | string) => `/mods/${id}/files`,
 	images: (id: number | string) => `/mods/${id}/images`,
 	relations: (id: number | string) => `/mods/${id}/relations`,
-	search: (query?: ISearchModsQuery) => {
-		const resultQuery: ISearchModsQuery = { ...searchModsBaseQuery, ...query }
-		const resultQueryString = new URLSearchParams(resultQuery).toString()
-	
+	search: (query?: SearchModsQuery) => {
+		const resultQuery: SearchModsQuery = { ...searchModsBaseQuery, ...query }
+		const resultQueryString = Object.entries(resultQuery)
+			.filter((item) => item[1])
+			.map(
+				(item, index) =>
+					`${index === 0 ? '?' : ''}${item[0]}=${item[1]}${
+						index !== Object.keys(resultQuery).length - 1 ? '&' : ''
+					}`
+			)
+			.join('')
+
 		return `/mods/search${resultQueryString}`
 	},
 }

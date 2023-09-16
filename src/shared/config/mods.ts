@@ -1,4 +1,4 @@
-import { SearchModsRequest } from '@/shared/api/curse-forge'
+import { SearchModsQuery, SearchModsRequest } from '@/shared/api/curse-forge'
 
 import { CForgeModClassType } from './curse-forge'
 
@@ -8,6 +8,13 @@ export const searchModsBaseRequest: SearchModsRequest = {
 	sortOrder: 'desc',
 	index: 0,
 	pageSize: 12,
+}
+
+export const searchModsBaseQuery: SearchModsQuery = {
+	sortField: 1,
+	sortOrder: 'desc',
+	index: 0,
+	pageSize: 20,
 }
 
 export const popularModsRequest: SearchModsRequest = {

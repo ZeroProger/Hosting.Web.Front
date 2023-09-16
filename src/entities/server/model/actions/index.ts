@@ -1,15 +1,20 @@
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
 
-import { toastError } from '@/shared/lib/react-toastify/toast-error'
 
-import { ServerService } from '../../service'
-import { ServerRequest, ServerStartRequest } from '../../types/requests'
+
+import { toastError } from '@/shared/lib/react-toastify/toast-error';
+
+
+
+import { ServerService } from '../../service';
+import { ServerRequest, ServerStartRequest } from '../../types/requests';
+
 
 export async function getServer({ gameServerHash }: ServerRequest) {
 	try {
 		if (!gameServerHash) throw new Error('gameServerHash не указан')
 
-		const response = await ServerService.compositor.getServerByHash(String(gameServerHash))
+		const response = await ServerService.server(gameServerHash)
 
 		return response.data
 	} catch (error) {
@@ -22,18 +27,11 @@ export async function startServer({ gameServerHash }: ServerStartRequest) {
 	try {
 		if (!gameServerHash) throw new Error('gameServerHash не указан')
 
-		const startContainerResponse = await ServerService.compositor.startServerContainer({
+		const response = await ServerService.start({
 			gameServerHash,
 		})
 
-		if (!startContainerResponse.data.success) throw new Error('Не удалось запустить контейнер')
-
-		const startGameServerResponse = await ServerService.controller.startGameServer({
-			gameServerHash,
-		})
-
-		if (!startGameServerResponse.data.success)
-			throw new Error('Не удалось запустить игровой сервер')
+		if (!response.data.success) throw new Error('Не удалось запустить сервер')
 
 		window.location.reload()
 		toast.success('Сервер запущен')
@@ -47,12 +45,11 @@ export async function stopServer({ gameServerHash }: ServerRequest) {
 	try {
 		if (!gameServerHash) throw new Error('gameServerHash не указан')
 
-		const stopGameServerResponse = await ServerService.controller.stopGameServer({
+		const response = await ServerService.stop({
 			gameServerHash,
 		})
 
-		if (!stopGameServerResponse.data.success)
-			throw new Error('Не удалось остановить игровой сервер')
+		if (!response.data.success) throw new Error('Не удалось остановить сервер')
 
 		window.location.reload()
 

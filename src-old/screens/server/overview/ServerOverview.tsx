@@ -1,22 +1,17 @@
-import { Modal, useModal } from '@nextui-org/react'
+import { useModal } from '@nextui-org/react'
 import { useRouter } from 'next/router'
 import { FC, useState } from 'react'
 import Joyride from 'react-joyride'
 
+import styles from './ServerOverview.module.scss'
 import ServerActivePlayers from '@/components/server-active-players/ServerActivePlayers'
 import ServerCurrentUsage from '@/components/server-current-usage/ServerCurrentUsage'
 import ServerMainInfo from '@/components/server-main-info/ServerMainInfo'
 import ServerMiniConsole from '@/components/server-mini-console/ServerMiniConsole'
-
-import useLocalStorage from '@/hooks/useLocalStorage'
-import { useTypedSelector } from '@/hooks/useTypedSelector'
-
-import Meta from '@/utils/meta/Meta'
-
 import { joyrideStylesOptions, joyrideStylesTooltip } from '@/config/constants'
 import { getServerPlayersUrl } from '@/config/url.config'
-
-import styles from './ServerOverview.module.scss'
+import useLocalStorage from '@/hooks/useLocalStorage'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 interface IServerOverview {}
 
@@ -98,66 +93,25 @@ const ServerOverview: FC<IServerOverview> = () => {
 					},
 				]}
 			/>
-			<Modal
-				{...bindings}
-				className={styles.guideModal}
-				aria-labelledby="Ознакомление с панелью управления сервером"
-				width="600px"
-			>
-				<Modal.Header className={styles.guideModalHeader}>
-					Ознакомление с панелью управления сервером
-				</Modal.Header>
-				<Modal.Body className={styles.guideModalBody}>
-					<p>Поздравляем вас с созданием собственного сервера!</p>
-					<p>
-						Предлагаем вам пройти обучение и ознакомиться с возможностями панели управления игровым
-						сервером.
-					</p>
-					<p>Вы научитесь:</p>
-					<ul>
-						<li>Быстро ориентироваться в информации о вашем игровом сервере</li>
-						<li>Создавать и останавливать сервер</li>
-						<li>Управлять игроками</li>
-						<li>Устанавливать модификации</li>
-						<li>Взаимодействовать с консолью управления игровым сервером</li>
-						<li>Настраивать основной файл конфигурации игрового сервера</li>
-					</ul>
-				</Modal.Body>
-				<Modal.Footer className={styles.guideModalFooter}>
-					<button type="button" className={styles.skipGuideBtn} onClick={handleSkipGuide}>
-						Пропустить обучение
-					</button>
-					<button type="button" className={styles.startGuideBtn} onClick={handleStartGuide}>
-						Начать обучение
-					</button>
-				</Modal.Footer>
-			</Modal>
-			<Meta
-				title={
-					server
-						? `Основная информация о сервере ${server.gameServerName}`
-						: 'Основная информация о сервере'
-				}
-			>
-				<div className={styles.container}>
-					<div className={styles.column}>
-						<div className="main-info">
-							<ServerMainInfo />
-						</div>
-						<div className="active-players">
-							<ServerActivePlayers />
-						</div>
+
+			<div className={styles.container}>
+				<div className={styles.column}>
+					<div className="main-info">
+						<ServerMainInfo />
 					</div>
-					<div className={styles.column}>
-						<div className="mini-console">
-							<ServerMiniConsole />
-						</div>
-						<div className="current-usage">
-							<ServerCurrentUsage />
-						</div>
+					<div className="active-players">
+						<ServerActivePlayers />
 					</div>
 				</div>
-			</Meta>
+				<div className={styles.column}>
+					<div className="mini-console">
+						<ServerMiniConsole />
+					</div>
+					<div className="current-usage">
+						<ServerCurrentUsage />
+					</div>
+				</div>
+			</div>
 		</>
 	)
 }

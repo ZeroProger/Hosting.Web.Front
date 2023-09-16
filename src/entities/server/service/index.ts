@@ -1,16 +1,7 @@
 // import { serverActivePlayers } from 'fakeData/users.data'
 import { axiosAuth } from '@/shared/api/auth'
+import { ServerApiUrls } from '@/shared/api/urls'
 
-import {
-	getCreateServerUrl,
-	getRemoveServerUrl,
-	getServersUrl,
-	getStartGameServerUrl,
-	getStartServerUrl,
-	getStopGameServerUrl,
-	getStopServerUrl,
-	getUpdateServerUrl,
-} from '../config/api'
 import { serverConsole, serverCurrentUsage, serverMainInfo, serverProperties } from '../fakeData'
 import { Server } from '../types'
 import {
@@ -33,62 +24,52 @@ import {
 } from '../types/requests'
 
 export const ServerService = {
-	compositor: {
-		createServer(data: ServerCreateRequest) {
-			return axiosAuth().post<ServerCreateResponse>(getCreateServerUrl(), data)
-		},
-
-		getServerByHash(hash: string) {
-			return axiosAuth().post<Server>(getServersUrl(hash))
-		},
-
-		getServers(data: ServerListRequest) {
-			return axiosAuth().post<ServerListResponse>(getServersUrl(), data)
-		},
-
-		startServer(data: ServerStartRequest) {
-			return axiosAuth().post<ServerStartResponse>(getStartServerUrl(), data)
-		},
-
-		stopServer(data: ServerStopRequest) {
-			return axiosAuth().post<ServerStopResponse>(getStopServerUrl(), data)
-		},
-
-		removeServer(data: ServerRemoveRequest) {
-			return axiosAuth().post<ServerRemoveResponse>(getRemoveServerUrl(), data)
-		},
-
-		updateServer(data: ServerUpdateRequest) {
-			return axiosAuth().post<ServerUpdateResponse>(getUpdateServerUrl(), data)
-		},
+	create(data: ServerCreateRequest) {
+		return axiosAuth().post<ServerCreateResponse>(ServerApiUrls.create(), data)
 	},
-	controller: {
-		startGameServer(data: ServerStartRequest) {
-			return axiosAuth().post<ServerStartResponse>(getStartGameServerUrl(), data)
-		},
 
-		stopGameServer(data: ServerStopRequest) {
-			return axiosAuth().post<ServerStopResponse>(getStopGameServerUrl(), data)
-		},
+	server(hash: string) {
+		return axiosAuth().post<Server>(ServerApiUrls.server(hash))
+	},
 
-		// getServerActivePlayers(data: ActivePlayersRequest) {
-		// 	return serverActivePlayers
-		// },
+	servers(data: ServerListRequest) {
+		return axiosAuth().post<ServerListResponse>(ServerApiUrls.servers(), data)
+	},
 
-		getServerCurrentUsage(data: ServerCurrentUsageRequest) {
-			return serverCurrentUsage
-		},
+	start(data: ServerStartRequest) {
+		return axiosAuth().post<ServerStartResponse>(ServerApiUrls.start(), data)
+	},
 
-		getServerConsole(data: ServerConsoleRequest) {
-			return serverConsole
-		},
+	stop(data: ServerStopRequest) {
+		return axiosAuth().post<ServerStopResponse>(ServerApiUrls.stop(), data)
+	},
 
-		getServerMainInfo(data: ServerMainInfoRequest) {
-			return serverMainInfo
-		},
+	remove(data: ServerRemoveRequest) {
+		return axiosAuth().post<ServerRemoveResponse>(ServerApiUrls.remove(), data)
+	},
 
-		getServerProperties(data: ServerPropertiesRequest) {
-			return serverProperties
-		},
+	update(data: ServerUpdateRequest) {
+		return axiosAuth().post<ServerUpdateResponse>(ServerApiUrls.update(), data)
+	},
+
+	// #TODO entities/player
+	// getServerActivePlayers(data: ActivePlayersRequest) {
+	// 	return serverActivePlayers
+	// },
+
+	currentUsage(data: ServerCurrentUsageRequest) {
+		return serverCurrentUsage
+	},
+
+	console(data: ServerConsoleRequest) {
+		return serverConsole
+	},
+
+	mainInfo(data: ServerMainInfoRequest) {
+		return serverMainInfo
+	},
+
+	properties(data: ServerPropertiesRequest) {
+		return serverProperties
 	},
 }

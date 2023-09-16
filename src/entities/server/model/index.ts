@@ -1,9 +1,14 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
-import { Server } from '../types'
-import { ServerRequest, ServerStartRequest, ServerStopRequest } from '../types/requests'
 
-import { getServer, startServer, stopServer } from './actions'
+
+import { Server } from '../types';
+import { ServerRequest, ServerStartRequest, ServerStopRequest } from '../types/requests';
+
+
+
+import { getServer, startServer, stopServer } from './actions';
+
 
 export interface ServerState {
 	server: Server | null
@@ -15,15 +20,15 @@ export interface ServerState {
 }
 
 export interface ServerAction {
-	getServer: (request: ServerRequest) => void
-	startServer: (request: ServerStartRequest) => void
-	stopServer: (request: ServerStopRequest) => void
+	get: (request: ServerRequest) => void
+	start: (request: ServerStartRequest) => void
+	stop: (request: ServerStopRequest) => void
 }
 
 export const useServer = create<ServerState & ServerAction>((set) => ({
 	server: null,
 	isLoading: false,
-	async getServer({ gameServerHash }) {
+	async get({ gameServerHash }) {
 		set(() => ({ isLoading: true }))
 		try {
 			const server = await getServer({ gameServerHash })
@@ -35,14 +40,14 @@ export const useServer = create<ServerState & ServerAction>((set) => ({
 			set(() => ({ isLoading: false }))
 		}
 	},
-	async startServer({ gameServerHash }) {
+	async start({ gameServerHash }) {
 		set(() => ({ isLoading: true }))
 
 		await startServer({ gameServerHash })
 
 		set(() => ({ isLoading: false }))
 	},
-	async stopServer({ gameServerHash }) {
+	async stop({ gameServerHash }) {
 		set(() => ({ isLoading: true }))
 
 		await stopServer({ gameServerHash })

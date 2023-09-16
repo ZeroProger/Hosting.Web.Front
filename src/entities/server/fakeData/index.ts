@@ -1,17 +1,12 @@
-import {
-	FileNode,
-	ServerConsoleLine,
-	ServerConsoleLineType,
-	ServerCurrentUsageItem,
-	ServerMainInfo,
-	ServerProperty,
-	ServerPropertyType,
-} from '../types'
+import { FileNode, ServerConsoleLine, ServerConsoleLineType, ServerCurrentUsageItem, ServerMainInfo, ServerProperty, ServerPropertyType } from '../types';
 
-import image1 from '@/assets/images/head1.webp'
-import image2 from '@/assets/images/head2.png'
-import image3 from '@/assets/images/head3.webp'
-import image4 from '@/assets/images/head4.webp'
+
+
+import image1 from '@/assets/images/head1.webp';
+import image2 from '@/assets/images/head2.png';
+import image3 from '@/assets/images/head3.webp';
+import image4 from '@/assets/images/head4.webp';
+
 
 export const serverMainInfo: ServerMainInfo[] = [
 	{

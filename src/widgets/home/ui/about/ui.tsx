@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 import Link from 'next/link'
 
-import { ServerUrls } from '@/shared/routes/urls'
 import { scrollTo } from '@/shared/lib/utils'
+import { ServerUrls } from '@/shared/routes/urls'
 
 import styles from './styles.module.scss'
 
@@ -64,7 +64,7 @@ export function About() {
 					animate={{ scale: 1, opacity: 1 }}
 					transition={{ delay: 2.5, duration: 0.4 }}
 				>
-					<Link href={ServerUrls.createServer()}>Создать сервер</Link>
+					<Link href={ServerUrls.create()}>Создать сервер</Link>
 				</motion.div>
 				<motion.button
 					type="button"
