@@ -37,6 +37,12 @@ export const ModUrls = {
 	files: (id: number | string) => `/mods/${id}/files`,
 	images: (id: number | string) => `/mods/${id}/images`,
 	relations: (id: number | string) => `/mods/${id}/relations`,
+	search: (query?: ISearchModsQuery) => {
+		const resultQuery: ISearchModsQuery = { ...searchModsBaseQuery, ...query }
+		const resultQueryString = new URLSearchParams(resultQuery).toString()
+	
+		return `/mods/search${resultQueryString}`
+	},
 }
 
 export const AuthUrls = {
@@ -64,4 +70,8 @@ export const SubscriptionUrls = {
 export const GameUrls = {
 	games: () => '/games',
 	game: (gameId: number) => `/games/${gameId}`,
+}
+
+export const AdminUrls = {
+	dashboard: () => '/dashboard',
 }

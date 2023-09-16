@@ -1,4 +1,4 @@
-import { MainProvider } from 'app/(providers)/main-provider'
+import { MainProvider } from '@/app/providers/main-provider'
 import { Rubik } from 'next/font/google'
 
 import '@/app/(styles)/globals.scss'

@@ -11,15 +11,7 @@ export const getServerModsUrl = () => `/servers/mods`
 
 export const getServerModSearchUrl = (query?: ISearchModsQuery) => {
 	const resultQuery: ISearchModsQuery = { ...searchModsBaseQuery, ...query }
-	const resultQueryString = Object.entries(resultQuery)
-		.filter((item) => item[1])
-		.map(
-			(item, index) =>
-				`${index === 0 ? '?' : ''}${item[0]}=${item[1]}${
-					index !== Object.keys(resultQuery).length - 1 ? '&' : ''
-				}`
-		)
-		.join('')
+	const resultQueryString = new URLSearchParams(resultQuery).toString()
 
 	return `/servers/mods/search${resultQueryString}`
 }

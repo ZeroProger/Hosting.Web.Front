@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-import { ServerUrls } from '@/shared/config/url.config'
+import { ServerUrls } from '@/shared/routes/urls'
 import { scrollTo } from '@/shared/lib/utils'
 
 import styles from './styles.module.scss'
