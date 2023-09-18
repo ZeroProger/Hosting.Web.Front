@@ -1,3 +1,5 @@
+'use client'
+
 import loadable, { LoadableComponent } from '@loadable/component'
 import { memo } from 'react'
 import { IconBaseProps } from 'react-icons'
@@ -21,7 +23,9 @@ export const Icon = memo(function Icon({ name, ...props }: typesPropsIcon): JSX.
 	const ElementIcon: LoadableComponent<IconBaseProps> = loadable(
 		() => import(`react-icons/${lib}/index.js`),
 		{
-			resolveComponent: (el: JSX.Element) => el[clearName as keyof JSX.Element],
+			resolveComponent: (el: JSX.Element) => {
+				return el[clearName as keyof JSX.Element]
+			},
 		}
 	)
 

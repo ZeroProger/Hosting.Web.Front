@@ -10,11 +10,11 @@ import { ServerMainInfo } from '@/entities/server/types'
 // #TODO Avata
 import { Icon } from '@/shared/ui/icon'
 
-import { useServer } from '@/entities/server/model'
-import { ServerService } from '@/entities/server/service'
+import { useServer } from '@/entities/server/store'
 import { ServerUrls } from '@/shared/routes/urls'
 import { isUndefined } from '@/shared/utils/isUndefined'
-import { getServerOverviewUrl } from '../../../../../src-old/config/url.config'
+//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
+import { ServerService } from 'services-temp/server-service'
 import styles from './styles.module.scss'
 
 const ServerMainInfo: FC = () => {
@@ -90,7 +90,7 @@ const ServerMainInfo: FC = () => {
 																server.gameServerHash,
 																'vanila' /*server.software.slug*/
 														  )
-														: getServerOverviewUrl(server.gameServerHash)
+														: ServerUrls.server.overview(server.gameServerHash)
 												}
 												className={styles.link}
 											>

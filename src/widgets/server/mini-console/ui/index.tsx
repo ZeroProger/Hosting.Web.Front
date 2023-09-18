@@ -6,8 +6,9 @@ import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { CallBackProps } from 'react-joyride'
 
-import { useServer } from '@/entities/server/model'
-import { ServerService } from '@/entities/server/service'
+//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
+import { ServerService } from 'services-temp/server-service'
+import { useServer } from '@/entities/server/store'
 import { ServerConsoleLine, ServerConsoleLineType } from '@/entities/server/types'
 
 import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
@@ -69,17 +70,7 @@ export function ServerMiniConsole({ fullConsole }: IServerMiniConsole) {
 
 	return (
 		<>
-			{fullConsole && (
-				<JoyrideGuide
-					steps={consoleSteps}
-					callback={onGuideFinish}
-					continuous
-					disableOverlayClose
-					hideBackButton
-					hideCloseButton
-					scrollOffset={150}
-				/>
-			)}
+			{fullConsole && <JoyrideGuide steps={consoleSteps} callback={onGuideFinish} />}
 			<div
 				className={clsx(styles.card, { [styles.fullConsole]: fullConsole })}
 				id="server-console-step"

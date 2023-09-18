@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { CallBackProps } from 'react-joyride'
 
-import { useServer } from '@/entities/server/model'
+import { useServer } from '@/entities/server/store'
 
 import { JoyrideGuide, overviewSteps } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'
@@ -25,7 +25,7 @@ export function ServerOverview() {
 	return (
 		<>
 			<JoyrideGuide steps={overviewSteps} callback={onGuideFinish} />
-			<div className={styles.container}>
+			<section className={styles.container}>
 				<div className={styles.column}>
 					<div className="main-info">
 						<ServerMainInfo />
@@ -42,7 +42,7 @@ export function ServerOverview() {
 						<ServerCurrentUsage />
 					</div>
 				</div>
-			</div>
+			</section>
 		</>
 	)
 }

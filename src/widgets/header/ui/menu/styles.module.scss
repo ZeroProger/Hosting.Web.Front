@@ -1,8 +1,10 @@
 .container {
-	@apply top-0 left-0 fixed bg-background opacity-0 invisible md:hidden;
+	@apply top-0 left-0 fixed bg-background z-menu opacity-0 invisible md:hidden;
 
 	width: 100dvw;
 	height: 100dvh;
+
+	transition: height 0.2s linear;
 
 	&.open {
 		@apply opacity-100 visible;

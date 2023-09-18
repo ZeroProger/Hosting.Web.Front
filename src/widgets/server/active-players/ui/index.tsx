@@ -3,9 +3,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment, useEffect, useState } from 'react'
+//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
+import { ServerService } from 'services-temp/server-service'
 
-import { useServer } from '@/entities/server/model'
-import { ServerService } from '@/entities/server/service'
+import { useServer } from '@/entities/server/store'
 
 import { IPlayer } from '@/shared/api/common'
 import { ServerUrls } from '@/shared/routes/urls'

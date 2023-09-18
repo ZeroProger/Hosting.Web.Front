@@ -1,4 +1,5 @@
 import { Rubik } from 'next/font/google'
+import 'react-toastify/dist/ReactToastify.css'
 
 import { MainProvider } from '@/app/providers/main-provider'
 import '@/app/styles/_globals.scss'

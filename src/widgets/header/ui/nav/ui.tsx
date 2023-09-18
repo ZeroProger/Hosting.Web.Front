@@ -12,11 +12,14 @@ export function Nav() {
 	const pathname = usePathname()
 
 	return (
-		<nav className="">
-			<ul className="">
+		<nav className={styles.container}>
+			<ul className={styles.list}>
 				{items.map((item) => (
-					<li key={item.url} className="">
-						<Link href={item.url} className={cn('', { [styles.active]: pathname === item.url })}>
+					<li key={item.url} className={styles.item}>
+						<Link
+							href={item.url}
+							className={cn(styles.link, { [styles.active]: pathname === item.url })}
+						>
 							{item.label}
 						</Link>
 					</li>

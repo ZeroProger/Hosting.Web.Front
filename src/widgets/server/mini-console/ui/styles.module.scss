@@ -54,13 +54,13 @@
 				}
 
 				&.warn {
-					@apply bg-yellow-600 text-yellow-400;
+					@apply bg-warn text-warn-foreground;
 
 					.info {
-						@apply text-yellow-400;
+						@apply text-warn-foreground;
 
 						.message {
-							@apply text-yellow-400;
+							@apply text-warn-foreground;
 						}
 					}
 				}

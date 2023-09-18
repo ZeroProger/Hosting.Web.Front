@@ -1,0 +1,21 @@
+.container {
+	.list {
+		@apply flex items-center gap-4 flex-nowrap;
+
+		.item {
+			.link {
+				@apply text-xl whitespace-nowrap;
+
+				&.active {
+					@apply border-b-primary transition-all duration-300;
+
+					border-bottom-width: 2px;
+				}
+
+				&:hover {
+					@apply text-primary;
+				}
+			}
+		}
+	}
+}

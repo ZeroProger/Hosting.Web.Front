@@ -1,0 +1,15 @@
+.container {
+	@apply w-full bg-background;
+
+	.headerContainer {
+		@apply content-container p-6 pb-0;
+	}
+
+	.contentContainer {
+		@apply w-full bg-background;
+
+		.content {
+			@apply content-container;
+		}
+	}
+}

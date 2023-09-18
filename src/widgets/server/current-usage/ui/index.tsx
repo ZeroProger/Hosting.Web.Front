@@ -2,8 +2,9 @@
 
 import { FC, useEffect, useState } from 'react'
 
-import { useServer } from '@/entities/server/model'
-import { ServerService } from '@/entities/server/service'
+import { useServer } from '@/entities/server/store'
+//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
+import { ServerService } from 'services-temp/server-service'
 import { ServerCurrentUsageItem } from '@/entities/server/types'
 
 import { Progress } from '@/shared/ui/progress'
@@ -32,14 +33,18 @@ const ServerCurrentUsage: FC = () => {
 				<div className={styles.lines}>
 					{currentUsage.map((item) => (
 						<div key={item.label} className={styles.line}>
-							<div className="w-5 h-5 rounded-full" style={{ backgroundColor: item.color }} />
-							<div className={styles.label}>{item.label}</div>
-							<div className={styles.value}>
-								{item.isPercent
-									? `${item.value} %`
-									: `${item.value} / ${item.maxValue} ${item.valueUnit}`}
+							<div className={styles.progress}>
+								<div className={styles.label}>
+									<span className={styles.dot} style={{ backgroundColor: item.color }} />
+									<span>{item.label}</span>
+								</div>
+								<div className={styles.value}>
+									{item.isPercent
+										? `${item.value} %`
+										: `${item.value} / ${item.maxValue} ${item.valueUnit}`}
+								</div>
 							</div>
-							<Progress value={item.value} max={item.maxValue} className={styles.progress} />
+							<Progress value={item.value} max={item.maxValue} indicatorColor={item.color} />
 						</div>
 					))}
 				</div>

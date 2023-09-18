@@ -24,3 +24,7 @@ $media: (
 		}
 	}
 }
+
+@function hexToRGBString($hexColor, $alpha) {
+	@return inspect(rgba($hexColor, $alpha));
+}
