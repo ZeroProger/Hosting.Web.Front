@@ -56,10 +56,10 @@ export function JoyrideGuide({
 						<li>Настраивать основной файл конфигурации игрового сервера</li>
 					</ul>
 					<DialogFooter className="flex flex-row items-center justify-center gap-4">
-						<Button className="py-1 px-3 text-xl" variant={'secondary'} onClick={handleSkipGuide}>
+						<Button className="py-1 px-3 text-xl" variant='outline' onClick={handleSkipGuide}>
 							Пропустить обучение
 						</Button>
-						<Button className="py-1 px-3 text-xl" variant={'outline'} onClick={handleStartGuide}>
+						<Button className="py-1 px-3 text-xl" variant='primary' onClick={handleStartGuide}>
 							Начать обучение
 						</Button>
 					</DialogFooter>

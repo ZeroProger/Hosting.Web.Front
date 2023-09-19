@@ -1,24 +1,26 @@
 @import '@/app/styles/_mixins.scss';
 
 .header {
-	@apply sticky w-full bg-background top-0 left-0 right-0 z-header;
+	@apply sticky w-full bg-card top-0 left-0 right-0 z-header mb-5;
 
 	transition: transform 0.3s;
 
-	&.fixed {
-		transform: translateY(-100%);
-
-		@include md(lg, 'max') {
-			transform: translateX(0%);
-		}
+	&.landscape {
+		position: fixed;
+		-webkit-backdrop-filter: blur(7px);
+		backdrop-filter: blur(7px);
+		background-color: hexToRGBString(#192024, 0.5);
+		box-shadow: 0 5px 15px 10px hexToRGBString(#192024, 0.5);
 	}
 
-	&.landscape {
-		@apply absolute;
+	&:not(.landscape) {
+		&.fixed {
+			transform: translateY(-100%);
 
-		-webkit-backdrop-filter: blur(15px);
-		backdrop-filter: blur(15px);
-		background-color: hexToRGBString(#192024, 0.3);
+			@include md(lg, 'max') {
+				transform: translateX(0%);
+			}
+		}
 	}
 
 	.content {

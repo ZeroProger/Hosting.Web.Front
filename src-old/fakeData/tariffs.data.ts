@@ -96,7 +96,7 @@ export const groupedTariffs: IGameTariffs[] = [
 				id: 3,
 				gameId: 1,
 				name: 'Classic / Standard',
-				description: 'Тариф для большого количетва игроков',
+				description: 'Тариф для большого количества игроков',
 				minSlots: 0,
 				maxSlots: 100,
 				monthPrice: 100,

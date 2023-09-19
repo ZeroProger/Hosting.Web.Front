@@ -1,3 +1,41 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
+import { features } from '@/shared/$fake-data$/features.data'
+import { SubHeading } from '@/shared/ui/heading'
+import { Icon } from '@/shared/ui/icon'
+
+import styles from './styles.module.scss'
+
 export function Features() {
-	return
+	return (
+		<div className={styles.container}>
+			<SubHeading className="text-4xl sm:text-5xl text-foreground mb-8">Наши фишки</SubHeading>
+			<div className={styles.features}>
+				{features.map((feature, index) => (
+					<motion.div
+						key={feature.id}
+						className={styles.feature}
+						initial={{ scale: 0, opacity: 0 }}
+						whileInView={{ scale: 1, opacity: 1 }}
+						viewport={{ once: true, amount: 'all' }}
+						transition={{
+							delay: Math.random() * 0.4 * (index % 3),
+							duration: 0.4,
+							ease: 'backInOut',
+						}}
+					>
+						<div className={styles.icon}>
+							<Icon name={feature.icon} size={80} color={'hsl(var(--primary))'} />
+						</div>
+						<div className={styles.text}>
+							<div className={styles.title}>{feature.title}</div>
+							<p className={styles.description}>{feature.description}</p>
+						</div>
+					</motion.div>
+				))}
+			</div>
+		</div>
+	)
 }

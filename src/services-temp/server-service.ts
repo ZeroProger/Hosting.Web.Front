@@ -1,13 +1,6 @@
 import { axiosAuth } from '@/shared/api/auth'
 import { ServerApiUrls } from '@/shared/api/urls'
 
-import {
-	serverActivePlayers,
-	serverConsole,
-	serverCurrentUsage,
-	serverMainInfo,
-	serverProperties,
-} from '../entities/server/$-fakeData'
 import { Server } from '../entities/server/types'
 import {
 	ServerActivePlayersRequest,
@@ -28,6 +21,13 @@ import {
 	ServerUpdateRequest,
 	ServerUpdateResponse,
 } from '../entities/server/types/requests'
+import {
+	serverActivePlayers,
+	serverConsole,
+	serverCurrentUsage,
+	serverMainInfo,
+	serverProperties,
+} from '../shared/$fake-data$/server.data'
 
 export const ServerService = {
 	create(data: ServerCreateRequest) {

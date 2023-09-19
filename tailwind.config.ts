@@ -21,6 +21,7 @@ const config: Config = {
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
+				home: 'hsl(var(--home))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
@@ -83,6 +84,7 @@ const config: Config = {
 				sm: 'calc(var(--radius) - 4px)',
 				xs: 'calc(var(--radius) - 6px)',
 				layout: 'var(--radius)',
+				button: '1.25rem',
 			},
 			keyframes: {
 				'accordion-down': {

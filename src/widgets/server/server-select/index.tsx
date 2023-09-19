@@ -39,7 +39,7 @@ export function ServerSelect({ servers }: { servers: Server[] }) {
 			defaultValue={defaultServer ? defaultServer.gameServerHash : undefined}
 			onValueChange={handleSelect}
 		>
-			<SelectTrigger className="w-full text-xl">
+			<SelectTrigger className="w-full text-xl px-4 bg-transparent border-none ring-2 ring-foreground/50 ring-offset-0 rounded-2xl">
 				<SelectValue>{server ? server.gameServerName : 'Выберите сервер'}</SelectValue>
 			</SelectTrigger>
 			<SelectContent sideOffset={6}>

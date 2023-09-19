@@ -21,6 +21,7 @@
 		--border: 240 5.9% 90%;
 		--input: 240 5.9% 90%;
 		--ring: 142.1 76.2% 36.3%;
+
 		--radius: 0.5rem;
 
 		// z-index
@@ -33,12 +34,17 @@
 		--container-max-width: 1760px;
 
 		// scrollbar
-		--scrollbar: 217.2 91.2% 59.8%;
-		--scrollbar-hover: 217, 91%, 50%;
+		--scrollbar: 142.1 70.6% 45.3%;
+		--scrollbar-hover: 142.1 76.2% 36.3%;
+
+		//view units
+		--vw: 100vw;
+		--vh: 100vh;
 	}
 
 	.dark {
-		--background: 20 14.3% 4.1%;
+		--background: 120 8% 15%;
+		--home: 150 33% 2%;
 		--foreground: 0 0% 95%;
 		--card: 24 9.8% 10%;
 		--card-foreground: 0 0% 95%;

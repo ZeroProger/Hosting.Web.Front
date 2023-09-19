@@ -31,7 +31,7 @@ export function ServerHeader() {
 					<div className={styles.bars}>
 						<div className={styles.mainBar}>
 							<div className={styles.mainBarInfo}>
-								<Button onClick={handleGoBack} className={styles.backBtn}>
+								<Button onClick={handleGoBack} className={styles.backBtn} variant="default">
 									<Icon name="MdArrowBackIos" size={24} />
 								</Button>
 								<SubHeading className={styles.mainBarName}>{server.gameServerName}</SubHeading>
@@ -42,6 +42,7 @@ export function ServerHeader() {
 										className={styles.btnStop}
 										onClick={handleStopServer}
 										disabled={isLoading}
+										variant='destructive'
 									>
 										Остановить сервер
 										{/* {isLoading && <Loading color={'white'} />} */}
@@ -51,6 +52,7 @@ export function ServerHeader() {
 										className={styles.btnStart}
 										onClick={handleStartServer}
 										disabled={isLoading}
+										variant='primary'
 									>
 										Запустить сервер
 										{/* {isLoading && <Loading color={'white'} />} */}

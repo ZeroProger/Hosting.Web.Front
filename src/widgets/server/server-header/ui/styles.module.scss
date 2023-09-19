@@ -1,4 +1,6 @@
 .container {
+	@apply bg-transparent;
+
 	.bars {
 		@apply flex flex-col justify-start gap-5 border-b border-border;
 		padding-bottom: 1.25rem;

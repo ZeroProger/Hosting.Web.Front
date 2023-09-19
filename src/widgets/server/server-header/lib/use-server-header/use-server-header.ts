@@ -56,7 +56,6 @@ export function useServerHeader() {
 		isLoading,
 		isModalOpen,
 		functions: {
-			getServer,
 			handleModalOpen,
 			handleModalClose,
 			handleGoBack,

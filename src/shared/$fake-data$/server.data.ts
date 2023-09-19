@@ -13,7 +13,7 @@ import {
 	ServerMainInfo,
 	ServerProperty,
 	ServerPropertyType,
-} from '../types'
+} from '../../entities/server/types'
 
 export const serverMainInfo: ServerMainInfo[] = [
 	{

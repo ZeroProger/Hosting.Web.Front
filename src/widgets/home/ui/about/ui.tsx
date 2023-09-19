@@ -65,7 +65,7 @@ export function About() {
 					animate={{ scale: 1, opacity: 1 }}
 					transition={{ delay: 2.5, duration: 0.4 }}
 				>
-					<Button asChild>
+					<Button asChild variant="primary" className="text-xl">
 						<Link href={ServerUrls.createServer()}>Создать сервер</Link>
 					</Button>
 				</motion.div>
@@ -79,6 +79,8 @@ export function About() {
 						onClick={() => {
 							scrollTo('pricing')
 						}}
+						variant="primary"
+						className="text-xl"
 					>
 						Наши тарифы
 					</Button>

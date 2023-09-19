@@ -1,15 +1,19 @@
-.container {
-	@apply w-full bg-background;
+.wrapper {
+	@apply flex flex-col gap-5;
 
-	.headerContainer {
-		@apply content-container p-6 pb-0;
-	}
-
-	.contentContainer {
+	.container {
 		@apply w-full bg-background;
 
-		.content {
-			@apply content-container;
+		.headerContainer {
+			@apply content-container p-6 pb-0 bg-card rounded-layout;
+		}
+
+		.contentContainer {
+			@apply w-full bg-background;
+
+			.content {
+				@apply content-container;
+			}
 		}
 	}
 }

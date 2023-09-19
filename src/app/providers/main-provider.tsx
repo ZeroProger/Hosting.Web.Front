@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { QueryClientProvider } from 'react-query'
 
 import { queryClient } from '@/shared/lib/react-query'
@@ -12,6 +13,23 @@ import { ThemeProvider } from './theme-provider'
  * @returns {JSX.Element} Обертка содержащая в себе все провайдеры
  */
 export function MainProvider({ children }: { children: React.ReactNode }) {
+	const handleResize = () => {
+		const doc = document.documentElement
+
+		doc.style.setProperty('--vh', `${window.innerHeight}px`)
+		doc.style.setProperty('--vw', `${window.innerWidth}px`)
+	}
+
+	useEffect(() => {
+		handleResize()
+
+		window.addEventListener('resize', handleResize)
+
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
+	}, [])
+
 	return (
 		<ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
 			<QueryClientProvider client={queryClient}>

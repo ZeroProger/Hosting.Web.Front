@@ -1,4 +1,4 @@
-import { About } from '@/widgets/home/ui'
+import { About, Features, Qualities, TestBanner } from '@/widgets/home/ui'
 
 import styles from './home.module.scss'
 
@@ -7,10 +7,11 @@ export function Home() {
 		<section className={styles.container}>
 			<About />
 			<div className={styles.content}>
-				{/* <TestBanner />
-				<Pricing />
+				<TestBanner />
 				<Features />
-				<Qualities /> */}
+				<Qualities />
+				{/*<Pricing />
+				 */}
 			</div>
 		</section>
 	)
