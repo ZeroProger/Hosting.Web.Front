@@ -9,21 +9,11 @@
 			@apply flex flex-row flex-wrap justify-between items-center gap-5;
 			.mainBarInfo {
 				@apply flex flex-row flex-nowrap items-center gap-4;
-				.backBtn {
-					@apply bg-gray-800 rounded-full w-10 h-10 min-w-0 text-2xl;
 
-					&:hover {
-						@apply bg-input;
+				button {
+					svg {
+						@apply ml-[5px];
 					}
-
-					span {
-						@apply text-gray-400;
-						margin-left: 9px;
-					}
-				}
-
-				.mainBarName {
-					@apply text-3xl;
 				}
 			}
 

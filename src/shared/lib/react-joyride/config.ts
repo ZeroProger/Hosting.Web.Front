@@ -1,6 +1,6 @@
 export const joyrideStylesOptions: any = {
-	arrowColor: 'hsl(var(--background-light))',
-	backgroundColor: 'hsl(var(--background-light))',
+	arrowColor: 'hsl(var(--card))',
+	backgroundColor: 'hsl(var(--card))',
 	beaconSize: 36,
 	overlayColor: 'rgba(0, 0, 0, 0.5)',
 	primaryColor: 'hsl(var(--primary))',

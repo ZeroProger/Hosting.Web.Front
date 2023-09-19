@@ -5,8 +5,8 @@ import Joyride, { CallBackProps, Step } from 'react-joyride'
 import { Button } from '@/shared/ui/button'
 import { Dialog, DialogContent, DialogFooter, DialogHeader } from '@/shared/ui/dialog'
 
-import { useJoyrideGuide } from '../hooks'
 import { joyrideStylesOptions, joyrideStylesTooltip } from '../config'
+import { useJoyrideGuide } from '../hooks'
 
 import styles from './styles.module.scss'
 
@@ -35,10 +35,10 @@ export function JoyrideGuide({
 			/>
 			<Dialog open={modalVisible}>
 				<DialogContent
-					className="bg-backgroundLight border-lightGray border-2 w-[600px] text-xl text-left"
+					className="bg-card border-secondary border-2 w-[600px] text-xl text-left"
 					aria-labelledby="Ознакомление с панелью управления сервером"
 				>
-					<DialogHeader className="text-2xl">
+					<DialogHeader className="text-2xl sm:text-center">
 						Ознакомление с панелью управления сервером
 					</DialogHeader>
 					<p>Поздравляем вас с созданием собственного сервера!</p>
@@ -55,11 +55,19 @@ export function JoyrideGuide({
 						<li>Взаимодействовать с консолью управления игровым сервером</li>
 						<li>Настраивать основной файл конфигурации игрового сервера</li>
 					</ul>
-					<DialogFooter className="flex flex-row items-center justify-center gap-4">
-						<Button className="py-1 px-3 text-xl" variant='outline' onClick={handleSkipGuide}>
-							Пропустить обучение
+					<DialogFooter className="flex flex-row items-center sm:justify-center gap-4">
+						<Button
+							className="py-1 px-3 text-xl whitespace-nowrap"
+							variant="outline"
+							onClick={handleSkipGuide}
+						>
+							Пропустить
 						</Button>
-						<Button className="py-1 px-3 text-xl" variant='primary' onClick={handleStartGuide}>
+						<Button
+							className="py-1 px-3 text-xl whitespace-nowrap"
+							variant="primary"
+							onClick={handleStartGuide}
+						>
 							Начать обучение
 						</Button>
 					</DialogFooter>

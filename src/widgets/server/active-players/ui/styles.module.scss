@@ -7,7 +7,7 @@
 		}
 
 		.headerActions {
-			@apply flex items-center text-2xl text-primary hover:text-secondary transition-colors;
+			@apply flex items-center text-2xl text-foreground hover:text-primary transition-colors;
 		}
 	}
 
