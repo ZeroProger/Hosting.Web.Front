@@ -42,12 +42,12 @@ export function ServerSelect({ servers }: { servers: Server[] }) {
 			<SelectTrigger className="w-full text-xl px-4 bg-transparent border-none ring-2 ring-foreground/50 ring-offset-0 rounded-2xl">
 				<SelectValue>{server ? server.gameServerName : 'Выберите сервер'}</SelectValue>
 			</SelectTrigger>
-			<SelectContent sideOffset={6}>
+			<SelectContent sideOffset={6} className="rounded-2xl">
 				{servers.map((serverItem) => (
 					<SelectItem
 						key={serverItem.gameServerHash}
 						value={serverItem.gameServerHash}
-						className="cursor-pointer text-xl"
+						className="cursor-pointer text-xl rounded-2xl"
 					>
 						{serverItem.gameServerName}
 					</SelectItem>

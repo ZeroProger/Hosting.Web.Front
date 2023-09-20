@@ -18,7 +18,7 @@ import { ServerService } from 'services-temp/server-service'
 import styles from './styles.module.scss'
 
 const ServerMainInfo: FC = () => {
-  const {server} = useServer()
+  const { server } = useServer()
   const [mainInfo, setMainInfo] = useState<ServerMainInfo[]>([])
 
 	const handleCopyClick = (event: React.MouseEvent<HTMLElement>) => {

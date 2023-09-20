@@ -71,10 +71,10 @@ export function ServerActivePlayers() {
 										))}
 									</div>
 									<div className={styles.actions}>
-										<Button onClick={handleKickClick} variant="outline">
+										<Button onClick={handleKickClick} variant="default">
 											<Icon name="TbCircleMinus" size={32} className={styles.kick} />
 										</Button>
-										<Button onClick={handleBanClick} variant="outline">
+										<Button onClick={handleBanClick} variant="destructive">
 											<Icon name="Io5Ban" size={32} className={styles.ban} />
 										</Button>
 									</div>

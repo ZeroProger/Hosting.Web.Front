@@ -18,10 +18,10 @@ export function ServerTabs({ serverHash }: { serverHash: string }) {
 	const settingsUrl = ServerUrls.server.settings(serverHash)
 
 	return (
-		<>
+		<div className={styles.list}>
 			<Link
 				href={overviewUrl}
-				className={clsx({
+				className={clsx(styles.link, styles.link, {
 					[styles.isActiveLink]: pathname?.startsWith(overviewUrl),
 				})}
 			>
@@ -29,7 +29,7 @@ export function ServerTabs({ serverHash }: { serverHash: string }) {
 			</Link>
 			<Link
 				href={playersUrl}
-				className={clsx({
+				className={clsx(styles.link, {
 					[styles.isActiveLink]: pathname?.startsWith(playersUrl),
 				})}
 			>
@@ -37,7 +37,7 @@ export function ServerTabs({ serverHash }: { serverHash: string }) {
 			</Link>
 			<Link
 				href={modsUrl}
-				className={clsx({
+				className={clsx(styles.link, {
 					[styles.isActiveLink]: pathname?.startsWith(modsUrl),
 				})}
 			>
@@ -45,7 +45,7 @@ export function ServerTabs({ serverHash }: { serverHash: string }) {
 			</Link>
 			<Link
 				href={consoleUrl}
-				className={clsx({
+				className={clsx(styles.link, {
 					[styles.isActiveLink]: pathname?.startsWith(consoleUrl),
 				})}
 			>
@@ -53,7 +53,7 @@ export function ServerTabs({ serverHash }: { serverHash: string }) {
 			</Link>
 			<Link
 				href={filesUrl}
-				className={clsx({
+				className={clsx(styles.link, {
 					[styles.isActiveLink]: pathname?.startsWith(filesUrl),
 				})}
 			>
@@ -61,7 +61,7 @@ export function ServerTabs({ serverHash }: { serverHash: string }) {
 			</Link>
 			<Link
 				href={backupsUrl}
-				className={clsx({
+				className={clsx(styles.link, {
 					[styles.isActiveLink]: pathname?.startsWith(backupsUrl),
 				})}
 			>
@@ -69,12 +69,12 @@ export function ServerTabs({ serverHash }: { serverHash: string }) {
 			</Link>
 			<Link
 				href={settingsUrl}
-				className={clsx({
+				className={clsx(styles.link, {
 					[styles.isActiveLink]: pathname?.startsWith(settingsUrl),
 				})}
 			>
 				Настройки
 			</Link>
-		</>
+		</div>
 	)
 }

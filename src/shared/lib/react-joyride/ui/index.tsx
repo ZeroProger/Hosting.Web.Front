@@ -5,7 +5,7 @@ import Joyride, { CallBackProps, Step } from 'react-joyride'
 import { Button } from '@/shared/ui/button'
 import { Dialog, DialogContent, DialogFooter, DialogHeader } from '@/shared/ui/dialog'
 
-import { joyrideStylesOptions, joyrideStylesTooltip } from '../config'
+import { joyrideStyles } from '../config'
 import { useJoyrideGuide } from '../hooks'
 
 import styles from './styles.module.scss'
@@ -13,9 +13,11 @@ import styles from './styles.module.scss'
 export function JoyrideGuide({
 	steps,
 	callback,
+	scrollOffset = 200
 }: {
 	steps: Step[]
 	callback?: (data: CallBackProps) => void
+	scrollOffset?: number
 }) {
 	const { isGuideCompleted, isGuideStarted, modalVisible, functions } = useJoyrideGuide()
 	const { handleSkipGuide, handleStartGuide } = functions
@@ -28,9 +30,9 @@ export function JoyrideGuide({
 				continuous
 				disableOverlayClose
 				run={isGuideStarted && !isGuideCompleted}
-				scrollOffset={200}
+				scrollOffset={scrollOffset}
 				callback={callback}
-				styles={{ options: joyrideStylesOptions, tooltip: joyrideStylesTooltip }}
+				styles={joyrideStyles}
 				steps={steps}
 			/>
 			<Dialog open={modalVisible}>
