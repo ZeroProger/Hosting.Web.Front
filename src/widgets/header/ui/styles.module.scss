@@ -27,14 +27,14 @@
 		@apply content-container flex flex-row justify-between items-center gap-8 px-layout-sm sm:px-layout py-3;
 
 		.row {
-			@apply flex gap-4 items-center;
+			@apply flex gap-6 items-center;
 
 			&.mainRow {
 				@apply flex-1 gap-8;
 			}
 
 			.serverSelect {
-				@apply flex-1 max-w-[500px];
+				@apply flex-1 max-w-[500px] hidden md:block;
 			}
 		}
 	}

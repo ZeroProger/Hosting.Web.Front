@@ -27,7 +27,7 @@ export const ServerUrls = {
 
 	servers: (query?: string) => `/servers${query ? `?${query}` : ''}`,
 
-	publicServers: (query?: string) => `/public-servers${query ? `?${query}` : ''}`,
+	publicServers: (query?: string) => `/servers/public${query ? `?${query}` : ''}`,
 
 	createServer(query?: string) {
 		return `/servers/create${query ? `?${query}` : ''}`
@@ -35,7 +35,7 @@ export const ServerUrls = {
 
 	testServer() {
 		return `/servers/test`
-	}
+	},
 }
 
 export const ModUrls = {
