@@ -1,4 +1,4 @@
-import { ServerBackups } from '@/pages/server/backups'
+import { ServerBackups } from '@/pages-flat/server/backups'
 
 export default function ServerBackupsPage() {
 	return <ServerBackups />

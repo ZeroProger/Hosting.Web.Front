@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 
-import { ServerOverview } from '@/pages/server/overview'
+import { ServerOverview } from '@/pages-flat/server/overview'
 
 export async function generateMetadata({
 	params,
@@ -15,10 +15,6 @@ export async function generateMetadata({
 /**
  * @returns {JSX.Element} Страница с основной информацией о сервере
  */
-export default async function ServerOverviewPage({
-	params,
-}: {
-	params: { serverHash: string }
-}) {
+export default async function ServerOverviewPage({ params }: { params: { serverHash: string } }) {
 	return <ServerOverview />
 }

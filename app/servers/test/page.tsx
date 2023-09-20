@@ -1,4 +1,4 @@
-import { ServerTest } from '@/pages/server/test'
+import { ServerTest } from '@/pages-flat/server/test'
 
 export default function ServerTestPage() {
 	return <ServerTest />

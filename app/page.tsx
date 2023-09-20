@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 
-import { Home } from '@/pages/home/home'
+import { Home } from '@/pages-flat/home/home'
 
 export const metadata: Metadata = {
 	title: 'Главная',

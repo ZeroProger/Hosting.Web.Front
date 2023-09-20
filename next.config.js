@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
-//#TODO: возможно выключить strictMode
-const isProd = process.env.REACT_APP_ENV === 'production'
 
 const nextConfig = {
-	reactStrictMode: false,
+	reactStrictMode: true,
 	//output: 'export',
 	poweredByHeader: false,
 	optimizeFonts: false,
@@ -13,9 +11,9 @@ const nextConfig = {
 	//trailingSlash: false,
 	//publicRuntimeConfig: { basePath: isProd ? '/src' : undefined },
 	env: {
-		APP_URL: process.env.REACT_APP_URL,
-		APP_ENV: process.env.REACT_APP_ENV,
-		APP_SERVER_URL: process.env.REACT_APP_SERVER_URL,
+		APP_URL: process.env.APP_URL,
+		APP_ENV: process.env.APP_ENV,
+		APP_SERVER_URL: process.env.SERVER_URL,
 	},
 	images: {
 		unoptimized: true,
@@ -30,11 +28,11 @@ const nextConfig = {
 		return [
 			{
 				source: '/api/:path*',
-				destination: 'http://localhost:5500/api/:path*',
+				destination: `${process.env.SERVER_URL}/api/:path*`,
 			},
 			{
 				source: '/uploads/:path*',
-				destination: 'http://localhost:5500/uploads/:path*',
+				destination: `${process.env.SERVER_URL}/uploads/:path*`,
 			},
 		]
 	},

@@ -1,4 +1,4 @@
-import { ServerPlayers } from '@/pages/server/players'
+import { ServerPlayers } from '@/pages-flat/server/players'
 
 export default function ServerPlayersPage() {
 	return <ServerPlayers />

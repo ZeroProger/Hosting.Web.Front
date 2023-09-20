@@ -29,8 +29,8 @@
       "@/features/*": [
         "features/*"
       ],
-      "@/pages/*": [
-        "pages/*"
+      "@/pages-flat/*": [
+        "pages-flat/*"
       ],
       "@/shared/*": [
         "shared/*"

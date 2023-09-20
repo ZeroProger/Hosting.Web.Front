@@ -7,7 +7,7 @@ import { getLocalStorageData } from '@/shared/utils/localStorage'
 
 export const axiosAuth = () =>
 	axios.create({
-		baseURL: `${API_SERVER_URL}/api`,
+		baseURL: `${API_SERVER_URL}/api/v2`,
 		headers: {
 			'Content-Type': 'application/json',
 			Accept: 'application/json',
