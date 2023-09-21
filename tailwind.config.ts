@@ -67,6 +67,7 @@ const config: Config = {
 				menu: 'var(--z-index-menu)',
 				'menu-btn': 'var(--z-index-menu-btn)',
 				select: 'var(--z-index-select)',
+				'search-list': 'var(--z-index-search-list)',
 			},
 			spacing: {
 				layout: '2rem',

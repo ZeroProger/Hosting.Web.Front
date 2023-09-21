@@ -1,8 +1,8 @@
-import { Server } from '..'
+import { IServer } from '..'
 
 // import { IGameTariffs } from '../tariff.types'
 
-export interface ServerPort {
+export interface IServerPort {
 	id: number
 	creationDate: number
 	updateDate: number
@@ -10,7 +10,7 @@ export interface ServerPort {
 	port: number
 }
 
-export interface ServerCreateRequest {
+export interface IServerCreateRequest {
 	gameId: number
 	name: string
 	locationId: number
@@ -21,7 +21,7 @@ export interface ServerCreateRequest {
 	slots: number
 }
 
-export interface ServerCreateResponse extends ResponseResult {
+export interface IServerCreateResponse extends ResponseResult {
 	gameServerHash: string
 }
 
@@ -29,74 +29,74 @@ export interface ServerCreateResponse extends ResponseResult {
 // 	games: IGameTariffs[]
 // }
 
-export interface ServerStartRequest {
+export interface IServerStartRequest {
 	gameServerHash: string
 }
 
-export interface ServerStartResponse extends ResponseResult {
+export interface IServerStartResponse extends ResponseResult {
 	gameServerHash: string
 	serverIp: string
-	serverPorts: ServerPort[]
+	serverPorts: IServerPort[]
 }
 
-export interface ServerStopRequest {
+export interface IServerStopRequest {
 	gameServerHash: string
 }
 
-export interface ServerStopResponse extends ResponseResult {}
+export interface IServerStopResponse extends ResponseResult {}
 
-export interface ServerRemoveRequest {
+export interface IServerRemoveRequest {
 	gameServerHash: string
 }
 
-export interface ServerRemoveResponse extends ResponseResult {}
+export interface IServerRemoveResponse extends ResponseResult {}
 
-export interface ServerUpdateRequest {
+export interface IServerUpdateRequest {
 	gameServerHash: string
 	isPublic: boolean
 }
 
-export interface ServerUpdateResponse extends ResponseResult {}
+export interface IServerUpdateResponse extends ResponseResult {}
 
-export interface ServerListRequest {
+export interface IServerListRequest {
 	kind: string
 	isPublic: boolean
 }
 
-export interface ServerListResponse {
-	servers: Server[]
+export interface IServerListResponse {
+	servers: IServer[]
 }
 
-export interface ServerRequest {
+export interface IServerRequest {
 	gameServerHash: string
 }
 
-export interface ServerActivePlayersRequest {
+export interface IServerActivePlayersRequest {
 	gameServerHash: string
 }
 
-export interface ServerActivePlayersResponse {}
+export interface IServerActivePlayersResponse {}
 
-export interface ServerCurrentUsageRequest {
+export interface IServerCurrentUsageRequest {
 	gameServerHash: string
 }
 
-export interface ServerCurrentUsageResponse {}
+export interface IServerCurrentUsageResponse {}
 
-export interface ServerConsoleRequest {
+export interface IServerConsoleRequest {
 	gameServerHash: string
 }
 
-export interface ServerConsoleResponse {}
+export interface IServerConsoleResponse {}
 
-export interface ServerMainInfoRequest {
+export interface IServerMainInfoRequest {
 	gameServerHash: string
 }
 
-export interface ServerMainInfoResponse {}
+export interface IServerMainInfoResponse {}
 
-export interface ServerPropertiesRequest {
+export interface IServerPropertiesRequest {
 	gameServerHash: string
 }
 
-export interface ServerPropertiesResponse {}
+export interface IServerPropertiesResponse {}

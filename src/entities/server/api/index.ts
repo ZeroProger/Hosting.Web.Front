@@ -3,9 +3,9 @@ import { toast } from 'react-toastify'
 import { toastError } from '@/shared/lib/react-toastify/toast-error'
 
 import { ServerService } from '../../../services-temp/server-service'
-import { ServerRequest, ServerStartRequest } from '../types/requests'
+import { IServerRequest, IServerStartRequest } from '../types/requests'
 
-export async function getServer({ gameServerHash }: ServerRequest) {
+export async function getServer({ gameServerHash }: IServerRequest) {
 	try {
 		if (!gameServerHash) throw new Error('gameServerHash не указан')
 
@@ -18,7 +18,7 @@ export async function getServer({ gameServerHash }: ServerRequest) {
 }
 
 // #TODO переписать под бек
-export async function startServer({ gameServerHash }: ServerStartRequest) {
+export async function startServer({ gameServerHash }: IServerStartRequest) {
 	try {
 		if (!gameServerHash) throw new Error('gameServerHash не указан')
 
@@ -36,7 +36,7 @@ export async function startServer({ gameServerHash }: ServerStartRequest) {
 }
 
 // #TODO переписать под бек
-export async function stopServer({ gameServerHash }: ServerRequest) {
+export async function stopServer({ gameServerHash }: IServerRequest) {
 	try {
 		if (!gameServerHash) throw new Error('gameServerHash не указан')
 

@@ -1,21 +1,25 @@
-import { default as image1, default as user1 } from '@/app/assets/images/head1.webp'
-import { default as image2, default as user2 } from '@/app/assets/images/head2.png'
-import { default as image3, default as user3 } from '@/app/assets/images/head3.webp'
-import image4 from '@/app/assets/images/head4.webp'
+import { default as image1, default as user1 } from '@/app/assets/images/head1.webp';
+import { default as image2, default as user2 } from '@/app/assets/images/head2.png';
+import { default as image3, default as user3 } from '@/app/assets/images/head3.webp';
+import image4 from '@/app/assets/images/head4.webp';
 
-import { IPlayer, IPlayerRole, PlayerRoles } from '@/shared/api/common'
+
+
+import { IPlayer, IPlayerRole, PlayerRoles } from '@/shared/api/common';
+
+
 
 import {
-	FileNode,
-	ServerConsoleLine,
-	ServerConsoleLineType,
-	ServerCurrentUsageItem,
-	ServerMainInfo,
-	ServerProperty,
-	ServerPropertyType,
+	IFileNode,
+	IServerConsoleLine,
+	IServerConsoleLineType,
+	IServerCurrentUsageItem,
+	IServerMainInfo,
+	IServerProperty,
+	IServerPropertyType,
 } from '../../entities/server/types'
 
-export const serverMainInfo: ServerMainInfo[] = [
+export const serverMainInfo: IServerMainInfo[] = [
 	{
 		label: 'Статус',
 		value: 'Онлайн',
@@ -60,12 +64,12 @@ export const serverMainInfo: ServerMainInfo[] = [
 	},
 ]
 
-export const serverProperties: ServerProperty[] = [
+export const serverProperties: IServerProperty[] = [
 	{
 		name: 'max-players',
 		value: '20',
 		label: 'Кол-во игроков',
-		type: ServerPropertyType.Number,
+		type: IServerPropertyType.Number,
 	},
 	{
 		name: 'gamemode',
@@ -79,7 +83,7 @@ export const serverProperties: ServerProperty[] = [
 				{ label: 'Наблюдатель', value: 'spectator' },
 			],
 		},
-		type: ServerPropertyType.Select,
+		type: IServerPropertyType.Select,
 	},
 	{
 		name: 'difficulty',
@@ -93,317 +97,317 @@ export const serverProperties: ServerProperty[] = [
 				{ label: 'Тяжелая', value: 'hard' },
 			],
 		},
-		type: ServerPropertyType.Select,
+		type: IServerPropertyType.Select,
 	},
 	{
 		name: 'white-list',
 		value: 'false',
 		label: 'Белый список',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'online-mode',
 		value: 'false',
 		label: 'Пиратский',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'pvp',
 		value: 'true',
 		label: 'PvP',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'enable-command-block',
 		value: 'true',
 		label: 'Командные блоки',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'allow-flight',
 		value: 'true',
 		label: 'Полёт',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'spawn-animals',
 		value: 'true',
 		label: 'Животные',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'spawn-monsters',
 		value: 'true',
 		label: 'Монстры',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'spawn-npcs',
 		value: 'true',
 		label: 'Деревенские жители',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'allow-nether',
 		value: 'true',
 		label: 'Адский мир',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'generate-structures',
 		value: 'true',
 		label: 'Генерировать структуры',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'force-gamemode',
 		value: 'false',
 		label: 'Сбрасывать режим игры',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'spawn-protect',
 		value: '0',
 		label: 'Защита спавна',
-		type: ServerPropertyType.Number,
+		type: IServerPropertyType.Number,
 	},
 	{
 		name: 'require-resource-pack',
 		value: 'false',
 		label: 'Требовать ресурс-пак',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 	{
 		name: 'view-distance',
 		value: '5',
 		label: 'Дальность прорисовки',
-		type: ServerPropertyType.Number,
+		type: IServerPropertyType.Number,
 	},
 	{
 		name: 'simulation-distance',
 		value: '5',
 		label: 'Дальность симуляции',
-		type: ServerPropertyType.Number,
+		type: IServerPropertyType.Number,
 	},
 	{
 		name: 'max-build-height',
 		value: '256',
 		label: 'Макс. высота строительства',
-		type: ServerPropertyType.Number,
+		type: IServerPropertyType.Number,
 	},
 	{
 		name: 'level-name',
 		value: 'world',
 		label: 'Название мира',
-		type: ServerPropertyType.String,
+		type: IServerPropertyType.String,
 	},
 	{
 		name: 'level-seed',
 		value: '',
 		label: 'Ключ генерации',
-		type: ServerPropertyType.String,
+		type: IServerPropertyType.String,
 	},
 	{
 		name: 'hardcore',
 		value: 'false',
 		label: 'Хардкор',
-		type: ServerPropertyType.Boolean,
+		type: IServerPropertyType.Boolean,
 	},
 ]
 
-export const serverConsole: ServerConsoleLine[] = [
+export const serverConsole: IServerConsoleLine[] = [
 	{
 		id: '1',
 		message: 'Starting Minecraft server on *:62725',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:20',
 	},
 	{
 		id: '2',
 		message: 'Preparing level world',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:21',
 	},
 	{
 		id: '3',
 		message:
 			'**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!',
-		type: ServerConsoleLineType.Warning,
+		type: IServerConsoleLineType.Warning,
 		time: '20:24:22',
 	},
 	{
 		id: '4',
 		message: '4epenaDJIa has made the advancement [Monster Hunter]',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:23',
 	},
 	{
 		id: '5',
 		message: `Can't keep up! Is the server overloaded? Running 2003ms or 40 ticks behind`,
-		type: ServerConsoleLineType.Warning,
+		type: IServerConsoleLineType.Warning,
 		time: '20:24:24',
 	},
 	{
 		id: '6',
 		message: `Unexpected error. Server crashed!`,
-		type: ServerConsoleLineType.Error,
+		type: IServerConsoleLineType.Error,
 		time: '20:24:25',
 	},
 	{
 		id: '7',
 		message: `Using 4 threads for Netty based IO. Server stopped.`,
-		type: ServerConsoleLineType.Error,
+		type: IServerConsoleLineType.Error,
 		time: '20:24:26',
 	},
 	{
 		id: '8',
 		message: 'Saving players.',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:27',
 	},
 	{
 		id: '9',
 		message: 'Saving level world.',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:28',
 	},
 	{
 		id: '10',
 		message: 'Thread Query Listener stopped',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:29',
 	},
 	{
 		id: '11',
 		message: 'Starting Minecraft server on *:62725',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:20',
 	},
 	{
 		id: '12',
 		message: 'Preparing level world',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:21',
 	},
 	{
 		id: '13',
 		message:
 			'**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!',
-		type: ServerConsoleLineType.Warning,
+		type: IServerConsoleLineType.Warning,
 		time: '20:24:22',
 	},
 	{
 		id: '14',
 		message: '4epenaDJIa has made the advancement [Monster Hunter]',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:23',
 	},
 	{
 		id: '15',
 		message: `Can't keep up! Is the server overloaded? Running 2003ms or 40 ticks behind`,
-		type: ServerConsoleLineType.Warning,
+		type: IServerConsoleLineType.Warning,
 		time: '20:24:24',
 	},
 	{
 		id: '16',
 		message: `Unexpected error. Server crashed!`,
-		type: ServerConsoleLineType.Error,
+		type: IServerConsoleLineType.Error,
 		time: '20:24:25',
 	},
 	{
 		id: '17',
 		message: `Using 4 threads for Netty based IO. Server stopped.`,
-		type: ServerConsoleLineType.Error,
+		type: IServerConsoleLineType.Error,
 		time: '20:24:26',
 	},
 	{
 		id: '18',
 		message: 'Saving players.',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:27',
 	},
 	{
 		id: '19',
 		message: 'Saving level world.',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:28',
 	},
 	{
 		id: '20',
 		message: 'Thread Query Listener stopped',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:29',
 	},
 	{
 		id: '21',
 		message: 'Starting Minecraft server on *:62725',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:20',
 	},
 	{
 		id: '22',
 		message: 'Preparing level world',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:21',
 	},
 	{
 		id: '23',
 		message:
 			'**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!',
-		type: ServerConsoleLineType.Warning,
+		type: IServerConsoleLineType.Warning,
 		time: '20:24:22',
 	},
 	{
 		id: '24',
 		message: '4epenaDJIa has made the advancement [Monster Hunter]',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:23',
 	},
 	{
 		id: '25',
 		message: `Can't keep up! Is the server overloaded? Running 2003ms or 40 ticks behind`,
-		type: ServerConsoleLineType.Warning,
+		type: IServerConsoleLineType.Warning,
 		time: '20:24:24',
 	},
 	{
 		id: '26',
 		message: `Unexpected error. Server crashed!`,
-		type: ServerConsoleLineType.Error,
+		type: IServerConsoleLineType.Error,
 		time: '20:24:25',
 	},
 	{
 		id: '27',
 		message: `Using 4 threads for Netty based IO. Server stopped.`,
-		type: ServerConsoleLineType.Error,
+		type: IServerConsoleLineType.Error,
 		time: '20:24:26',
 	},
 	{
 		id: '28',
 		message: 'Saving players.',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:27',
 	},
 	{
 		id: '29',
 		message: 'Saving level world.',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:28',
 	},
 	{
 		id: '30',
 		message: 'Thread Query Listener stopped',
-		type: ServerConsoleLineType.Info,
+		type: IServerConsoleLineType.Info,
 		time: '20:24:29',
 	},
 ]
 
-export const serverCurrentUsage: ServerCurrentUsageItem[] = [
+export const serverCurrentUsage: IServerCurrentUsageItem[] = [
 	{ label: 'Процессор', value: 58, maxValue: 100, color: 'purple', isPercent: true },
 	{ label: 'Опер. память', value: 716, maxValue: 2500, color: 'blue', valueUnit: 'MB' },
 	{ label: 'хранилище', value: 0.23, maxValue: 5, color: 'orange', valueUnit: 'GB' },
 ]
 
-export const filesTree: FileNode[] = [
+export const filesTree: IFileNode[] = [
 	{
 		path: '/banned-ips.json',
 		name: 'banned-ips.json',

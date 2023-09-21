@@ -2,7 +2,7 @@
 	@apply w-full h-[280px];
 
 	.inner {
-		@apply w-full h-full bg-backgroundLight p-5;
+		@apply w-full h-full bg-card p-5;
 
 		.art {
 			@apply w-full h-[144px] overflow-hidden transition-all;
@@ -36,7 +36,7 @@
 					line-height: 22px;
 
 					span {
-						@apply block overflow-hidden border border-lightGray text-white px-2 h-5 text-sm rounded-[2px] align-middle whitespace-nowrap text-ellipsis;
+						@apply block overflow-hidden border border-border text-white px-2 h-5 text-sm rounded-[2px] align-middle whitespace-nowrap text-ellipsis;
 
 						line-height: 19px;
 						text-decoration: none;

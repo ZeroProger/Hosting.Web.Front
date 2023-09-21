@@ -9,4 +9,9 @@ type ResponseResult = {
 	error: string
 }
 
+interface RequestResult {
+	isLoading: boolean
+	error: string
+}
+
 type Nullable<T> = { [K in keyof T]: T[K] | null }

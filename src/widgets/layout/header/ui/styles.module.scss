@@ -1,0 +1,41 @@
+@import '@/app/styles/_mixins.scss';
+
+.header {
+	@apply sticky w-full bg-card top-0 left-0 right-0 z-header;
+
+	transition: transform 0.3s;
+
+	&.landscape {
+		position: fixed;
+		-webkit-backdrop-filter: blur(7px);
+		backdrop-filter: blur(7px);
+		background-color: hexToRGBString(#192024, 0.5);
+		box-shadow: 0 5px 15px 10px hexToRGBString(#192024, 0.5);
+	}
+
+	&:not(.landscape) {
+		&.fixed {
+			transform: translateY(-100%);
+
+			@include md(lg, 'max') {
+				transform: translateX(0%);
+			}
+		}
+	}
+
+	.content {
+		@apply content-container flex flex-row justify-between items-center gap-8 px-layout-sm sm:px-layout py-3;
+
+		.row {
+			@apply flex gap-6 items-center;
+
+			&.mainRow {
+				@apply flex-1 gap-8;
+			}
+
+			.serverSelect {
+				@apply flex-1 max-w-[500px] hidden md:block;
+			}
+		}
+	}
+}

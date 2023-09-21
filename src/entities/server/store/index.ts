@@ -1,22 +1,10 @@
-import { createEffect, createStore } from 'effector'
+import { createEffect, createEvent, createStore } from 'effector'
 
 import { startServer, stopServer } from '../api'
-import { Server } from '../types'
-import { ServerRequest, ServerStartRequest, ServerStopRequest } from '../types/requests'
+import { IServer } from '../types'
+import { IServerRequest, IServerStartRequest, IServerStopRequest } from '../types/requests'
 
-export interface ServerStore {
-	server: Server | null | undefined
-	userServers: Server[] | null | undefined
-	publicServers: Server[] | null | undefined
-	isLoading: boolean
-	error: Error | null
-	// activePlayers: IPlayer[] | null
-	// currentUsage: IServerCurrentUsageItem[] | null
-	// console: IServerConsoleLine[] | null
-	// properties: IServerProperty[] | null
-}
-
-const servers: Server[] = [
+const servers: IServer[] = [
 	{
 		gameServerName: 'First test Server',
 		gameServerHash: 'e49e80aff7d038738181e79ad66a0dbbd3eb678b447c98fbac6cbfea1ece452e',
@@ -39,64 +27,40 @@ const servers: Server[] = [
 	},
 ]
 
-export const getServerFx = createEffect<ServerRequest, Server | undefined>(
-	async ({ gameServerHash }) => servers.find((server) => (server.gameServerHash = gameServerHash))
+export const getServerFx = createEffect<IServerRequest, IServer | undefined>(
+	async ({ gameServerHash }) => servers.find((server) => server.gameServerHash === gameServerHash)
 )
+
+export const resetServerFx = createEvent()
 
 export const getUserServersFx = createEffect(async () => servers)
 
 export const getPublicServersFx = createEffect(async () => servers)
 
-export const resetServerFx = createEffect(async () => null)
-
-export const startFx = createEffect<ServerStartRequest, void>(
+export const startFx = createEffect<IServerStartRequest, void>(
 	async ({ gameServerHash }) => await startServer({ gameServerHash })
 )
 
-export const stopFx = createEffect<ServerStopRequest, void>(
+export const stopFx = createEffect<IServerStopRequest, void>(
 	async ({ gameServerHash }) => await stopServer({ gameServerHash })
 )
 
-export const $server = createStore<ServerStore>({
-	server: null,
-	isLoading: false,
-	publicServers: null,
-	userServers: null,
-	error: null,
-})
-	.on(getServerFx.pending, (state) => ({ ...state, isLoading: true }))
-	.on(getServerFx.doneData, (state, server) => ({ ...state, server, isLoading: false }))
-	.on(getServerFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
-	.on(getUserServersFx.pending, (state) => ({ ...state, isLoading: true }))
-	.on(getUserServersFx.doneData, (state, userServers) => ({
-		...state,
-		userServers,
-		isLoading: false,
-	}))
-	.on(getUserServersFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
-	.on(getPublicServersFx.pending, (state) => ({ ...state, isLoading: true }))
-	.on(getPublicServersFx.doneData, (state, publicServers) => ({
-		...state,
-		publicServers,
-		isLoading: false,
-	}))
-	.on(getPublicServersFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
-	.on(resetServerFx.pending, (state) => ({ ...state, isLoading: true }))
-	.on(resetServerFx.done, (state) => ({
-		...state,
-		server: null,
-		isLoading: false,
-	}))
-	.on(resetServerFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
-	.on(startFx.pending, (state) => ({ ...state, isLoading: true }))
-	.on(startFx.done, (state) => ({
-		...state,
-		isLoading: false,
-	}))
-	.on(startFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
-	.on(stopFx.pending, (state) => ({ ...state, isLoading: true }))
-	.on(stopFx.done, (state) => ({
-		...state,
-		isLoading: false,
-	}))
-	.on(stopFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
+export const $pendingServer = getServerFx.pending
+export const $pendingStartServer = startFx.pending
+export const $pendingStopServer = stopFx.pending
+export const $pendingUserServers = getUserServersFx.pending
+export const $pendingPublicServers = getPublicServersFx.pending
+
+export const $server = createStore<IServer | undefined | null>(null)
+	.on(getServerFx.doneData, (_, server) => server)
+	.reset(resetServerFx)
+
+export const $publicServers = createStore<IServer[]>([]).on(
+	getPublicServersFx.doneData,
+	(_, publicServers) => publicServers
+)
+
+export const $userServers = createStore<IServer[]>([]).on(
+	getUserServersFx.doneData,
+	(_, userServers) => userServers
+)

@@ -1,9 +1,10 @@
 'use client'
 
+import { useStore } from 'effector-react'
 import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 
-import { $server, getServerFx, startFx, stopFx } from '@/entities/server/store'
+import { $pendingServer, $server, getServerFx, startFx, stopFx } from '@/entities/server/store'
 
 export function useServerHeader() {
 	const router = useRouter()
@@ -11,7 +12,8 @@ export function useServerHeader() {
 	const pathname = usePathname()
 
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const { server, isLoading } = $server.getState()
+	const server = useStore($server)
+	const isLoading = useStore($pendingServer)
 
 	const handleModalOpen = useCallback(() => setIsModalOpen(true), [server])
 

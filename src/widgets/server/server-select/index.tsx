@@ -1,6 +1,7 @@
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useStore } from 'effector-react'
+import { useParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 import { $server, resetServerFx } from '@/entities/server/store'
@@ -13,9 +14,13 @@ export function ServerSelect({ servers }: { servers: Server[] }) {
 	const router = useRouter()
 	const params = useParams()
 
-	const { server } = $server.getState()
+	const server = useStore($server)
 
 	const defaultServer = servers.find((server) => server.gameServerHash === params?.serverHash)
+
+	const handleResetServer = () => {
+		resetServerFx()
+	}
 
 	useEffect(() => {
 		if (params?.serverHash === undefined && server !== null) {
@@ -24,19 +29,16 @@ export function ServerSelect({ servers }: { servers: Server[] }) {
 	}, [params])
 
 	const handleSelect = (value: string) => {
+		console.log(value)
 		router.push(ServerUrls.server.overview(value))
-	}
-
-	const handleResetServer = async () => {
-		await resetServerFx()
 	}
 
 	if (servers.length === 0) return null
 
 	return (
 		<Select
-			value={server ? server.gameServerHash : undefined}
-			defaultValue={defaultServer ? defaultServer.gameServerHash : undefined}
+			value={server ? server.gameServerHash : ''}
+			defaultValue={defaultServer ? defaultServer.gameServerHash : ''}
 			onValueChange={handleSelect}
 		>
 			<SelectTrigger className="w-full text-xl px-4 bg-transparent border-none ring-2 ring-foreground/50 ring-offset-0 rounded-2xl">

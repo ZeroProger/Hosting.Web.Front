@@ -13,11 +13,13 @@ import styles from './styles.module.scss'
 export function JoyrideGuide({
 	steps,
 	callback,
-	scrollOffset = 200
+	scrollOffset = 200,
+	run = true,
 }: {
 	steps: Step[]
 	callback?: (data: CallBackProps) => void
 	scrollOffset?: number
+	run?: boolean
 }) {
 	const { isGuideCompleted, isGuideStarted, modalVisible, functions } = useJoyrideGuide()
 	const { handleSkipGuide, handleStartGuide } = functions
@@ -29,7 +31,7 @@ export function JoyrideGuide({
 				hideBackButton
 				continuous
 				disableOverlayClose
-				run={isGuideStarted && !isGuideCompleted}
+				run={isGuideStarted && !isGuideCompleted && run}
 				scrollOffset={scrollOffset}
 				callback={callback}
 				styles={joyrideStyles}

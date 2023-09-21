@@ -2,24 +2,25 @@
 
 // import { Popover } from '@nextui-org/react'
 import clsx from 'clsx'
+import { useStore } from 'effector-react'
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
+import { ServerService } from 'services-temp/server-service'
 
-import { ServerMainInfo } from '@/entities/server/types'
-
-// #TODO Avata
-import { Icon } from '@/shared/ui/icon'
-
-import { ServerUrls } from '@/shared/routes/urls'
-import { isUndefined } from '@/shared/utils/isUndefined'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
 import { $server } from '@/entities/server/store'
-import { ServerService } from 'services-temp/server-service'
+import { IServerMainInfo } from '@/entities/server/types'
+
+import { ServerUrls } from '@/shared/routes/urls'
+// #TODO Avata
+import { Icon } from '@/shared/ui/icon'
+import { isUndefined } from '@/shared/utils/isUndefined'
+
 import styles from './styles.module.scss'
 
-const ServerMainInfo: FC = () => {
-  const { server } = $server.getState()
-  const [mainInfo, setMainInfo] = useState<ServerMainInfo[]>([])
+export const ServerMainInfo: FC = () => {
+	const server = useStore($server)
+	const [mainInfo, setMainInfo] = useState<IServerMainInfo[]>([])
 
 	const handleCopyClick = (event: React.MouseEvent<HTMLElement>) => {
 		const copyText =
@@ -61,7 +62,7 @@ const ServerMainInfo: FC = () => {
 											{!isUndefined(row.otherInfo?.playersImages) && <> онлайн</>}
 										</span>
 
-                    {/* #TODO Avatar */}
+										{/* #TODO Avatar */}
 										{/* {!isUndefined(row.otherInfo?.playersImages) ? (
 											<AvatarGroup className={styles.avatarGroup} />
 										) : null}
@@ -107,5 +108,3 @@ const ServerMainInfo: FC = () => {
 		</div>
 	)
 }
-
-export default ServerMainInfo

@@ -1,23 +1,25 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useStore } from 'effector-react'
+import { useRouter } from 'next/navigation'
 import { CallBackProps } from 'react-joyride'
 
-import { $server } from '@/entities/server/store'
+import { $pendingServer, $server } from '@/entities/server/store'
 
 import { JoyrideGuide, overviewSteps } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'
 
-import ServerActivePlayers from '@/widgets/server/active-players/ui'
-import ServerCurrentUsage from '@/widgets/server/current-usage/ui'
-import ServerMainInfo from '@/widgets/server/main-info/ui'
-import ServerMiniConsole from '@/widgets/server/mini-console/ui'
+import { ServerActivePlayers } from '@/widgets/server/active-players'
+import { Console } from '@/widgets/server/console'
+import { ServerCurrentUsage } from '@/widgets/server/current-usage'
+import { ServerMainInfo } from '@/widgets/server/main-info'
 
 import styles from './styles.module.scss'
 
 export function ServerOverview() {
 	const { push } = useRouter()
-	const { server, isLoading } = $server.getState()
+	const server = useStore($server)
+	const isLoading = useStore($pendingServer)
 
 	const onGuideFinish = ({ status }: CallBackProps) =>
 		status === 'finished' && push(ServerUrls.server.players(server?.gameServerHash!))
@@ -38,7 +40,7 @@ export function ServerOverview() {
 						</div>
 						<div className={styles.column}>
 							<div className="mini-console">
-								<ServerMiniConsole />
+								<Console mini />
 							</div>
 							<div className="current-usage">
 								<ServerCurrentUsage />

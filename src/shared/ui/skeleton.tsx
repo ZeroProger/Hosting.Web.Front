@@ -8,7 +8,7 @@ type SkeletonListProps = {
 }
 
 function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('animate-pulse rounded-md bg-muted', className)} {...props} />
+	return <div className={cn('animate-pulse rounded-2xl bg-card', className)} {...props} />
 }
 
 function SkeletonList({
@@ -25,7 +25,8 @@ function SkeletonList({
 			{arr.map((_, idx) => (
 				<Skeleton
 					key={`${id}-skeleton-list-item-${idx}`}
-					className={cn(className, `h-[${height}px]`)}
+					className={className}
+					style={{ height: `${height}px` }}
 				/>
 			))}
 		</>

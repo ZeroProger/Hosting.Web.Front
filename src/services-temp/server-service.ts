@@ -1,25 +1,25 @@
 import { axiosAuth } from '@/shared/api/auth'
+import { ServerListRequest } from '@/shared/api/common'
 import { ServerApiUrls } from '@/shared/api/urls'
 
-import { Server } from '../entities/server/types'
+import { IServer } from '../entities/server/types'
 import {
-	ServerActivePlayersRequest,
-	ServerConsoleRequest,
-	ServerCreateRequest,
-	ServerCreateResponse,
-	ServerCurrentUsageRequest,
-	ServerListRequest,
-	ServerListResponse,
-	ServerMainInfoRequest,
-	ServerPropertiesRequest,
-	ServerRemoveRequest,
-	ServerRemoveResponse,
-	ServerStartRequest,
-	ServerStartResponse,
-	ServerStopRequest,
-	ServerStopResponse,
-	ServerUpdateRequest,
-	ServerUpdateResponse,
+	IServerActivePlayersRequest,
+	IServerConsoleRequest,
+	IServerCreateRequest,
+	IServerCreateResponse,
+	IServerCurrentUsageRequest,
+	IServerListResponse,
+	IServerMainInfoRequest,
+	IServerPropertiesRequest,
+	IServerRemoveRequest,
+	IServerRemoveResponse,
+	IServerStartRequest,
+	IServerStartResponse,
+	IServerStopRequest,
+	IServerStopResponse,
+	IServerUpdateRequest,
+	IServerUpdateResponse,
 } from '../entities/server/types/requests'
 import {
 	serverActivePlayers,
@@ -30,51 +30,51 @@ import {
 } from '../shared/$fake-data$/server.data'
 
 export const ServerService = {
-	create(data: ServerCreateRequest) {
-		return axiosAuth().post<ServerCreateResponse>(ServerApiUrls.create(), data)
+	create(data: IServerCreateRequest) {
+		return axiosAuth().post<IServerCreateResponse>(ServerApiUrls.create(), data)
 	},
 
 	server(hash: string) {
-		return axiosAuth().post<Server>(ServerApiUrls.server(hash))
+		return axiosAuth().post<IServer>(ServerApiUrls.server(hash))
 	},
 
 	servers(data: ServerListRequest) {
-		return axiosAuth().post<ServerListResponse>(ServerApiUrls.servers(), data)
+		return axiosAuth().post<IServerListResponse>(ServerApiUrls.servers(), data)
 	},
 
-	start(data: ServerStartRequest) {
-		return axiosAuth().post<ServerStartResponse>(ServerApiUrls.start(), data)
+	start(data: IServerStartRequest) {
+		return axiosAuth().post<IServerStartResponse>(ServerApiUrls.start(), data)
 	},
 
-	stop(data: ServerStopRequest) {
-		return axiosAuth().post<ServerStopResponse>(ServerApiUrls.stop(), data)
+	stop(data: IServerStopRequest) {
+		return axiosAuth().post<IServerStopResponse>(ServerApiUrls.stop(), data)
 	},
 
-	remove(data: ServerRemoveRequest) {
-		return axiosAuth().post<ServerRemoveResponse>(ServerApiUrls.remove(), data)
+	remove(data: IServerRemoveRequest) {
+		return axiosAuth().post<IServerRemoveResponse>(ServerApiUrls.remove(), data)
 	},
 
-	update(data: ServerUpdateRequest) {
-		return axiosAuth().post<ServerUpdateResponse>(ServerApiUrls.update(), data)
+	update(data: IServerUpdateRequest) {
+		return axiosAuth().post<IServerUpdateResponse>(ServerApiUrls.update(), data)
 	},
 
-	activePlayers(data: ServerActivePlayersRequest) {
+	activePlayers(data: IServerActivePlayersRequest) {
 		return serverActivePlayers
 	},
 
-	currentUsage(data: ServerCurrentUsageRequest) {
+	currentUsage(data: IServerCurrentUsageRequest) {
 		return serverCurrentUsage
 	},
 
-	console(data: ServerConsoleRequest) {
+	console(data: IServerConsoleRequest) {
 		return serverConsole
 	},
 
-	mainInfo(data: ServerMainInfoRequest) {
+	mainInfo(data: IServerMainInfoRequest) {
 		return serverMainInfo
 	},
 
-	properties(data: ServerPropertiesRequest) {
+	properties(data: IServerPropertiesRequest) {
 		return serverProperties
 	},
 }

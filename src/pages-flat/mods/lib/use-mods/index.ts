@@ -5,7 +5,6 @@ import { useClickOutside, useLocalStorage } from '@/shared/hooks'
 export function useMods() {
 	const [classesOpen, setClassesOpen] = useState(false)
 	const [classesExpanded, setClassesExpanded] = useState(false)
-	const [isGuideCompleted, setIsGuideCompleted] = useLocalStorage('isGuideCompleted', false)
 
 	const classesRef = useRef(null)
 
@@ -26,7 +25,6 @@ export function useMods() {
 	return {
 		classesOpen,
 		classesExpanded,
-		isGuideCompleted,
 		classesRef,
 		functions: { handleClassesOpen, handleClassesExpand },
 	}

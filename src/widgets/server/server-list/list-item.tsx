@@ -1,7 +1,9 @@
-import clsx from 'clsx'
-import Link from 'next/link'
+import clsx from 'clsx';
+import Link from 'next/link';
 
-import { Server } from '@/entities/server/types'
+
+
+import { IServer } from '@/entities/server/types'
 
 import { ServerUrls } from '@/shared/routes/urls'
 import { Icon } from '@/shared/ui/icon'
@@ -14,7 +16,7 @@ function ItemWrapper({
 	children,
 }: {
 	isPublic: boolean
-	server: Server
+	server: IServer
 	children: React.ReactNode
 }) {
 	if (isPublic)
@@ -37,7 +39,7 @@ function ItemWrapper({
 	)
 }
 
-function ItemContent({ server }: { server: Server }) {
+function ItemContent({ server }: { server: IServer }) {
 	return (
 		<>
 			<div className={styles.name}>{server.gameServerName}</div>
@@ -56,7 +58,7 @@ function ItemContent({ server }: { server: Server }) {
 	)
 }
 
-export function ListItem(props: { isPublic: boolean; server: Server }) {
+export function ListItem(props: { isPublic: boolean; server: IServer }) {
 	return (
 		<ItemWrapper {...props}>
 			<ItemContent server={props.server} />

@@ -1,30 +1,30 @@
-import { ServerPort } from './requests'
+import { IServerPort } from './requests'
 
-export enum ServerPropertyType {
+export enum IServerPropertyType {
 	Select,
 	Boolean,
 	Number,
 	String,
 }
 
-export interface ServerPropertyOption {
+export interface IServerPropertyOption {
 	label: string
 	value: string
 }
 
-export interface ServerPropertySelect {
-	options: ServerPropertyOption[]
+export interface IServerPropertySelect {
+	options: IServerPropertyOption[]
 }
 
-export interface ServerProperty {
+export interface IServerProperty {
 	name: string
 	value: string
 	label: string
-	select?: ServerPropertySelect
-	type: ServerPropertyType
+	select?: IServerPropertySelect
+	type: IServerPropertyType
 }
 
-export interface ServerMainInfo {
+export interface IServerMainInfo {
 	label: string
 	value: string
 	otherInfo?: {
@@ -36,21 +36,21 @@ export interface ServerMainInfo {
 	}
 }
 
-export enum ServerConsoleLineType {
+export enum IServerConsoleLineType {
 	Error = 'ERROR',
 	Warning = 'WARNING',
 	Info = 'INFO',
 }
 
-export interface ServerConsoleLine {
+export interface IServerConsoleLine {
 	id: string
 	message: string
 	fullMessage?: string
 	time: string
-	type: ServerConsoleLineType
+	type: IServerConsoleLineType
 }
 
-export interface ServerCurrentUsageItem {
+export interface IServerCurrentUsageItem {
 	label: string
 	value: number
 	maxValue: number
@@ -59,11 +59,11 @@ export interface ServerCurrentUsageItem {
 	isPercent?: boolean
 }
 
-export interface Server {
+export interface IServer {
 	gameServerName: string
 	gameServerHash: string
 	serverIp: string
-	serverPorts: ServerPort[]
+	serverPorts: IServerPort[]
 	gameKind: string
 	isOnline: boolean
 	// activePlayers: Player[]
@@ -78,12 +78,12 @@ export interface Server {
 	// settings: ServerProperty[]
 }
 
-export interface FileNode {
+export interface IFileNode {
 	path: string
 	name: string
 	type: string
 	changeable?: boolean
 	size: number
-	children?: FileNode[]
+	children?: IFileNode[]
 	extension?: string
 }
