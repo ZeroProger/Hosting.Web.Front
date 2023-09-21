@@ -25,7 +25,8 @@ function SkeletonList({
 			{arr.map((_, idx) => (
 				<Skeleton
 					key={`${id}-skeleton-list-item-${idx}`}
-					className={cn(className, `h-[${height}px]`)}
+					className={className}
+					style={{ height: `${height}px` }}
 				/>
 			))}
 		</>

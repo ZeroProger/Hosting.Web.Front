@@ -2,19 +2,21 @@ import { SearchModsQuery, SearchModsRequest } from '@/shared/api/curse-forge'
 
 import { CForgeModClassType } from './curse-forge'
 
+const popularRequestPageSize = 12
+
 export const searchModsBaseRequest: SearchModsRequest = {
 	gameId: 432,
 	sortField: 1,
 	sortOrder: 'desc',
 	index: 0,
-	pageSize: 12,
+	pageSize: popularRequestPageSize,
 }
 
 export const searchModsBaseQuery: SearchModsQuery = {
 	sortField: 1,
 	sortOrder: 'desc',
 	index: 0,
-	pageSize: 20,
+	pageSize: popularRequestPageSize,
 }
 
 export const popularModsRequest: SearchModsRequest = {
@@ -23,7 +25,7 @@ export const popularModsRequest: SearchModsRequest = {
 	sortOrder: 'desc',
 	classId: CForgeModClassType.Mods,
 	index: 0,
-	pageSize: 12,
+	pageSize: popularRequestPageSize,
 }
 
 export const popularModpacksRequest: SearchModsRequest = {
@@ -32,7 +34,7 @@ export const popularModpacksRequest: SearchModsRequest = {
 	sortOrder: 'desc',
 	classId: CForgeModClassType.Modpacks,
 	index: 0,
-	pageSize: 12,
+	pageSize: popularRequestPageSize,
 }
 
 export const popularResourcePacksRequest: SearchModsRequest = {
@@ -41,7 +43,7 @@ export const popularResourcePacksRequest: SearchModsRequest = {
 	sortOrder: 'desc',
 	classId: CForgeModClassType.ResourcePacks,
 	index: 0,
-	pageSize: 12,
+	pageSize: popularRequestPageSize,
 }
 
 export const popularWorldsRequest: SearchModsRequest = {
@@ -50,7 +52,7 @@ export const popularWorldsRequest: SearchModsRequest = {
 	sortOrder: 'desc',
 	classId: CForgeModClassType.Worlds,
 	index: 0,
-	pageSize: 12,
+	pageSize: popularRequestPageSize,
 }
 
 export const popularPluginsRequest: SearchModsRequest = {
@@ -59,7 +61,7 @@ export const popularPluginsRequest: SearchModsRequest = {
 	sortOrder: 'desc',
 	classId: CForgeModClassType.BukkitPlugins,
 	index: 0,
-	pageSize: 12,
+	pageSize: popularRequestPageSize,
 }
 
 export const modClassesMap = new Map<number, string>([
