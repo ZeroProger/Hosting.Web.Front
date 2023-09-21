@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { useStore } from 'effector-react'
 import { useRouter } from 'next/navigation'

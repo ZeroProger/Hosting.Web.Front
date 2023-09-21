@@ -34,7 +34,7 @@ export function Mods() {
 
 	const { handleClassesOpen, handleClassesExpand } = functions
 
-	const { data: mods } = useFilteredMods(popularModsRequest, 'mods')
+	const { data: mods, isLoading: isModsLoading } = useFilteredMods(popularModsRequest, 'mods')
 	const { data: modpacks } = useFilteredMods(popularModpacksRequest, 'modpacks')
 	const { data: worlds } = useFilteredMods(popularWorldsRequest, 'worlds')
 	const { data: plugins } = useFilteredMods(popularPluginsRequest, 'plugins')
@@ -117,12 +117,13 @@ export function Mods() {
 						<Skeleton className="h-[56px] rounded-layout" />
 					</div>
 				)}
-				<ModsCompilation
-					title="Популярные моды"
-					viewAllLink={ModUrls.search({ classId: CForgeModClassType.Mods })}
-					mods={mods || []}
-					id="mods-compilation-step"
-				/>
+				<div id="mods-compilation-step">
+					<ModsCompilation
+						title="Популярные моды"
+						viewAllLink={ModUrls.search({ classId: CForgeModClassType.Mods })}
+						mods={mods || []}
+					/>
+				</div>
 				<ModsCompilation
 					title="Популярные сборки модов"
 					viewAllLink={ModUrls.search({ classId: CForgeModClassType.Modpacks })}

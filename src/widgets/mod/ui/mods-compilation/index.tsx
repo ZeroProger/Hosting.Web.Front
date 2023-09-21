@@ -12,18 +12,16 @@ export function ModsCompilation({
 	mods,
 	title,
 	viewAllLink,
-	id
 }: {
 	mods: Mod[]
 	title: string
 	viewAllLink: string
-	id?: string
 }) {
 	if (mods.length === 0) return <ModsCompilationLoading />
 
 	return (
 		<>
-			<div className={styles.container} id={id}>
+			<div className={styles.container}>
 				<div className={styles.header}>
 					<h2 className={styles.title}>{title}</h2>
 					<Link href={viewAllLink} className={styles.viewAll}>
