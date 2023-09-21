@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { useParams, useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react'
 
-import { useServer } from '@/entities/server/store'
+import { $server, resetServerFx } from '@/entities/server/store'
 
 import { Server } from '@/shared/api/common'
 import { ServerUrls } from '@/shared/routes/urls'
@@ -13,7 +13,7 @@ export function ServerSelect({ servers }: { servers: Server[] }) {
 	const router = useRouter()
 	const params = useParams()
 
-	const { server, resetServer } = useServer()
+	const { server } = $server.getState()
 
 	const defaultServer = servers.find((server) => server.gameServerHash === params?.serverHash)
 
@@ -28,7 +28,7 @@ export function ServerSelect({ servers }: { servers: Server[] }) {
 	}
 
 	const handleResetServer = async () => {
-		await resetServer()
+		await resetServerFx()
 	}
 
 	if (servers.length === 0) return null

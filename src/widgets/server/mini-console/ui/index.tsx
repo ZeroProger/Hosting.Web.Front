@@ -5,10 +5,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { CallBackProps } from 'react-joyride'
+import { ServerService } from 'services-temp/server-service'
 
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
-import { ServerService } from 'services-temp/server-service'
-import { useServer } from '@/entities/server/store'
+import { $server } from '@/entities/server/store'
 import { ServerConsoleLine, ServerConsoleLineType } from '@/entities/server/types'
 
 import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
@@ -26,7 +26,7 @@ export function ServerMiniConsole({ fullConsole }: IServerMiniConsole) {
 	const [inputValue, setInputValue] = useState('')
 
 	const { push } = useRouter()
-	const { server } = useServer()
+	const { server } = $server.getState()
 	const inputRef = useRef<HTMLInputElement>(null)
 	const linesRef = useRef<HTMLDivElement>(null)
 

@@ -2,15 +2,15 @@ import clsx from 'clsx'
 
 import '@/app/styles/hamburgers/_hamburgers.scss'
 
-import { useHeaderMenu } from '../../store'
+import { $headerMenu, toggle } from '../../store'
 
 import styles from './styles.module.scss'
 
 export function Burger() {
-	const { isHeaderMenuOpen, toggleHeaderMenu } = useHeaderMenu()
+	const { isHeaderMenuOpen } = $headerMenu.getState()
 
 	return (
-		<button className={styles.btn} onClick={toggleHeaderMenu}>
+		<button className={styles.btn} onClick={() => toggle()}>
 			<div
 				className={clsx('hamburger hamburger--squeeze mt-2', { ['is-active']: isHeaderMenuOpen })}
 			>

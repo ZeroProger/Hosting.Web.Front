@@ -66,12 +66,12 @@ export interface Server {
 	serverPorts: ServerPort[]
 	gameKind: string
 	isOnline: boolean
+	// activePlayers: Player[]
 	//dynamicIp: string
 	//software: ICForgeSoftware
 	//version: IVersion
 	//#TODO: Всё что ниже убрать, должно отдельно запрашиваться по надобности
 	// кешируем в react query что-то???
-	// activePlayers: IPlayer[]
 	// mainInfo: ServerMainInfo[]
 	// console: ServerConsoleLine[]
 	// usage: ServerUsageItem[]

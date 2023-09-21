@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import { CallBackProps } from 'react-joyride'
 
-import { useServer } from '@/entities/server/store'
+import { $server } from '@/entities/server/store'
 
 import { JoyrideGuide, overviewSteps } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'
@@ -17,7 +17,7 @@ import styles from './styles.module.scss'
 
 export function ServerOverview() {
 	const { push } = useRouter()
-	const { server, isLoading } = useServer()
+	const { server, isLoading } = $server.getState()
 
 	const onGuideFinish = ({ status }: CallBackProps) =>
 		status === 'finished' && push(ServerUrls.server.players(server?.gameServerHash!))

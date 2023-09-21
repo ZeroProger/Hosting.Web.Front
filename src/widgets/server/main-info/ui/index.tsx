@@ -10,15 +10,15 @@ import { ServerMainInfo } from '@/entities/server/types'
 // #TODO Avata
 import { Icon } from '@/shared/ui/icon'
 
-import { useServer } from '@/entities/server/store'
 import { ServerUrls } from '@/shared/routes/urls'
 import { isUndefined } from '@/shared/utils/isUndefined'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
+import { $server } from '@/entities/server/store'
 import { ServerService } from 'services-temp/server-service'
 import styles from './styles.module.scss'
 
 const ServerMainInfo: FC = () => {
-  const { server } = useServer()
+  const { server } = $server.getState()
   const [mainInfo, setMainInfo] = useState<ServerMainInfo[]>([])
 
 	const handleCopyClick = (event: React.MouseEvent<HTMLElement>) => {

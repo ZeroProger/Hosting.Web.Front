@@ -1,24 +1,14 @@
-import { create } from 'zustand'
+import { createEvent, createStore } from 'effector'
 
-export interface HeaderMenuState {
+export interface HeaderMenuStore {
 	isHeaderMenuOpen: boolean
 }
 
-export interface HeaderMenuAction {
-	openHeaderMenu: () => void
-	closeHeaderMenu: () => void
-	toggleHeaderMenu: () => void
-}
+export const open = createEvent()
+export const close = createEvent()
+export const toggle = createEvent()
 
-export const useHeaderMenu = create<HeaderMenuState & HeaderMenuAction>((set) => ({
-	isHeaderMenuOpen: false,
-	openHeaderMenu() {
-		set(() => ({ isHeaderMenuOpen: true }))
-	},
-	closeHeaderMenu() {
-		set(() => ({ isHeaderMenuOpen: false }))
-	},
-	toggleHeaderMenu() {
-		set((state) => ({ isHeaderMenuOpen: !state.isHeaderMenuOpen }))
-	},
-}))
+export const $headerMenu = createStore<HeaderMenuStore>({ isHeaderMenuOpen: false })
+	.on(open, () => ({ isHeaderMenuOpen: true }))
+	.on(close, () => ({ isHeaderMenuOpen: false }))
+	.on(toggle, (state) => ({ isHeaderMenuOpen: !state.isHeaderMenuOpen }))

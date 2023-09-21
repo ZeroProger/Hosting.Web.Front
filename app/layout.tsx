@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<MainProvider>
 					<div className="flex flex-col w-full h-full">
 						<Header />
-						<main className="content-container flex-auto p-layout-sm sm:p-layout">{children}</main>
+						<main className="flex-auto">{children}</main>
 						<Footer />
 					</div>
 				</MainProvider>

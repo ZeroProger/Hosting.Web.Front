@@ -3,7 +3,7 @@
 import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 
-import { useServer } from '@/entities/server/store'
+import { $server, getServerFx, startFx, stopFx } from '@/entities/server/store'
 
 export function useServerHeader() {
 	const router = useRouter()
@@ -11,7 +11,7 @@ export function useServerHeader() {
 	const pathname = usePathname()
 
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const { server, isLoading, getServer, start, stop } = useServer()
+	const { server, isLoading } = $server.getState()
 
 	const handleModalOpen = useCallback(() => setIsModalOpen(true), [server])
 
@@ -23,13 +23,13 @@ export function useServerHeader() {
 
 	const handleStopServer = useCallback(() => {
 		if (server && !isLoading) {
-			stop({ gameServerHash: server.gameServerHash })
+			stopFx({ gameServerHash: server.gameServerHash })
 		}
 	}, [server])
 
 	const handleStartServer = useCallback(() => {
 		if (server && !isLoading) {
-			start({ gameServerHash: server.gameServerHash })
+			startFx({ gameServerHash: server.gameServerHash })
 		}
 	}, [server])
 
@@ -47,7 +47,7 @@ export function useServerHeader() {
 
 	useEffect(() => {
 		if (params && params.serverHash !== undefined) {
-			getServer({ gameServerHash: String(params.serverHash) })
+			getServerFx({ gameServerHash: String(params.serverHash) })
 		}
 	}, [pathname])
 

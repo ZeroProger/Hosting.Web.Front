@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 
+import { Server } from '@/entities/server/types'
+
 import { ServerUrls } from '@/shared/routes/urls'
 import { Icon } from '@/shared/ui/icon'
-
-import { Server } from '../../types'
 
 import styles from './styles.module.scss'
 

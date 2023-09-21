@@ -1,9 +1,10 @@
 'use client'
 
+import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
-import { useServer } from '@/entities/server/store'
+import { $server, getUserServersFx } from '@/entities/server/store'
 
 import { cn } from '@/shared/lib/utils'
 import { CommonUrls } from '@/shared/routes/urls'
@@ -18,17 +19,16 @@ import { Menu } from './menu'
 import { Nav } from './nav'
 import { Profile } from './profile'
 import styles from './styles.module.scss'
-import clsx from 'clsx'
 
 export function Header() {
 	const pathname = usePathname()
 	const isHomePage = pathname === CommonUrls.home()
 
 	const { isFixed } = useHeaderFixed()
-	const { userServers, getUserServers } = useServer()
+	const { userServers } = $server.getState()
 
 	useEffect(() => {
-		getUserServers()
+		getUserServersFx()
 	}, [])
 
 	return (

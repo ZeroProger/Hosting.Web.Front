@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { Fragment, useEffect, useState } from 'react'
+import Image from 'next/image';
+import Link from 'next/link';
+import { Fragment, useEffect, useState } from 'react';
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
 import { ServerService } from 'services-temp/server-service'
 
-import { useServer } from '@/entities/server/store'
+import { $server } from '@/entities/server/store'
 
 import { IPlayer } from '@/shared/api/common'
 import { ServerUrls } from '@/shared/routes/urls'
@@ -16,7 +16,7 @@ import { Icon } from '@/shared/ui/icon'
 import styles from './styles.module.scss'
 
 export function ServerActivePlayers() {
-	const { server } = useServer()
+	const { server } = $server.getState()
 	const [activePlayers, setActivePlayers] = useState<IPlayer[]>([])
 
 	const handleKickClick = () => {}

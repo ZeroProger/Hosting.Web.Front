@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import { FC, useEffect, useState } from 'react'
-
-import { useServer } from '@/entities/server/store'
-//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
+import { FC, useEffect, useState } from 'react';
 import { ServerService } from 'services-temp/server-service'
+
+import { $server } from '@/entities/server/store'
+//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
 import { ServerCurrentUsageItem } from '@/entities/server/types'
 
 import { Progress } from '@/shared/ui/progress'
@@ -12,7 +12,7 @@ import { Progress } from '@/shared/ui/progress'
 import styles from './styles.module.scss'
 
 const ServerCurrentUsage: FC = () => {
-	const { server } = useServer()
+	const { server } = $server.getState()
 	const [currentUsage, setCurrentUsage] = useState<ServerCurrentUsageItem[]>([])
 
 	useEffect(() => {

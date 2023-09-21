@@ -1,28 +1,19 @@
-import { create } from 'zustand'
+import { createEffect, createStore } from 'effector'
 
+import { startServer, stopServer } from '../api'
 import { Server } from '../types'
 import { ServerRequest, ServerStartRequest, ServerStopRequest } from '../types/requests'
 
-import { startServer, stopServer } from './actions'
-
-export interface ServerState {
-	server: Server | null
-	userServers: Server[] | null
-	publicServers: Server[] | null
+export interface ServerStore {
+	server: Server | null | undefined
+	userServers: Server[] | null | undefined
+	publicServers: Server[] | null | undefined
 	isLoading: boolean
+	error: Error | null
 	// activePlayers: IPlayer[] | null
 	// currentUsage: IServerCurrentUsageItem[] | null
 	// console: IServerConsoleLine[] | null
 	// properties: IServerProperty[] | null
-}
-
-export interface ServerAction {
-	getServer: (request: ServerRequest) => void
-	getUserServers: () => void
-	getPublicServers: () => void
-	resetServer: () => void
-	start: (request: ServerStartRequest) => void
-	stop: (request: ServerStopRequest) => void
 }
 
 const servers: Server[] = [
@@ -48,58 +39,64 @@ const servers: Server[] = [
 	},
 ]
 
-export const useServer = create<ServerState & ServerAction>((set) => ({
+export const getServerFx = createEffect<ServerRequest, Server | undefined>(
+	async ({ gameServerHash }) => servers.find((server) => (server.gameServerHash = gameServerHash))
+)
+
+export const getUserServersFx = createEffect(async () => servers)
+
+export const getPublicServersFx = createEffect(async () => servers)
+
+export const resetServerFx = createEffect(async () => null)
+
+export const startFx = createEffect<ServerStartRequest, void>(
+	async ({ gameServerHash }) => await startServer({ gameServerHash })
+)
+
+export const stopFx = createEffect<ServerStopRequest, void>(
+	async ({ gameServerHash }) => await stopServer({ gameServerHash })
+)
+
+export const $server = createStore<ServerStore>({
 	server: null,
-	userServers: null,
-	publicServers: null,
 	isLoading: false,
-	async getServer({ gameServerHash }) {
-		set(() => ({ isLoading: true }))
-		try {
-			const server = servers.find((server) => server.gameServerHash === gameServerHash)
-			
-			set(() => ({ server: server ? server : null }))
-		} catch (error) {
-			set(() => ({ server: null }))
-		} finally {
-			set(() => ({ isLoading: false }))
-		}
-	},
-	async getUserServers() {
-		set(() => ({ isLoading: true }))
-		try {
-			set(() => ({ userServers: servers }))
-		} catch (error) {
-			set(() => ({ server: null }))
-		} finally {
-			set(() => ({ isLoading: false }))
-		}
-	},
-	async getPublicServers() {
-		set(() => ({ isLoading: true }))
-		try {
-			set(() => ({ userServers: servers }))
-		} catch (error) {
-			set(() => ({ server: null }))
-		} finally {
-			set(() => ({ isLoading: false }))
-		}
-	},
-	async resetServer() {
-		set(() => ({ server: null }))
-	},
-	async start({ gameServerHash }) {
-		set(() => ({ isLoading: true }))
-
-		await startServer({ gameServerHash })
-
-		set(() => ({ isLoading: false }))
-	},
-	async stop({ gameServerHash }) {
-		set(() => ({ isLoading: true }))
-
-		await stopServer({ gameServerHash })
-
-		set(() => ({ isLoading: false }))
-	},
-}))
+	publicServers: null,
+	userServers: null,
+	error: null,
+})
+	.on(getServerFx.pending, (state) => ({ ...state, isLoading: true }))
+	.on(getServerFx.doneData, (state, server) => ({ ...state, server, isLoading: false }))
+	.on(getServerFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
+	.on(getUserServersFx.pending, (state) => ({ ...state, isLoading: true }))
+	.on(getUserServersFx.doneData, (state, userServers) => ({
+		...state,
+		userServers,
+		isLoading: false,
+	}))
+	.on(getUserServersFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
+	.on(getPublicServersFx.pending, (state) => ({ ...state, isLoading: true }))
+	.on(getPublicServersFx.doneData, (state, publicServers) => ({
+		...state,
+		publicServers,
+		isLoading: false,
+	}))
+	.on(getPublicServersFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
+	.on(resetServerFx.pending, (state) => ({ ...state, isLoading: true }))
+	.on(resetServerFx.done, (state) => ({
+		...state,
+		server: null,
+		isLoading: false,
+	}))
+	.on(resetServerFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
+	.on(startFx.pending, (state) => ({ ...state, isLoading: true }))
+	.on(startFx.done, (state) => ({
+		...state,
+		isLoading: false,
+	}))
+	.on(startFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
+	.on(stopFx.pending, (state) => ({ ...state, isLoading: true }))
+	.on(stopFx.done, (state) => ({
+		...state,
+		isLoading: false,
+	}))
+	.on(stopFx.failData, (state, error) => ({ ...state, isLoading: false, error }))
