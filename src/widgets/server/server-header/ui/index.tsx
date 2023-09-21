@@ -109,9 +109,7 @@ export function ServerHeader() {
 						</div>
 					</div>
 					<div className={styles.controls}>
-						<div className={styles.tabs}>
-							<ServerTabs serverHash={server.gameServerHash} />
-						</div>
+						<ServerTabs serverHash={server.gameServerHash} />
 						<div className={styles.cart}>
 							{/* <button type="button" className={styles.otherActionsBtn}>
 						<Icon name="RiShareForwardFill" className={styles.otherActionsIcon} size={28} />
