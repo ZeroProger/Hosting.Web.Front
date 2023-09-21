@@ -1,2 +1,3 @@
-export { useClickOutside } from './useClickOutside'
-export { useLocalStorage } from './useLocalStorage'
+export { useClickOutside } from './use-click-outside'
+export { useDebounce } from './use-debounce'
+export { useLocalStorage } from './use-local-storage'

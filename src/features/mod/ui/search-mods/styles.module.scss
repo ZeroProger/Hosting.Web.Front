@@ -1,0 +1,7 @@
+.container {
+	@apply relative;
+
+	.searchInput {
+		@apply relative flex h-14;
+	}
+}

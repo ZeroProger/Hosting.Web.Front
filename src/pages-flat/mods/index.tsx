@@ -3,6 +3,8 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 
+import { SearchMods } from '@/features/mod/ui'
+
 import { ModUrls } from '@/shared/routes/urls'
 import { Icon } from '@/shared/ui/icon'
 import { Skeleton } from '@/shared/ui/skeleton'
@@ -67,7 +69,9 @@ export function Mods() {
 						</div>
 					</div>
 					<div className={styles.divider}></div>
-					<div className={styles.search}>{/* <SearchMods /> */}</div>
+					<div className={styles.search}>
+						<SearchMods />
+					</div>
 				</nav>
 			) : (
 				<div className="w-full">
