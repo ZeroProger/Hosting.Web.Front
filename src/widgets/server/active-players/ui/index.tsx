@@ -87,5 +87,3 @@ export function ServerActivePlayers() {
 		</div>
 	)
 }
-
-export default ServerActivePlayers

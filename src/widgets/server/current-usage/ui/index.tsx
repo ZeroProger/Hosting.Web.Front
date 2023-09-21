@@ -11,7 +11,7 @@ import { Progress } from '@/shared/ui/progress'
 
 import styles from './styles.module.scss'
 
-const ServerCurrentUsage: FC = () => {
+export function ServerCurrentUsage() {
 	const { server } = useServer()
 	const [currentUsage, setCurrentUsage] = useState<ServerCurrentUsageItem[]>([])
 
@@ -52,5 +52,3 @@ const ServerCurrentUsage: FC = () => {
 		</div>
 	)
 }
-
-export default ServerCurrentUsage

@@ -17,7 +17,7 @@ import { isUndefined } from '@/shared/utils/isUndefined'
 import { ServerService } from 'services-temp/server-service'
 import styles from './styles.module.scss'
 
-const ServerMainInfo: FC = () => {
+export function ServerMainInfo() {
   const { server } = useServer()
   const [mainInfo, setMainInfo] = useState<ServerMainInfo[]>([])
 
@@ -107,5 +107,3 @@ const ServerMainInfo: FC = () => {
 		</div>
 	)
 }
-
-export default ServerMainInfo

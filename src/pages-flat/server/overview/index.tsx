@@ -8,10 +8,10 @@ import { useServer } from '@/entities/server/store'
 import { JoyrideGuide, overviewSteps } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'
 
-import ServerActivePlayers from '@/widgets/server/active-players/ui'
-import ServerCurrentUsage from '@/widgets/server/current-usage/ui'
-import ServerMainInfo from '@/widgets/server/main-info/ui'
-import ServerMiniConsole from '@/widgets/server/mini-console/ui'
+import { ServerActivePlayers } from '@/widgets/server/active-players'
+import { ServerCurrentUsage } from '@/widgets/server/current-usage'
+import { ServerMainInfo } from '@/widgets/server/main-info'
+import { Console } from '@/widgets/server/console'
 
 import styles from './styles.module.scss'
 
@@ -38,7 +38,7 @@ export function ServerOverview() {
 						</div>
 						<div className={styles.column}>
 							<div className="mini-console">
-								<ServerMiniConsole />
+								<Console mini />
 							</div>
 							<div className="current-usage">
 								<ServerCurrentUsage />

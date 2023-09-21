@@ -1,7 +1,7 @@
 @import '@/app/styles/_mixins.scss';
 
 .header {
-	@apply sticky w-full bg-card top-0 left-0 right-0 z-header mb-5;
+	@apply sticky w-full bg-card top-0 left-0 right-0 z-header;
 
 	transition: transform 0.3s;
 

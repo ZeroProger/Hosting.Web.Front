@@ -3,51 +3,28 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { CallBackProps } from 'react-joyride'
+import { ServerService } from 'services-temp/server-service'
 
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
-import { ServerService } from 'services-temp/server-service'
 import { useServer } from '@/entities/server/store'
-import { ServerConsoleLine, ServerConsoleLineType } from '@/entities/server/types'
+import { ServerConsoleLineType } from '@/entities/server/types'
 
 import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'
 import { Input } from '@/shared/ui/input'
 
+import { useServerConsole } from '../lib'
+
 import styles from './styles.module.scss'
 
-interface IServerMiniConsole {
-	fullConsole?: boolean
-}
-
-export function ServerMiniConsole({ fullConsole }: IServerMiniConsole) {
-	const [serverConsole, setServerConsole] = useState<ServerConsoleLine[]>([])
-	const [inputValue, setInputValue] = useState('')
+export function Console({ mini = false }: { mini?: boolean }) {
+	const { serverConsole, inputRef, linesRef, inputValue, functions } = useServerConsole()
+	const { setServerConsole, handleInput, clearInput, handleSend } = functions
 
 	const { push } = useRouter()
 	const { server } = useServer()
-	const inputRef = useRef<HTMLInputElement>(null)
-	const linesRef = useRef<HTMLDivElement>(null)
-
-	const handleEnter = (value: string) => {
-		//#TODO: Тут будет логика отправки сообщений на сервер
-		const newLine: ServerConsoleLine = {
-			id: Math.random().toString(),
-			message: `/${value}`,
-			time: new Date().toLocaleString('ru-RU', {
-				hour: '2-digit',
-				minute: '2-digit',
-				second: '2-digit',
-			}),
-			type: ServerConsoleLineType.Info,
-		}
-		setServerConsole((oldArray) => [...oldArray, newLine])
-	}
-
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		setInputValue(e.target.value)
-	}
 
 	const onGuideFinish = ({ status }: CallBackProps) =>
 		status === 'finished' && push(ServerUrls.server.settings(server?.gameServerHash!))
@@ -70,28 +47,25 @@ export function ServerMiniConsole({ fullConsole }: IServerMiniConsole) {
 
 	return (
 		<>
-			{fullConsole && <JoyrideGuide steps={consoleSteps} callback={onGuideFinish} />}
-			<div
-				className={clsx(styles.card, { [styles.fullConsole]: fullConsole })}
-				id="server-console-step"
-			>
+			{!mini && <JoyrideGuide steps={consoleSteps} callback={onGuideFinish} />}
+			<div className={clsx(styles.card, { [styles.mini]: mini })} id="server-console-step">
 				{server && (
 					<>
 						<div className={styles.header}>
 							<div className={styles.headerTitle}>Консоль</div>
-							{fullConsole && (
+							{!mini && (
 								<div className={styles.headerActions} id="server-logs-step">
 									<Link href={ServerUrls.server.logs(server.gameServerHash)}>Журнал логов</Link>
 								</div>
 							)}
 						</div>
 						<div className={styles.hr}></div>
-						<div className={clsx(styles.body, { [styles.mini]: !fullConsole })}>
-							<div className={clsx(styles.lines, { [styles.mini]: !fullConsole })} ref={linesRef}>
+						<div className={styles.body}>
+							<div className={styles.lines} ref={linesRef}>
 								{serverConsole.length === 0 && (
 									<div
 										className={clsx(styles.consoleEmpty, {
-											[styles.consoleEmptyFull]: fullConsole,
+											[styles.consoleEmptyFull]: !mini,
 										})}
 									>
 										<span>Здесь пока пусто</span>
@@ -113,7 +87,7 @@ export function ServerMiniConsole({ fullConsole }: IServerMiniConsole) {
 									</div>
 								))}
 							</div>
-							{fullConsole && (
+							{!mini && (
 								<div className={styles.enterCommand}>
 									<Input
 										ref={inputRef}
@@ -121,12 +95,12 @@ export function ServerMiniConsole({ fullConsole }: IServerMiniConsole) {
 										value={inputValue}
 										onKeyDown={(e) => {
 											if (e.key === 'Enter') {
-												handleEnter(inputRef.current?.value || '')
-												setInputValue('')
+												handleSend(inputRef.current?.value || '')
+												clearInput()
 											}
 										}}
 										className="w-full"
-										onChange={handleChange}
+										onChange={handleInput}
 									/>
 								</div>
 							)}
@@ -137,5 +111,3 @@ export function ServerMiniConsole({ fullConsole }: IServerMiniConsole) {
 		</>
 	)
 }
-
-export default ServerMiniConsole
