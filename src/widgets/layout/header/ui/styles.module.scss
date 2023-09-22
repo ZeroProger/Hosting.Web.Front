@@ -34,7 +34,7 @@
 			}
 
 			.serverSelect {
-				@apply flex-1 max-w-[500px] hidden md:block;
+				@apply flex-1 max-w-[500px] hidden sm:block;
 			}
 		}
 	}

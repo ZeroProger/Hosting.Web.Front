@@ -1,12 +1,12 @@
 .container {
-	@apply top-0 left-0 fixed bg-background z-menu md:hidden;
+	@apply top-0 fixed bg-background z-menu opacity-0 invisible md:hidden;
 
 	width: var(--vw);
 	height: var(--vh);
 
 	transform: translateX(calc(-1 * var(--vw)));
 
-	transition: transform 0.3s ease-in-out;
+	transition: transform 0.3s ease-in-out, opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
 
 	&.open {
 		@apply opacity-100 visible;
@@ -16,6 +16,10 @@
 
 	.content {
 		@apply flex flex-col gap-4 pt-[70px] pb-4 px-6;
+
+		.serverSelect {
+			@apply block sm:hidden;
+		}
 
 		.list {
 			@apply flex flex-col gap-4;
