@@ -34,7 +34,8 @@ export const getServerFx = createEffect<IServerRequest, IServer | undefined>(
 
 export const resetServerFx = createEvent()
 
-export const getPublicServersFx = createEffect(async () => servers)
+//#TODO: переделать на вызовы бэка
+export const getPublicServersFx = createEffect(async () => servers.slice(1))
 
 export const getUserServersFx = createEffect(async () => servers)
 
@@ -60,6 +61,9 @@ export const $publicServers = createStore<IServer[]>([]).on(
 	getPublicServersFx.doneData,
 	(_, publicServers) => publicServers
 )
+
+$publicServers.watch(console.log)
+$pendingPublicServers.watch(console.log)
 
 export const $userServers = createStore<IServer[]>([]).on(
 	getUserServersFx.doneData,

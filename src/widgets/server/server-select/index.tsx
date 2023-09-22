@@ -29,7 +29,6 @@ export function ServerSelect({ servers }: { servers: Server[] }) {
 	}, [params])
 
 	const handleSelect = (value: string) => {
-		console.log(value)
 		router.push(ServerUrls.server.overview(value))
 	}
 

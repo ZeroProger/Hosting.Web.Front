@@ -1,8 +1,9 @@
 'use client'
 
 import { useStore } from 'effector-react'
+import { useEffect } from 'react'
 
-import { $pendingPublicServers, $publicServers } from '@/entities/server/model'
+import { $pendingPublicServers, $publicServers, getPublicServersFx } from '@/entities/server/model'
 import { ServersList } from '@/entities/server/ui'
 
 import { Heading } from '@/shared/ui/heading'
@@ -13,7 +14,9 @@ export function PublicServers() {
 	const publicServers = useStore($publicServers)
 	const isLoading = useStore($pendingPublicServers)
 
-	console.log(publicServers)
+	useEffect(() => {
+		getPublicServersFx()
+	}, [])
 
 	return (
 		<div className={styles.container}>
