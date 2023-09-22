@@ -4,7 +4,7 @@ import { useStore } from 'effector-react'
 import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 
-import { $pendingServer, $server, getServerFx, startFx, stopFx } from '@/entities/server/store'
+import { $pendingServer, $server, getServerFx, startFx, stopFx } from '@/entities/server/model'
 
 export function useServerHeader() {
 	const router = useRouter()

@@ -7,7 +7,7 @@ import { Fragment, useEffect, useState } from 'react'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
 import { ServerService } from 'services-temp/server-service'
 
-import { $server } from '@/entities/server/store'
+import { $server } from '@/entities/server/model'
 
 import { IPlayer } from '@/shared/api/common'
 import { ServerUrls } from '@/shared/routes/urls'

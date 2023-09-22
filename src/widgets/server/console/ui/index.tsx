@@ -9,7 +9,7 @@ import { CallBackProps } from 'react-joyride'
 import { ServerService } from 'services-temp/server-service'
 
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
-import { $server } from '@/entities/server/store'
+import { $server } from '@/entities/server/model'
 import { IServerConsoleLineType } from '@/entities/server/types'
 
 import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'

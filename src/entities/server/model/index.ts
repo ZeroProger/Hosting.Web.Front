@@ -21,6 +21,7 @@ const servers: IServer[] = [
 		gameKind: 'minecraft',
 		serverIp: '221.91.32.16',
 		isOnline: false,
+
 		serverPorts: [
 			{ id: 1, port: 10006, portKind: 'controller', creationDate: 100, updateDate: 100 },
 		],
@@ -33,9 +34,9 @@ export const getServerFx = createEffect<IServerRequest, IServer | undefined>(
 
 export const resetServerFx = createEvent()
 
-export const getUserServersFx = createEffect(async () => servers)
-
 export const getPublicServersFx = createEffect(async () => servers)
+
+export const getUserServersFx = createEffect(async () => servers)
 
 export const startFx = createEffect<IServerStartRequest, void>(
 	async ({ gameServerHash }) => await startServer({ gameServerHash })

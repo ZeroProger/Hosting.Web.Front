@@ -4,7 +4,7 @@ import { useStore } from 'effector-react'
 import { FC, useEffect, useState } from 'react'
 import { ServerService } from 'services-temp/server-service'
 
-import { $server } from '@/entities/server/store'
+import { $server } from '@/entities/server/model'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
 import { IServerCurrentUsageItem } from '@/entities/server/types'
 

@@ -1,7 +1,5 @@
-import clsx from 'clsx';
-import Link from 'next/link';
-
-
+import clsx from 'clsx'
+import Link from 'next/link'
 
 import { IServer } from '@/entities/server/types'
 

@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
 import clsx from 'clsx'
 import { useStore } from 'effector-react'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
-import { $userServers, getUserServersFx } from '@/entities/server/store'
+import { $userServers, getUserServersFx } from '@/entities/server/model'
 
 import { cn } from '@/shared/lib/utils'
 import { CommonUrls } from '@/shared/routes/urls'
