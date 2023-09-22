@@ -100,7 +100,7 @@ export function Console({ mini = false }: { mini?: boolean }) {
 												clearInput()
 											}
 										}}
-										className="w-full"
+										className="w-full focus-visible:ring-offset-0"
 										onChange={handleInput}
 									/>
 								</div>

@@ -14,6 +14,7 @@ import { Console } from '@/widgets/server/console'
 import { ServerCurrentUsage } from '@/widgets/server/current-usage'
 import { ServerMainInfo } from '@/widgets/server/main-info'
 
+import { ServerOverviewLoading } from './loading'
 import styles from './styles.module.scss'
 
 export function ServerOverview() {
@@ -24,31 +25,29 @@ export function ServerOverview() {
 	const onGuideFinish = ({ status }: CallBackProps) =>
 		status === 'finished' && push(ServerUrls.server.players(server?.gameServerHash!))
 
+	if (!server || isLoading) return <ServerOverviewLoading />
+
 	return (
 		<>
-			{server && !isLoading && (
-				<>
-					<JoyrideGuide steps={overviewSteps} callback={onGuideFinish} />
-					<section className={styles.container}>
-						<div className={styles.column}>
-							<div className="main-info">
-								<ServerMainInfo />
-							</div>
-							<div className="active-players">
-								<ServerActivePlayers />
-							</div>
-						</div>
-						<div className={styles.column}>
-							<div className="mini-console">
-								<Console mini />
-							</div>
-							<div className="current-usage">
-								<ServerCurrentUsage />
-							</div>
-						</div>
-					</section>
-				</>
-			)}
+			<JoyrideGuide steps={overviewSteps} callback={onGuideFinish} />
+			<section className={styles.container}>
+				<div className={styles.column}>
+					<div className="main-info">
+						<ServerMainInfo />
+					</div>
+					<div className="active-players">
+						<ServerActivePlayers />
+					</div>
+				</div>
+				<div className={styles.column}>
+					<div className="mini-console">
+						<Console mini />
+					</div>
+					<div className="current-usage">
+						<ServerCurrentUsage />
+					</div>
+				</div>
+			</section>
 		</>
 	)
 }

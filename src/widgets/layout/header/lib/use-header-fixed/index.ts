@@ -9,6 +9,7 @@ export function useHeaderFixed() {
 	useEffect(() => {
 		const headerFixed = () => {
 			const scrollDistance = window.scrollY
+
 			const isFixed = scrollDistance > lastScrollTop.current
 
 			setIsFixed(isFixed)

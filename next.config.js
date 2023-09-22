@@ -7,7 +7,7 @@ const nextConfig = {
 	optimizeFonts: false,
 	//skipMiddlewareUrlNormalize: false,
 	//assetPrefix: isProd ? `${process.env.REACT_APP_SERVER_URL}/assets` : undefined,
-	//basePath: isProd ? '/src' : undefined,
+	basePath: '',
 	//trailingSlash: false,
 	//publicRuntimeConfig: { basePath: isProd ? '/src' : undefined },
 	env: {
@@ -23,6 +23,7 @@ const nextConfig = {
 				hostname: '**',
 			},
 		],
+		domains: ['media.forgecdn.net'],
 	},
 	async rewrites() {
 		return [
