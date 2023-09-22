@@ -1,11 +1,10 @@
 import clsx from 'clsx'
 import { useStore } from 'effector-react'
 
-import '@/app/styles/hamburgers/_hamburgers.scss'
-
-import { $headerMenu, toggle } from '../../store'
+import { $headerMenu, toggle } from '../../model'
 
 import styles from './styles.module.scss'
+import './styles/_hamburgers.scss'
 
 export function Burger() {
 	const { isHeaderMenuOpen } = useStore($headerMenu)

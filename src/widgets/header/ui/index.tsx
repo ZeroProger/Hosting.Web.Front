@@ -5,14 +5,14 @@ import { useStore } from 'effector-react'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
-import { $userServers, getUserServersFx } from '@/entities/server/model'
+import { $userServers, getUserServersFx } from '@/widgets/header'
 
 import { cn } from '@/shared/lib/utils'
 import { CommonUrls } from '@/shared/routes/urls'
 
 import { ServerSelect } from '@/widgets/server/server-select'
 
-import { useHeaderFixed } from '../lib'
+import { useHeaderFixed } from '../hooks'
 
 import { Burger } from './burger'
 import { Logo } from './logo'

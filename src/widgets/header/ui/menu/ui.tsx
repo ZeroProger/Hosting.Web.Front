@@ -5,11 +5,11 @@ import { useStore } from 'effector-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { $userServers } from '@/entities/server/model'
+import { $userServers } from '@/widgets/header'
 
 import { ServerSelect } from '@/widgets/server/server-select'
 
-import { $headerMenu } from '../../store'
+import { $headerMenu } from '../../model'
 
 import { menuItems } from './config'
 import styles from './styles.module.scss'

@@ -3,11 +3,11 @@
 import { useStore } from 'effector-react'
 import { useEffect } from 'react'
 
-import { $pendingPublicServers, $publicServers, getPublicServersFx } from '@/entities/server/model'
 import { ServersList } from '@/entities/server/ui'
 
 import { Heading } from '@/shared/ui/heading'
 
+import { $pendingPublicServers, $publicServers, getPublicServersFx } from './model'
 import styles from './styles.module.scss'
 
 export function PublicServers() {

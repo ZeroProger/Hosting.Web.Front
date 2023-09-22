@@ -34,6 +34,8 @@ export function Mods() {
 
 	const { handleClassesOpen, handleClassesExpand } = functions
 
+	//#TODO: можно покрасивее сделать, вынести в отдельные 5 компонентов типа:
+	//PopularModpacksCompilation, ....
 	const { data: mods, isLoading: isModsLoading } = useFilteredMods(popularModsRequest, 'mods')
 	const { data: modpacks } = useFilteredMods(popularModpacksRequest, 'modpacks')
 	const { data: worlds } = useFilteredMods(popularWorldsRequest, 'worlds')

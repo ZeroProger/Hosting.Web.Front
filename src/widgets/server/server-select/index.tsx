@@ -4,10 +4,9 @@ import { useStore } from 'effector-react'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-import { $server, resetServerFx } from '@/entities/server/model'
-
 import { Server } from '@/shared/api/common'
 import { ServerUrls } from '@/shared/routes/urls'
+import { $server, resetServerFx } from '@/shared/store'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select'
 
 export function ServerSelect({ servers }: { servers: Server[] }) {

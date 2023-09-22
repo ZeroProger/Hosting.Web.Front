@@ -1,23 +1,43 @@
-import { default as image1, default as user1 } from '@/app/assets/images/head1.webp';
-import { default as image2, default as user2 } from '@/app/assets/images/head2.png';
-import { default as image3, default as user3 } from '@/app/assets/images/head3.webp';
-import image4 from '@/app/assets/images/head4.webp';
+import { default as image1, default as user1 } from '@/app/assets/images/head1.webp'
+import { default as image2, default as user2 } from '@/app/assets/images/head2.png'
+import { default as image3, default as user3 } from '@/app/assets/images/head3.webp'
+import image4 from '@/app/assets/images/head4.webp'
 
-
-
-import { IPlayer, IPlayerRole, PlayerRoles } from '@/shared/api/common';
-
-
-
+import { IPlayer, IPlayerRole, PlayerRoles } from '@/shared/api/common'
 import {
 	IFileNode,
+	IServer,
 	IServerConsoleLine,
 	IServerConsoleLineType,
 	IServerCurrentUsageItem,
 	IServerMainInfo,
 	IServerProperty,
 	IServerPropertyType,
-} from '../../entities/server/types'
+} from '@/shared/types'
+
+export const servers: IServer[] = [
+	{
+		gameServerName: 'First test Server',
+		gameServerHash: 'e49e80aff7d038738181e79ad66a0dbbd3eb678b447c98fbac6cbfea1ece452e',
+		gameKind: 'minecraft',
+		serverIp: '194.74.25.12',
+		isOnline: true,
+		serverPorts: [
+			{ id: 1, port: 10004, portKind: 'controller', creationDate: 100, updateDate: 100 },
+		],
+	},
+	{
+		gameServerName: 'Second test Server',
+		gameServerHash: 'fd5c41aff7d038738181e79ad66a0dbbd3eb678b447c98fbac6cbfea1efd5c41',
+		gameKind: 'minecraft',
+		serverIp: '221.91.32.16',
+		isOnline: false,
+
+		serverPorts: [
+			{ id: 1, port: 10006, portKind: 'controller', creationDate: 100, updateDate: 100 },
+		],
+	},
+]
 
 export const serverMainInfo: IServerMainInfo[] = [
 	{

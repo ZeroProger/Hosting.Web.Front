@@ -7,7 +7,7 @@ import { Fragment, useEffect, useState } from 'react'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
 import { ServerService } from 'services-temp/server-service'
 
-import { $server } from '@/entities/server/model'
+import { $server } from '@/shared/store'
 
 import { IPlayer } from '@/shared/api/common'
 import { ServerUrls } from '@/shared/routes/urls'
@@ -72,6 +72,9 @@ export function ServerActivePlayers() {
 										))}
 									</div>
 									<div className={styles.actions}>
+										{/* #TODO: kick and ban => features/player/... */}
+										{/* Передавать 2 эти фичи через пропсы bunButton and kickButton в /entities/player/row/ui <PlayerRow/> */}
+										{/*  */}
 										<Button onClick={handleKickClick} variant="default">
 											<Icon name="TbCircleMinus" size={32} className={styles.kick} />
 										</Button>

@@ -4,10 +4,9 @@ import { useStore } from 'effector-react'
 import { FC, useEffect, useState } from 'react'
 import { ServerService } from 'services-temp/server-service'
 
-import { $server } from '@/entities/server/model'
+import { $server } from '@/shared/store'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
-import { IServerCurrentUsageItem } from '@/entities/server/types'
-
+import { IServerCurrentUsageItem } from '@/shared/types'
 import { Progress } from '@/shared/ui/progress'
 
 import styles from './styles.module.scss'

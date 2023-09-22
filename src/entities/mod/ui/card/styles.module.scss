@@ -1,8 +1,14 @@
+@import '@/app/styles/_mixins.scss';
+
 .card {
-	@apply w-full h-[280px];
+	@apply w-full h-[280px] z-5 relative;
+
+	transition: all 0.15s ease-in-out;
 
 	.inner {
-		@apply w-full h-full bg-card p-5;
+		@apply block absolute top-0 left-0 right-0 bottom-0 cursor-pointer w-full h-full bg-card p-5 z-1;
+
+		transition: all 0.2s ease-in-out;
 
 		.art {
 			@apply w-full h-[144px] overflow-hidden transition-all;
@@ -49,6 +55,18 @@
 			}
 
 			.moreInfo {
+			}
+		}
+	}
+
+	&:hover {
+		@include md(lg, 'min') {
+			@apply z-10;
+
+			.inner {
+				@apply -left-[25%] -top-[64px] w-[150%] h-[408px];
+
+				box-shadow: 0 0 15px 7px hsl(var(--card));
 			}
 		}
 	}

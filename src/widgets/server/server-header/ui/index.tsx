@@ -2,6 +2,8 @@
 
 import clsx from 'clsx'
 
+import { ServerControlButton } from '@/features/server-controls/ui'
+
 import { Button } from '@/shared/ui/button'
 import { SubHeading } from '@/shared/ui/heading'
 import { Icon } from '@/shared/ui/icon'
@@ -45,27 +47,20 @@ export function ServerHeader() {
 					</div>
 					<div className={styles.mainBarActions}>
 						{server.isOnline ? (
-							<Button
-								className={styles.btnStop}
-								onClick={handleStopServer}
-								disabled={isLoading}
+							<ServerControlButton
+								callback={handleStopServer}
+								text="Остановить сервер"
+								isLoading={isLoading}
 								variant="destructive"
-							>
-								Остановить сервер
-								{/* {isLoading && <Loading color={'white'} />} */}
-							</Button>
+							/>
 						) : (
-							<Button
-								className={styles.btnStart}
-								onClick={handleStartServer}
-								disabled={isLoading}
+							<ServerControlButton
+								callback={handleStartServer}
+								text="Запустить сервер"
+								isLoading={isLoading}
 								variant="primary"
-							>
-								Запустить сервер
-								{/* {isLoading && <Loading color={'white'} />} */}
-							</Button>
+							/>
 						)}
-
 						<Button variant="default">
 							<Icon name="BsThreeDots" size={24} />
 						</Button>
