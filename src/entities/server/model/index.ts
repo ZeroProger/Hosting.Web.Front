@@ -65,3 +65,6 @@ export const $userServers = createStore<IServer[]>([]).on(
 	getUserServersFx.doneData,
 	(_, userServers) => userServers
 )
+
+$publicServers.watch(console.log)
+// $userServers.watch(console.log)

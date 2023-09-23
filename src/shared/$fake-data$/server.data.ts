@@ -5,9 +5,7 @@ import image4 from '@/app/assets/images/head4.webp';
 
 
 
-import { IPlayer, IPlayerRole, PlayerRoles } from '@/shared/api/common';
-
-
+import { IPlayer, IPlayerRole, PlayerRoles } from '@/shared/api/common'
 
 import {
 	IFileNode,
