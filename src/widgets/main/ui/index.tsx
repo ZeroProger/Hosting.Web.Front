@@ -12,7 +12,7 @@ export function Main({ children }: { children: React.ReactNode }) {
 	return (
 		<main
 			className={cn('flex-auto', {
-				'content-container p-layout-sm sm:p-layout': !isHomePage,
+				'content-container p-layout-sm sm:p-layout pt-header-sm sm:pt-header': !isHomePage,
 			})}
 		>
 			{children}

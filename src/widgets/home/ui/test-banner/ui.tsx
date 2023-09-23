@@ -19,7 +19,7 @@ export function TestBanner() {
 		>
 			<div className={styles.title}>1 день полностью бесплатно!</div>
 			<div className={styles.description}>Тестирование игрового сервера</div>
-			<Button asChild className="text-2xl rounded-full sm:text-xl" variant="primary">
+			<Button asChild className="text-2xl sm:text-xl" variant="primary">
 				<Link href={ServerUrls.testServer()}>Начать тестировать</Link>
 			</Button>
 		</motion.div>

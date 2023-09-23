@@ -1,6 +1,6 @@
 {
-  "extends": "next",
-  "rules": {
-    "prefer-arrow-callback": "error",
-  }
+	"extends": "next",
+	"rules": {
+		"prefer-arrow-callback": "error"
+	}
 }

@@ -9,6 +9,8 @@ import { ServerUrls } from '@/shared/routes/urls'
 import { $server, resetServerFx } from '@/shared/store'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select'
 
+import { closeHeaderMenu } from '@/widgets/header'
+
 export function ServerSelect({ servers }: { servers: Server[] }) {
 	const router = useRouter()
 	const params = useParams()
@@ -29,6 +31,7 @@ export function ServerSelect({ servers }: { servers: Server[] }) {
 
 	const handleSelect = (value: string) => {
 		router.push(ServerUrls.server.overview(value))
+		closeHeaderMenu()
 	}
 
 	if (servers.length === 0) return null

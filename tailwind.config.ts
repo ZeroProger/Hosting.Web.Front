@@ -72,6 +72,8 @@ const config: Config = {
 			spacing: {
 				layout: '2rem',
 				'layout-sm': '1rem',
+				header: '106px',
+				'header-sm': '92px',
 			},
 			fontSize: {
 				md: '1rem',
@@ -86,7 +88,7 @@ const config: Config = {
 				sm: 'calc(var(--radius) - 4px)',
 				xs: 'calc(var(--radius) - 6px)',
 				layout: 'var(--radius)',
-				button: '1.25rem',
+				button: '1rem',
 			},
 			keyframes: {
 				'accordion-down': {

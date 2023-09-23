@@ -9,7 +9,7 @@ import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
 import { Input } from '@/shared/ui/input'
 
-import { useSearchMods } from '../lib'
+import { useSearchMods } from '../hooks'
 
 import { SearchModsResults } from './search-mods-results'
 import styles from './styles.module.scss'
@@ -28,7 +28,8 @@ export function SearchMods() {
 			<div className={styles.searchInput}>
 				<Input
 					type="search"
-					className="w-full text-2xl px-6 border-border border-2 text-white bg-card focus:border-primary h-auto rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+					placeholder="Поиск модов"
+					className="w-full text-xl px-6 border-border border-2 text-white bg-card focus:border-primary h-auto rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
 					defaultValue={String(searchParams.get('searchFilter') || '')}
 					onChange={handleSearch}
 					onFocus={handleInputFocus}

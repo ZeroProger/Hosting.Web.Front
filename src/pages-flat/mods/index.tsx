@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { CallBackProps } from 'react-joyride'
 
-import { SearchMods } from '@/features/mod/ui'
+import { SearchMods } from '@/features/search-mods'
 
 import { CForgeModClassType } from '@/shared/config/curse-forge'
 import {
@@ -20,7 +20,7 @@ import { ModUrls } from '@/shared/routes/urls'
 import { Icon } from '@/shared/ui/icon'
 import { Skeleton } from '@/shared/ui/skeleton'
 
-import { ModsCompilation } from '@/widgets/mod'
+import { ModsCompilation } from '@/widgets/mods-compilation'
 
 import { useGroupedCategories, useMods } from './lib'
 import { useFilteredMods } from './lib/use-filtered-mods'

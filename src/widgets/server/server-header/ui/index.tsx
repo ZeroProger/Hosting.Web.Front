@@ -9,7 +9,7 @@ import { SubHeading } from '@/shared/ui/heading'
 import { Icon } from '@/shared/ui/icon'
 
 import { ServerTabs } from '../../server-tabs'
-import { useServerHeader } from '../lib/use-server-header'
+import { useServerHeader } from '../hooks'
 
 import { ServerHeaderLoading } from './loading'
 import styles from './styles.module.scss'

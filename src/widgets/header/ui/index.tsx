@@ -5,11 +5,10 @@ import { useStore } from 'effector-react'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
-import { $userServers, getUserServersFx } from '@/widgets/header'
-
 import { cn } from '@/shared/lib/utils'
 import { CommonUrls } from '@/shared/routes/urls'
 
+import { $userServers, getUserServersFx } from '@/widgets/header'
 import { ServerSelect } from '@/widgets/server/server-select'
 
 import { useHeaderFixed } from '../hooks'
@@ -35,7 +34,7 @@ export function Header() {
 	return (
 		<header
 			className={cn(styles.header, {
-				[styles.fixed]: isFixed,
+				[styles.isFixed]: isFixed,
 				[styles.landscape]: isHomePage,
 			})}
 		>

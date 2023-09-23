@@ -1,0 +1,47 @@
+.description {
+	@apply text-lg break-words;
+
+	word-break: break-word;
+
+	* {
+		color: hsl(var(--foreground)) !important;
+	}
+
+	p,
+	h1,
+	h2,
+	h3,
+	h4,
+	hr,
+	ul {
+		@apply mb-4;
+	}
+
+	h1 {
+		@apply text-2xl font-bold;
+	}
+
+	h2,
+	h3 {
+		@apply text-xl font-bold;
+	}
+
+	img {
+		@apply mb-4 h-auto inline align-top max-w-full;
+	}
+
+	ul {
+		@apply pl-4 mb-8 list-inside;
+
+		list-style: unset;
+
+		li {
+			display: list-item;
+			text-align: -webkit-match-parent;
+		}
+	}
+
+	div + h2 {
+		@apply mt-[40px];
+	}
+}

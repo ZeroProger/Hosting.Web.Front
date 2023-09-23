@@ -1,5 +1,13 @@
-import styles from './layout.module.scss'
+'use client'
 
-export default function ModLayout({ children }: { children: React.ReactNode }) {
-	return <div className={styles.container}>{children}</div>
+import { ModLayout } from '@/layouts/mod-layout'
+
+export default function ModLayoutPage({
+	children,
+	params,
+}: {
+	children: React.ReactNode
+	params: { modId: number }
+}) {
+	return <ModLayout modId={params.modId}>{children}</ModLayout>
 }
