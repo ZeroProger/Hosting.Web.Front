@@ -3,26 +3,26 @@ import { searchModsBaseQuery } from '../config/mods'
 
 export const ServerUrls = {
 	server: {
-		overview: (slug: string) => `/servers/${slug}/overview`,
+		overview: (hash: string) => `/servers/${hash}/overview`,
 
-		players: (slug: string, category?: string) => `/servers/${slug}/players${category || ''}`,
+		players: (hash: string, category?: string) => `/servers/${hash}/players/${category || ''}`,
 
-		console: (slug: string) => `/servers/${slug}/console`,
+		console: (hash: string) => `/servers/${hash}/console`,
 
-		logs: (slug: string) => `/servers/${slug}/logs`,
+		logs: (hash: string) => `/servers/${hash}/logs`,
 
-		files: (slug: string) => `/servers/${slug}/files`,
+		files: (hash: string) => `/servers/${hash}/files`,
 
-		backups: (slug: string) => `/servers/${slug}/backups`,
+		backups: (hash: string) => `/servers/${hash}/backups`,
 
-		settings: (slug: string) => `/servers/${slug}/settings`,
+		settings: (hash: string) => `/servers/${hash}/settings`,
 
-		software: (slug: string) => `/servers/${slug}/software`,
+		software: (hash: string) => `/servers/${hash}/software`,
 
-		versions: (slug: string, core: string) => ServerUrls.server.software(slug) + '/' + core,
+		versions: (hash: string, core: string) => ServerUrls.server.software(hash) + '/' + core,
 
-		version: (slug: string, core: string, version: string) =>
-			ServerUrls.server.versions(slug, core) + '/' + version,
+		version: (hash: string, core: string, version: string) =>
+			ServerUrls.server.versions(hash, core) + '/' + version,
 	},
 
 	servers: (query?: string) => `/servers${query ? `?${query}` : ''}`,
@@ -80,7 +80,7 @@ export const CommonUrls = {
 //#TODO: переезд tariffs на subscription model
 export const SubscriptionUrls = {
 	subscriptions: () => '/subscriptions',
-	subscription: (slug: string) => `/subscriptions/${slug}`,
+	subscription: (hash: string) => `/subscriptions/${hash}`,
 }
 
 export const GameUrls = {

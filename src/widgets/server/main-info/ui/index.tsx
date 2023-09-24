@@ -7,11 +7,10 @@ import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import { ServerService } from 'services-temp/server-service'
 
-//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
-import { $server } from '@/entities/server/model'
-import { IServerMainInfo } from '@/entities/server/types'
-
 import { ServerUrls } from '@/shared/routes/urls'
+//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
+import { $server } from '@/shared/store'
+import { IServerMainInfo } from '@/shared/types'
 // #TODO Avata
 import { Icon } from '@/shared/ui/icon'
 import { isUndefined } from '@/shared/utils/isUndefined'

@@ -1,0 +1,13 @@
+.container {
+	@apply grid gap-6;
+
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+
+	.group {
+		@apply flex flex-col items-center justify-center bg-card p-layout rounded-layout;
+
+		span {
+			@apply text-2xl;
+		}
+	}
+}

@@ -1,14 +1,4 @@
-import { IServer } from '..'
-
-// import { IGameTariffs } from '../tariff.types'
-
-export interface IServerPort {
-	id: number
-	creationDate: number
-	updateDate: number
-	portKind: string
-	port: number
-}
+import { IServer } from '@/shared/types'
 
 export interface IServerCreateRequest {
 	gameId: number
@@ -24,26 +14,6 @@ export interface IServerCreateRequest {
 export interface IServerCreateResponse extends ResponseResult {
 	gameServerHash: string
 }
-
-// export interface ITariffsResponse {
-// 	games: IGameTariffs[]
-// }
-
-export interface IServerStartRequest {
-	gameServerHash: string
-}
-
-export interface IServerStartResponse extends ResponseResult {
-	gameServerHash: string
-	serverIp: string
-	serverPorts: IServerPort[]
-}
-
-export interface IServerStopRequest {
-	gameServerHash: string
-}
-
-export interface IServerStopResponse extends ResponseResult {}
 
 export interface IServerRemoveRequest {
 	gameServerHash: string

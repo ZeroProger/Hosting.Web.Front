@@ -20,14 +20,6 @@
 
 			.mainBarActions {
 				@apply flex flex-row flex-wrap gap-4;
-
-				.btnStop {
-					@apply text-2xl flex flex-row items-center flex-nowrap gap-4;
-				}
-
-				.btnStart {
-					@apply text-2xl flex flex-row items-center flex-nowrap gap-4;
-				}
 			}
 		}
 

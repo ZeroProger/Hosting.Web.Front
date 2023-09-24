@@ -7,7 +7,7 @@ import styles from './styles.module.scss'
 
 export function ServersList({
 	servers,
-	isLoading,
+	isLoading = false,
 	isPublic = false,
 }: {
 	servers: Server[]
@@ -15,8 +15,6 @@ export function ServersList({
 	isPublic?: boolean
 }) {
 	if (isLoading) return <ServersListLoading />
-
-	console.log(servers)
 
 	return (
 		<>

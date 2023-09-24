@@ -2,10 +2,11 @@
 
 import { useStore } from 'effector-react'
 
-import { $pendingUserServers, $userServers } from '@/entities/server/model'
 import { ServersList } from '@/entities/server/ui'
 
 import { Heading } from '@/shared/ui/heading'
+
+import { $pendingUserServers, $userServers } from '@/widgets/header'
 
 import styles from './styles.module.scss'
 

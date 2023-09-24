@@ -1,12 +1,14 @@
-import clsx from 'clsx'
+import clsx from 'clsx';
 import Link from 'next/link'
 
-import { IServer } from '@/entities/server/types'
-
 import { ServerUrls } from '@/shared/routes/urls'
-import { Icon } from '@/shared/ui/icon'
+import { IServer } from '@/shared/types/server'
+import { Icon } from '@/shared/ui/icon';
 
-import styles from './styles.module.scss'
+
+
+import styles from './styles.module.scss';
+
 
 function ItemWrapper({
 	isPublic,

@@ -1,13 +1,17 @@
-'use client'
+'use client';
 
-import clsx from 'clsx'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { CallBackProps } from 'react-joyride'
+import clsx from 'clsx';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { CallBackProps } from 'react-joyride';
 
-import { SearchMods } from '@/features/mod/ui'
 
-import { CForgeModClassType } from '@/shared/config/curse-forge'
+
+import { SearchMods } from '@/features/mod/ui';
+
+
+
+import { CForgeModClassType } from '@/shared/config/curse-forge';
 import {
 	popularModpacksRequest,
 	popularModsRequest,
@@ -15,16 +19,21 @@ import {
 	popularResourcePacksRequest,
 	popularWorldsRequest,
 } from '@/shared/config/mods'
-import { JoyrideGuide, modsSteps } from '@/shared/lib/react-joyride'
-import { ModUrls } from '@/shared/routes/urls'
-import { Icon } from '@/shared/ui/icon'
-import { Skeleton } from '@/shared/ui/skeleton'
+import { JoyrideGuide, modsSteps } from '@/shared/lib/react-joyride';
+import { ModUrls } from '@/shared/routes/urls';
+import { Icon } from '@/shared/ui/icon';
+import { Skeleton } from '@/shared/ui/skeleton';
 
-import { ModsCompilation } from '@/widgets/mod'
 
-import { useGroupedCategories, useMods } from './lib'
-import { useFilteredMods } from './lib/use-filtered-mods'
-import styles from './styles.module.scss'
+
+import { ModsCompilation } from '@/widgets/mod';
+
+
+
+import { useGroupedCategories, useMods } from './lib';
+import { useFilteredMods } from './lib/use-filtered-mods';
+import styles from './styles.module.scss';
+
 
 export function Mods() {
 	const router = useRouter()
@@ -34,6 +43,8 @@ export function Mods() {
 
 	const { handleClassesOpen, handleClassesExpand } = functions
 
+	//#TODO: можно покрасивее сделать, вынести в отдельные 5 компонентов типа:
+	//PopularModpacksCompilation, ....
 	const { data: mods, isLoading: isModsLoading } = useFilteredMods(popularModsRequest, 'mods')
 	const { data: modpacks } = useFilteredMods(popularModpacksRequest, 'modpacks')
 	const { data: worlds } = useFilteredMods(popularWorldsRequest, 'worlds')

@@ -4,9 +4,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import { MainProvider } from '@/app/providers/main-provider'
 import '@/app/styles/_globals.scss'
 
-import { Footer } from '@/widgets/layout/footer'
-import { Header } from '@/widgets/layout/header'
-import { Main } from '@/widgets/layout/main'
+import { Footer } from '@/widgets/footer'
+import { Header } from '@/widgets/header'
+import { Main } from '@/widgets/main'
 
 const rubik = Rubik({
 	subsets: ['latin', 'cyrillic'],

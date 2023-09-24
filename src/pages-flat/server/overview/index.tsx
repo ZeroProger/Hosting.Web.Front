@@ -4,7 +4,7 @@ import { useStore } from 'effector-react'
 import { useRouter } from 'next/navigation'
 import { CallBackProps } from 'react-joyride'
 
-import { $pendingServer, $server } from '@/entities/server/model'
+import { $pendingServer, $server } from '@/shared/store'
 
 import { JoyrideGuide, overviewSteps } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'

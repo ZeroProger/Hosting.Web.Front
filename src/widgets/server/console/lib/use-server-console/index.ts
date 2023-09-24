@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from 'react'
 
-import { IServerConsoleLine, IServerConsoleLineType } from '@/entities/server/types'
+import { IServerConsoleLine, IServerConsoleLineType } from '@/shared/types'
 
 export function useServerConsole() {
 	//#TODO: переделать в effector store

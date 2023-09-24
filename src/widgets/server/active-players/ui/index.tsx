@@ -1,37 +1,36 @@
-'use client'
+'use client';
 
-import { useStore } from 'effector-react'
-import Image from 'next/image'
+import { useStore } from 'effector-react';
+import Image from 'next/image';
 import Link from 'next/link'
-import { Fragment, useEffect, useState } from 'react'
-//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
-import { ServerService } from 'services-temp/server-service'
+import { Fragment } from 'react'
 
-import { $server } from '@/entities/server/model'
+import { useBanPlayer } from '@/features/players/lib/useBanPlayer'
+import { useKickPlayer } from '@/features/players/lib/useKickPlayer'
 
-import { IPlayer } from '@/shared/api/common'
 import { ServerUrls } from '@/shared/routes/urls'
+//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
+import { $server } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
+
+// import { $activePlayers, getActivePlayers } from '../model'
+import { useActivePlayers } from '../lib/useActivePlayers'
 
 import styles from './styles.module.scss'
 
 export function ServerActivePlayers() {
 	const server = useStore($server)
-	const [activePlayers, setActivePlayers] = useState<IPlayer[]>([])
+	const { data: activePlayers } = useActivePlayers({ gameServerHash: server?.gameServerHash! })
+	const { mutate: kick } = useKickPlayer(server?.gameServerHash!)
+	const { mutate: ban } = useBanPlayer(server?.gameServerHash!)
+	// const activePlayers = useStore($activePlayers)
 
-	const handleKickClick = () => {}
-	const handleBanClick = () => {}
-
-	useEffect(() => {
-		if (server) {
-			const data = ServerService.activePlayers({
-				gameServerHash: server.gameServerHash,
-			})
-
-			setActivePlayers(data)
-		}
-	}, [server])
+	// useEffect(() => {
+	// 	if (server) {
+	// 		getActivePlayers({ gameServerHash: server.gameServerHash })
+	// 	}
+	// }, [server])
 
 	return (
 		<div className={styles.card}>
@@ -46,7 +45,7 @@ export function ServerActivePlayers() {
 					<hr className={styles.hr} />
 					<div className={styles.body}>
 						<div className={styles.rows}>
-							{activePlayers.map((player) => (
+							{activePlayers?.map((player) => (
 								<div key={player.id} className={styles.row}>
 									<div className={styles.avatar}>
 										<Image
@@ -72,10 +71,13 @@ export function ServerActivePlayers() {
 										))}
 									</div>
 									<div className={styles.actions}>
-										<Button onClick={handleKickClick} variant="default">
+										{/* #TODO: kick and ban => features/player/... */}
+										{/* Передавать 2 эти фичи через пропсы bunButton and kickButton в /entities/player/row/ui <PlayerRow/> */}
+										{/*  */}
+										<Button onClick={() => kick(player.id)} variant="default">
 											<Icon name="TbCircleMinus" size={32} className={styles.kick} />
 										</Button>
-										<Button onClick={handleBanClick} variant="destructive">
+										<Button onClick={() => ban(player.id)} variant="destructive">
 											<Icon name="Io5Ban" size={32} className={styles.ban} />
 										</Button>
 									</div>

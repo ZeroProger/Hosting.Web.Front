@@ -1,8 +1,15 @@
+import {
+	IServerStartRequest,
+	IServerStartResponse,
+	IServerStopRequest,
+	IServerStopResponse,
+} from '@/features/server-controls/types'
+
 import { axiosAuth } from '@/shared/api/auth'
 import { ServerListRequest } from '@/shared/api/common'
 import { ServerApiUrls } from '@/shared/api/urls'
+import { IServer } from '@/shared/types/server'
 
-import { IServer } from '../entities/server/types'
 import {
 	IServerActivePlayersRequest,
 	IServerConsoleRequest,
@@ -14,10 +21,6 @@ import {
 	IServerPropertiesRequest,
 	IServerRemoveRequest,
 	IServerRemoveResponse,
-	IServerStartRequest,
-	IServerStartResponse,
-	IServerStopRequest,
-	IServerStopResponse,
 	IServerUpdateRequest,
 	IServerUpdateResponse,
 } from '../entities/server/types/requests'
