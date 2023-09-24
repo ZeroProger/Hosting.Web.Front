@@ -1,45 +1,30 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "baseUrl": "./src/",
-    "paths": {
-      "@/app/*": [
-        "app/*"
-      ],
-      "@/entities/*": [
-        "entities/*"
-      ],
-      "@/features/*": [
-        "features/*"
-      ],
-      "@/pages-flat/*": [
-        "pages-flat/*"
-      ],
-      "@/shared/*": [
-        "shared/*"
-      ],
-      "@/widgets/*": [
-        "widgets/*"
-      ]
-    },
-    "plugins": [
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"baseUrl": "./src/",
+		"paths": {
+			"@/app/*": ["app/*"],
+			"@/entities/*": ["entities/*"],
+			"@/features/*": ["features/*"],
+			"@/layouts/*": ["layouts/*"],
+			"@/pages-flat/*": ["pages-flat/*"],
+			"@/shared/*": ["shared/*"],
+			"@/widgets/*": ["widgets/*"]
+		},
+		"plugins": [
 			{
 				"name": "next"
 			},
@@ -47,14 +32,7 @@
 				"name": "typescript-plugin-css-modules"
 			}
 		]
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/entities/mod/ui/card/index.ts"],
+	"exclude": ["node_modules"]
 }

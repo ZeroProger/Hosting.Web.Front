@@ -1,17 +1,13 @@
-'use client';
+'use client'
 
-import clsx from 'clsx';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { CallBackProps } from 'react-joyride';
+import clsx from 'clsx'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { CallBackProps } from 'react-joyride'
 
+import { SearchMods } from '@/features/search-mods'
 
-
-import { SearchMods } from '@/features/mod/ui';
-
-
-
-import { CForgeModClassType } from '@/shared/config/curse-forge';
+import { CForgeModClassType } from '@/shared/config/curse-forge'
 import {
 	popularModpacksRequest,
 	popularModsRequest,
@@ -19,21 +15,16 @@ import {
 	popularResourcePacksRequest,
 	popularWorldsRequest,
 } from '@/shared/config/mods'
-import { JoyrideGuide, modsSteps } from '@/shared/lib/react-joyride';
-import { ModUrls } from '@/shared/routes/urls';
-import { Icon } from '@/shared/ui/icon';
-import { Skeleton } from '@/shared/ui/skeleton';
+import { JoyrideGuide, modsSteps } from '@/shared/lib/react-joyride'
+import { ModUrls } from '@/shared/routes/urls'
+import { Icon } from '@/shared/ui/icon'
+import { Skeleton } from '@/shared/ui/skeleton'
 
+import { ModsCompilation } from '@/widgets/mods-compilation'
 
-
-import { ModsCompilation } from '@/widgets/mod';
-
-
-
-import { useGroupedCategories, useMods } from './lib';
-import { useFilteredMods } from './lib/use-filtered-mods';
-import styles from './styles.module.scss';
-
+import { useGroupedCategories, useMods } from './lib'
+import { useFilteredMods } from './lib/use-filtered-mods'
+import styles from './styles.module.scss'
 
 export function Mods() {
 	const router = useRouter()
@@ -78,7 +69,7 @@ export function Mods() {
 						>
 							<button className={styles.classesOpen} onClick={handleClassesOpen}>
 								Категории
-								<Icon name="MdKeyboardArrowDown" size={28} color="#fff" />
+								<Icon name="chevron-down" size={28} color="#fff" />
 							</button>
 							<div className={styles.classesMenu}>
 								<ul>
@@ -89,7 +80,7 @@ export function Mods() {
 													<h3 className={styles.class}>
 														<Link href={ModUrls.search({ classId: group.classId })}>
 															{group.className}
-															<Icon name="MdKeyboardArrowRight" size={24} color="#fff" />
+															<Icon name="chevron-right" size={24} color="#fff" />
 														</Link>
 													</h3>
 													{group.categories.map((category) => (

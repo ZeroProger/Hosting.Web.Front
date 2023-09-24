@@ -49,7 +49,7 @@ export function PlayersList({
 									</div>
 									<div>
 										<Button className="btn-error">
-											<Icon name="MdDelete" color="#fff" size={32} />
+											<Icon name="trash-2" color="#fff" size={32} />
 										</Button>
 									</div>
 								</div>
@@ -60,7 +60,7 @@ export function PlayersList({
 						<div className={clsx(styles.tableItem, styles.addData)} id="add-player-step">
 							<Input type="text" placeholder={addDataPlaceholder} className="w-full" />
 							<Button className={clsx('btn-default', styles.addDataBtn)}>
-								<Icon name="AiOutlinePlus" size={24} />
+								<Icon name="plus" size={24} />
 								<span>Добавить</span>
 							</Button>
 						</div>

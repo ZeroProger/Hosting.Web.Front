@@ -36,12 +36,12 @@ export function IpsList({
 							ips.map((player) => (
 								<div className={styles.tableItem} key={player.id}>
 									<div className={styles.tableItemData}>
-										<Icon name="TbCurrentLocation" size={32} />
+										<Icon name="locate-fixed" size={32} />
 										<span>{player.value}</span>
 									</div>
 									<div>
 										<Button className="btn-error">
-											<Icon name="MdDelete" color="#fff" size={32} />
+											<Icon name="trash-2" color="#fff" size={32} />
 										</Button>
 									</div>
 								</div>
@@ -52,7 +52,7 @@ export function IpsList({
 						<div className={clsx(styles.tableItem, styles.addData)} id="add-player-step">
 							<Input type="text" placeholder={addDataPlaceholder} className="w-full" />
 							<Button className={clsx('btn-default', styles.addDataBtn)}>
-								<Icon name="AiOutlinePlus" size={24} />
+								<Icon name="plus" size={24} />
 								<span>Добавить</span>
 							</Button>
 						</div>

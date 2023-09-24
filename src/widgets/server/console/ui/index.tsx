@@ -16,7 +16,7 @@ import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'
 import { Input } from '@/shared/ui/input'
 
-import { useServerConsole } from '../lib'
+import { useServerConsole } from '../hooks'
 
 import styles from './styles.module.scss'
 

@@ -1,14 +1,11 @@
-import clsx from 'clsx';
+import clsx from 'clsx'
 import Link from 'next/link'
 
 import { ServerUrls } from '@/shared/routes/urls'
-import { IServer } from '@/shared/types/server'
-import { Icon } from '@/shared/ui/icon';
+import { IServer } from '@/shared/types'
+import { Icon } from '@/shared/ui/icon'
 
-
-
-import styles from './styles.module.scss';
-
+import styles from './styles.module.scss'
 
 function ItemWrapper({
 	isPublic,
@@ -51,7 +48,7 @@ function ItemContent({ server }: { server: IServer }) {
 					{ [styles.offline]: !server.isOnline }
 				)}
 			>
-				<Icon name="GoDotFill" size={24} />
+				<Icon name="dot" strokeWidth={2.5} size={24} />
 				<span>{server.isOnline ? 'Онлайн' : 'Оффлайн'}</span>
 			</div>
 		</>

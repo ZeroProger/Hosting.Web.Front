@@ -69,7 +69,7 @@ export const ServerMainInfo: FC = () => {
 											<Popover shouldCloseOnBlur placement={'right'}>
 												<Popover.Trigger>
 													<div onClick={handleCopyClick}>
-														<Icon name="Io5Copy" className="cursor-pointer" />
+														<Icon name="copy" className="cursor-pointer" />
 													</div>
 												</Popover.Trigger>
 												<Popover.Content className="flex flex-row items-center h-[40px] bg-backgroundLight border-lightGray border-2">
@@ -94,7 +94,7 @@ export const ServerMainInfo: FC = () => {
 												}
 												className={styles.link}
 											>
-												<Icon name="AiFillEdit" />
+												<Icon name="pencil-line" />
 											</Link>
 										) : null}
 									</div>

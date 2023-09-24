@@ -23,7 +23,7 @@ const nextConfig = {
 				hostname: '**',
 			},
 		],
-		domains: ['media.forgecdn.net'],
+		domains: ['media.forgecdn.net', 'www.youtube.com'],
 	},
 	async rewrites() {
 		return [

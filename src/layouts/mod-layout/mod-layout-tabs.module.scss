@@ -1,0 +1,17 @@
+.tabs {
+	@apply mb-6 flex items-center flex-nowrap gap-6;
+
+	grid-area: tabs;
+
+	a {
+		@apply text-xl;
+
+		&:hover {
+			@apply text-white;
+		}
+
+		&.active {
+			@apply bg-primary text-primary-foreground rounded-layout px-3 py-0;
+		}
+	}
+}
