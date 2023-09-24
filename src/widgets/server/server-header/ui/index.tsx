@@ -41,7 +41,7 @@ export function ServerHeader() {
 							}
 							variant="default"
 						>
-							<Icon name="MdArrowBackIos" size={24} />
+							<Icon name="chevron-left" strokeWidth={2} size={24} />
 						</Button>
 						<SubHeading className="text-3xl mb-0">{server.gameServerName}</SubHeading>
 					</div>
@@ -62,13 +62,13 @@ export function ServerHeader() {
 							/>
 						)}
 						<Button variant="default">
-							<Icon name="BsThreeDots" size={24} />
+							<Icon name="more-horizontal" strokeWidth={2} size={24} />
 						</Button>
 					</div>
 				</div>
 				<div className={styles.subBar}>
 					<div className={styles.subBarAddress}>
-						<Icon name="TbWorld" size={24} />
+						<Icon name="globe" size={24} />
 						<span>
 							{server.serverPorts.length > 0 ? (
 								//#TODO: getServerFullAddress
@@ -85,7 +85,7 @@ export function ServerHeader() {
 						</div>
 					)} */}
 					<div className={styles.subBarCore}>
-						<Icon name="BsBookmarkFill" />
+						<Icon name="bookmark" />
 						<span>
 							{/* {server.software.name} {server.version.name} */}
 							{/* #TODO: Заглушка, потом поправить на данные с сервера */}
@@ -99,7 +99,7 @@ export function ServerHeader() {
 							{ [styles.offline]: !server.isOnline }
 						)}
 					>
-						<Icon name="GoDotFill" />
+						<Icon name="dot" strokeWidth={2} />
 						<span>{server.isOnline ? 'Онлайн' : 'Оффлайн'}</span>
 					</div>
 				</div>
@@ -108,7 +108,7 @@ export function ServerHeader() {
 				<ServerTabs serverHash={server.gameServerHash} />
 				<div className={styles.cart}>
 					{/* <button type="button" className={styles.otherActionsBtn}>
-						<Icon name="RiShareForwardFill" className={styles.otherActionsIcon} size={28} />
+						<Icon name="forward" className={styles.otherActionsIcon} size={28} />
 						<span className={styles.otherActionsText}>Поделиться</span>
 					</button> */}
 					{/* {modsCart.length > 0 && (

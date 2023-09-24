@@ -76,10 +76,10 @@ export function ServerActivePlayers() {
 										{/* Передавать 2 эти фичи через пропсы bunButton and kickButton в /entities/player/row/ui <PlayerRow/> */}
 										{/*  */}
 										<Button onClick={handleKickClick} variant="default">
-											<Icon name="TbCircleMinus" size={32} className={styles.kick} />
+											<Icon name="minus-circle" size={32} className={styles.kick} />
 										</Button>
 										<Button onClick={handleBanClick} variant="destructive">
-											<Icon name="Io5Ban" size={32} className={styles.ban} />
+											<Icon name="ban" size={32} className={styles.ban} />
 										</Button>
 									</div>
 								</div>

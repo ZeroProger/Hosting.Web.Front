@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 
 import { cn } from '@/shared/lib/utils'
 
-import { items } from './config'
+import { items } from '../config/config'
 import styles from './styles.module.scss'
 
 export function Nav() {

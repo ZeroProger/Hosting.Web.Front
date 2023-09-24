@@ -9,9 +9,9 @@ import { $userServers } from '@/widgets/header'
 
 import { ServerSelect } from '@/widgets/server/server-select'
 
-import { $headerMenu } from '../../model'
+import { $headerMenu } from '@/widgets/header'
 
-import { menuItems } from './config'
+import { menuItems } from '../config'
 import styles from './styles.module.scss'
 
 export function Menu() {

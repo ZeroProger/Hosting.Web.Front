@@ -69,7 +69,7 @@ export function Mods() {
 						>
 							<button className={styles.classesOpen} onClick={handleClassesOpen}>
 								Категории
-								<Icon name="MdKeyboardArrowDown" size={28} color="#fff" />
+								<Icon name="chevron-down" size={28} color="#fff" />
 							</button>
 							<div className={styles.classesMenu}>
 								<ul>
@@ -80,7 +80,7 @@ export function Mods() {
 													<h3 className={styles.class}>
 														<Link href={ModUrls.search({ classId: group.classId })}>
 															{group.className}
-															<Icon name="MdKeyboardArrowRight" size={24} color="#fff" />
+															<Icon name="chevron-right" size={24} color="#fff" />
 														</Link>
 													</h3>
 													{group.categories.map((category) => (

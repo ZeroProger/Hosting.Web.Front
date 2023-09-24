@@ -75,13 +75,13 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 									</Link>
 								</li>
 								<li className={styles.detailsDownloads}>
-									<Icon name="MdFileDownload" size={24} />
+									<Icon name="arrow-down-to-line" size={24} />
 									{formattedDownloadsCount}
 								</li>
 							</ul>
 							<div className={styles.modActions}>
 								<button type="button" className={styles.favoriteBtn} id="add-to-favorites-btn-step">
-									<Icon name="FaRegHeart" size={24} />
+									<Icon name="heart" size={24} />
 								</button>
 								{/* <button
 											type="button"
@@ -91,12 +91,12 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 										>
 											{isModInCart ? (
 												<>
-													<Icon name="HiOutlineMinusCircle" size={32} />
+													<Icon name="minus-circle" size={32} />
 													Убрать
 												</>
 											) : (
 												<>
-													<Icon name="HiOutlinePlusCircle" size={32} />
+													<Icon name="plus-circle" size={32} />
 													Добавить
 												</>
 											)}
@@ -153,7 +153,12 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 							<div className={styles.report}>
 								<h3>Сообщить об ошибке</h3>
 								<Link href={CommonUrls.feedback()} className={styles.reportLink}>
-									<Icon name="MdOutlineReport" className="text-destructive" size={28}></Icon>
+									<Icon
+										name="alert-triangle"
+										strokeWidth={2}
+										className="text-destructive"
+										size={28}
+									></Icon>
 									Сообщить
 								</Link>
 							</div>

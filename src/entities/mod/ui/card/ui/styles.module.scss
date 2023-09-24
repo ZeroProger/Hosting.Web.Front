@@ -1,0 +1,132 @@
+@import '@/app/styles/_mixins.scss';
+
+.card {
+	@apply w-full h-[280px] z-5 relative;
+
+	transition: all 0.15s ease-in-out;
+
+	.inner {
+		@apply block absolute top-0 left-0 right-0 bottom-0 cursor-pointer w-full h-full bg-card p-5;
+
+		transition: all 0.2s ease-in-out;
+
+		.art {
+			@apply w-full h-[144px] overflow-hidden transition-all;
+			background-color: inherit;
+
+			img {
+				@apply w-full h-full object-cover;
+			}
+		}
+
+		.details {
+			@apply relative pointer-events-none;
+
+			.name {
+				@apply mt-4 mb-1;
+			}
+
+			.author {
+				@apply text-sm;
+			}
+
+			.name,
+			.author {
+				@apply overflow-hidden whitespace-nowrap text-ellipsis;
+			}
+
+			> .detailsList {
+				@apply flex flex-row items-center gap-3 mt-3 h-5;
+
+				.downloads {
+					@apply flex flex-row items-center gap-1 text-sm leading-[normal];
+				}
+			}
+
+			.moreInfo {
+				@apply opacity-0 pointer-events-none;
+
+				transition: opacity 0.1s;
+
+				.description {
+					@apply text-sm mt-2 mb-2 h-[60px];
+
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 3;
+					overflow: hidden;
+				}
+
+				.detailsList {
+					@apply flex flex-row items-center gap-3 h-[20px];
+
+					.downloads {
+						@apply flex flex-row items-center gap-1 text-sm leading-[normal];
+					}
+
+					.updated {
+						@apply flex flex-row items-center gap-1 text-sm leading-[normal];
+					}
+				}
+
+				.categoriesList {
+					@apply flex items-center gap-3 mt-2 mb-2;
+				}
+
+				.actions {
+					@apply flex items-center justify-center gap-2 mt-3 overflow-hidden;
+				}
+			}
+		}
+	}
+
+	&.hover {
+		@include md(xl, 'min') {
+			.inner {
+				@apply -left-[20px] -top-[64px] h-[408px];
+
+				width: calc(100% + 40px);
+			}
+		}
+
+		@include md(lg, 'min') {
+			@apply z-10;
+
+			.inner {
+				@apply -left-[50px] -top-[64px] h-[408px];
+
+				width: calc(100% + 100px);
+
+				box-shadow: 0 0 15px 7px hsl(var(--card));
+
+				.details {
+					> .detailsList {
+						@apply hidden;
+
+						transition: opacity 0.2s -0.1s;
+					}
+
+					.moreInfo {
+						@apply opacity-100;
+
+						.actions {
+							pointer-events: all;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.classTag {
+	@apply block overflow-hidden w-max;
+	line-height: 22px;
+
+	span {
+		@apply block overflow-hidden border border-border text-white px-2 h-5 text-sm rounded-[2px] align-middle whitespace-nowrap text-ellipsis;
+
+		line-height: 19px;
+		text-decoration: none;
+	}
+}

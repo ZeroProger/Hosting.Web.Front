@@ -25,7 +25,7 @@ export function ModsCompilation({
 				<div className={styles.header}>
 					<h2 className={styles.title}>{title}</h2>
 					<Link href={viewAllLink} className={styles.viewAll}>
-						Смотреть все <Icon name="MdKeyboardArrowRight" size={24} />
+						Смотреть все <Icon name="chevron-right" size={24} />
 					</Link>
 				</div>
 				<ul className={styles.mods}>

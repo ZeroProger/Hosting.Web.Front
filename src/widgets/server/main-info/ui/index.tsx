@@ -94,7 +94,7 @@ export const ServerMainInfo: FC = () => {
 												}
 												className={styles.link}
 											>
-												<Icon name="AiFillEdit" />
+												<Icon name="pencil-line" />
 											</Link>
 										) : null}
 									</div>

@@ -47,7 +47,7 @@ export function SearchMods() {
 								: ModUrls.search()
 						}
 					>
-						<Icon name="MdSearch" size={28}></Icon>
+						<Icon name="search" size={28}></Icon>
 					</Link>
 				</Button>
 			</div>

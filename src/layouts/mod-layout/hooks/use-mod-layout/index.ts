@@ -1,4 +1,5 @@
-import { formatModDate, formatModDownloadsCount } from '../../config'
+
+import { formatModDate, formatModDownloadsCount } from '@/shared/utils/format'
 import { useModData, useModDescription } from '../../model'
 
 export function useModLayout(modId: number) {
