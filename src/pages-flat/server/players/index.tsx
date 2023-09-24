@@ -24,11 +24,11 @@ export function ServerPlayers() {
 			</Link>
 			<Link href={ServerUrls.server.players(serverHash, 'banned-players')} className={styles.group}>
 				<UserX size={80} />
-				<span>Забаненные игроки</span>
+				<span>Заблокированные игроки</span>
 			</Link>
 			<Link href={ServerUrls.server.players(serverHash, 'banned-ips')} className={styles.group}>
 				<LocateOff size={80} />
-				<span>Забаненные ip-адреса</span>
+				<span>Заблокированные ip-адреса</span>
 			</Link>
 		</div>
 	)

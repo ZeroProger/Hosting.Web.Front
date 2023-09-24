@@ -1,7 +1,7 @@
 'use client'
 
+import { QueryClientProvider } from '@tanstack/react-query'
 import { useEffect } from 'react'
-import { QueryClientProvider } from 'react-query'
 
 import { queryClient } from '@/shared/lib/react-query'
 import { ToastifyContainer } from '@/shared/lib/react-toastify'

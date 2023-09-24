@@ -1,6 +1,6 @@
+import { useQuery } from '@tanstack/react-query'
 import { useStore } from 'effector-react'
 import { ChangeEvent, useRef, useState } from 'react'
-import { useQuery } from 'react-query'
 
 import { Mod, axiosCurseForge } from '@/shared/api/curse-forge'
 import { searchModsBaseRequest } from '@/shared/config/mods'
@@ -15,18 +15,21 @@ export function useSearchMods() {
 
 	const debouncedSearch = useDebounce(searchTerm, searchTerm.trim().length === 0 ? 0 : 600)
 
-	const { isSuccess, data: mods } = useQuery(
-		[ModUrls.search(server?.gameServerHash!) + debouncedSearch, debouncedSearch],
-		() =>
-			axiosCurseForge.post<{ data: Mod[] }>(ModUrls.search(server?.gameServerHash!), {
+	const { isSuccess, data: mods } = useQuery({
+		queryKey: [
+			ModUrls.search(server?.gameServerHash!) + debouncedSearch,
+			debouncedSearch,
+			server?.gameServerHash!,
+		],
+		queryFn: () => {
+			return axiosCurseForge.post<{ data: Mod[] }>(ModUrls.search(server?.gameServerHash!), {
 				...searchModsBaseRequest,
 				searchFilter: debouncedSearch,
-			}),
-		{
-			select: ({ data }) => data.data,
-			enabled: !!debouncedSearch,
-		}
-	)
+			})
+		},
+		select: ({ data }) => data.data,
+		enabled: !!debouncedSearch,
+	})
 
 	const containerRef = useRef(null)
 

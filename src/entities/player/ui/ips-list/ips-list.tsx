@@ -12,7 +12,6 @@ import { Heading } from '@/shared/ui/heading'
 import { Input } from '@/shared/ui/input'
 
 import { DataListLoading } from '../list-loading'
-
 import styles from '../styles.module.scss'
 
 export function IpsList({
@@ -60,7 +59,7 @@ export function IpsList({
 					<div className={styles.row} id="add-player-step">
 						<Input
 							placeholder={addDataPlaceholder}
-							className="w-full bg-transparent text-xl border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:placeholder-foreground"
+							className="w-full bg-transparent text-xl border-none focus-visible:ring-0 focus-visible:ring-offset-0"
 						/>
 						<Button
 							variant="primary"

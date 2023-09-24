@@ -1,6 +1,6 @@
 'use client'
 
-import { QueryClient, QueryClientConfig } from 'react-query'
+import { QueryClient, QueryClientConfig } from '@tanstack/react-query'
 
 export const reactQueryConfig: QueryClientConfig = {
 	defaultOptions: {

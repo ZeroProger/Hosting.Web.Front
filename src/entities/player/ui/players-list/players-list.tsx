@@ -68,7 +68,7 @@ export function PlayersList({
 					<div className={styles.row} id="add-player-step">
 						<Input
 							placeholder={addDataPlaceholder}
-							className="w-full bg-transparent text-xl border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:placeholder-foreground"
+							className="w-full bg-transparent text-xl border-none focus-visible:ring-0 focus-visible:ring-offset-0"
 						/>
 						<Button
 							variant="primary"
