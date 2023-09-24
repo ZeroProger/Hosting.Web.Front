@@ -28,7 +28,7 @@ export function ServerPlayers() {
 			</Link>
 			<Link href={ServerUrls.server.players(serverHash, 'banned-ips')} className={styles.group}>
 				<LocateOff size={80} />
-				<span>Заблокированные ip-адреса</span>
+				<span>Заблокированные IP адреса</span>
 			</Link>
 		</div>
 	)

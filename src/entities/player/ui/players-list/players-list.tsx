@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { useStore } from 'effector-react'
 import { PlusCircle, Trash2 } from 'lucide-react'
 import Image from 'next/image'
@@ -15,7 +16,6 @@ import { Heading } from '@/shared/ui/heading'
 import { Input } from '@/shared/ui/input'
 
 import { DataListLoading } from '../list-loading'
-
 import styles from '../styles.module.scss'
 
 export function PlayersList({
@@ -57,7 +57,7 @@ export function PlayersList({
 									/>
 									<span>{player.value}</span>
 								</div>
-								<Button variant="destructive" className="rounded-layout">
+								<Button variant="destructive">
 									<Trash2 size={28} />
 								</Button>
 							</div>
@@ -65,15 +65,12 @@ export function PlayersList({
 					) : (
 						<div>В данной категории пока нет добавленных игроков</div>
 					)}
-					<div className={styles.row} id="add-player-step">
+					<div className={clsx(styles.row, styles.add)} id="add-player-step">
 						<Input
 							placeholder={addDataPlaceholder}
 							className="w-full bg-transparent text-xl border-none focus-visible:ring-0 focus-visible:ring-offset-0"
 						/>
-						<Button
-							variant="primary"
-							className="flex flex-row items-center gap-3 rounded-layout text-xl"
-						>
+						<Button variant="primary" className="flex flex-row items-center gap-3 text-xl">
 							<PlusCircle size={24} />
 							Добавить
 						</Button>

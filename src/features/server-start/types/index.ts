@@ -1,6 +1,6 @@
 import { IServerPort } from '@/shared/types'
 
-export interface IServerControlRequest {
+export interface IServerStartRequest {
 	gameServerHash: string
 }
 
@@ -9,5 +9,3 @@ export interface IServerStartResponse extends ResponseResult {
 	serverIp: string
 	serverPorts: IServerPort[]
 }
-
-export interface IServerStopResponse extends ResponseResult {}

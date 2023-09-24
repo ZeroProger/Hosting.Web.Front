@@ -5,7 +5,6 @@ import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 
 import { $pendingServer, $server, getServerFx } from '@/shared/store'
-import { startFx, stopFx } from '@/features/server-controls'
 
 export function useServerHeader() {
 	const router = useRouter()
@@ -22,18 +21,6 @@ export function useServerHeader() {
 
 	const handleGoBack = useCallback(() => {
 		router.back()
-	}, [server])
-
-	const handleStopServer = useCallback(() => {
-		if (server && !isLoading) {
-			stopFx({ gameServerHash: server.gameServerHash })
-		}
-	}, [server])
-
-	const handleStartServer = useCallback(() => {
-		if (server && !isLoading) {
-			startFx({ gameServerHash: server.gameServerHash })
-		}
 	}, [server])
 
 	const handleSubmitCart = useCallback(() => {
@@ -62,8 +49,6 @@ export function useServerHeader() {
 			handleModalOpen,
 			handleModalClose,
 			handleGoBack,
-			handleStartServer,
-			handleStopServer,
 			handleSubmitCart,
 			handleResetCart,
 		},

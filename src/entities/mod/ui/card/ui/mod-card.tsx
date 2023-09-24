@@ -69,16 +69,13 @@ export function ModCard({ mod }: { mod: Mod }) {
 								</li>
 							</ul>
 							<div className={styles.actions}>
-								<Button
-									asChild
-									variant="outline"
-									className="py-1 px-3 h-8 text-sm rounded-layout w-full"
-								>
+								<Button asChild variant="outline" size="sm" className="py-0 text-md w-full">
 									<Link href={ModUrls.mod(server?.gameServerHash!, mod.id)}>Подробнее</Link>
 								</Button>
 								<Button
 									variant="primary"
-									className="py-1 px-3 h-8 text-sm rounded-layout w-full flex items-center gap-2 leading-[normal]"
+									size="sm"
+									className="py-0 text-md w-full flex items-center gap-2 leading-[normal]"
 									onClick={handleAddModClick}
 								>
 									<PlusCircle size={20} />

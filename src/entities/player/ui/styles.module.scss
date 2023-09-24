@@ -11,6 +11,14 @@
 				@apply flex flex-row flex-nowrap items-center gap-6 text-2xl;
 			}
 
+			&.add {
+				@apply pl-0;
+
+				input {
+					@apply pl-4;
+				}
+			}
+
 			&:has(> input:focus-visible) {
 				@apply border-primary;
 			}

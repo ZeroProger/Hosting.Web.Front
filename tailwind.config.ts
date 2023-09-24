@@ -88,7 +88,7 @@ const config: Config = {
 				sm: 'calc(var(--radius) - 4px)',
 				xs: 'calc(var(--radius) - 6px)',
 				layout: 'var(--radius)',
-				button: '1rem',
+				button: 'var(--radius)',
 			},
 			keyframes: {
 				'accordion-down': {

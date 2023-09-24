@@ -3,7 +3,8 @@
 import clsx from 'clsx'
 import { Bookmark, ChevronLeft, Dot, Globe, MoreHorizontal } from 'lucide-react'
 
-import { ServerControlButton } from '@/features/server-controls/ui'
+import { StartServerButton } from '@/features/server-start'
+import { StopServerButton } from '@/features/server-stop'
 
 import { Button } from '@/shared/ui/button'
 import { SubHeading } from '@/shared/ui/heading'
@@ -17,15 +18,8 @@ import styles from './styles.module.scss'
 export function ServerHeader() {
 	const { server, isLoading, isModalOpen, functions } = useServerHeader()
 
-	const {
-		handleModalOpen,
-		handleModalClose,
-		handleGoBack,
-		handleStartServer,
-		handleStopServer,
-		handleSubmitCart,
-		handleResetCart,
-	} = functions
+	const { handleModalOpen, handleModalClose, handleGoBack, handleSubmitCart, handleResetCart } =
+		functions
 
 	if (!server || isLoading) return <ServerHeaderLoading />
 
@@ -36,7 +30,7 @@ export function ServerHeader() {
 					<div className={styles.mainBarInfo}>
 						<Button
 							onClick={handleGoBack}
-							className={'rounded-layout w-auto h-auto text-2xl px-0 py-0'}
+							className="w-auto h-auto text-2xl px-0 py-0"
 							variant="default"
 						>
 							<ChevronLeft strokeWidth={2} size={40} />
@@ -44,23 +38,9 @@ export function ServerHeader() {
 						<SubHeading className="text-3xl mb-0">{server.gameServerName}</SubHeading>
 					</div>
 					<div className={styles.mainBarActions}>
-						{server.isOnline ? (
-							<ServerControlButton
-								callback={handleStopServer}
-								text="Остановить сервер"
-								isLoading={isLoading}
-								variant="destructive"
-							/>
-						) : (
-							<ServerControlButton
-								callback={handleStartServer}
-								text="Запустить сервер"
-								isLoading={isLoading}
-								variant="primary"
-							/>
-						)}
-						<Button variant="default">
-							<MoreHorizontal strokeWidth={2} size={24} />
+						{server.isOnline ? <StopServerButton /> : <StartServerButton />}
+						<Button variant="default" className="py-1 px-1">
+							<MoreHorizontal strokeWidth={2} size={40} />
 						</Button>
 					</div>
 				</div>

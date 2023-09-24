@@ -124,7 +124,7 @@ export function Mods() {
 					</nav>
 				) : (
 					<div className="w-full">
-						<Skeleton className="h-[56px] rounded-layout" />
+						<Skeleton className="h-[56px]" />
 					</div>
 				)}
 				<div id="mods-compilation-step">

@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { useStore } from 'effector-react'
 import { LocateFixed, PlusCircle, Trash2 } from 'lucide-react'
 import router from 'next/router'
@@ -48,7 +49,7 @@ export function IpsList({
 									<LocateFixed size={32} />
 									<span>{player.value}</span>
 								</div>
-								<Button variant="destructive" className="rounded-layout">
+								<Button variant="destructive">
 									<Trash2 size={28} />
 								</Button>
 							</div>
@@ -56,15 +57,12 @@ export function IpsList({
 					) : (
 						<div>Пока нет забаненных IP-адресов</div>
 					)}
-					<div className={styles.row} id="add-player-step">
+					<div className={clsx(styles.row, styles.add)} id="add-player-step">
 						<Input
 							placeholder={addDataPlaceholder}
 							className="w-full bg-transparent text-xl border-none focus-visible:ring-0 focus-visible:ring-offset-0"
 						/>
-						<Button
-							variant="primary"
-							className="flex flex-row items-center gap-3 rounded-layout text-xl"
-						>
+						<Button variant="primary" className="flex flex-row items-center gap-3 text-xl">
 							<PlusCircle size={24} />
 							Добавить
 						</Button>
