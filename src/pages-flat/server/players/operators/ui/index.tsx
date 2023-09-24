@@ -10,13 +10,14 @@ import { useOperators } from '../lib/use-operators-players'
 
 export function Operators() {
 	const server = useStore($server)
-	const { operators } = useOperators(server?.gameServerHash!)
+	const { operators, isLoading } = useOperators(server?.gameServerHash!)
 
 	return (
 		<PlayersList
-			title="операторы"
-			players={operators!}
-			addDataPlaceholder={'никнейм или ip адрес игрока'}
+			title="Операторы"
+			isLoading={isLoading}
+			players={operators}
+			addDataPlaceholder={'Введите никнейм игрока'}
 		/>
 	)
 }

@@ -1,6 +1,8 @@
 'use client'
 
 import clsx from 'clsx'
+import { useStore } from 'effector-react'
+import { ChevronDown, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { CallBackProps } from 'react-joyride'
@@ -17,7 +19,7 @@ import {
 } from '@/shared/config/mods'
 import { JoyrideGuide, modsSteps } from '@/shared/lib/react-joyride'
 import { ModUrls } from '@/shared/routes/urls'
-import { Icon } from '@/shared/ui/icon'
+import { $server } from '@/shared/store'
 import { Skeleton } from '@/shared/ui/skeleton'
 
 import { ModsCompilation } from '@/widgets/mods-compilation'
@@ -28,6 +30,8 @@ import styles from './styles.module.scss'
 
 export function Mods() {
 	const router = useRouter()
+
+	const server = useStore($server)
 
 	const { data: groupedCategories } = useGroupedCategories()
 	const { classesOpen, classesExpanded, classesRef, functions } = useMods()
@@ -44,7 +48,7 @@ export function Mods() {
 
 	const joyrideModsCallback = ({ status }: CallBackProps) => {
 		if (status === 'finished') {
-			router.push(ModUrls.mod(mods?.[0].id!))
+			router.push(ModUrls.mod(server?.gameServerHash!, mods?.[0].id!))
 		}
 	}
 
@@ -69,7 +73,7 @@ export function Mods() {
 						>
 							<button className={styles.classesOpen} onClick={handleClassesOpen}>
 								Категории
-								<Icon name="chevron-down" size={28} color="#fff" />
+								<ChevronDown size={28} />
 							</button>
 							<div className={styles.classesMenu}>
 								<ul>
@@ -78,15 +82,19 @@ export function Mods() {
 											<div className={styles.group}>
 												<ul className={styles.categories}>
 													<h3 className={styles.class}>
-														<Link href={ModUrls.search({ classId: group.classId })}>
+														<Link
+															href={ModUrls.search(server?.gameServerHash!, {
+																classId: group.classId,
+															})}
+														>
 															{group.className}
-															<Icon name="chevron-right" size={24} color="#fff" />
+															<ChevronRight size={24} />
 														</Link>
 													</h3>
 													{group.categories.map((category) => (
 														<li key={category.id}>
 															<Link
-																href={ModUrls.search({
+																href={ModUrls.search(server?.gameServerHash!, {
 																	classId: group.classId,
 																	categoryId: category.id,
 																})}
@@ -122,28 +130,38 @@ export function Mods() {
 				<div id="mods-compilation-step">
 					<ModsCompilation
 						title="Популярные моды"
-						viewAllLink={ModUrls.search({ classId: CForgeModClassType.Mods })}
+						viewAllLink={ModUrls.search(server?.gameServerHash!, {
+							classId: CForgeModClassType.Mods,
+						})}
 						mods={mods || []}
 					/>
 				</div>
 				<ModsCompilation
 					title="Популярные сборки модов"
-					viewAllLink={ModUrls.search({ classId: CForgeModClassType.Modpacks })}
+					viewAllLink={ModUrls.search(server?.gameServerHash!, {
+						classId: CForgeModClassType.Modpacks,
+					})}
 					mods={modpacks || []}
 				/>
 				<ModsCompilation
 					title="Популярные миры"
-					viewAllLink={ModUrls.search({ classId: CForgeModClassType.Worlds })}
+					viewAllLink={ModUrls.search(server?.gameServerHash!, {
+						classId: CForgeModClassType.Worlds,
+					})}
 					mods={worlds || []}
 				/>
 				<ModsCompilation
 					title="Популярные плагины"
-					viewAllLink={ModUrls.search({ classId: CForgeModClassType.BukkitPlugins })}
+					viewAllLink={ModUrls.search(server?.gameServerHash!, {
+						classId: CForgeModClassType.BukkitPlugins,
+					})}
 					mods={plugins || []}
 				/>
 				<ModsCompilation
 					title="Популярные пакеты ресурсов"
-					viewAllLink={ModUrls.search({ classId: CForgeModClassType.ResourcePacks })}
+					viewAllLink={ModUrls.search(server?.gameServerHash!, {
+						classId: CForgeModClassType.ResourcePacks,
+					})}
 					mods={resourcePacks || []}
 				/>
 			</div>

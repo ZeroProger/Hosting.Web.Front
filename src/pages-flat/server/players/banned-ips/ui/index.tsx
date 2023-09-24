@@ -10,13 +10,14 @@ import { useBannedIps } from '../lib/use-banned-ips'
 
 export function BannedIps() {
 	const server = useStore($server)
-	const { bannedIps } = useBannedIps(server?.gameServerHash!)
+	const { bannedIps, isLoading } = useBannedIps(server?.gameServerHash!)
 
 	return (
 		<IpsList
-			title="операторы"
-			ips={bannedIps!}
-			addDataPlaceholder={'никнейм или ip адрес игрока'}
+			title="Заблокированные IP"
+			isLoading={isLoading}
+			ips={bannedIps}
+			addDataPlaceholder={'Введите IP или никнейм игрока'}
 		/>
 	)
 }

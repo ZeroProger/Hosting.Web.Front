@@ -1,6 +1,7 @@
 'use client'
 
 import { useStore } from 'effector-react'
+import { Ban, MinusCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -13,7 +14,6 @@ import { ServerUrls } from '@/shared/routes/urls'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
 import { $server } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
-import { Icon } from '@/shared/ui/icon'
 
 import { useActivePlayers } from '../lib/useActivePlayers'
 
@@ -68,10 +68,10 @@ export function ServerActivePlayers() {
 										{/* Передавать 2 эти фичи через пропсы bunButton and kickButton в /entities/player/row/ui <PlayerRow/> */}
 										{/*  */}
 										<Button onClick={() => kick(player.id)} variant="default">
-											<Icon name="minus-circle" size={32} className={styles.kick} />
+											<MinusCircle size={32} className={styles.kick} />
 										</Button>
 										<Button onClick={() => ban(player.id)} variant="destructive">
-											<Icon name="ban" size={32} className={styles.ban} />
+											<Ban size={32} className={styles.ban} />
 										</Button>
 									</div>
 								</div>

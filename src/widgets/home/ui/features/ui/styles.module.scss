@@ -10,14 +10,21 @@
 
 			.icon {
 				@apply rounded-layout px-6 py-3;
+
 				background: linear-gradient(to top right, hsl(var(--primary)), hsl(var(--card)) 90%);
+
+				svg {
+					@apply text-[80px] w-[80px] h-[80px] text-primary;
+				}
 			}
 
 			.text {
 				@apply flex flex-col gap-2;
+
 				.title {
-					@apply text-3xl uppercase text-primary font-bold;
+					@apply text-2xl uppercase text-primary font-bold;
 				}
+
 				.description {
 					@apply text-xl text-gray-200;
 				}

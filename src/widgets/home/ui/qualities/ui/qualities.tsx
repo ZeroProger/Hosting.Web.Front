@@ -3,9 +3,9 @@
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 
-import { qualities } from '@/shared/$fake-data$/features.data'
 import { SubHeading } from '@/shared/ui/heading'
-import { Icon } from '@/shared/ui/icon'
+
+import { qualities } from '../config'
 
 import styles from './styles.module.scss'
 
@@ -30,9 +30,7 @@ export function Qualities() {
 						viewport={{ once: true, amount: 'all' }}
 						transition={{ delay: 0.2 * index, duration: 0.4, ease: 'backInOut' }}
 					>
-						<div className={styles.icon}>
-							<Icon name={quality.icon} size={80} />
-						</div>
+						<div className={styles.icon}>{quality.icon}</div>
 						<div className={styles.title}>{quality.title}</div>
 						<div className={styles.line}></div>
 						<div className={styles.description}>{quality.description}</div>

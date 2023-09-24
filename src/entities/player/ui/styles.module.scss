@@ -1,0 +1,19 @@
+.container {
+	@apply flex flex-col gap-2;
+
+	.table {
+		@apply flex flex-col gap-3;
+
+		.row {
+			@apply flex flex-row flex-nowrap justify-between items-center gap-4 bg-card px-4 py-2 rounded-xl border-2 border-transparent transition-colors duration-300;
+
+			.item {
+				@apply flex flex-row flex-nowrap items-center gap-6 text-2xl;
+			}
+
+			&:has(> input:focus-visible) {
+				@apply border-primary;
+			}
+		}
+	}
+}

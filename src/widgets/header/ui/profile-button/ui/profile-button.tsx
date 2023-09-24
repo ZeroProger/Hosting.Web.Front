@@ -1,7 +1,7 @@
+import { LogIn, User } from 'lucide-react'
 import Link from 'next/link'
 
 import { AuthUrls, ProfileUrls } from '@/shared/routes/urls'
-import { Icon } from '@/shared/ui/icon'
 
 import styles from './styles.module.scss'
 
@@ -10,13 +10,13 @@ export function ProfileButton() {
 
 	const ProfileLink = (
 		<Link href={ProfileUrls.profile()} className={styles.link}>
-			<Icon name="user" /> Профиль
+			<User size={26} /> Профиль
 		</Link>
 	)
 
 	const AuthLink = (
 		<Link href={AuthUrls.signIn()} className={styles.link}>
-			<Icon name="log-in" size={26} /> Войти
+			<LogIn size={26} /> Войти
 		</Link>
 	)
 

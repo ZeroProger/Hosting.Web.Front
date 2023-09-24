@@ -2,9 +2,8 @@
 
 import { motion } from 'framer-motion'
 
-import { features } from '@/shared/$fake-data$/features.data'
+import { features } from '../config'
 import { SubHeading } from '@/shared/ui/heading'
-import { Icon } from '@/shared/ui/icon'
 
 import styles from './styles.module.scss'
 
@@ -27,7 +26,7 @@ export function Features() {
 						}}
 					>
 						<div className={styles.icon}>
-							<Icon name={feature.icon} size={80} color={'hsl(var(--primary))'} />
+							{feature.icon}
 						</div>
 						<div className={styles.text}>
 							<div className={styles.title}>{feature.title}</div>

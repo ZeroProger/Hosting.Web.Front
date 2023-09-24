@@ -10,13 +10,14 @@ import { useBannedPlayers } from '../lib/use-banned-players'
 
 export function BannedPlayers() {
 	const server = useStore($server)
-	const { bannedPlayers } = useBannedPlayers(server?.gameServerHash!)
+	const { bannedPlayers, isLoading } = useBannedPlayers(server?.gameServerHash!)
 
 	return (
 		<PlayersList
-			title="операторы"
-			players={bannedPlayers!}
-			addDataPlaceholder={'никнейм или ip адрес игрока'}
+			title="Заблокированные игроки"
+			isLoading={isLoading}
+			players={bannedPlayers}
+			addDataPlaceholder={'Введите никнейм игрока'}
 		/>
 	)
 }

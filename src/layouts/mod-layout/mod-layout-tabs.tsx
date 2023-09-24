@@ -1,19 +1,23 @@
 'use client'
 
 import clsx from 'clsx'
+import { useStore } from 'effector-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { ModUrls } from '@/shared/routes/urls'
+import { $server } from '@/shared/store'
 
 import styles from './mod-layout-tabs.module.scss'
 
 export function ModLayoutTabs({ modId }: { modId: number }) {
 	const pathname = usePathname()
 
-	const descriptionUrl = ModUrls.mod(modId)
-	const filesUrl = ModUrls.files(modId)
-	const imagesUrl = ModUrls.images(modId)
+	const server = useStore($server)
+
+	const descriptionUrl = ModUrls.mod(server?.gameServerHash!, modId)
+	const filesUrl = ModUrls.files(server?.gameServerHash!, modId)
+	const imagesUrl = ModUrls.images(server?.gameServerHash!, modId)
 
 	return (
 		<ul className={styles.tabs}>

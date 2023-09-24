@@ -1,12 +1,12 @@
 'use client'
 
 import clsx from 'clsx'
+import { Bookmark, ChevronLeft, Dot, Globe, MoreHorizontal } from 'lucide-react'
 
 import { ServerControlButton } from '@/features/server-controls/ui'
 
 import { Button } from '@/shared/ui/button'
 import { SubHeading } from '@/shared/ui/heading'
-import { Icon } from '@/shared/ui/icon'
 
 import { ServerTabs } from '../../server-tabs'
 import { useServerHeader } from '../hooks'
@@ -36,12 +36,10 @@ export function ServerHeader() {
 					<div className={styles.mainBarInfo}>
 						<Button
 							onClick={handleGoBack}
-							className={
-								'inline rounded-full w-10 h-10 min-w-0 text-2xl hover:bg-secondary/80 px-2 py-2'
-							}
+							className={'rounded-layout w-auto h-auto text-2xl px-0 py-0'}
 							variant="default"
 						>
-							<Icon name="chevron-left" strokeWidth={2} size={24} />
+							<ChevronLeft strokeWidth={2} size={40} />
 						</Button>
 						<SubHeading className="text-3xl mb-0">{server.gameServerName}</SubHeading>
 					</div>
@@ -62,13 +60,13 @@ export function ServerHeader() {
 							/>
 						)}
 						<Button variant="default">
-							<Icon name="more-horizontal" strokeWidth={2} size={24} />
+							<MoreHorizontal strokeWidth={2} size={24} />
 						</Button>
 					</div>
 				</div>
 				<div className={styles.subBar}>
 					<div className={styles.subBarAddress}>
-						<Icon name="globe" size={24} />
+						<Globe size={24} />
 						<span>
 							{server.serverPorts.length > 0 ? (
 								//#TODO: getServerFullAddress
@@ -85,7 +83,7 @@ export function ServerHeader() {
 						</div>
 					)} */}
 					<div className={styles.subBarCore}>
-						<Icon name="bookmark" />
+						<Bookmark />
 						<span>
 							{/* {server.software.name} {server.version.name} */}
 							{/* #TODO: Заглушка, потом поправить на данные с сервера */}
@@ -99,7 +97,7 @@ export function ServerHeader() {
 							{ [styles.offline]: !server.isOnline }
 						)}
 					>
-						<Icon name="dot" strokeWidth={2} />
+						<Dot strokeWidth={8} size={24} />
 						<span>{server.isOnline ? 'Онлайн' : 'Оффлайн'}</span>
 					</div>
 				</div>

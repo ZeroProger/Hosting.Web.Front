@@ -42,7 +42,6 @@
 						@apply transition-colors;
 
 						&:hover {
-							color: var(--secondary-dirt) !important;
 						}
 					}
 
@@ -50,7 +49,6 @@
 						@apply transition-colors;
 
 						&:hover {
-							color: var(--hover-error) !important;
 						}
 					}
 				}

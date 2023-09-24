@@ -3,21 +3,36 @@ import { searchModsBaseQuery } from '../config/mods'
 
 export const ServerUrls = {
 	server: {
-		overview: (hash: string) => `/servers/${hash}/overview`,
+		root: (hash: string) => `/servers/${hash}`,
+		overview: (hash: string) => {
+			return `${ServerUrls.server.root(hash)}/overview`
+		},
+		players: (hash: string, category?: string) => {
+			return `${ServerUrls.server.root(hash)}/players${category ? `/${category}` : ''}`
+		},
+		console: (hash: string) => {
+			return `${ServerUrls.server.root(hash)}/console`
+		},
 
-		players: (hash: string, category?: string) => `/servers/${hash}/players/${category || ''}`,
+		logs: (hash: string) => {
+			return `${ServerUrls.server.root(hash)}/logs`
+		},
 
-		console: (hash: string) => `/servers/${hash}/console`,
+		files: (hash: string) => {
+			return `${ServerUrls.server.root(hash)}/files`
+		},
 
-		logs: (hash: string) => `/servers/${hash}/logs`,
+		backups: (hash: string) => {
+			return `${ServerUrls.server.root(hash)}/backups`
+		},
 
-		files: (hash: string) => `/servers/${hash}/files`,
+		settings: (hash: string) => {
+			return `${ServerUrls.server.root(hash)}/settings`
+		},
 
-		backups: (hash: string) => `/servers/${hash}/backups`,
-
-		settings: (hash: string) => `/servers/${hash}/settings`,
-
-		software: (hash: string) => `/servers/${hash}/software`,
+		software: (hash: string) => {
+			return `${ServerUrls.server.root(hash)}/software`
+		},
 
 		versions: (hash: string, core: string) => ServerUrls.server.software(hash) + '/' + core,
 
@@ -39,12 +54,22 @@ export const ServerUrls = {
 }
 
 export const ModUrls = {
-	mods: () => '/mods',
-	mod: (id: number | string) => `/mods/${id}`,
-	files: (id: number | string) => `/mods/${id}/files`,
-	images: (id: number | string) => `/mods/${id}/images`,
-	relations: (id: number | string) => `/mods/${id}/relations`,
-	search: (query?: SearchModsQuery) => {
+	mods: (serverHash: string) => {
+		return `${ServerUrls.server.root(serverHash)}/mods`
+	},
+	mod: (serverHash: string, modId: number | string) => {
+		return `${ServerUrls.server.root(serverHash)}/mods/${modId}`
+	},
+	files: (serverHash: string, modId: number | string) => {
+		return `${ServerUrls.server.root(serverHash)}/mods/${modId}/files`
+	},
+	images: (serverHash: string, modId: number | string) => {
+		return `${ServerUrls.server.root(serverHash)}/mods/${modId}/images`
+	},
+	relations: (serverHash: string, modId: number | string) => {
+		return `${ServerUrls.server.root(serverHash)}/mods/${modId}/relations`
+	},
+	search: (serverHash: string, query?: SearchModsQuery) => {
 		const resultQuery: SearchModsQuery = { ...searchModsBaseQuery, ...query }
 		const resultQueryString = Object.entries(resultQuery)
 			.filter((item) => item[1])
@@ -56,7 +81,7 @@ export const ModUrls = {
 			)
 			.join('')
 
-		return `/mods/search${resultQueryString}`
+		return `${ServerUrls.server.root(serverHash)}/mods/search${resultQueryString}`
 	},
 }
 

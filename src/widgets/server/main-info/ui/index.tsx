@@ -3,6 +3,7 @@
 // import { Popover } from '@nextui-org/react'
 import clsx from 'clsx'
 import { useStore } from 'effector-react'
+import { PencilLine } from 'lucide-react'
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import { ServerService } from 'services-temp/server-service'
@@ -12,7 +13,6 @@ import { ServerUrls } from '@/shared/routes/urls'
 import { $server } from '@/shared/store'
 import { IServerMainInfo } from '@/shared/types'
 // #TODO Avata
-import { Icon } from '@/shared/ui/icon'
 import { isUndefined } from '@/shared/utils/isUndefined'
 
 import styles from './styles.module.scss'
@@ -94,7 +94,7 @@ export const ServerMainInfo: FC = () => {
 												}
 												className={styles.link}
 											>
-												<Icon name="pencil-line" />
+												<PencilLine size={24} />
 											</Link>
 										) : null}
 									</div>

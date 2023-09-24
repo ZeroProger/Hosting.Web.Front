@@ -3,8 +3,8 @@ import { useQuery } from 'react-query'
 import { getBannedPlayers } from '../../api'
 
 export function useBannedPlayers(gameServerHash: string) {
-	const { data: bannedPlayers } = useQuery(['banned', gameServerHash], () =>
+	const { data: bannedPlayers, isLoading } = useQuery(['banned', gameServerHash], () =>
 		getBannedPlayers(gameServerHash)
 	)
-	return { bannedPlayers }
+	return { bannedPlayers, isLoading }
 }

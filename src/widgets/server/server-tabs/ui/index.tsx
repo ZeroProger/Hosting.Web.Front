@@ -11,7 +11,7 @@ export function ServerTabs({ serverHash }: { serverHash: string }) {
 
 	const overviewUrl = ServerUrls.server.overview(serverHash)
 	const playersUrl = ServerUrls.server.players(serverHash)
-	const modsUrl = ModUrls.mods()
+	const modsUrl = ModUrls.mods(serverHash)
 	const consoleUrl = ServerUrls.server.console(serverHash)
 	const filesUrl = ServerUrls.server.files(serverHash)
 	const backupsUrl = ServerUrls.server.backups(serverHash)

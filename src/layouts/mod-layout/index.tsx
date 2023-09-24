@@ -2,6 +2,7 @@
 
 import clsx from 'clsx'
 import { useStore } from 'effector-react'
+import { AlertTriangle, ArrowDownToLine, Heart } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -15,7 +16,6 @@ import { modClassesMap } from '@/shared/config/mods'
 import { JoyrideGuide, modLayoutSteps } from '@/shared/lib/react-joyride'
 import { CommonUrls, ModUrls, ServerUrls } from '@/shared/routes/urls'
 import { $server } from '@/shared/store'
-import { Icon } from '@/shared/ui/icon'
 
 import { useModLayout } from './hooks'
 import { ModLayoutLoading } from './loading'
@@ -70,18 +70,18 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 									</Link>
 								</li>
 								<li className={styles.classTag}>
-									<Link href={ModUrls.search({ classId: mod.classId })}>
+									<Link href={ModUrls.search(server?.gameServerHash!, { classId: mod.classId })}>
 										{modClassesMap.get(mod.classId)}
 									</Link>
 								</li>
 								<li className={styles.detailsDownloads}>
-									<Icon name="arrow-down-to-line" size={24} />
+									<ArrowDownToLine size={24} />
 									{formattedDownloadsCount}
 								</li>
 							</ul>
 							<div className={styles.modActions}>
 								<button type="button" className={styles.favoriteBtn} id="add-to-favorites-btn-step">
-									<Icon name="heart" size={24} />
+									<Heart size={24} />
 								</button>
 								{/* <button
 											type="button"
@@ -127,7 +127,7 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 									{mod.categories.map((category) => (
 										<li key={category.id}>
 											<Link
-												href={ModUrls.search({
+												href={ModUrls.search(server?.gameServerHash!, {
 													categoryId: category.id,
 													classId: category.classId,
 												})}
@@ -153,12 +153,7 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 							<div className={styles.report}>
 								<h3>Сообщить об ошибке</h3>
 								<Link href={CommonUrls.feedback()} className={styles.reportLink}>
-									<Icon
-										name="alert-triangle"
-										strokeWidth={2}
-										className="text-destructive"
-										size={28}
-									></Icon>
+									<AlertTriangle strokeWidth={2} className="text-destructive" size={28} />
 									Сообщить
 								</Link>
 							</div>

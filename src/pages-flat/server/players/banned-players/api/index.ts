@@ -1,5 +1,5 @@
-import { bannedIps } from '@/shared/$fake-data$/players.data'
+import { bannedUsers } from '@/shared/$fake-data$/players.data'
 
 export function getBannedPlayers(gameServerHash: string) {
-	return bannedIps
+	return bannedUsers
 }

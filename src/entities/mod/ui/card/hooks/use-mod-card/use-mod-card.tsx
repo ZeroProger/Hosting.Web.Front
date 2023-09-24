@@ -30,7 +30,8 @@ export function useModCard(mod: Mod) {
 		if (
 			event.target.nodeName === 'BUTTON' ||
 			event.target.nodeName === 'path' ||
-			event.target.nodeName === 'svg'
+			event.target.nodeName === 'svg' ||
+			event.target.nodeName === 'circle'
 		) {
 			event.preventDefault()
 			return

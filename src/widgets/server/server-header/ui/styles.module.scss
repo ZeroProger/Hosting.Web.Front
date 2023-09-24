@@ -8,14 +8,9 @@
 
 		.mainBar {
 			@apply flex flex-row flex-wrap justify-between items-center gap-5;
+
 			.mainBarInfo {
 				@apply flex flex-row flex-nowrap items-center gap-4;
-
-				button {
-					svg {
-						@apply ml-[5px];
-					}
-				}
 			}
 
 			.mainBarActions {

@@ -10,13 +10,14 @@ import { useWhitelist } from '../lib/use-whitelist-players'
 
 export function WhiteList() {
 	const server = useStore($server)
-	const { whitelist } = useWhitelist(server?.gameServerHash!)
+	const { whitelist, isLoading } = useWhitelist(server?.gameServerHash!)
 
 	return (
 		<PlayersList
-			title="whitelist"
-			players={whitelist!}
-			addDataPlaceholder={'никнейм или ip адрес игрока'}
+			title="Белый список"
+			isLoading={isLoading}
+			players={whitelist}
+			addDataPlaceholder={'Введите никнейм игрока'}
 		/>
 	)
 }
