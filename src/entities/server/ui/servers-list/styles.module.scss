@@ -2,7 +2,7 @@
 	@apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
 
 	.server {
-		@apply grid bg-card p-4 rounded-lg border-2 border-transparent hover:border-primary transition-colors;
+		@apply grid bg-card p-4 rounded-lg border-2 border-transparent hover:border-primary transition-colors shadow-card;
 
 		grid-template-areas:
 			'name name'

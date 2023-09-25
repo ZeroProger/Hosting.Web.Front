@@ -4,7 +4,7 @@
 	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 
 	.group {
-		@apply flex flex-col gap-2 items-center justify-center bg-card p-layout rounded-layout;
+		@apply flex flex-col gap-2 items-center justify-center bg-card p-layout rounded-layout shadow-card;
 
 		span {
 			@apply text-2xl;

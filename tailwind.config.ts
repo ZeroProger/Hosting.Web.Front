@@ -110,19 +110,11 @@ const config: Config = {
 		require('tailwindcss-animate'),
 		plugin(({ addUtilities }: { addUtilities: any }) => {
 			addUtilities({
-				'.shadow-primary': {
-					transition: '.3s box-shadow ease-in',
-					'box-shadow': '0 0 20px rgba(0, 0, 0, 0.1)',
-					'&:hover': {
-						'box-shadow': '0 0 15px hsl(var(--primary))',
-					},
+				'.shadow-card': {
+					'box-shadow': '0 0 10px 2px hsl(var(--card))',
 				},
-				'.shadow-primary-sm': {
-					transition: '.3s box-shadow ease-in',
-					'box-shadow': '0 0 8px 5px rgba(0, 0, 0, 0.2)',
-					'&:hover': {
-						'box-shadow': '0 0 7px 2px hsl(var(--primary))',
-					},
+				'.shadow-card-sm': {
+					'box-shadow': '0 0 5px 1px hsl(var(--card))',
 				},
 				'.content-container': {
 					maxWidth: 'var(--container-max-width)',

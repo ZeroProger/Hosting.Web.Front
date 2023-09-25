@@ -1,5 +1,5 @@
 .card {
-	@apply flex flex-col bg-card rounded-layout;
+	@apply flex flex-col bg-card shadow-card rounded-layout;
 
 	.header {
 		@apply text-3xl flex flex-row justify-between items-center flex-wrap gap-x-4 gap-y-2 px-6 py-4;

@@ -6,7 +6,7 @@
 	transition: all 0.15s ease-in-out;
 
 	.inner {
-		@apply block absolute top-0 left-0 right-0 bottom-0 cursor-pointer w-full h-full bg-card p-5;
+		@apply block absolute top-0 left-0 right-0 bottom-0 cursor-pointer w-full h-full bg-card p-5 rounded-layout shadow-card-sm;
 
 		transition: all 0.2s ease-in-out;
 
