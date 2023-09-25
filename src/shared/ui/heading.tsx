@@ -8,12 +8,7 @@ export function Heading({
 	className?: string
 }) {
 	return (
-		<h1
-			className={cn(
-				'text-foreground font-semibold text-xl md:text-2xl lg:text-3xl mb-3',
-				className
-			)}
-		>
+		<h1 className={cn('text-foreground font-semibold text-2xl lg:text-3xl mb-3', className)}>
 			{children}
 		</h1>
 	)

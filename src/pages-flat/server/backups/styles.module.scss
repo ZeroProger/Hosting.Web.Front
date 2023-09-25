@@ -1,0 +1,101 @@
+@import '@/app/styles/_mixins.scss';
+
+.container {
+	@apply flex flex-col gap-5;
+
+	.header {
+		@apply flex flex-col xl:flex-row gap-4 xl:items-center justify-between;
+
+		.autoCopy {
+			@apply flex flex-row items-center flex-wrap gap-3;
+
+			span {
+				@apply text-xl;
+			}
+
+			.autoCopyMore {
+				@apply hidden flex-row items-center gap-3;
+
+				transition: all 0.2s ease-in-out;
+
+				&.show {
+					@apply flex;
+				}
+
+				@include md(sm, 'max') {
+					@apply w-full;
+
+					flex: 1 0 auto;
+				}
+			}
+		}
+	}
+
+	.createBackup {
+		@apply relative flex h-12;
+	}
+
+	.backups {
+		@apply flex flex-col gap-2;
+
+		.backup {
+			@apply flex flex-row items-center flex-wrap gap-3 bg-card py-2 px-4 rounded-lg;
+
+			.backupName {
+				@apply text-xl text-foreground;
+			}
+
+			.backupDate {
+				@apply text-lg text-foreground/40 flex-1;
+			}
+
+			.backupAuthor {
+				@apply bg-secondary rounded-md text-md px-2 py-1;
+			}
+
+			.backupSize {
+				@apply bg-secondary rounded-md text-md px-2 py-1;
+			}
+
+			.backupActions {
+				@apply flex gap-2;
+			}
+
+			@include md(lg, 'max') {
+				.backupName {
+					@apply w-[47%];
+
+					flex: 1 0 auto;
+				}
+
+				.backupDate {
+					@apply w-[47%] text-end;
+
+					flex: 1 0 auto;
+				}
+
+				.backupActions {
+					@apply flex-1 justify-end;
+				}
+			}
+
+			@include md(xs, 'max') {
+				@apply justify-center;
+
+				.backupName {
+					@apply w-full text-center;
+				}
+
+				.backupDate {
+					@apply w-full text-center;
+				}
+
+				.backupActions {
+					@apply w-full justify-center gap-4;
+
+					flex: 1 0 auto;
+				}
+			}
+		}
+	}
+}
