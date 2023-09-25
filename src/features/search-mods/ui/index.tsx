@@ -33,7 +33,7 @@ export function SearchMods() {
 				<Input
 					type="search"
 					placeholder="Поиск модов"
-					className="w-full text-xl px-6 border-border border-2 text-white bg-card focus:border-primary h-auto rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+					className="w-full text-xl px-6 border-border border-2 text-white bg-card focus:border-primary h-auto rounded-r-none focus-visible:ring-0 focus-visible:ring-offset-0"
 					defaultValue={String(searchParams.get('searchFilter') || '')}
 					onChange={handleSearch}
 					onFocus={handleInputFocus}
@@ -41,7 +41,7 @@ export function SearchMods() {
 				<Button
 					asChild
 					variant="primary"
-					className="rounded-none h-auto p-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+					className="rounded-l-none h-auto p-4 focus-visible:ring-0 focus-visible:ring-offset-0"
 				>
 					<Link
 						className={styles.searchInputBtn}
