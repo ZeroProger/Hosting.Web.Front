@@ -10,9 +10,10 @@ import playerHead from '@/app/assets/images/head1.webp'
 import { useBanPlayer } from '@/features/players/lib/useBanPlayer'
 import { useKickPlayer } from '@/features/players/lib/useKickPlayer'
 
+import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
 
 import { useActivePlayers } from '../lib/useActivePlayers'
@@ -20,10 +21,14 @@ import { useActivePlayers } from '../lib/useActivePlayers'
 import styles from './styles.module.scss'
 
 export function ServerActivePlayers() {
-	const server = useStore($server)
-	const { data: activePlayers } = useActivePlayers({ gameServerHash: server?.gameServerHash! })
-	const { mutate: kick } = useKickPlayer(server?.gameServerHash!)
-	const { mutate: ban } = useBanPlayer(server?.gameServerHash!)
+	const serverHash = useStore($serverHash)
+
+	const { data: server } = useFetchServer(serverHash)
+
+	const { data: activePlayers } = useActivePlayers({ gameServerHash: serverHash! })
+
+	const { mutate: kick } = useKickPlayer(serverHash!)
+	const { mutate: ban } = useBanPlayer(serverHash!)
 
 	return (
 		<div className={styles.card}>

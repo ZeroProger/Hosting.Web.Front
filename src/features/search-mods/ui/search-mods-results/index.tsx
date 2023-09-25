@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { Mod } from '@/shared/api/curse-forge'
 import { ModUrls } from '@/shared/routes/urls'
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 
 import styles from './styles.module.scss'
 
@@ -16,7 +16,7 @@ export function SearchModsResults({
 	searchTerm: string
 	showList: boolean
 }) {
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
 
 	return (
 		<>
@@ -26,11 +26,7 @@ export function SearchModsResults({
 						<div className={styles.empty}>По запросу {`"${searchTerm}"`} ничего не найдено</div>
 					)}
 					{mods.map((mod) => (
-						<Link
-							href={ModUrls.mod(server?.gameServerHash!, mod.id)}
-							key={mod.id}
-							className={styles.link}
-						>
+						<Link href={ModUrls.mod(serverHash!, mod.id)} key={mod.id} className={styles.link}>
 							{mod.name}
 						</Link>
 					))}

@@ -2,31 +2,27 @@ import { useQuery } from '@tanstack/react-query'
 import { useStore } from 'effector-react'
 import { ChangeEvent, useRef, useState } from 'react'
 
-import { Mod, axiosCurseForge } from '@/shared/api/curse-forge'
 import { searchModsBaseRequest } from '@/shared/config/mods'
 import { useDebounce } from '@/shared/hooks'
-import { ModUrls } from '@/shared/routes/urls'
-import { $server } from '@/shared/store'
+import { ReactQueryKeys } from '@/shared/lib/react-query'
+import { useFetchServer } from '@/shared/queries/server'
+import { $serverHash } from '@/shared/store'
+
+import { searchMods } from '../../api'
 
 export function useSearchMods() {
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [showList, setShowList] = useState(false)
-	const server = useStore($server)
+
+	const serverHash = useStore($serverHash)
+
+	const { data: server, isLoading } = useFetchServer(serverHash)
 
 	const debouncedSearch = useDebounce(searchTerm, searchTerm.trim().length === 0 ? 0 : 600)
 
 	const { isSuccess, data: mods } = useQuery({
-		queryKey: [
-			ModUrls.search(server?.gameServerHash!) + debouncedSearch,
-			debouncedSearch,
-			server?.gameServerHash!,
-		],
-		queryFn: () => {
-			return axiosCurseForge.post<{ data: Mod[] }>(ModUrls.search(server?.gameServerHash!), {
-				...searchModsBaseRequest,
-				searchFilter: debouncedSearch,
-			})
-		},
+		queryKey: [ReactQueryKeys.searchMods, debouncedSearch],
+		queryFn: () => searchMods({ ...searchModsBaseRequest, searchFilter: debouncedSearch }),
 		select: ({ data }) => data.data,
 		enabled: !!debouncedSearch,
 	})

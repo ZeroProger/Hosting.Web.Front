@@ -5,25 +5,27 @@ import { useStore } from 'effector-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { $userServers } from '@/widgets/header'
-
-import { ServerSelect } from '@/widgets/server/server-select'
+import { useFetchUserServers } from '@/shared/queries/server'
 
 import { $headerMenu } from '@/widgets/header'
+import { ServerSelect } from '@/widgets/server/server-select'
 
 import { menuItems } from '../config'
+
 import styles from './styles.module.scss'
 
 export function Menu() {
 	const { isHeaderMenuOpen } = useStore($headerMenu)
-	const userServers = useStore($userServers)
+
 	const pathname = usePathname()
+
+	const { data: userServers } = useFetchUserServers()
 
 	return (
 		<div className={clsx(styles.container, { [styles.open]: isHeaderMenuOpen })}>
 			<nav className={styles.content}>
 				<div className={styles.serverSelect}>
-					<ServerSelect servers={userServers} />
+					<ServerSelect servers={userServers || []} />
 				</div>
 				<ul className={styles.list}>
 					{menuItems.map((menuItem) => (

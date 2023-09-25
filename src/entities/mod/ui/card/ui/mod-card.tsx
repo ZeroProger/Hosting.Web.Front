@@ -7,8 +7,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Mod } from '@/shared/api/curse-forge'
+import { useFetchServer } from '@/shared/queries/server'
 import { ModUrls } from '@/shared/routes/urls'
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
 
 import { useModCard } from '../hooks'
@@ -16,7 +17,9 @@ import { useModCard } from '../hooks'
 import styles from './styles.module.scss'
 
 export function ModCard({ mod }: { mod: Mod }) {
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
+
+	const { data: server, isLoading } = useFetchServer(serverHash)
 
 	const { isHover, formattedDownloadsCount, formattedUpdateDate, classTagName, functions } =
 		useModCard(mod)

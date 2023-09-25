@@ -4,13 +4,14 @@ import { useStore } from 'effector-react'
 
 import { PlayersList } from '@/entities/player/ui/players-list'
 
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 
 import { useWhitelist } from '../lib/use-whitelist-players'
 
 export function WhiteList() {
-	const server = useStore($server)
-	const { whitelist, isLoading } = useWhitelist(server?.gameServerHash!)
+	const serverHash = useStore($serverHash)
+
+	const { whitelist, isLoading } = useWhitelist(serverHash!)
 
 	return (
 		<PlayersList

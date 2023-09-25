@@ -4,15 +4,19 @@ import { useStore } from 'effector-react'
 import { FC, useEffect, useState } from 'react'
 import { ServerService } from 'services-temp/server-service'
 
-import { $server } from '@/shared/store'
-//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
+import { useFetchServer } from '@/shared/queries/server'
+import { $serverHash } from '@/shared/store'
+//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в ./api внутри этих сущностей, или в shared/queries
 import { IServerCurrentUsageItem } from '@/shared/types'
 import { Progress } from '@/shared/ui/progress'
 
 import styles from './styles.module.scss'
 
 export const ServerCurrentUsage: FC = () => {
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
+
+	const { data: server } = useFetchServer(serverHash)
+
 	const [currentUsage, setCurrentUsage] = useState<IServerCurrentUsageItem[]>([])
 
 	useEffect(() => {

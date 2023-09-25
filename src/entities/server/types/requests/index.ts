@@ -30,7 +30,7 @@ export interface IServerUpdateResponse extends ResponseResult {}
 
 export interface IServerListRequest {
 	kind: string
-	isPublic: boolean
+	isPublic?: boolean
 }
 
 export interface IServerListResponse {

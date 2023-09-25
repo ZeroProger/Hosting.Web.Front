@@ -1,11 +1,14 @@
 'use client'
 
 import clsx from 'clsx'
+import { useStore } from 'effector-react'
 import { Bookmark, ChevronLeft, Dot, Globe, MoreHorizontal } from 'lucide-react'
 
 import { StartServerButton } from '@/features/server-start'
 import { StopServerButton } from '@/features/server-stop'
 
+import { useFetchServer } from '@/shared/queries/server'
+import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
 import { SubHeading } from '@/shared/ui/heading'
 
@@ -16,10 +19,14 @@ import { ServerHeaderLoading } from './loading'
 import styles from './styles.module.scss'
 
 export function ServerHeader() {
-	const { server, isLoading, isModalOpen, functions } = useServerHeader()
+	const { isModalOpen, functions } = useServerHeader()
 
 	const { handleModalOpen, handleModalClose, handleGoBack, handleSubmitCart, handleResetCart } =
 		functions
+
+	const serverHash = useStore($serverHash)
+
+	const { data: server, isLoading } = useFetchServer(serverHash)
 
 	if (!server || isLoading) return <ServerHeaderLoading />
 

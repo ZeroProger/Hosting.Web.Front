@@ -1,2 +1,2 @@
 export * from './use-grouped-categories'
-export * from './use-mods'
+export * from './use-filtered-mods'

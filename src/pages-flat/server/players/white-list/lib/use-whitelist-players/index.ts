@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { ServerUrls } from '@/shared/routes/urls'
+import { ReactQueryKeys } from '@/shared/lib/react-query'
 
 import { getWhitelist } from '../../api'
 
 export function useWhitelist(gameServerHash: string) {
 	const { data: whitelist, isLoading } = useQuery({
-		queryKey: [ServerUrls.server.players(gameServerHash, 'white-list')],
+		queryKey: [ReactQueryKeys.whiteList, gameServerHash],
 		queryFn: () => getWhitelist(gameServerHash),
 	})
 

@@ -8,9 +8,10 @@ import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import { ServerService } from 'services-temp/server-service'
 
+import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 import { IServerMainInfo } from '@/shared/types'
 // #TODO Avata
 import { isUndefined } from '@/shared/utils/isUndefined'
@@ -18,7 +19,11 @@ import { isUndefined } from '@/shared/utils/isUndefined'
 import styles from './styles.module.scss'
 
 export const ServerMainInfo: FC = () => {
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
+
+	const { data: server } = useFetchServer(serverHash)
+
+	//#TODO: повыносить всё в кастом react-query хуки
 	const [mainInfo, setMainInfo] = useState<IServerMainInfo[]>([])
 
 	const handleCopyClick = (event: React.MouseEvent<HTMLElement>) => {

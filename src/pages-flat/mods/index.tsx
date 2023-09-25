@@ -19,19 +19,19 @@ import {
 } from '@/shared/config/mods'
 import { JoyrideGuide, modsSteps } from '@/shared/lib/react-joyride'
 import { ModUrls } from '@/shared/routes/urls'
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 import { Skeleton } from '@/shared/ui/skeleton'
 
 import { ModsCompilation } from '@/widgets/mods-compilation'
 
-import { useGroupedCategories, useMods } from './lib'
-import { useFilteredMods } from './lib/use-filtered-mods'
+import { useMods } from './hooks'
+import { useFilteredMods, useGroupedCategories } from './queries'
 import styles from './styles.module.scss'
 
 export function Mods() {
 	const router = useRouter()
 
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
 
 	const { data: groupedCategories } = useGroupedCategories()
 	const { classesOpen, classesExpanded, classesRef, functions } = useMods()
@@ -40,15 +40,15 @@ export function Mods() {
 
 	//#TODO: можно покрасивее сделать, вынести в отдельные 5 компонентов типа:
 	//PopularModpacksCompilation, ....
-	const { data: mods, isLoading: isModsLoading } = useFilteredMods(popularModsRequest, 'mods')
-	const { data: modpacks } = useFilteredMods(popularModpacksRequest, 'modpacks')
-	const { data: worlds } = useFilteredMods(popularWorldsRequest, 'worlds')
-	const { data: plugins } = useFilteredMods(popularPluginsRequest, 'plugins')
-	const { data: resourcePacks } = useFilteredMods(popularResourcePacksRequest, 'resourcePacks')
+	const { data: mods, isLoading: isModsLoading } = useFilteredMods(popularModsRequest)
+	const { data: modpacks } = useFilteredMods(popularModpacksRequest)
+	const { data: worlds } = useFilteredMods(popularWorldsRequest)
+	const { data: plugins } = useFilteredMods(popularPluginsRequest)
+	const { data: resourcePacks } = useFilteredMods(popularResourcePacksRequest)
 
 	const joyrideModsCallback = ({ status }: CallBackProps) => {
 		if (status === 'finished') {
-			router.push(ModUrls.mod(server?.gameServerHash!, mods?.[0].id!))
+			router.push(ModUrls.mod(serverHash!, mods?.[0].id!))
 		}
 	}
 
@@ -83,7 +83,7 @@ export function Mods() {
 												<ul className={styles.categories}>
 													<h3 className={styles.class}>
 														<Link
-															href={ModUrls.search(server?.gameServerHash!, {
+															href={ModUrls.search(serverHash!, {
 																classId: group.classId,
 															})}
 														>
@@ -94,7 +94,7 @@ export function Mods() {
 													{group.categories.map((category) => (
 														<li key={category.id}>
 															<Link
-																href={ModUrls.search(server?.gameServerHash!, {
+																href={ModUrls.search(serverHash!, {
 																	classId: group.classId,
 																	categoryId: category.id,
 																})}
@@ -130,7 +130,7 @@ export function Mods() {
 				<div id="mods-compilation-step">
 					<ModsCompilation
 						title="Популярные моды"
-						viewAllLink={ModUrls.search(server?.gameServerHash!, {
+						viewAllLink={ModUrls.search(serverHash!, {
 							classId: CForgeModClassType.Mods,
 						})}
 						mods={mods || []}
@@ -138,28 +138,28 @@ export function Mods() {
 				</div>
 				<ModsCompilation
 					title="Популярные сборки модов"
-					viewAllLink={ModUrls.search(server?.gameServerHash!, {
+					viewAllLink={ModUrls.search(serverHash!, {
 						classId: CForgeModClassType.Modpacks,
 					})}
 					mods={modpacks || []}
 				/>
 				<ModsCompilation
 					title="Популярные миры"
-					viewAllLink={ModUrls.search(server?.gameServerHash!, {
+					viewAllLink={ModUrls.search(serverHash!, {
 						classId: CForgeModClassType.Worlds,
 					})}
 					mods={worlds || []}
 				/>
 				<ModsCompilation
 					title="Популярные плагины"
-					viewAllLink={ModUrls.search(server?.gameServerHash!, {
+					viewAllLink={ModUrls.search(serverHash!, {
 						classId: CForgeModClassType.BukkitPlugins,
 					})}
 					mods={plugins || []}
 				/>
 				<ModsCompilation
 					title="Популярные пакеты ресурсов"
-					viewAllLink={ModUrls.search(server?.gameServerHash!, {
+					viewAllLink={ModUrls.search(serverHash!, {
 						classId: CForgeModClassType.ResourcePacks,
 					})}
 					mods={resourcePacks || []}

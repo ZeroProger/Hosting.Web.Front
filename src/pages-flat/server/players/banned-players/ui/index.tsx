@@ -4,13 +4,14 @@ import { useStore } from 'effector-react'
 
 import { PlayersList } from '@/entities/player/ui/players-list'
 
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 
 import { useBannedPlayers } from '../lib/use-banned-players'
 
 export function BannedPlayers() {
-	const server = useStore($server)
-	const { bannedPlayers, isLoading } = useBannedPlayers(server?.gameServerHash!)
+	const serverHash = useStore($serverHash)
+
+	const { bannedPlayers, isLoading } = useBannedPlayers(serverHash!)
 
 	return (
 		<PlayersList

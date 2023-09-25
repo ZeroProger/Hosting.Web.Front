@@ -15,7 +15,7 @@ import { SearchMods } from '@/features/search-mods'
 import { modClassesMap } from '@/shared/config/mods'
 import { JoyrideGuide, modLayoutSteps } from '@/shared/lib/react-joyride'
 import { CommonUrls, ModUrls, ServerUrls } from '@/shared/routes/urls'
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 
 import { useModLayout } from './hooks'
 import { ModLayoutLoading } from './loading'
@@ -25,7 +25,7 @@ import styles from './styles.module.scss'
 export function ModLayout({ children, modId }: { children: React.ReactNode; modId: number }) {
 	const router = useRouter()
 
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
 
 	const { mod, isLoading, formattedDateCreated, formattedDateModified, formattedDownloadsCount } =
 		useModLayout(modId)
@@ -37,7 +37,7 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 			(document.querySelector('.nextui-modal-close-icon') as HTMLButtonElement)?.click()
 		if (callback.status === 'finished' && callback.step.target === '#remove-mod-btn-step') {
 			;(document.querySelector('#remove-mod-btn-step') as HTMLButtonElement)?.click()
-			router.push(ServerUrls.server.console(server?.gameServerHash!))
+			router.push(ServerUrls.server.console(serverHash!))
 		}
 	}
 
@@ -70,7 +70,7 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 									</Link>
 								</li>
 								<li className={styles.classTag}>
-									<Link href={ModUrls.search(server?.gameServerHash!, { classId: mod.classId })}>
+									<Link href={ModUrls.search(serverHash!, { classId: mod.classId })}>
 										{modClassesMap.get(mod.classId)}
 									</Link>
 								</li>
@@ -127,7 +127,7 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 									{mod.categories.map((category) => (
 										<li key={category.id}>
 											<Link
-												href={ModUrls.search(server?.gameServerHash!, {
+												href={ModUrls.search(serverHash!, {
 													categoryId: category.id,
 													classId: category.classId,
 												})}

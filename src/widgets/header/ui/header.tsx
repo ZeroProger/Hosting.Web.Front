@@ -1,14 +1,12 @@
 'use client'
 
 import clsx from 'clsx'
-import { useStore } from 'effector-react'
 import { usePathname } from 'next/navigation'
-import { useEffect } from 'react'
 
 import { cn } from '@/shared/lib/utils'
+import { useFetchUserServers } from '@/shared/queries/server'
 import { CommonUrls } from '@/shared/routes/urls'
 
-import { $userServers, getUserServersFx } from '@/widgets/header'
 import { ServerSelect } from '@/widgets/server/server-select'
 
 import { useHeaderFixed } from '../hooks'
@@ -25,11 +23,8 @@ export function Header() {
 	const isHomePage = pathname === CommonUrls.home()
 
 	const { isFixed } = useHeaderFixed()
-	const userServers = useStore($userServers)
 
-	useEffect(() => {
-		getUserServersFx()
-	}, [])
+	const { data: userServers } = useFetchUserServers()
 
 	return (
 		<header

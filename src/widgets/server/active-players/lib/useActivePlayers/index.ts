@@ -6,6 +6,7 @@ import { ServerUrls } from '@/shared/routes/urls'
 
 import { getActivePlayers } from '../../api'
 
+//#TODO переделать на пуллинг
 export function useActivePlayers({ gameServerHash }: IServerActivePlayersRequest) {
 	return useQuery({
 		queryKey: [ServerUrls.server.players(gameServerHash), gameServerHash],

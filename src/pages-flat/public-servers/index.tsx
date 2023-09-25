@@ -1,22 +1,14 @@
 'use client'
 
-import { useStore } from 'effector-react'
-import { useEffect } from 'react'
-
 import { ServersList } from '@/entities/server/ui'
 
 import { Heading } from '@/shared/ui/heading'
 
-import { $pendingPublicServers, $publicServers, getPublicServersFx } from './model'
+import { useFetchPublicServers } from './model'
 import styles from './styles.module.scss'
 
 export function PublicServers() {
-	const publicServers = useStore($publicServers)
-	const isLoading = useStore($pendingPublicServers)
-
-	useEffect(() => {
-		getPublicServersFx()
-	}, [])
+	const { data: publicServers, isLoading } = useFetchPublicServers()
 
 	return (
 		<div className={styles.container}>

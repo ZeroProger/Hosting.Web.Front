@@ -6,18 +6,18 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { ModUrls } from '@/shared/routes/urls'
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 
 import styles from './mod-layout-tabs.module.scss'
 
 export function ModLayoutTabs({ modId }: { modId: number }) {
 	const pathname = usePathname()
 
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
 
-	const descriptionUrl = ModUrls.mod(server?.gameServerHash!, modId)
-	const filesUrl = ModUrls.files(server?.gameServerHash!, modId)
-	const imagesUrl = ModUrls.images(server?.gameServerHash!, modId)
+	const descriptionUrl = ModUrls.mod(serverHash!, modId)
+	const filesUrl = ModUrls.files(serverHash!, modId)
+	const imagesUrl = ModUrls.images(serverHash!, modId)
 
 	return (
 		<ul className={styles.tabs}>

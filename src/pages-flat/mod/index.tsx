@@ -1,7 +1,7 @@
 'use client'
 
 import styles from './styles.module.scss'
-import { useModDescription } from '@/layouts/mod-layout/model'
+import { useModDescription } from '@/layouts/mod-layout/queries'
 
 export function ModDescription({ modId }: { modId: number }) {
 	const { data: modDescription, isLoading } = useModDescription(modId)

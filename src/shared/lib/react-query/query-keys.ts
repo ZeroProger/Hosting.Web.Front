@@ -9,6 +9,7 @@ export const ReactQueryKeys = {
 	mod: 'mod',
 	modDescription: 'modDescription',
 	searchMods: 'searchMods',
+	modsGroupedCategories: 'modsGroupedCategories',
 	whiteList: 'whiteList',
 	operators: 'operators',
 	bannedIps: 'bannedIps',

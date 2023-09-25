@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { CurseForgeApiUrls } from '@/shared/api/urls'
+import { ReactQueryKeys } from '@/shared/lib/react-query'
 
 import { getMod, getModDescription } from '../api'
 
 export const useModData = (modId: number) => {
 	return useQuery({
-		queryKey: [CurseForgeApiUrls.mod(modId), modId],
+		queryKey: [ReactQueryKeys.mod, modId],
 		queryFn: () => getMod(modId),
 		select: ({ data }) => data.data,
 		refetchOnWindowFocus: false,
@@ -16,7 +16,7 @@ export const useModData = (modId: number) => {
 
 export const useModDescription = (modId: number) => {
 	return useQuery({
-		queryKey: [CurseForgeApiUrls.modDescription(modId), modId],
+		queryKey: [ReactQueryKeys.modDescription, modId],
 		queryFn: () => getModDescription(modId),
 		select: ({ data }) => data.data,
 		refetchOnWindowFocus: false,

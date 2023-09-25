@@ -8,12 +8,12 @@ import { useEffect } from 'react'
 import { CallBackProps } from 'react-joyride'
 import { ServerService } from 'services-temp/server-service'
 
-//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
-import { $server } from '@/shared/store'
-import { IServerConsoleLineType } from '@/shared/types'
-
 import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
+import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
+//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
+import { $serverHash } from '@/shared/store'
+import { IServerConsoleLineType } from '@/shared/types'
 import { Input } from '@/shared/ui/input'
 
 import { useServerConsole } from '../hooks'
@@ -21,14 +21,17 @@ import { useServerConsole } from '../hooks'
 import styles from './styles.module.scss'
 
 export function Console({ mini = false }: { mini?: boolean }) {
+	const router = useRouter()
+
 	const { serverConsole, inputRef, linesRef, inputValue, functions } = useServerConsole()
 	const { setServerConsole, handleInput, clearInput, handleSend } = functions
 
-	const { push } = useRouter()
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
+
+	const { data: server } = useFetchServer(serverHash)
 
 	const onGuideFinish = ({ status }: CallBackProps) =>
-		status === 'finished' && push(ServerUrls.server.settings(server?.gameServerHash!))
+		status === 'finished' && router.push(ServerUrls.server.settings(server?.gameServerHash!))
 
 	useEffect(() => {
 		linesRef?.current?.scrollTo(0, linesRef?.current?.scrollHeight)

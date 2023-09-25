@@ -1,4 +1,4 @@
-import { ModFiles } from '@/pages-flat/mods/mod/files'
+import { ModFiles } from '@/pages-flat/mod/files'
 
 export default function ModFilesPage() {
 	return <ModFiles />

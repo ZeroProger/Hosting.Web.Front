@@ -1,14 +1,13 @@
-import { createEffect, createStore } from 'effector'
+import { useQuery } from '@tanstack/react-query'
 
-import { servers } from '@/shared/$fake-data$/server.data'
-import { IServer } from '@/shared/types'
+import { ReactQueryKeys } from '@/shared/lib/react-query'
 
-//#TODO: переделать на вызовы бэка
-export const getPublicServersFx = createEffect(async () => servers.slice(1))
+import { getPublicServers } from '../api'
 
-export const $pendingPublicServers = getPublicServersFx.pending
-
-export const $publicServers = createStore<IServer[]>([]).on(
-	getPublicServersFx.doneData,
-	(_, publicServers) => publicServers
-)
+export function useFetchPublicServers() {
+	return useQuery({
+		queryKey: [ReactQueryKeys.publicServers],
+		queryFn: () => getPublicServers(),
+		select: (data) => data,
+	})
+}

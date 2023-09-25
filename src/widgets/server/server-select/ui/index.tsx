@@ -5,8 +5,9 @@ import { useParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 import { Server } from '@/shared/api/common'
+import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
-import { $server, resetServerFx } from '@/shared/store'
+import { $serverHash, resetServerHashFx } from '@/shared/store'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select'
 
 import { closeHeaderMenu } from '@/widgets/header'
@@ -15,12 +16,14 @@ export function ServerSelect({ servers }: { servers: Server[] }) {
 	const router = useRouter()
 	const params = useParams()
 
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
+
+	const { data: server } = useFetchServer(serverHash)
 
 	const defaultServer = servers.find((server) => server.gameServerHash === params?.serverHash)
 
 	const handleResetServer = () => {
-		resetServerFx()
+		resetServerHashFx()
 	}
 
 	useEffect(() => {

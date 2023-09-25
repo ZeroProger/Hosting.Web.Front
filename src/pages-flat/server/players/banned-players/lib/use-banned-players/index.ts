@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { ServerUrls } from '@/shared/routes/urls'
+import { ReactQueryKeys } from '@/shared/lib/react-query'
 
 import { getBannedPlayers } from '../../api'
 
 export function useBannedPlayers(gameServerHash: string) {
 	const { data: bannedPlayers, isLoading } = useQuery({
-		queryKey: [ServerUrls.server.players(gameServerHash, 'banned-players'), gameServerHash],
+		queryKey: [ReactQueryKeys.bannedPlayers, gameServerHash],
 		queryFn: () => getBannedPlayers(gameServerHash),
 	})
 

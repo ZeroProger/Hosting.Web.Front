@@ -4,13 +4,14 @@ import { useStore } from 'effector-react'
 
 import { IpsList } from '@/entities/player/ui/ips-list'
 
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 
 import { useBannedIps } from '../lib/use-banned-ips'
 
 export function BannedIps() {
-	const server = useStore($server)
-	const { bannedIps, isLoading } = useBannedIps(server?.gameServerHash!)
+	const serverHash = useStore($serverHash)
+
+	const { bannedIps, isLoading } = useBannedIps(serverHash!)
 
 	return (
 		<IpsList

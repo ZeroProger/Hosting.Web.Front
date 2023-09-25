@@ -4,10 +4,10 @@ import { useStore } from 'effector-react'
 import { useRouter } from 'next/navigation'
 import { CallBackProps } from 'react-joyride'
 
-import { $pendingServer, $server } from '@/shared/store'
-
 import { JoyrideGuide, overviewSteps } from '@/shared/lib/react-joyride'
+import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
+import { $serverHash } from '@/shared/store'
 
 import { ServerActivePlayers } from '@/widgets/server/active-players'
 import { Console } from '@/widgets/server/console'
@@ -18,12 +18,14 @@ import { ServerOverviewLoading } from './loading'
 import styles from './styles.module.scss'
 
 export function ServerOverview() {
-	const { push } = useRouter()
-	const server = useStore($server)
-	const isLoading = useStore($pendingServer)
+	const router = useRouter()
+
+	const serverHash = useStore($serverHash)
+
+	const { data: server, isLoading } = useFetchServer(serverHash)
 
 	const onGuideFinish = ({ status }: CallBackProps) =>
-		status === 'finished' && push(ServerUrls.server.players(server?.gameServerHash!))
+		status === 'finished' && router.push(ServerUrls.server.players(server?.gameServerHash!))
 
 	if (!server || isLoading) return <ServerOverviewLoading />
 

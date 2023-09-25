@@ -1,17 +1,17 @@
 import { useStore } from 'effector-react'
 
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
 
 import { useStartServerMutation } from '../model'
 
 export function StartServerButton() {
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
 
 	const { isLoading, mutateAsync } = useStartServerMutation()
 
 	const handleClick = () => {
-		mutateAsync({ gameServerHash: server?.gameServerHash! })
+		mutateAsync({ gameServerHash: serverHash! })
 	}
 
 	return (

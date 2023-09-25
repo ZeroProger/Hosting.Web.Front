@@ -10,7 +10,7 @@ export function ServersList({
 	isLoading = false,
 	isPublic = false,
 }: {
-	servers: Server[]
+	servers?: Server[]
 	isLoading?: boolean
 	isPublic?: boolean
 }) {
@@ -18,7 +18,7 @@ export function ServersList({
 
 	return (
 		<>
-			{servers.length === 0 ? (
+			{servers === undefined || servers.length === 0 ? (
 				<ServerEmpty isPublic={isPublic} />
 			) : (
 				<div className={styles.servers}>

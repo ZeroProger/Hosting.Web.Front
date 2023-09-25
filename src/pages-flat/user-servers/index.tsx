@@ -1,18 +1,14 @@
 'use client'
 
-import { useStore } from 'effector-react'
-
 import { ServersList } from '@/entities/server/ui'
 
+import { useFetchUserServers } from '@/shared/queries/server'
 import { Heading } from '@/shared/ui/heading'
-
-import { $pendingUserServers, $userServers } from '@/widgets/header'
 
 import styles from './styles.module.scss'
 
 export function UserServers() {
-	const userServers = useStore($userServers)
-	const isLoading = useStore($pendingUserServers)
+	const { data: userServers, isLoading } = useFetchUserServers()
 
 	return (
 		<div className={styles.container}>

@@ -7,7 +7,7 @@ import { useSearchParams } from 'next/navigation'
 
 import { useClickOutside } from '@/shared/hooks'
 import { ModUrls } from '@/shared/routes/urls'
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
 import { Input } from '@/shared/ui/input'
 
@@ -17,7 +17,7 @@ import { SearchModsResults } from './search-mods-results'
 import styles from './styles.module.scss'
 
 export function SearchMods() {
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
 
 	const { mods, isSuccess, searchTerm, showList, containerRef, functions } = useSearchMods()
 
@@ -47,8 +47,8 @@ export function SearchMods() {
 						className={styles.searchInputBtn}
 						href={
 							searchTerm.length > 0
-								? ModUrls.search(server?.gameServerHash!, { searchFilter: searchTerm })
-								: ModUrls.search(server?.gameServerHash!)
+								? ModUrls.search(serverHash!, { searchFilter: searchTerm })
+								: ModUrls.search(serverHash!)
 						}
 					>
 						<Search size={28} />

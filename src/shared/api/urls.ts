@@ -27,7 +27,8 @@ export const ServerApiUrls = {
 	update: () => '/server/update',
 	remove: () => '/server/remove',
 	server: (hash: string) => `/server/${hash}`,
-	servers: () => '/server',
+	userServers: () => '/server',
+	publicServers: () => '/server/public',
 }
 
 export const SubscriptionApiUrls = {}

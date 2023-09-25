@@ -10,7 +10,7 @@ import { IPlayerListItem } from '@/shared/api/common'
 import { JoyrideGuide } from '@/shared/lib/react-joyride'
 import { playersCategorySteps } from '@/shared/lib/react-joyride/steps/players'
 import { ModUrls } from '@/shared/routes/urls'
-import { $server } from '@/shared/store'
+import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
 import { Heading } from '@/shared/ui/heading'
 import { Input } from '@/shared/ui/input'
@@ -24,12 +24,12 @@ export function PlayersList({
 	title,
 	addDataPlaceholder,
 }: {
-	players: IPlayerListItem[] | undefined
+	players?: IPlayerListItem[]
 	isLoading: boolean
 	title: string
 	addDataPlaceholder: string
 }) {
-	const server = useStore($server)
+	const serverHash = useStore($serverHash)
 
 	if (isLoading) return <DataListLoading />
 
@@ -37,9 +37,7 @@ export function PlayersList({
 		<>
 			<JoyrideGuide
 				steps={playersCategorySteps}
-				callback={({ status }) =>
-					status === 'finished' && router.push(ModUrls.mods(server?.gameServerHash!))
-				}
+				callback={({ status }) => status === 'finished' && router.push(ModUrls.mods(serverHash!))}
 				scrollOffset={150}
 			/>
 			<div className={styles.container}>
