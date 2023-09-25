@@ -30,8 +30,11 @@ export function Console({ mini = false }: { mini?: boolean }) {
 
 	const { data: server } = useFetchServer(serverHash)
 
-	const onGuideFinish = ({ status }: CallBackProps) =>
-		status === 'finished' && router.push(ServerUrls.server.settings(server?.gameServerHash!))
+	const joyrideCallback = ({ status }: CallBackProps) => {
+		if (status === 'finished') {
+			router.push(ServerUrls.server.settings(server?.gameServerHash!))
+		}
+	}
 
 	useEffect(() => {
 		linesRef?.current?.scrollTo(0, linesRef?.current?.scrollHeight)
@@ -51,7 +54,7 @@ export function Console({ mini = false }: { mini?: boolean }) {
 
 	return (
 		<>
-			{!mini && <JoyrideGuide steps={consoleSteps} callback={onGuideFinish} />}
+			{!mini && <JoyrideGuide steps={consoleSteps} callback={joyrideCallback} />}
 			<div className={clsx(styles.card, { [styles.mini]: mini })} id="server-console-step">
 				{server && (
 					<>

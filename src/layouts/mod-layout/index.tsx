@@ -30,7 +30,7 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 	const { mod, isLoading, formattedDateCreated, formattedDateModified, formattedDownloadsCount } =
 		useModLayout(modId)
 
-	const joyrideModLayoutCallback = (callback: CallBackProps) => {
+	const joyrideCallback = (callback: CallBackProps) => {
 		if (callback.action === 'next' && callback.step.target === '#add-mod-btn-step')
 			(document.querySelector('#add-mod-btn-step') as HTMLButtonElement)?.click()
 		else if (callback.action === 'next' && callback.step.target === '#remove-mod-btn-step')
@@ -45,7 +45,7 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 
 	return (
 		<>
-			<JoyrideGuide steps={modLayoutSteps} callback={joyrideModLayoutCallback} />
+			<JoyrideGuide steps={modLayoutSteps} callback={joyrideCallback} />
 			<div className={styles.container}>
 				{mod && (
 					<>

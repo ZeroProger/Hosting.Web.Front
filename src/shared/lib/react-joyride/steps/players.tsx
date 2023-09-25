@@ -10,7 +10,7 @@ export const playersCategorySteps: Step[] = [
 	},
 	{
 		content: 'Нажав на эту кнопку вы удалите игрока из соответствующей категории',
-		target: '.btn-error',
+		target: '.remove-player-step',
 		disableBeacon: true,
 		placement: 'auto',
 		locale: { last: <strong>Дальше</strong> },
@@ -21,8 +21,8 @@ export const playersCategoriesSteps: Step[] = [
 	{
 		content: (
 			<div>
-				Здесь вы можете управлять вашими игроками: внести в белый список, выдать или забрать
-				статус оператора сервера, забанить/разбанить по нику или IP-адресу
+				Здесь вы можете управлять вашими игроками: внести в белый список, выдать или забрать статус
+				оператора сервера, забанить/разбанить по нику или IP-адресу
 			</div>
 		),
 		styles: { options: { width: 600 } },

@@ -46,7 +46,7 @@ export function Mods() {
 	const { data: plugins } = useFilteredMods(popularPluginsRequest)
 	const { data: resourcePacks } = useFilteredMods(popularResourcePacksRequest)
 
-	const joyrideModsCallback = ({ status }: CallBackProps) => {
+	const joyrideCallback = ({ status }: CallBackProps) => {
 		if (status === 'finished') {
 			router.push(ModUrls.mod(serverHash!, mods?.[0].id!))
 		}
@@ -56,7 +56,7 @@ export function Mods() {
 		<>
 			<JoyrideGuide
 				steps={modsSteps}
-				callback={joyrideModsCallback}
+				callback={joyrideCallback}
 				scrollOffset={150}
 				run={mods && mods.length > 0}
 			/>

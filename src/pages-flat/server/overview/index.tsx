@@ -24,14 +24,17 @@ export function ServerOverview() {
 
 	const { data: server, isLoading } = useFetchServer(serverHash)
 
-	const onGuideFinish = ({ status }: CallBackProps) =>
-		status === 'finished' && router.push(ServerUrls.server.players(server?.gameServerHash!))
+	const joyrideCallback = ({ status }: CallBackProps) => {
+		if (status === 'finished') {
+			router.push(ServerUrls.server.players(server?.gameServerHash!))
+		}
+	}
 
 	if (!server || isLoading) return <ServerOverviewLoading />
 
 	return (
 		<>
-			<JoyrideGuide steps={overviewSteps} callback={onGuideFinish} />
+			<JoyrideGuide steps={overviewSteps} callback={joyrideCallback} />
 			<section className={styles.container}>
 				<div className={styles.column}>
 					<div className="main-info">

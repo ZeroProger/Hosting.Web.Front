@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { useStore } from 'effector-react'
 import { PlusCircle, Trash2 } from 'lucide-react'
 import Image from 'next/image'
-import router from 'next/router'
+import { useRouter } from 'next/navigation'
 
 import playerHead from '@/app/assets/images/head1.webp'
 
@@ -17,6 +17,7 @@ import { Input } from '@/shared/ui/input'
 
 import { DataListLoading } from '../list-loading'
 import styles from '../styles.module.scss'
+import { CallBackProps } from 'react-joyride'
 
 export function PlayersList({
 	players,
@@ -29,7 +30,15 @@ export function PlayersList({
 	title: string
 	addDataPlaceholder: string
 }) {
+	const router = useRouter()
+
 	const serverHash = useStore($serverHash)
+
+	const joyrideCallback = ({ status }: CallBackProps) => {
+		if (status === 'finished') {
+			router.push(ModUrls.mods(serverHash!))
+		}
+	}
 
 	if (isLoading) return <DataListLoading />
 
@@ -37,7 +46,7 @@ export function PlayersList({
 		<>
 			<JoyrideGuide
 				steps={playersCategorySteps}
-				callback={({ status }) => status === 'finished' && router.push(ModUrls.mods(serverHash!))}
+				callback={joyrideCallback}
 				scrollOffset={150}
 			/>
 			<div className={styles.container}>
@@ -55,7 +64,7 @@ export function PlayersList({
 									/>
 									<span>{player.value}</span>
 								</div>
-								<Button variant="destructive">
+								<Button variant="destructive" className="remove-player-step">
 									<Trash2 size={28} />
 								</Button>
 							</div>
