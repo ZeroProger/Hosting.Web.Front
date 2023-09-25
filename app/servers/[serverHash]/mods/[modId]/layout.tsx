@@ -1,5 +1,3 @@
-'use client'
-
 import { ModLayout } from '@/layouts/mod-layout'
 
 export default function ModLayoutPage({
