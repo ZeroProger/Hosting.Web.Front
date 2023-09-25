@@ -46,8 +46,6 @@
 			.moreInfo {
 				@apply opacity-0 pointer-events-none;
 
-				transition: opacity 0.1s;
-
 				.description {
 					@apply text-sm mt-2 mb-2 h-[60px];
 
@@ -108,6 +106,8 @@
 
 					.moreInfo {
 						@apply opacity-100;
+
+						transition: opacity 0.2s 0.2s;
 
 						.actions {
 							pointer-events: all;
