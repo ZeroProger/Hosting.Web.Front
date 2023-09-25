@@ -16,10 +16,10 @@
 			@apply grid gap-4 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3;
 
 			.property {
-				@apply rounded-lg flex flex-col justify-start;
+				@apply flex flex-col justify-start;
 
 				.propertyInput {
-					@apply flex flex-row items-center bg-secondary px-4 py-3 gap-x-5 flex-grow rounded-t-lg;
+					@apply flex flex-row items-center bg-secondary px-4 py-3 gap-x-5 flex-grow rounded-t-layout;
 
 					.propertyLabel {
 						@apply flex-grow text-xl whitespace-nowrap;
@@ -28,17 +28,14 @@
 					.propertyNumber {
 						-moz-appearance: textfield;
 
-						&::-webkit-outer-spin-button {
-							-webkit-appearance: none;
-							display: none;
-						}
+						&::-webkit-outer-spin-button,
 						&::-webkit-inner-spin-button {
 							-webkit-appearance: none;
 							display: none;
+							margin: 0;
 						}
-						&:hover {
-							-moz-appearance: number-input;
-						}
+
+						&:hover,
 						&:focus {
 							-moz-appearance: number-input;
 						}
@@ -50,7 +47,7 @@
 				}
 
 				.propertyOutput {
-					@apply bg-secondary/30 px-4 py-[2px] rounded-b-lg;
+					@apply bg-secondary/30 px-4 py-[2px] rounded-b-layout;
 				}
 			}
 		}
