@@ -4,7 +4,7 @@ import { ReactQueryKeys } from '@/shared/lib/react-query'
 
 import { getMod, getModDescription } from '../api'
 
-export const useModData = (modId: number) => {
+export const useFetchMod = (modId: number) => {
 	return useQuery({
 		queryKey: [ReactQueryKeys.mod, modId],
 		queryFn: () => getMod(modId),
@@ -14,7 +14,7 @@ export const useModData = (modId: number) => {
 	})
 }
 
-export const useModDescription = (modId: number) => {
+export const useFetchModDescription = (modId: number) => {
 	return useQuery({
 		queryKey: [ReactQueryKeys.modDescription, modId],
 		queryFn: () => getModDescription(modId),

@@ -1,18 +1,14 @@
 'use client'
 
+import parse from 'html-react-parser'
+
 import styles from './styles.module.scss'
-import { useModDescription } from '@/layouts/mod-layout/queries'
+import { useFetchModDescription } from '@/layouts/mod-layout/queries'
 
 export function ModDescription({ modId }: { modId: number }) {
-	const { data: modDescription, isLoading } = useModDescription(modId)
+	const { data: modDescription, isLoading } = useFetchModDescription(modId)
 
-	if (isLoading) return null
+	if (!modDescription || isLoading) return null
 
-	return (
-		<>
-			{modDescription && (
-				<div className={styles.description} dangerouslySetInnerHTML={{ __html: modDescription }} />
-			)}
-		</>
-	)
+	return <div className={styles.description}>{parse(modDescription)}</div>
 }

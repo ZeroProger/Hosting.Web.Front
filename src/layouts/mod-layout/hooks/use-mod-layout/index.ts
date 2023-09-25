@@ -1,10 +1,10 @@
 import { formatModDate, formatModDownloadsCount } from '@/shared/utils/format'
 
-import { useModData, useModDescription } from '../../queries'
+import { useFetchMod, useFetchModDescription } from '../../queries'
 
 export function useModLayout(modId: number) {
-	const { data: mod, isLoading: modLoading } = useModData(modId)
-	const { data: modDescription, isLoading: descriptionLoading } = useModDescription(modId)
+	const { data: mod, isLoading: modLoading } = useFetchMod(modId)
+	const { data: modDescription, isLoading: descriptionLoading } = useFetchModDescription(modId)
 
 	const isLoading = modLoading || descriptionLoading
 
