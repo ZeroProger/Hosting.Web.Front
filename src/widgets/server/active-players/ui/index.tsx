@@ -72,10 +72,20 @@ export function ServerActivePlayers() {
 										{/* #TODO: kick and ban => features/player/... */}
 										{/* Передавать 2 эти фичи через пропсы bunButton and kickButton в /entities/player/row/ui <PlayerRow/> */}
 										{/*  */}
-										<Button onClick={() => kick(player.id)} variant="default">
+										<Button
+											variant="default"
+											size="icon"
+											className="px-1 py-1"
+											onClick={() => kick(player.id)}
+										>
 											<MinusCircle size={32} className={styles.kick} />
 										</Button>
-										<Button onClick={() => ban(player.id)} variant="destructive">
+										<Button
+											variant="destructive"
+											size="icon"
+											className="px-1 py-1"
+											onClick={() => ban(player.id)}
+										>
 											<Ban size={32} className={styles.ban} />
 										</Button>
 									</div>

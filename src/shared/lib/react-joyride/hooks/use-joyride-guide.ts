@@ -18,6 +18,10 @@ export const useJoyrideGuide = () => {
 		setIsGuideCompleted(true)
 	}
 
+	const handleFinishGuide = () => {
+		setIsGuideCompleted(true)
+	}
+
 	return {
 		isGuideStarted,
 		isGuideCompleted,
@@ -25,6 +29,7 @@ export const useJoyrideGuide = () => {
 		functions: {
 			handleStartGuide,
 			handleSkipGuide,
+			handleFinishGuide
 		},
 	}
 }

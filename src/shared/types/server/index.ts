@@ -15,7 +15,7 @@ export interface IServer {
 	isOnline: boolean
 }
 
-export enum IServerPropertyType {
+export enum ServerPropertyType {
 	Select,
 	Boolean,
 	Number,
@@ -36,7 +36,7 @@ export interface IServerProperty {
 	value: string
 	label: string
 	select?: IServerPropertySelect
-	type: IServerPropertyType
+	type: ServerPropertyType
 }
 
 export interface IServerMainInfo {

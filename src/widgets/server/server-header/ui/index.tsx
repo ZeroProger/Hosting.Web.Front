@@ -42,7 +42,7 @@ export function ServerHeader() {
 						>
 							<ChevronLeft strokeWidth={2} size={40} />
 						</Button>
-						<SubHeading className="text-3xl mb-0">{server.gameServerName}</SubHeading>
+						<SubHeading className="text-3xl font-medium mb-0">{server.gameServerName}</SubHeading>
 					</div>
 					<div className={styles.mainBarActions}>
 						{server.isOnline ? <StopServerButton /> : <StartServerButton />}
