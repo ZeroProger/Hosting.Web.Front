@@ -1,20 +1,18 @@
 'use client'
 
 import { useStore } from 'effector-react'
-import { Ban, MinusCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import playerHead from '@/app/assets/images/head1.webp'
 
-import { useBanPlayer } from '@/features/players/lib/useBanPlayer'
-import { useKickPlayer } from '@/features/players/lib/useKickPlayer'
+import { BanPlayer } from '@/features/ban-player'
+import { KickPlayer } from '@/features/kick-player'
 
 import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
 import { $serverHash } from '@/shared/store'
-import { Button } from '@/shared/ui/button'
 
 import { useActivePlayers } from '../lib/useActivePlayers'
 
@@ -26,9 +24,6 @@ export function ServerActivePlayers() {
 	const { data: server } = useFetchServer(serverHash)
 
 	const { data: activePlayers } = useActivePlayers({ gameServerHash: serverHash! })
-
-	const { mutate: kick } = useKickPlayer(serverHash!)
-	const { mutate: ban } = useBanPlayer(serverHash!)
 
 	return (
 		<div className={styles.card}>
@@ -69,25 +64,8 @@ export function ServerActivePlayers() {
 										))} */}
 									{/* </div> */}
 									<div className={styles.actions}>
-										{/* #TODO: kick and ban => features/player/... */}
-										{/* Передавать 2 эти фичи через пропсы bunButton and kickButton в /entities/player/row/ui <PlayerRow/> */}
-										{/*  */}
-										<Button
-											variant="default"
-											size="icon"
-											className="px-1 py-1"
-											onClick={() => kick(player.id)}
-										>
-											<MinusCircle size={32} className={styles.kick} />
-										</Button>
-										<Button
-											variant="destructive"
-											size="icon"
-											className="px-1 py-1"
-											onClick={() => ban(player.id)}
-										>
-											<Ban size={32} className={styles.ban} />
-										</Button>
+										<KickPlayer playerNickname={player.name} />
+										<BanPlayer playerNickname={player.name} />
 									</div>
 								</div>
 							))}

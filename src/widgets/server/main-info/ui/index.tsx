@@ -44,7 +44,7 @@ export const ServerMainInfo: FC = () => {
 
 	return (
 		<div className={styles.card}>
-			<div className={styles.header}>Сервер</div>
+			<div className={styles.header}>Основная информация</div>
 			<hr className={styles.hr} />
 			<div className={styles.body}>
 				{server && mainInfo && (

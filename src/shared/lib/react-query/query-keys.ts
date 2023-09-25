@@ -14,4 +14,5 @@ export const ReactQueryKeys = {
 	operators: 'operators',
 	bannedIps: 'bannedIps',
 	bannedPlayers: 'bannedPlayers',
+	activePlayers: 'activePlayers',
 }
