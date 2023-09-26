@@ -1,5 +1,6 @@
-import { SearchModsQuery } from '../api/curse-forge'
-import { searchModsBaseQuery } from '../config/mods'
+import { searchModsBaseRequest } from '@/shared/config/mods'
+
+import { ISearchModsQuery } from '../api/curse-forge'
 
 export const ServerUrls = {
 	server: {
@@ -69,8 +70,8 @@ export const ModUrls = {
 	relations: (serverHash: string, modId: number | string) => {
 		return `${ServerUrls.server.root(serverHash)}/mods/${modId}/relations`
 	},
-	search: (serverHash: string, query?: SearchModsQuery) => {
-		const resultQuery: SearchModsQuery = { ...searchModsBaseQuery, ...query }
+	search: (serverHash: string, query?: ISearchModsQuery) => {
+		const resultQuery: ISearchModsQuery = { ...searchModsBaseRequest, ...query }
 		const resultQueryString = Object.entries(resultQuery)
 			.filter((item) => item[1])
 			.map(

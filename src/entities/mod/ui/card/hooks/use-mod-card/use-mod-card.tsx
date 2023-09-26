@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react'
 
-import { Mod } from '@/shared/api/curse-forge'
+import { IMod } from '@/shared/api/curse-forge'
 import { modClassesMap } from '@/shared/config/mods'
 import { formatModDate, formatModDownloadsCount } from '@/shared/utils/format'
 
-export function useModCard(mod: Mod) {
+export function useModCard(mod: IMod) {
 	const [isHover, setIsHover] = useState(false)
 
 	const formattedDownloadsCount = formatModDownloadsCount(mod.downloadCount)

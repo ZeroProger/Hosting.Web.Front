@@ -2,8 +2,8 @@ export const CurseForgeApiUrls = {
 	modloaders: () => `softwares/modloaders`,
 	modloader: (name: string) => `softwares/modloaders/${name}`,
 
-	versions: () => ``,
-	version: (version: string) => `softwares/versions/${version}`,
+	gameVersions: () => `softwares/versions`,
+	gameVersion: (version: string) => `softwares/versions/${version}`,
 
 	searchMods: () => 'mods/search',
 	mod: (id: number | string) => `mods/${id}`,

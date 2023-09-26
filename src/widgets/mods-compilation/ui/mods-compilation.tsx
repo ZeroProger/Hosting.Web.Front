@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { ModCard } from '@/entities/mod/ui/card'
 
-import { Mod } from '@/shared/api/curse-forge'
+import { IMod } from '@/shared/api/curse-forge'
 
 import { ModsCompilationLoading } from './loading'
 import styles from './styles.module.scss'
@@ -13,7 +13,7 @@ export function ModsCompilation({
 	title,
 	viewAllLink,
 }: {
-	mods: Mod[]
+	mods: IMod[]
 	title: string
 	viewAllLink: string
 }) {

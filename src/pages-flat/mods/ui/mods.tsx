@@ -18,6 +18,7 @@ import {
 	popularWorldsRequest,
 } from '@/shared/config/mods'
 import { JoyrideGuide, modsSteps } from '@/shared/lib/react-joyride'
+import { useGroupedCategories } from '@/shared/queries/mod'
 import { ModUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 import { Skeleton } from '@/shared/ui/skeleton'
@@ -25,7 +26,8 @@ import { Skeleton } from '@/shared/ui/skeleton'
 import { ModsCompilation } from '@/widgets/mods-compilation'
 
 import { useMods } from '../hooks'
-import { useFilteredMods, useGroupedCategories } from '../queries'
+import { useFilteredMods } from '../queries'
+
 import styles from './styles.module.scss'
 
 export function Mods() {

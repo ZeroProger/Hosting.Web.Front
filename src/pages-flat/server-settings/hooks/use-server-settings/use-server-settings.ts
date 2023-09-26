@@ -48,7 +48,6 @@ export function useServerSettings() {
 	const handleSwitchChange = (checked: boolean, propertyName: string) => {
 		let updatedLocalSettings = localSettings?.map((property) => {
 			if (property.name === propertyName) {
-				console.log(property, { ...property, value: checked ? 'true' : 'false' })
 				return { ...property, value: checked ? 'true' : 'false' }
 			}
 			return property

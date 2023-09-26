@@ -45,17 +45,17 @@ export function ServerSelect({ servers }: { servers: Server[] }) {
 			defaultValue={defaultServer ? defaultServer.gameServerHash : ''}
 			onValueChange={handleSelect}
 		>
-			<SelectTrigger className="w-full text-xl px-4 bg-transparent border-none ring-2 ring-foreground/50 ring-offset-0 rounded-layout">
+			<SelectTrigger className="w-full text-xl px-4 bg-transparent">
 				<SelectValue aria-label={server ? server.gameServerName : 'Выберите сервер'}>
 					{server ? server.gameServerName : 'Выберите сервер'}
 				</SelectValue>
 			</SelectTrigger>
-			<SelectContent sideOffset={6} className="rounded-layout">
+			<SelectContent sideOffset={6}>
 				{servers.map((serverItem) => (
 					<SelectItem
 						key={serverItem.gameServerHash}
 						value={serverItem.gameServerHash}
-						className="cursor-pointer text-xl rounded-layout"
+						className="cursor-pointer text-xl"
 					>
 						{serverItem.gameServerName}
 					</SelectItem>

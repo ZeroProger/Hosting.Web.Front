@@ -1,22 +1,16 @@
-import { SearchModsQuery, SearchModsRequest } from '@/shared/api/curse-forge'
+import { SearchModsRequest } from '@/shared/api/curse-forge'
 
-import { CForgeModClassType } from './curse-forge'
+import { CForgeModClassType, CForgeModSortBy } from './curse-forge'
 
 const popularRequestPageSize = 12
+const searchModsBaseRequestPageSize = 24
 
 export const searchModsBaseRequest: SearchModsRequest = {
 	gameId: 432,
-	sortField: 1,
+	sortField: CForgeModSortBy.Matching,
 	sortOrder: 'desc',
 	index: 0,
-	pageSize: popularRequestPageSize,
-}
-
-export const searchModsBaseQuery: SearchModsQuery = {
-	sortField: 1,
-	sortOrder: 'desc',
-	index: 0,
-	pageSize: popularRequestPageSize,
+	pageSize: searchModsBaseRequestPageSize,
 }
 
 export const popularModsRequest: SearchModsRequest = {

@@ -2,7 +2,7 @@ export interface SearchModsRequest {
 	gameId: number
 	searchFilter?: string
 	sortField?: number
-	sortOrder?: string
+	sortOrder?: 'asc' | 'desc'
 	modLoaderType?: string
 	gameVersion?: string
 	slug?: string
@@ -19,17 +19,17 @@ export interface ModloadersRequest {
 	modloaderType?: string
 }
 
-export interface MinecraftVersionRequest {
+export interface GameVersionRequest {
 	sortDescending?: boolean
 }
 
-export interface CForgeSoftware {
+export interface ICForgeSoftware {
 	id: string
 	name: string
 	slug: string
 }
 
-export interface CForgeModloader {
+export interface ICForgeModloader {
 	gameVersion: string
 	modloaderVersion: string
 	formattedVersion: string
@@ -37,48 +37,48 @@ export interface CForgeModloader {
 	recommended?: boolean
 }
 
-export interface CForgeModloaderVersion {
+export interface ICForgeModloaderVersion {
 	gameVersion: string
-	versions?: CForgeModloader[]
+	versions?: ICForgeModloader[]
 }
 
-export interface CForgeMinecraftVersion {
+export interface ICForgeGameVersion {
 	version: string
 	gameVersionId: number
 }
 
-export interface Version {
+export interface IGameVersion {
 	name: string
 }
 
-export interface Mod {
+export interface IMod {
 	id: number
 	name: string
 	slug: string
 	summary: string
 	downloadCount: number
 	classId: number
-	logo: Picture
-	links: Link[]
-	categories: Category[]
-	authors: Author[]
-	screenshots: Picture[]
+	logo: IPicture
+	links: ILink[]
+	categories: ICategory[]
+	authors: IAuthor[]
+	screenshots: IPicture[]
 	dateCreated: string
 	dateModified: string
 	// allowModDistribution: boolean
 }
 
-export interface ModDescription {
+export interface IModDescription {
 	data: string
 }
 
-export interface CategoryGroup {
+export interface ICategoryGroup {
 	classId: number
 	className: string
-	categories: Category[]
+	categories: ICategory[]
 }
 
-export interface Category {
+export interface ICategory {
 	id: number
 	name: string
 	slug: string
@@ -87,11 +87,11 @@ export interface Category {
 	isClass?: boolean
 }
 
-export interface Link {
+export interface ILink {
 	websiteUrl: string
 }
 
-export interface Picture {
+export interface IPicture {
 	id: number
 	title: string
 	description: string
@@ -99,10 +99,10 @@ export interface Picture {
 	thumbnailUrl: string
 }
 
-export interface Author {
+export interface IAuthor {
 	id: number
 	name: string
 	url: string
 }
 
-export interface SearchModsQuery extends Omit<SearchModsRequest, 'gameId'> {}
+export interface ISearchModsQuery extends Omit<SearchModsRequest, 'gameId'> {}

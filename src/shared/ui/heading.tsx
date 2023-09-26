@@ -23,7 +23,7 @@ export function SubHeading({
 	className?: string
 	level?: 2 | 3 | 4 | 5
 }) {
-	const classname = cn('text-lg font-light text-foreground text-opacity-60 mb-3', className)
+	const classname = cn('text-lg font-normal text-foreground text-opacity-60 mb-3', className)
 
 	const subheading =
 		level === 2 ? (

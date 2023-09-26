@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react'
 import Link from 'next/link'
 
-import { Mod } from '@/shared/api/curse-forge'
+import { IMod } from '@/shared/api/curse-forge'
 import { ModUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 
@@ -12,7 +12,7 @@ export function SearchModsResults({
 	searchTerm,
 	showList,
 }: {
-	mods: Mod[]
+	mods: IMod[]
 	searchTerm: string
 	showList: boolean
 }) {

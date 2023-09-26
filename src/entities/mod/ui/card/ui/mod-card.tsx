@@ -6,7 +6,9 @@ import { ArrowDownToLine, Clock3, PlusCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Mod } from '@/shared/api/curse-forge'
+import defaultModImage from '@/app/assets/images/logo-green.png'
+
+import { IMod } from '@/shared/api/curse-forge'
 import { useFetchServer } from '@/shared/queries/server'
 import { ModUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
@@ -16,7 +18,7 @@ import { useModCard } from '../hooks'
 
 import styles from './styles.module.scss'
 
-export function ModCard({ mod }: { mod: Mod }) {
+export function ModCard({ mod }: { mod: IMod }) {
 	const serverHash = useStore($serverHash)
 
 	const { data: server, isLoading } = useFetchServer(serverHash)
@@ -36,7 +38,7 @@ export function ModCard({ mod }: { mod: Mod }) {
 				<div className={styles.inner}>
 					<div className={styles.art}>
 						<Image
-							src={mod.logo.thumbnailUrl}
+							src={mod.logo ? mod.logo.thumbnailUrl : defaultModImage.src}
 							alt={`Логотип мода ${mod.name}`}
 							width={144}
 							height={144}

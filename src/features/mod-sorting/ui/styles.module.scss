@@ -1,0 +1,15 @@
+.sorting {
+	@apply flex flex-row gap-x-4 gap-y-2 justify-between items-center;
+
+	.sort {
+		@apply w-full flex flex-row gap-6 items-center;
+
+		.sortFields {
+			@apply w-full max-w-[320px];
+		}
+	}
+
+	.pagination {
+		@apply flex flex-row gap-4 items-center;
+	}
+}

@@ -1,30 +1,33 @@
 import { useQuery } from '@tanstack/react-query'
 import { useStore } from 'effector-react'
-import { ChangeEvent, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, KeyboardEventHandler, useEffect, useRef, useState } from 'react'
 
 import { searchModsBaseRequest } from '@/shared/config/mods'
-import { useDebounce } from '@/shared/hooks'
+import { useDebounce, useSearchParams } from '@/shared/hooks'
 import { ReactQueryKeys } from '@/shared/lib/react-query'
-import { useFetchServer } from '@/shared/queries/server'
+import { ModUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 
 import { searchMods } from '../../api'
 
-export function useSearchMods() {
+export function useSearchMods(hideList?: boolean) {
+	const router = useRouter()
+	const searchParams = useSearchParams()
+
 	const [searchTerm, setSearchTerm] = useState<string>('')
 	const [showList, setShowList] = useState(false)
 
 	const serverHash = useStore($serverHash)
 
-	const { data: server, isLoading } = useFetchServer(serverHash)
+	const debouncedSearch = useDebounce(searchTerm, searchTerm.trim().length === 0 ? 100 : 600)
 
-	const debouncedSearch = useDebounce(searchTerm, searchTerm.trim().length === 0 ? 0 : 600)
-
-	const { isSuccess, data: mods } = useQuery({
+	const { data: mods } = useQuery({
 		queryKey: [ReactQueryKeys.searchMods, debouncedSearch],
 		queryFn: () => searchMods({ ...searchModsBaseRequest, searchFilter: debouncedSearch }),
 		select: ({ data }) => data.data,
-		enabled: !!debouncedSearch,
+		refetchOnMount: false,
+		refetchOnWindowFocus: false,
 	})
 
 	const containerRef = useRef(null)
@@ -37,12 +40,27 @@ export function useSearchMods() {
 		setSearchTerm(event.target.value)
 	}
 
+	const handleSearchEnterPress: KeyboardEventHandler<HTMLInputElement> = (event) => {
+		if (event.key === 'Enter') {
+			router.push(ModUrls.search(serverHash!, { ...searchParams, searchFilter: searchTerm }))
+		}
+	}
+
 	const resetSearch = () => {
 		setSearchTerm('')
 	}
 
+	useEffect(() => {
+		setSearchTerm(String(searchParams.searchFilter || ''))
+	}, [])
+
+	useEffect(() => {
+		if (hideList) {
+			router.push(ModUrls.search(serverHash!, { ...searchParams, searchFilter: searchTerm }))
+		}
+	}, [hideList, debouncedSearch])
+
 	return {
-		isSuccess,
 		mods,
 		searchTerm,
 		showList,
@@ -52,6 +70,7 @@ export function useSearchMods() {
 			resetSearch,
 			handleClickOutside,
 			handleInputFocus,
+			handleSearchEnterPress,
 		},
 	}
 }
