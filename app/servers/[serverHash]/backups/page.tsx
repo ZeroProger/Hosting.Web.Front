@@ -17,6 +17,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница со списком резервных копий сервера. Имеется возможность создать, восстановить или удалить резервную копию.
+ */
 export default function ServerBackupsPage() {
 	return <ServerBackups />
 }

@@ -17,6 +17,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница со списком модов, найденных по текстовому запросу.
+ */
 export default function ModsSearchPage() {
 	return <ModsSearch />
 }

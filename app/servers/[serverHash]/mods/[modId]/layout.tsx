@@ -1,5 +1,8 @@
 import { ModLayout } from '@/layouts/mod-layout'
 
+/**
+ * @returns Layout модификации, оборачивает внутренние страницы, отображая: название мода, картинку, и другую информацию о модификации.
+ */
 export default function ModLayoutPage({
 	children,
 	params,

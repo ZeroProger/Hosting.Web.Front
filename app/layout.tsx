@@ -15,8 +15,8 @@ const rubik = Rubik({
 })
 
 /**
- * @param {React.ReactNode} children - контент root layout`а, рендерится в теге main.
- * @returns {JSX.Element} Основной layout, содержит все провайдеры, header, main и footer.
+ * @param children - контент root layout`а, рендерится в теге main.
+ * @returns Основной layout, содержит все провайдеры, header, main и footer.
  */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (

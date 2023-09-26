@@ -18,6 +18,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница со скриншотами игрового процесса с использованием данной модификации.
+ */
 export default function ModImagesPage() {
 	return <ModImages />
 }

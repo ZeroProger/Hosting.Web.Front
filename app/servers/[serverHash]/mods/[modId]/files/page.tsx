@@ -18,6 +18,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница с файлами мода, доступными к скачиванию/установке.
+ */
 export default function ModFilesPage() {
 	return <ModFiles />
 }

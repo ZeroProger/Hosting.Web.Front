@@ -17,6 +17,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница со списком игроков, являющихся заблокированными на сервере.
+ */
 export default function ServerBannedPlayersPage() {
 	return <ServerBannedPlayers />
 }

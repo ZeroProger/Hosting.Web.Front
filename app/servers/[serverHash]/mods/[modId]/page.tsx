@@ -18,6 +18,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница с описанием модификации (отображает HTML-разметку описания модификации).
+ */
 export default function ModPage({ params }: { params: { modId: number } }) {
 	return <ModDescription modId={params.modId} />
 }

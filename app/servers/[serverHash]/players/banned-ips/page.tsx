@@ -17,6 +17,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница со списком IP-адресов, являющихся заблокированными на сервере.
+ */
 export default function ServerBannedIpsPage() {
 	return <ServerBannedIps />
 }

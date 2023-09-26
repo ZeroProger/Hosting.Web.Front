@@ -17,6 +17,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница со списком игроков, являющихся операторами.
+ */
 export default function ServerOperatorsPage() {
 	return <ServerOperators />
 }

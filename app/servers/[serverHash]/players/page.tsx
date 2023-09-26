@@ -17,6 +17,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница с категориями игроков.
+ */
 export default function ServerPlayersPage() {
 	return <ServerPlayers />
 }

@@ -17,6 +17,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница с полноценной консолью управления сервером. Имеется возможность вводить команды и получать подсказки. Введенные команды будут исполнены на игровом сервере, результат будет выведен в консоль.
+ */
 export default function ServerConsolePage() {
 	return <ServerConsole />
 }

@@ -17,6 +17,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница со списком игроков, находящихся в белом списке.
+ */
 export default function ServerWhiteListPage() {
 	return <ServerWhiteList />
 }

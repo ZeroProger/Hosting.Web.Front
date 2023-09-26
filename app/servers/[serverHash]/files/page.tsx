@@ -17,6 +17,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница с файловым менеджером сервера. Имеются все основные функции файлового менеджера.
+ */
 export default function ServerFilesPage() {
 	return <ServerFiles />
 }

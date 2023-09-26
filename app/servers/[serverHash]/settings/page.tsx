@@ -17,6 +17,9 @@ export async function generateMetadata({
 	}
 }
 
+/**
+ * @returns Страница с настройками сервера
+ */
 export default function ServerSettingsPage() {
 	return <ServerSettings />
 }

@@ -18,7 +18,7 @@ export async function generateMetadata({
 }
 
 /**
- * @returns {JSX.Element} Страница с основной информацией о сервере
+ * @returns {JSX.Element} Страница с основной информацией о сервере, выводит несколько виджетов для мониторинга сервера.
  */
 export default async function ServerOverviewPage({ params }: { params: { serverHash: string } }) {
 	return <ServerOverview />
