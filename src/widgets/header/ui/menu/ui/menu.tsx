@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation'
 import { useFetchUserServers } from '@/shared/queries/server'
 
 import { $headerMenu } from '@/widgets/header'
-import { ServerSelect } from '@/widgets/server/server-select'
+import { ServerSelect } from '@/widgets/server-select'
 
 import { menuItems } from '../config'
 

@@ -1,6 +1,8 @@
-import { UserServers } from '@/pages-flat/user-servers'
-import { SeoConfig } from '@/shared/config/common/seo'
 import { Metadata } from 'next'
+
+import { SeoConfig } from '@/shared/config/common/seo'
+
+import { UserServers } from '@/pages-flat/user-servers'
 
 export const metadata: Metadata = SeoConfig.server.userServers
 

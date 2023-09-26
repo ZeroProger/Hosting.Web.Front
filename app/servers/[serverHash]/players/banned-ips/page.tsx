@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 import { SeoConfig } from '@/shared/config/common/seo'
 
-import { BannedIps } from '@/pages-flat/server/players/banned-ips'
+import { ServerBannedIps } from '@/pages-flat/server-banned-ips'
 
 export async function generateMetadata({
 	params,
@@ -17,6 +17,6 @@ export async function generateMetadata({
 	}
 }
 
-export default function BannedIpsPage() {
-	return <BannedIps />
+export default function ServerBannedIpsPage() {
+	return <ServerBannedIps />
 }

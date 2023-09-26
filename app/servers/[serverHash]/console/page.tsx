@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 import { SeoConfig } from '@/shared/config/common/seo'
 
-import { ServerConsole } from '@/pages-flat/server/console'
+import { ServerConsole } from '@/pages-flat/server-console'
 
 export async function generateMetadata({
 	params,

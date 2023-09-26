@@ -7,7 +7,7 @@ import { cn } from '@/shared/lib/utils'
 import { useFetchUserServers } from '@/shared/queries/server'
 import { CommonUrls } from '@/shared/routes/urls'
 
-import { ServerSelect } from '@/widgets/server/server-select'
+import { ServerSelect } from '@/widgets/server-select'
 
 import { useHeaderFixed } from '../hooks'
 

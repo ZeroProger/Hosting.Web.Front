@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 import { SeoConfig } from '@/shared/config/common/seo'
 
-import { Operators } from '@/pages-flat/server/players/operators'
+import { ServerOperators } from '@/pages-flat/server-operators'
 
 export async function generateMetadata({
 	params,
@@ -17,6 +17,6 @@ export async function generateMetadata({
 	}
 }
 
-export default function OperatorsPage() {
-	return <Operators />
+export default function ServerOperatorsPage() {
+	return <ServerOperators />
 }

@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 import { SeoConfig } from '@/shared/config/common/seo'
 
-import { ModsSearch } from '@/pages-flat/mods/search'
+import { ModsSearch } from '@/pages-flat/mods-search'
 
 export async function generateMetadata({
 	searchParams,

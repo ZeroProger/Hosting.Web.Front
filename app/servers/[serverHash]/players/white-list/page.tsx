@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 import { SeoConfig } from '@/shared/config/common/seo'
 
-import { WhiteList } from '@/pages-flat/server/players/white-list'
+import { ServerWhiteList } from '@/pages-flat/server-white-list'
 
 export async function generateMetadata({
 	params,
@@ -17,6 +17,6 @@ export async function generateMetadata({
 	}
 }
 
-export default function WhitelistPage() {
-	return <WhiteList />
+export default function ServerWhiteListPage() {
+	return <ServerWhiteList />
 }

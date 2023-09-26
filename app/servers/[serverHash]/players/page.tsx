@@ -1,8 +1,9 @@
-import { ServerPlayers } from '@/pages-flat/server/players'
-
 import { Metadata } from 'next'
 
 import { SeoConfig } from '@/shared/config/common/seo'
+
+import { ServerPlayers } from '@/pages-flat/server-players'
+
 export async function generateMetadata({
 	params,
 }: {

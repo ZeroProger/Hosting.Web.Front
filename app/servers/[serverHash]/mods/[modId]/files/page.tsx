@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { SeoConfig } from '@/shared/config/common/seo'
 
 import { getMod } from '@/layouts/mod-layout/api'
-import { ModFiles } from '@/pages-flat/mod/files'
+import { ModFiles } from '@/pages-flat/mod-files'
 
 export async function generateMetadata({
 	params,
