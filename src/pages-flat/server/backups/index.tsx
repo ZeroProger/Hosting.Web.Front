@@ -67,7 +67,7 @@ export function ServerBackups() {
 					Создать бекап
 				</Button>
 			</div>
-			<SubHeading className="text-2xl mb-0">Доступные резервные копии</SubHeading>
+			<SubHeading className="text-2xl font-medium mb-0">Доступные резервные копии</SubHeading>
 			<div className={styles.backups}>
 				<div className={styles.backup}>
 					<span className={styles.backupName}>Алмазы в шахте</span>

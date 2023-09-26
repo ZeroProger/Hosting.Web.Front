@@ -1,11 +1,10 @@
 import { Metadata } from 'next'
 
+import { SeoConfig } from '@/shared/config/common/seo'
+
 import { Home } from '@/pages-flat/home/home'
 
-export const metadata: Metadata = {
-	title: 'Главная',
-	description: 'Хостинг игровых серверов SimpleHost.',
-}
+export const metadata: Metadata = SeoConfig.common.home
 
 /**
  * @returns {JSX.Element} Главная страница

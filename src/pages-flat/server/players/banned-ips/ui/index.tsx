@@ -15,7 +15,7 @@ export function BannedIps() {
 
 	return (
 		<IpsList
-			title="Заблокированные IP адреса"
+			title="Заблокированные IP-адреса"
 			isLoading={isLoading}
 			ips={bannedIps}
 			addDataPlaceholder={'Введите IP или никнейм игрока'}

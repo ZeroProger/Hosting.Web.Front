@@ -39,7 +39,7 @@ export function IpsList({
 						</div>
 					))
 				) : (
-					<div>Пока нет забаненных IP-адресов</div>
+					<div>Пока нет заблокированных IP-адресов</div>
 				)}
 				<div className={clsx(styles.row, styles.add)} id="add-player-step">
 					<Input

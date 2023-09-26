@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 
+import { SeoConfig } from '@/shared/config/common/seo'
+
 import { ServerOverview } from '@/pages-flat/server/overview'
 
 export async function generateMetadata({
@@ -7,9 +9,12 @@ export async function generateMetadata({
 }: {
 	params: { serverHash: string }
 }): Promise<Metadata> {
-	//const { data: server } = await ServerService.server(params.serverHash)
+	const server = params.serverHash.substring(1, 10)
 
-	return { title: `Основная информация о сервере` }
+	return {
+		...SeoConfig.server.overview,
+		title: SeoConfig.server.overview.title(server),
+	}
 }
 
 /**
