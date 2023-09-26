@@ -1,3 +1,4 @@
+import { popularRequestPageSize } from '@/shared/config/mods'
 import { Skeleton, SkeletonList } from '@/shared/ui/skeleton'
 
 import styles from './styles.module.scss'
@@ -10,7 +11,7 @@ export function ModsCompilationLoading() {
 				<Skeleton className="w-[150px] h-[36px]" />
 			</div>
 			<ul className={styles.mods}>
-				<SkeletonList count={12} height={260} />
+				<SkeletonList count={popularRequestPageSize} height={278} />
 			</ul>
 		</div>
 	)

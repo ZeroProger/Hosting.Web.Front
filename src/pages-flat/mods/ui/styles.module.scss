@@ -125,4 +125,8 @@
 			grid-area: search;
 		}
 	}
+
+	.compilations {
+		@apply flex flex-col gap-[64px];
+	}
 }

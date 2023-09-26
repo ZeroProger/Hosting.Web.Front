@@ -2,8 +2,8 @@ import { SearchModsRequest } from '@/shared/api/curse-forge'
 
 import { CForgeModClassType, CForgeModSortBy } from './curse-forge'
 
-const popularRequestPageSize = 12
-const searchModsBaseRequestPageSize = 24
+export const popularRequestPageSize = 6
+export const searchModsBaseRequestPageSize = 24
 
 export const searchModsBaseRequest: SearchModsRequest = {
 	gameId: 432,

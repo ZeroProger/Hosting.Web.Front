@@ -56,9 +56,9 @@ export function useSearchMods(hideList?: boolean) {
 
 	useEffect(() => {
 		if (hideList) {
-			router.push(ModUrls.search(serverHash!, { ...searchParams, searchFilter: searchTerm }))
+			router.push(ModUrls.search(serverHash!, { ...searchParams, searchFilter: debouncedSearch }))
 		}
-	}, [hideList, debouncedSearch])
+	}, [hideList, debouncedSearch, router, serverHash, searchParams])
 
 	return {
 		mods,

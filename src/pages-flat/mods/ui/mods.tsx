@@ -129,43 +129,45 @@ export function Mods() {
 						<Skeleton className="h-[56px]" />
 					</div>
 				)}
-				<div id="mods-compilation-step">
+				<div className={styles.compilations}>
+					<div id="mods-compilation-step">
+						<ModsCompilation
+							title="Популярные моды"
+							viewAllLink={ModUrls.search(serverHash!, {
+								classId: CForgeModClassType.Mods,
+							})}
+							mods={mods || []}
+						/>
+					</div>
 					<ModsCompilation
-						title="Популярные моды"
+						title="Популярные сборки модов"
 						viewAllLink={ModUrls.search(serverHash!, {
-							classId: CForgeModClassType.Mods,
+							classId: CForgeModClassType.Modpacks,
 						})}
-						mods={mods || []}
+						mods={modpacks || []}
+					/>
+					<ModsCompilation
+						title="Популярные миры"
+						viewAllLink={ModUrls.search(serverHash!, {
+							classId: CForgeModClassType.Worlds,
+						})}
+						mods={worlds || []}
+					/>
+					<ModsCompilation
+						title="Популярные плагины"
+						viewAllLink={ModUrls.search(serverHash!, {
+							classId: CForgeModClassType.BukkitPlugins,
+						})}
+						mods={plugins || []}
+					/>
+					<ModsCompilation
+						title="Популярные пакеты ресурсов"
+						viewAllLink={ModUrls.search(serverHash!, {
+							classId: CForgeModClassType.ResourcePacks,
+						})}
+						mods={resourcePacks || []}
 					/>
 				</div>
-				<ModsCompilation
-					title="Популярные сборки модов"
-					viewAllLink={ModUrls.search(serverHash!, {
-						classId: CForgeModClassType.Modpacks,
-					})}
-					mods={modpacks || []}
-				/>
-				<ModsCompilation
-					title="Популярные миры"
-					viewAllLink={ModUrls.search(serverHash!, {
-						classId: CForgeModClassType.Worlds,
-					})}
-					mods={worlds || []}
-				/>
-				<ModsCompilation
-					title="Популярные плагины"
-					viewAllLink={ModUrls.search(serverHash!, {
-						classId: CForgeModClassType.BukkitPlugins,
-					})}
-					mods={plugins || []}
-				/>
-				<ModsCompilation
-					title="Популярные пакеты ресурсов"
-					viewAllLink={ModUrls.search(serverHash!, {
-						classId: CForgeModClassType.ResourcePacks,
-					})}
-					mods={resourcePacks || []}
-				/>
 			</div>
 		</>
 	)
