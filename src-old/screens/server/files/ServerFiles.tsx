@@ -191,3 +191,45 @@ const ServerFiles: FC<IServerFiles> = ({ nestedList }) => {
 }
 
 export default ServerFiles
+
+<><div className={styles.list}>
+			{(nestedList ? nestedList : filesTree).length === 0 && (
+				<>
+					{currentNode && currentNode?.type !== 'file' ? (
+						<div className={styles.listEmpty}>
+							<Icon name="Io5Warning" size={32} />
+							Эта папка пуста
+						</div>
+					) : (
+						currentNode && (
+							<div className={styles.fileContent}>Контент файла {currentNode.name}</div>
+						)
+					)}
+				</>
+			)}
+			{(nestedList ? nestedList : filesTree).map((listItem) => (
+				<div key={listItem.path} className={styles.listItem}>
+					<Icon name={listItem.type === 'directory' ? 'FaFolder' : 'FaFileAlt'} size={20} />
+					<Link
+						href={getServerFilesUrl(String(router.query.slug), listItem.path)}
+						className={styles.listItemName}
+					>
+						{listItem.name}
+					</Link>
+					{listItem.type === 'file' && (
+						<div className={styles.listItemSize}>{formatMemoryBytes(listItem.size)}</div>
+					)}
+					{/* #TODO: добавить проверку на возможность скачивать и удалять различные файлы (проверка на бэке сначала должна появиться) */}
+					<Button variant='default' size='icon'
+						onClick={handleDownloadItemClick}
+					>
+						<Download size={20} />
+					</Button>
+					<Button variant='default' size='icon'
+						onClick={handleRemoveItemClick}
+					>
+						<Trash2 size={20} />
+					</Button>
+				</div>
+			))}
+		</div></>

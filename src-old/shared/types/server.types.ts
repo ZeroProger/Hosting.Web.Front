@@ -81,7 +81,7 @@ export interface IServer {
 export interface IFileNode {
 	path: string
 	name: string
-	type: string
+	type: 'file' | 'directory'
 	changeable?: boolean
 	size: number
 	children?: IFileNode[]

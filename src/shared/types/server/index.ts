@@ -76,10 +76,8 @@ export interface IServerCurrentUsageItem {
 
 export interface IFileNode {
 	path: string
-	name: string
-	type: string
-	changeable?: boolean
+	type: 'file' | 'directory'
 	size: number
-	children?: IFileNode[]
+	name?: string
 	extension?: string
 }

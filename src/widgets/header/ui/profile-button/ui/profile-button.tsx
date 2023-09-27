@@ -1,24 +1,26 @@
 import { LogIn, User } from 'lucide-react'
+import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 
-import { AuthUrls, ProfileUrls } from '@/shared/routes/urls'
+import { ProfileUrls } from '@/shared/routes/urls'
+import { Button } from '@/shared/ui/button'
 
 import styles from './styles.module.scss'
 
 export function ProfileButton() {
-	const isLogged = false
+	const { data: session } = useSession()
 
-	const ProfileLink = (
-		<Link href={ProfileUrls.profile()} className={styles.link}>
-			<User size={26} /> Профиль
-		</Link>
-	)
+	if (session) {
+		return (
+			<Link href={ProfileUrls.profile()} className={styles.link}>
+				<User size={26} /> {session.user?.name}
+			</Link>
+		)
+	}
 
-	const AuthLink = (
-		<Link href={AuthUrls.signIn()} className={styles.link}>
+	return (
+		<Button onClick={() => signIn()} variant={'ghost'} className={styles.link}>
 			<LogIn size={26} /> Войти
-		</Link>
+		</Button>
 	)
-
-	return isLogged ? ProfileLink : AuthLink
 }

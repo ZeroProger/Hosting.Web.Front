@@ -19,8 +19,8 @@ export const ServerUrls = {
 			return `${ServerUrls.server.root(hash)}/logs`
 		},
 
-		files: (hash: string) => {
-			return `${ServerUrls.server.root(hash)}/files`
+		files: (hash: string, path?: string) => {
+			return `${ServerUrls.server.root(hash)}/files${path ? `?path=${path}` : ''}`
 		},
 
 		backups: (hash: string) => {
