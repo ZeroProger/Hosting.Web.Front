@@ -2,9 +2,26 @@
 	@apply flex flex-col gap-2;
 
 	.header {
-		@apply flex flex-row items-center gap-2 bg-card p-2 rounded-lg;
+		@apply flex flex-row items-center gap-1 bg-card p-2 rounded-lg;
 
 		.home {
+			@apply flex items-center flex-nowrap gap-2;
+
+			.rootPath {
+				@apply flex items-center text-xl font-medium;
+
+				&::before {
+					@apply text-3xl mr-2 font-normal;
+
+					content: '~';
+				}
+
+				&::after {
+					@apply text-xl font-medium;
+
+					content: '/';
+				}
+			}
 		}
 
 		.filesCount {
@@ -12,7 +29,15 @@
 		}
 
 		.pathParts {
-			@apply flex flex-row items-center gap-2;
+			@apply flex flex-row items-center;
+
+			.slash {
+				&::before {
+					@apply text-xl font-medium mx-1;
+
+					content: '/';
+				}
+			}
 		}
 
 		.headerActions {
@@ -42,5 +67,13 @@
 				@apply bg-secondary rounded-md text-lg px-2 py-0;
 			}
 		}
+	}
+}
+
+.notFound {
+	@apply flex items-center justify-center h-[200px];
+
+	.text {
+		@apply text-2xl;
 	}
 }

@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import { Download, File, Folder, MoreHorizontal, Trash2 } from 'lucide-react'
+import { Download, FileText, Folder, MoreHorizontal, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 
 import { ServerUrls } from '@/shared/routes/urls'
@@ -28,14 +28,18 @@ export function FileNodesList({ fileNodes }: { fileNodes?: IFileNode[] }) {
 	}
 
 	if (fileNodes.length === 0) {
-		return <div className={styles.notFound}>Файлы не найдены</div>
+		return (
+			<div className={styles.notFound}>
+				<p className={styles.text}>Папка пустая</p>
+			</div>
+		)
 	}
 
 	return (
 		<div className={styles.list}>
 			{fileNodes.map((listItem) => (
 				<div key={listItem.path} className={styles.listItem}>
-					{listItem.type === 'file' ? <File size={20} /> : <Folder size={20} />}
+					{listItem.type === 'file' ? <FileText size={24} /> : <Folder size={24} />}
 					<Link
 						href={ServerUrls.server.files(serverHash!, listItem.path)}
 						className={styles.listItemName}
@@ -63,7 +67,7 @@ export function FileNodesList({ fileNodes }: { fileNodes?: IFileNode[] }) {
 							</Button>
 							<Button
 								variant="ghost"
-								className="h-auto text-foreground hover:bg-destructive/40 hover:text-destructive flex flex-nowrap items-center gap-2"
+								className="h-auto text-foreground hover:bg-destructive hover:text-destructive-foreground flex flex-nowrap items-center gap-2"
 								onClick={handleRemoveNode}
 							>
 								<Trash2 size={20} />

@@ -1,7 +1,7 @@
 'use client'
 
 import { FilePlus, FileUp, FolderPlus, FolderUp, Home } from 'lucide-react'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import { ServerUrls } from '@/shared/routes/urls'
 import { Button } from '@/shared/ui/button'
@@ -13,6 +13,8 @@ import { FileNodesList } from './file-nodes-list'
 import styles from './styles.module.scss'
 
 export function ServerFiles() {
+	const router = useRouter()
+
 	const { serverHash, fileContent, fileNodesByPath, pathParts, functions } = useServerFiles()
 
 	const {
@@ -30,26 +32,30 @@ export function ServerFiles() {
 			<Heading>Файлы сервера</Heading>
 			<div className={styles.header}>
 				<div className={styles.home}>
-					<Button className={styles.headerBaseBtn} onClick={handleGoHome}>
+					<Button onClick={handleGoHome}>
 						<Home size={24} />
 					</Button>
+					<span className={styles.rootPath} />
 				</div>
 				{pathParts.length > 0 && (
 					<div className={styles.pathParts}>
 						{pathParts.map((pathPart, idx) => (
-							<Button
-								asChild
-								variant="default"
-								key={pathPart}
-								className="flex flex-row gap-2 items-center text-lg w-max"
-							>
-								<Link
-									href={ServerUrls.server.files(serverHash!, createPathUrl(pathPart))}
-									scroll={false}
+							<>
+								<Button
+									variant="ghost"
+									key={pathPart}
+									className="h-auto py-0 flex flex-row gap-2 items-center text-lg w-max"
+									disabled={idx === pathParts.length - 1}
+									onClick={() =>
+										router.push(ServerUrls.server.files(serverHash!, createPathUrl(pathPart)), {
+											scroll: false,
+										})
+									}
 								>
 									{pathPart}
-								</Link>
-							</Button>
+								</Button>
+								{idx < pathParts.length - 1 && <span className={styles.slash} />}
+							</>
 						))}
 					</div>
 				)}
