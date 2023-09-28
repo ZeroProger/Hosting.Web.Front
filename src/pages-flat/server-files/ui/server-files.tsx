@@ -1,6 +1,6 @@
 'use client'
 
-import { FilePlus, FolderPlus, Home, Upload } from 'lucide-react'
+import { FilePlus, FileUp, FolderPlus, FolderUp, Home } from 'lucide-react'
 import Link from 'next/link'
 
 import { ServerUrls } from '@/shared/routes/urls'
@@ -13,17 +13,16 @@ import { FileNodesList } from './file-nodes-list'
 import styles from './styles.module.scss'
 
 export function ServerFiles() {
-	const { serverHash, fileNodesByPath, pathParts, functions } = useServerFiles()
+	const { serverHash, fileContent, fileNodesByPath, pathParts, functions } = useServerFiles()
 
 	const {
 		createPathUrl,
 		formatBytes,
-		handleGoHomeClick,
-		handleCreateFileClick,
-		handleCreateFolderClick,
-		handleDownloadItemClick,
-		handleRemoveItemClick,
-		handleUploadFileClick,
+		handleGoHome,
+		handleCreateFile,
+		handleCreateFolder,
+		handleUploadFile,
+		handleUploadFolder,
 	} = functions
 
 	return (
@@ -31,7 +30,7 @@ export function ServerFiles() {
 			<Heading>Файлы сервера</Heading>
 			<div className={styles.header}>
 				<div className={styles.home}>
-					<Button className={styles.headerBaseBtn} onClick={handleGoHomeClick}>
+					<Button className={styles.headerBaseBtn} onClick={handleGoHome}>
 						<Home size={24} />
 					</Button>
 				</div>
@@ -55,24 +54,22 @@ export function ServerFiles() {
 					</div>
 				)}
 				<div className={styles.headerActions}>
-					<div className={styles.uploadFile}>
-						<Button variant="default" size="icon" onClick={handleUploadFileClick}>
-							<Upload size={24} />
-						</Button>
-					</div>
-					<div className={styles.createFolder}>
-						<Button variant="default" size="icon" onClick={handleCreateFolderClick}>
-							<FolderPlus size={24} />
-						</Button>
-					</div>
-					<div className={styles.createFile}>
-						<Button variant="default" size="icon" onClick={handleCreateFileClick}>
-							<FilePlus size={24} />
-						</Button>
-					</div>
+					<Button variant="ghost" size="icon" onClick={handleUploadFile}>
+						<FileUp size={24} />
+					</Button>
+					<Button variant="ghost" size="icon" onClick={handleUploadFolder}>
+						<FolderUp size={24} />
+					</Button>
+					<Button variant="ghost" size="icon" onClick={handleCreateFolder}>
+						<FolderPlus size={24} />
+					</Button>
+					<Button variant="ghost" size="icon" onClick={handleCreateFile}>
+						<FilePlus size={24} />
+					</Button>
 				</div>
 			</div>
-			{fileNodesByPath && <FileNodesList fileNodes={fileNodesByPath} />}
+			{fileContent && <div>Контент: {fileContent}</div>}
+			{fileNodesByPath && !fileContent && <FileNodesList fileNodes={fileNodesByPath} />}
 		</div>
 	)
 }

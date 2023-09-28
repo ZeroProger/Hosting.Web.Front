@@ -3,6 +3,7 @@ export const ReactQueryKeys = {
 	serverBackups: 'serverBackups',
 	serverSettings: 'serverSettings',
 	serverFiles: 'serverFiles',
+	serverFileContent: 'serverFileContent',
 	userServers: 'userServers',
 	publicServers: 'publicServers',
 	mods: 'mods',

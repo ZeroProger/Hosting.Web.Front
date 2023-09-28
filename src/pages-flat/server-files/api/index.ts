@@ -5,6 +5,10 @@ export function getServerFiles(serverHash?: string | null, path: string = '') {
 	return fileNodes.sort((a, b) => a.name!.localeCompare(b.name!))
 }
 
+export function getServerFileContent(serverHash?: string | null, path: string = '') {
+	return `Контент файла по пути ${path}. Пришел с бэка`
+}
+
 // export function getNodeFiles(path: string): IFileNode[] {
 // 	if (path === '') return filesTree
 

@@ -7,7 +7,7 @@ import { ServerUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 import { IFileNode } from '@/shared/types'
 
-import { useFetchServerFiles } from '../../queries'
+import { useFetchServerFileContent, useFetchServerFiles } from '../../queries'
 
 export function useServerFiles() {
 	const router = useRouter()
@@ -16,9 +16,19 @@ export function useServerFiles() {
 	const serverHash = useStore($serverHash)
 
 	const { data: fileNodes } = useFetchServerFiles()
+	const { data: fileData } = useFetchServerFileContent(path)
 
 	const [pathParts, setPathParts] = useState<string[]>([])
 	const [fileNodesByPath, setFileNodesByPath] = useState<IFileNode[] | null>(null)
+	const [fileContent, setFileContent] = useState<string | null>()
+
+	// useEffect(() => {
+	// 	if (!fileNodesByPath && fileNodes) {
+	// 		const filteredFileNodes = filterFilesNodesByPath(path)
+
+	// 		setFileNodesByPath(filteredFileNodes)
+	// 	}
+	// }, [fileNodes, fileNodesByPath, path])
 
 	useEffect(() => {
 		const parts = path.split('/').filter((p) => p.length > 0)
@@ -26,19 +36,20 @@ export function useServerFiles() {
 		setPathParts(parts)
 
 		if (fileNodes) {
-			const filteredFileNodes = filterFilesNodesByPath(path)
+			const fileNode = fileNodes.find((f) => f.path === path)
 
-			setFileNodesByPath(filteredFileNodes)
+			if (fileNode && fileNode.type === 'file') {
+				setFileContent(fileData)
+				setFileNodesByPath(null)
+			} else {
+				setFileContent(null)
+
+				const filteredFileNodes = filterFilesNodesByPath(path)
+
+				setFileNodesByPath(filteredFileNodes)
+			}
 		}
-	}, [path])
-
-	useEffect(() => {
-		if (!fileNodesByPath && fileNodes) {
-			const filteredFileNodes = filterFilesNodesByPath(path)
-
-			setFileNodesByPath(filteredFileNodes)
-		}
-	}, [fileNodes, fileNodesByPath])
+	}, [path, fileNodes, fileData])
 
 	const filterFilesNodesByPath = (path: string) => {
 		if (!fileNodes) {
@@ -49,7 +60,7 @@ export function useServerFiles() {
 			return fileNodes.filter((node) => node.path.split('/').length === 1)
 		} else {
 			const filterPath = path + '/'
-			
+
 			return fileNodes.filter((node) => {
 				return (
 					node.path === filterPath ||
@@ -67,19 +78,18 @@ export function useServerFiles() {
 		return `${pathParts.slice(0, pathPartIndex).join('/')}`
 	}
 
-	const handleGoHomeClick = () => {
+	const handleGoHome = () => {
 		router.push(ServerUrls.server.files(serverHash!))
 	}
 
-	const handleUploadFileClick = () => {}
+	const handleUploadFile = () => {}
+	const handleUploadFolder = () => {}
 
-	const handleCreateFolderClick = () => {}
+	const handleCreateFile = () => {}
+	const handleCreateFolder = () => {}
 
-	const handleCreateFileClick = () => {}
-
-	const handleRemoveItemClick = () => {}
-
-	const handleDownloadItemClick = () => {}
+	const handleRemoveNode = () => {}
+	const handleDownloadNode = () => {}
 
 	const formatBytes = (bytes: number): string => {
 		const data = numeral(bytes)
@@ -89,18 +99,19 @@ export function useServerFiles() {
 
 	return {
 		serverHash,
-		path,
+		fileContent,
 		fileNodesByPath,
 		pathParts,
 		functions: {
 			createPathUrl,
 			formatBytes,
-			handleGoHomeClick,
-			handleUploadFileClick,
-			handleCreateFolderClick,
-			handleCreateFileClick,
-			handleRemoveItemClick,
-			handleDownloadItemClick,
+			handleGoHome,
+			handleUploadFile,
+			handleUploadFolder,
+			handleCreateFolder,
+			handleCreateFile,
+			handleRemoveNode,
+			handleDownloadNode,
 		},
 	}
 }
