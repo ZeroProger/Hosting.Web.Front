@@ -11,7 +11,7 @@ export function FolderUpload() {
 
 	return (
 		<Dialog>
-			<DialogTrigger>
+			<DialogTrigger asChild>
 				<Button variant="ghost" size="icon">
 					<FolderUp size={24} />
 				</Button>

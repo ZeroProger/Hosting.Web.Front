@@ -24,7 +24,7 @@ export function BanPlayer({ playerNickname }: { playerNickname: string }) {
 
 	return (
 		<AlertDialog>
-			<AlertDialogTrigger>
+			<AlertDialogTrigger asChild>
 				<Button
 					variant="destructive"
 					size="icon"

@@ -20,7 +20,7 @@ export function FileNodeRemove({ path }: { path: string }) {
 
 	return (
 		<AlertDialog>
-			<AlertDialogTrigger>
+			<AlertDialogTrigger asChild>
 				<Button
 					variant="ghost"
 					className="h-auto py-1 text-lg text-foreground hover:bg-destructive hover:text-destructive-foreground flex flex-nowrap items-center gap-2"

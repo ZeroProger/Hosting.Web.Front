@@ -11,7 +11,7 @@ export function FileCreate() {
 
 	return (
 		<Dialog>
-			<DialogTrigger>
+			<DialogTrigger asChild>
 				<Button variant="ghost" size="icon">
 					<FilePlus size={24} />
 				</Button>

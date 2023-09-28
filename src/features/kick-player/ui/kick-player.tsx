@@ -26,7 +26,7 @@ export function KickPlayer({ playerNickname }: { playerNickname: string }) {
 
 	return (
 		<AlertDialog>
-			<AlertDialogTrigger>
+			<AlertDialogTrigger asChild>
 				<Button
 					variant="default"
 					size="icon"

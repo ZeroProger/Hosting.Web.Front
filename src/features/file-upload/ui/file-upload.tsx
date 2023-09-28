@@ -11,7 +11,7 @@ export function FileUpload() {
 
 	return (
 		<Dialog>
-			<DialogTrigger>
+			<DialogTrigger asChild>
 				<Button variant="ghost" size="icon">
 					<FileUp size={24} />
 				</Button>

@@ -54,7 +54,7 @@ export function FileNodesList({ fileNodes }: { fileNodes?: IFileNode[] }) {
 						<div className={styles.listItemSize}>{formatBytes(fileNode.size)}</div>
 					)}
 					<Popover>
-						<PopoverTrigger>
+						<PopoverTrigger asChild>
 							<Button variant="ghost" size="icon" className="py-1 px-2">
 								<MoreHorizontal size={24} strokeWidth={2.5} />
 							</Button>

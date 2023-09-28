@@ -11,7 +11,7 @@ export function FolderCreate() {
 
 	return (
 		<Dialog>
-			<DialogTrigger>
+			<DialogTrigger asChild>
 				<Button variant="ghost" size="icon">
 					<FolderPlus size={24} />
 				</Button>
