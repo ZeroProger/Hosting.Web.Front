@@ -33,7 +33,11 @@ export function IpsList({
 								<LocateFixed size={32} />
 								<span>{player.value}</span>
 							</div>
-							<Button variant="destructive">
+							<Button
+								variant="destructive"
+								size="icon"
+								className="px-1 py-1 text-destructive hover:bg-destructive/40 bg-transparent"
+							>
 								<Trash2 size={28} />
 							</Button>
 						</div>

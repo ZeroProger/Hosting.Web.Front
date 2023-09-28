@@ -1,6 +1,9 @@
 import { useStore } from 'effector-react'
-import { Download, FileText, Folder, MoreHorizontal, Trash2 } from 'lucide-react'
+import { FileText, Folder, MoreHorizontal } from 'lucide-react'
 import Link from 'next/link'
+
+import { FileNodeDownload } from '@/features/file-node-download'
+import { FileNodeRemove } from '@/features/file-node-remove'
 
 import { ServerUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
@@ -17,7 +20,7 @@ export function FileNodesList({ fileNodes }: { fileNodes?: IFileNode[] }) {
 	const serverHash = useStore($serverHash)
 
 	const { functions } = useServerFiles()
-	const { formatBytes, handleDownloadNode, handleRemoveNode } = functions
+	const { formatBytes } = functions
 
 	if (!fileNodes) {
 		return (
@@ -37,18 +40,18 @@ export function FileNodesList({ fileNodes }: { fileNodes?: IFileNode[] }) {
 
 	return (
 		<div className={styles.list}>
-			{fileNodes.map((listItem) => (
-				<div key={listItem.path} className={styles.listItem}>
-					{listItem.type === 'file' ? <FileText size={24} /> : <Folder size={24} />}
+			{fileNodes.map((fileNode) => (
+				<div key={fileNode.path} className={styles.listItem}>
+					{fileNode.type === 'file' ? <FileText size={24} /> : <Folder size={24} />}
 					<Link
-						href={ServerUrls.server.files(serverHash!, listItem.path)}
+						href={ServerUrls.server.files(serverHash!, fileNode.path)}
 						className={styles.listItemName}
 						scroll={false}
 					>
-						{listItem.name}
+						{fileNode.name}
 					</Link>
-					{listItem.type === 'file' && (
-						<div className={styles.listItemSize}>{formatBytes(listItem.size)}</div>
+					{fileNode.type === 'file' && (
+						<div className={styles.listItemSize}>{formatBytes(fileNode.size)}</div>
 					)}
 					<Popover>
 						<PopoverTrigger>
@@ -57,22 +60,8 @@ export function FileNodesList({ fileNodes }: { fileNodes?: IFileNode[] }) {
 							</Button>
 						</PopoverTrigger>
 						<PopoverContent className="p-2 flex flex-col gap-1 w-auto">
-							<Button
-								variant="ghost"
-								className="h-auto text-foreground flex flex-nowrap items-center gap-2"
-								onClick={handleDownloadNode}
-							>
-								<Download size={20} />
-								Скачать
-							</Button>
-							<Button
-								variant="ghost"
-								className="h-auto text-foreground hover:bg-destructive hover:text-destructive-foreground flex flex-nowrap items-center gap-2"
-								onClick={handleRemoveNode}
-							>
-								<Trash2 size={20} />
-								Удалить
-							</Button>
+							<FileNodeDownload path={fileNode.path} />
+							<FileNodeRemove path={fileNode.path} />
 						</PopoverContent>
 					</Popover>
 				</div>

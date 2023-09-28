@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { useStore } from 'effector-react'
 
 import { ReactQueryKeys } from '@/shared/lib/react-query'
@@ -16,12 +16,15 @@ export function useFetchServerFiles() {
 	})
 }
 
-export function useFetchServerFileContent(path: string = '') {
+export function useFetchServerFileContent(
+	path: string = '',
+	options: Omit<UseQueryOptions, 'queryKey' | 'queryFn'>
+) {
 	const serverHash = useStore($serverHash)
 
 	return useQuery({
 		queryKey: [ReactQueryKeys.serverFileContent, serverHash, path],
 		queryFn: () => getServerFileContent(serverHash, path),
-		enabled: !!serverHash && path !== '',
+		enabled: options.enabled,
 	})
 }

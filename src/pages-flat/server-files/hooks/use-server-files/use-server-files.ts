@@ -15,41 +15,28 @@ export function useServerFiles() {
 	const path = searchParams.get('path') || ''
 	const serverHash = useStore($serverHash)
 
-	const { data: fileNodes } = useFetchServerFiles()
-	const { data: fileData } = useFetchServerFileContent(path)
-
-	const [pathParts, setPathParts] = useState<string[]>([])
 	const [fileNodesByPath, setFileNodesByPath] = useState<IFileNode[] | null>(null)
-	const [fileContent, setFileContent] = useState<string | null>()
+	const [activeFilePath, setActiveFilePath] = useState<string | null>()
 
-	// useEffect(() => {
-	// 	if (!fileNodesByPath && fileNodes) {
-	// 		const filteredFileNodes = filterFilesNodesByPath(path)
-
-	// 		setFileNodesByPath(filteredFileNodes)
-	// 	}
-	// }, [fileNodes, fileNodesByPath, path])
+	const { data: fileNodes } = useFetchServerFiles()
+	const { data: fileContent } = useFetchServerFileContent(path, { enabled: !!activeFilePath })
 
 	useEffect(() => {
-		const parts = path.split('/').filter((p) => p.length > 0)
-
-		setPathParts(parts)
-
 		if (fileNodes) {
 			const fileNode = fileNodes.find((f) => f.path === path)
 
 			if (fileNode && fileNode.type === 'file') {
-				setFileContent(fileData)
+				setActiveFilePath(fileNode.path)
 				setFileNodesByPath(null)
 			} else {
-				setFileContent(null)
+				setActiveFilePath(null)
 
 				const filteredFileNodes = filterFilesNodesByPath(path)
 
 				setFileNodesByPath(filteredFileNodes)
 			}
 		}
-	}, [path, fileNodes, fileData])
+	}, [path, fileNodes, fileContent])
 
 	const filterFilesNodesByPath = (path: string) => {
 		if (!fileNodes) {
@@ -72,24 +59,9 @@ export function useServerFiles() {
 		}
 	}
 
-	const createPathUrl = (pathPartName: string): string => {
-		const pathPartIndex = pathParts.indexOf(pathPartName) + 1
-
-		return `${pathParts.slice(0, pathPartIndex).join('/')}`
-	}
-
 	const handleGoHome = () => {
 		router.push(ServerUrls.server.files(serverHash!))
 	}
-
-	const handleUploadFile = () => {}
-	const handleUploadFolder = () => {}
-
-	const handleCreateFile = () => {}
-	const handleCreateFolder = () => {}
-
-	const handleRemoveNode = () => {}
-	const handleDownloadNode = () => {}
 
 	const formatBytes = (bytes: number): string => {
 		const data = numeral(bytes)
@@ -99,19 +71,12 @@ export function useServerFiles() {
 
 	return {
 		serverHash,
+		path,
 		fileContent,
 		fileNodesByPath,
-		pathParts,
 		functions: {
-			createPathUrl,
 			formatBytes,
 			handleGoHome,
-			handleUploadFile,
-			handleUploadFolder,
-			handleCreateFolder,
-			handleCreateFile,
-			handleRemoveNode,
-			handleDownloadNode,
 		},
 	}
 }

@@ -1,35 +1,29 @@
 'use client'
 
-import { FilePlus, FileUp, FolderPlus, FolderUp, Home } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { Home } from 'lucide-react'
 
-import { ServerUrls } from '@/shared/routes/urls'
+import { FileCreate } from '@/features/file-create'
+import { FileUpload } from '@/features/file-upload'
+import { FolderCreate } from '@/features/folder-create'
+import { FolderUpload } from '@/features/folder-upload'
+
 import { Button } from '@/shared/ui/button'
 import { Heading } from '@/shared/ui/heading'
 
 import { useServerFiles } from '../hooks'
 
 import { FileNodesList } from './file-nodes-list'
+import { FilesBreadcrumbs } from './files-breadcrumbs'
 import styles from './styles.module.scss'
 
 export function ServerFiles() {
-	const router = useRouter()
+	const { path, fileContent, fileNodesByPath, functions } = useServerFiles()
 
-	const { serverHash, fileContent, fileNodesByPath, pathParts, functions } = useServerFiles()
-
-	const {
-		createPathUrl,
-		formatBytes,
-		handleGoHome,
-		handleCreateFile,
-		handleCreateFolder,
-		handleUploadFile,
-		handleUploadFolder,
-	} = functions
+	const { handleGoHome } = functions
 
 	return (
 		<div className={styles.container}>
-			<Heading>Файлы сервера</Heading>
+			<Heading>Файловый менеджер</Heading>
 			<div className={styles.header}>
 				<div className={styles.home}>
 					<Button onClick={handleGoHome}>
@@ -37,45 +31,16 @@ export function ServerFiles() {
 					</Button>
 					<span className={styles.rootPath} />
 				</div>
-				{pathParts.length > 0 && (
-					<div className={styles.pathParts}>
-						{pathParts.map((pathPart, idx) => (
-							<>
-								<Button
-									variant="ghost"
-									key={pathPart}
-									className="h-auto py-0 flex flex-row gap-2 items-center text-lg w-max"
-									disabled={idx === pathParts.length - 1}
-									onClick={() =>
-										router.push(ServerUrls.server.files(serverHash!, createPathUrl(pathPart)), {
-											scroll: false,
-										})
-									}
-								>
-									{pathPart}
-								</Button>
-								{idx < pathParts.length - 1 && <span className={styles.slash} />}
-							</>
-						))}
-					</div>
-				)}
+				<FilesBreadcrumbs path={path} />
 				<div className={styles.headerActions}>
-					<Button variant="ghost" size="icon" onClick={handleUploadFile}>
-						<FileUp size={24} />
-					</Button>
-					<Button variant="ghost" size="icon" onClick={handleUploadFolder}>
-						<FolderUp size={24} />
-					</Button>
-					<Button variant="ghost" size="icon" onClick={handleCreateFolder}>
-						<FolderPlus size={24} />
-					</Button>
-					<Button variant="ghost" size="icon" onClick={handleCreateFile}>
-						<FilePlus size={24} />
-					</Button>
+					<FileUpload />
+					<FolderUpload />
+					<FileCreate />
+					<FolderCreate />
 				</div>
 			</div>
-			{fileContent && <div>Контент: {fileContent}</div>}
-			{fileNodesByPath && !fileContent && <FileNodesList fileNodes={fileNodesByPath} />}
+			{fileContent && !fileNodesByPath && <div>Контент: {fileContent}</div>}
+			{fileNodesByPath && <FileNodesList fileNodes={fileNodesByPath} />}
 		</div>
 	)
 }

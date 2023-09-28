@@ -64,6 +64,7 @@ const config: Config = {
 				5: '5',
 				header: 'var(--z-index-header)',
 				modal: 'var(--z-index-modal)',
+				'modal-overlay': 'var(--z-index-modal-overlay)',
 				menu: 'var(--z-index-menu)',
 				'menu-btn': 'var(--z-index-menu-btn)',
 				select: 'var(--z-index-select)',

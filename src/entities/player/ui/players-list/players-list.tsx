@@ -3,6 +3,7 @@ import { useStore } from 'effector-react'
 import { PlusCircle, Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { CallBackProps } from 'react-joyride'
 
 import playerHead from '@/app/assets/images/head1.webp'
 
@@ -17,7 +18,6 @@ import { Input } from '@/shared/ui/input'
 
 import { DataListLoading } from '../list-loading'
 import styles from '../styles.module.scss'
-import { CallBackProps } from 'react-joyride'
 
 export function PlayersList({
 	players,
@@ -44,11 +44,7 @@ export function PlayersList({
 
 	return (
 		<>
-			<JoyrideGuide
-				steps={playersCategorySteps}
-				callback={joyrideCallback}
-				scrollOffset={150}
-			/>
+			<JoyrideGuide steps={playersCategorySteps} callback={joyrideCallback} scrollOffset={150} />
 			<div className={styles.container}>
 				<Heading>{title}</Heading>
 				<div className={styles.table}>
@@ -64,7 +60,11 @@ export function PlayersList({
 									/>
 									<span>{player.value}</span>
 								</div>
-								<Button variant="destructive" className="remove-player-step">
+								<Button
+									variant="destructive"
+									size="icon"
+									className="px-1 py-1 text-destructive hover:bg-destructive/40 bg-transparent"
+								>
 									<Trash2 size={28} />
 								</Button>
 							</div>
