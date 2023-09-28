@@ -1,0 +1,9 @@
+.container {
+	@apply flex flex-col gap-4;
+
+	.pickDirectory {
+		.pickResultText {
+			@apply flex flex-col gap-1;
+		}
+	}
+}

@@ -59,7 +59,11 @@ export function FileNodesList({ fileNodes }: { fileNodes?: IFileNode[] }) {
 								<MoreHorizontal size={24} strokeWidth={2.5} />
 							</Button>
 						</PopoverTrigger>
-						<PopoverContent className="p-2 flex flex-col gap-1 w-auto">
+						<PopoverContent
+							align="end"
+							alignOffset={-16}
+							className="p-2 flex flex-col gap-1 w-auto"
+						>
 							<FileNodeDownload path={fileNode.path} />
 							<FileNodeRemove path={fileNode.path} />
 						</PopoverContent>

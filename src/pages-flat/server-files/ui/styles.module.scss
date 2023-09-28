@@ -2,7 +2,7 @@
 	@apply flex flex-col gap-2;
 
 	.header {
-		@apply flex flex-row items-center gap-1 bg-card p-2 rounded-lg;
+		@apply flex flex-row items-center gap-1 bg-card p-2 rounded-layout shadow-card-sm;
 
 		.home {
 			@apply flex items-center flex-nowrap gap-2;
@@ -24,10 +24,6 @@
 			}
 		}
 
-		.filesCount {
-			@apply flex flex-row items-center gap-1 bg-secondary rounded-md text-lg px-2 py-0;
-		}
-
 		.pathParts {
 			@apply flex flex-row items-center;
 
@@ -46,10 +42,10 @@
 	}
 
 	.list {
-		@apply flex flex-col gap-1;
+		@apply flex flex-col gap-2;
 
 		.listEmpty {
-			@apply flex flex-row items-center gap-2 py-2 px-4 justify-start text-xl text-white bg-destructive rounded-lg;
+			@apply flex flex-row items-center gap-2 py-2 px-4 justify-start text-xl text-white bg-destructive rounded-layout;
 		}
 
 		.fileContent {
@@ -57,7 +53,7 @@
 		}
 
 		.listItem {
-			@apply flex flex-row items-center gap-2 flex-nowrap bg-card px-4 rounded-lg;
+			@apply flex flex-row items-center gap-2 flex-nowrap bg-card px-4 rounded-layout shadow-card-sm transition-colors duration-200 border-2 border-card hover:border-primary;
 
 			.listItemName {
 				@apply text-lg flex-1 py-2;
