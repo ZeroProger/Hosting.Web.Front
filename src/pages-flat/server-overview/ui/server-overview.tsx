@@ -14,7 +14,6 @@ import { ServerConsole } from '@/widgets/server-console'
 import { ServerCurrentUsage } from '@/widgets/server-current-usage'
 import { ServerMainInfo } from '@/widgets/server-main-info'
 
-import { ServerOverviewLoading } from './loading'
 import styles from './styles.module.scss'
 
 export function ServerOverview() {
@@ -22,15 +21,13 @@ export function ServerOverview() {
 
 	const serverHash = useStore($serverHash)
 
-	const { data: server, isLoading } = useFetchServer(serverHash)
+	const { data: server } = useFetchServer(serverHash)
 
 	const joyrideCallback = ({ status }: CallBackProps) => {
 		if (status === 'finished') {
 			router.push(ServerUrls.server.players(server?.gameServerHash!))
 		}
 	}
-
-	if (!server || isLoading) return <ServerOverviewLoading />
 
 	return (
 		<>

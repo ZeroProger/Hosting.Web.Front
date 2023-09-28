@@ -3,7 +3,7 @@
 import { ModCard } from '@/entities/mod/ui/card'
 
 import { ModFilters } from '@/features/mod-filters'
-import { ModSorting } from '@/features/mod-sorting/ui/mod-sorting'
+import { ModSorting } from '@/features/mod-sorting'
 import { SearchMods } from '@/features/search-mods'
 
 import { SkeletonList } from '@/shared/ui/skeleton'

@@ -4,15 +4,15 @@ import { useStore } from 'effector-react'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-import { Server } from '@/shared/api/common'
 import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
 import { $serverHash, resetServerHashFx } from '@/shared/store'
+import { IServer } from '@/shared/types'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select'
 
 import { closeHeaderMenu } from '@/widgets/header'
 
-export function ServerSelect({ servers }: { servers: Server[] }) {
+export function ServerSelect({ servers }: { servers: IServer[] }) {
 	const router = useRouter()
 	const params = useParams()
 

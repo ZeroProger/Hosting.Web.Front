@@ -33,6 +33,12 @@
 			}
 		]
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/entities/mod/ui/card/index.ts"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts",
+		"src/entities/mod/ui/card/index.ts"
+	],
 	"exclude": ["node_modules"]
 }
