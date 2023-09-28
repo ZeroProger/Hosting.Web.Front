@@ -1,5 +1,9 @@
 export const ReactQueryKeys = {
 	server: 'server',
+	serverCurrentUsage: 'serverCurrentUsage',
+	serverMainInfo: 'serverMainInfo',
+	serverConsole: 'serverConsole',
+	serverActivePlayers: 'serverActivePlayers',
 	serverBackups: 'serverBackups',
 	serverSettings: 'serverSettings',
 	serverFiles: 'serverFiles',
@@ -17,5 +21,4 @@ export const ReactQueryKeys = {
 	operators: 'operators',
 	bannedIps: 'bannedIps',
 	bannedPlayers: 'bannedPlayers',
-	activePlayers: 'activePlayers',
 }

@@ -12,6 +12,6 @@ export function useKickPlayerMutation() {
 	return useMutation({
 		mutationFn: kickPlayer,
 		onSuccess: () =>
-			queryClient.invalidateQueries({ queryKey: [ReactQueryKeys.activePlayers, serverHash] }),
+			queryClient.invalidateQueries({ queryKey: [ReactQueryKeys.serverActivePlayers, serverHash] }),
 	})
 }

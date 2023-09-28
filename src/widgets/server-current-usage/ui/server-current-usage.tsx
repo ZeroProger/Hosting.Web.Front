@@ -1,33 +1,20 @@
 'use client'
 
-import { useStore } from 'effector-react'
-import { FC, useEffect, useState } from 'react'
-import { ServerService } from 'services-temp/server-service'
-
-import { useFetchServer } from '@/shared/queries/server'
-import { $serverHash } from '@/shared/store'
+//import { ServerService } from 'services-temp/server-service'
 //#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в ./api внутри этих сущностей, или в shared/queries
-import { IServerCurrentUsageItem } from '@/shared/types'
 import { Progress } from '@/shared/ui/progress'
+import { Skeleton } from '@/shared/ui/skeleton'
+
+import { useFetchServerCurrentUsage } from '../queries'
 
 import styles from './styles.module.scss'
 
-export const ServerCurrentUsage: FC = () => {
-	const serverHash = useStore($serverHash)
+export function ServerCurrentUsage() {
+	const { data: currentUsage, isLoading } = useFetchServerCurrentUsage()
 
-	const { data: server } = useFetchServer(serverHash)
+	if (isLoading) return <Skeleton className="w-full h-[220px]" />
 
-	const [currentUsage, setCurrentUsage] = useState<IServerCurrentUsageItem[]>([])
-
-	useEffect(() => {
-		if (server) {
-			const data = ServerService.currentUsage({
-				gameServerHash: server.gameServerHash,
-			})
-
-			setCurrentUsage(data)
-		}
-	}, [server])
+	if (!currentUsage) return null
 
 	return (
 		<div className={styles.card}>

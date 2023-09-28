@@ -59,6 +59,12 @@ export interface IServerConsoleRequest {
 
 export interface IServerConsoleResponse {}
 
+export interface IServerSendCommandToConsoleRequest {
+	command: string
+}
+
+export interface IServerSendCommandToConsoleResponse {}
+
 export interface IServerMainInfoRequest {
 	gameServerHash: string
 }

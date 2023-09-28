@@ -1,5 +1,4 @@
-import { Server } from '@/shared/api/common'
-
+import { IServer } from '@/shared/types'
 import { ListItem } from './list-item'
 import { ServersListLoading } from './loading'
 import { ServerEmpty } from './server-empty'
@@ -10,7 +9,7 @@ export function ServersList({
 	isLoading = false,
 	isPublic = false,
 }: {
-	servers?: Server[]
+	servers?: IServer[]
 	isLoading?: boolean
 	isPublic?: boolean
 }) {
