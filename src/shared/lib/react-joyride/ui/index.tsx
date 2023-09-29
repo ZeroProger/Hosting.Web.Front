@@ -1,5 +1,6 @@
-'use-client'
+'use client'
 
+import { useEffect, useState } from 'react'
 import Joyride, { CallBackProps, Step } from 'react-joyride'
 
 import { Button } from '@/shared/ui/button'
@@ -24,6 +25,14 @@ export function JoyrideGuide({
 	const { isGuideCompleted, isGuideStarted, modalVisible, functions } = useJoyrideGuide()
 	const { handleSkipGuide, handleStartGuide } = functions
 
+	const [mounted, setMounted] = useState(false)
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	if (isGuideCompleted || !mounted) return null
+
 	return (
 		<>
 			<Joyride
@@ -31,7 +40,7 @@ export function JoyrideGuide({
 				hideBackButton
 				continuous
 				disableOverlayClose
-				run={isGuideStarted && !isGuideCompleted && run}
+				run={isGuideStarted && run}
 				scrollOffset={scrollOffset}
 				callback={callback}
 				styles={joyrideStyles}
@@ -71,6 +80,7 @@ export function JoyrideGuide({
 							className="py-1 px-3 text-xl whitespace-nowrap"
 							variant="primary"
 							onClick={handleStartGuide}
+							autoFocus
 						>
 							Начать обучение
 						</Button>

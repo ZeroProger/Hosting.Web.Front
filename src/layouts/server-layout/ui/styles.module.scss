@@ -5,7 +5,7 @@
 		@apply w-full bg-background;
 
 		.headerContainer {
-			@apply content-container;
+			@apply content-container flex flex-col gap-5;
 		}
 
 		.contentContainer {

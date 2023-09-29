@@ -37,8 +37,8 @@ export function BanPlayer({ playerNickname }: { playerNickname: string }) {
 				<AlertDialogHeader>
 					<AlertDialogTitle>Вы уверены?</AlertDialogTitle>
 					<AlertDialogDescription>
-						Вы собираетесь забанить игрока <span className="text-primary">{playerNickname}</span> на
-						вашем сервере.
+						Вы собираетесь <span className="font-bold">забанить</span> игрока&nbsp;
+						<span className="text-primary">{playerNickname}</span> на вашем сервере.
 					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>

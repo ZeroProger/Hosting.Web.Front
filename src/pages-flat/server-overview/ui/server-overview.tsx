@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { CallBackProps } from 'react-joyride'
 
 import { JoyrideGuide, overviewSteps } from '@/shared/lib/react-joyride'
-import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 
@@ -21,11 +20,9 @@ export function ServerOverview() {
 
 	const serverHash = useStore($serverHash)
 
-	const { data: server } = useFetchServer(serverHash)
-
 	const joyrideCallback = ({ status }: CallBackProps) => {
 		if (status === 'finished') {
-			router.push(ServerUrls.server.players(server?.gameServerHash!))
+			router.push(ServerUrls.server.players(serverHash!))
 		}
 	}
 

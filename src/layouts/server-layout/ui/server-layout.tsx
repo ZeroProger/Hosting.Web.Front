@@ -1,24 +1,23 @@
 'use client'
 
-import { useParams, usePathname } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 import { setServerHashFx } from '@/shared/store'
-import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
 
+import { Breadcrumbs } from '@/widgets/breadcrumbs'
 import { ServerHeader } from '@/widgets/server-header'
 
 import styles from './styles.module.scss'
 
 export function ServerLayout({ children }: { children: React.ReactNode }) {
 	const params = useParams()
-	const pathname = usePathname()
 
 	useEffect(() => {
 		if (params && params.serverHash !== undefined) {
 			setServerHashFx(String(params.serverHash))
 		}
-	}, [pathname])
+	}, [params])
 
 	return (
 		<div className={styles.wrapper}>

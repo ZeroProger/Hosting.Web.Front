@@ -39,8 +39,8 @@ export function KickPlayer({ playerNickname }: { playerNickname: string }) {
 				<AlertDialogHeader>
 					<AlertDialogTitle>Вы уверены?</AlertDialogTitle>
 					<AlertDialogDescription>
-						Вы собираетесь кикнуть игрока <span className="text-primary">{playerNickname}</span> с
-						вашего сервера.
+						Вы собираетесь <span className="font-bold">кикнуть</span> игрока&nbsp;
+						<span className="text-primary">{playerNickname}</span> с вашего сервера.
 					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>

@@ -1,6 +1,7 @@
 import { serverConsole } from '@/shared/$fake-data$/server.data'
 
 export function getServerConsole(serverHash: string) {
+	console.log('polling serverConsole...')
 	return serverConsole
 }
 
