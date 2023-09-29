@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import { useStore } from 'effector-react'
-import { Bookmark, ChevronLeft, Dot, Globe, MoreHorizontal } from 'lucide-react'
+import { Bookmark, Dot, Globe, MoreHorizontal } from 'lucide-react'
 
 import { StartServer } from '@/features/start-server'
 import { StopServer } from '@/features/stop-server'
@@ -35,13 +35,13 @@ export function ServerHeader() {
 			<div className={styles.bars}>
 				<div className={styles.mainBar}>
 					<div className={styles.mainBarInfo}>
-						<Button
+						{/* <Button
 							onClick={handleGoBack}
 							className="w-auto h-auto text-2xl px-0 py-0"
 							variant="default"
 						>
 							<ChevronLeft strokeWidth={2} size={40} />
-						</Button>
+						</Button> */}
 						<SubHeading className="text-3xl font-medium mb-0">{server.gameServerName}</SubHeading>
 					</div>
 					<div className={styles.mainBarActions}>
