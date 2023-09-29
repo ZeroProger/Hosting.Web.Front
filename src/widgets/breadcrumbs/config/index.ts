@@ -1,5 +1,4 @@
 export const ServerTabs = new Map([
-	['overview', 'Основная информация'],
 	['players', 'Игроки'],
 	['white-list', 'Белый список'],
 	['operators', 'Операторы'],

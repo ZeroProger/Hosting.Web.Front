@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import { useStore } from 'effector-react'
-import { Bookmark, Dot, Globe, MoreHorizontal } from 'lucide-react'
+import { Bookmark, Globe, MoreHorizontal } from 'lucide-react'
 
 import { StartServer } from '@/features/start-server'
 import { StopServer } from '@/features/stop-server'
@@ -84,7 +84,6 @@ export function ServerHeader() {
 							{ [styles.offline]: !server.isOnline }
 						)}
 					>
-						<Dot strokeWidth={8} size={24} />
 						<span>{server.isOnline ? 'Онлайн' : 'Оффлайн'}</span>
 					</div>
 				</div>

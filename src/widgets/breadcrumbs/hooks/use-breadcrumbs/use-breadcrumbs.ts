@@ -1,8 +1,9 @@
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+
 import { ModUrls, ServerUrls } from '@/shared/routes/urls'
 
 import { ModPathPart, PathPart, ServerPathPart } from '../../types'
-import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
 
 export function useBreadcrumbs() {
 	const pathname = usePathname()
@@ -20,7 +21,9 @@ export function useBreadcrumbs() {
 	}
 
 	useEffect(() => {
-		const slicedParts = pathname.split('/').slice(3) as PathPart[]
+		const slicedParts = pathname.includes('overview')
+			? (pathname.split('/').slice(4) as PathPart[])
+			: (pathname.split('/').slice(3) as PathPart[])
 
 		setPathParts(slicedParts)
 	}, [pathname])

@@ -60,6 +60,7 @@ export function Breadcrumbs() {
 			<BreadcrumbItem
 				href={ServerUrls.server.overview(serverHash!)}
 				content={server.gameServerName!}
+				isLast={pathParts.length === 0}
 			/>
 			{pathParts.map((value, index, arr) => {
 				if (index > 0 && arr[index - 1] === 'mods') {

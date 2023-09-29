@@ -48,7 +48,6 @@ function ItemContent({ server }: { server: IServer }) {
 					{ [styles.offline]: !server.isOnline }
 				)}
 			>
-				<Dot strokeWidth={8} size={24} />
 				<span>{server.isOnline ? 'Онлайн' : 'Оффлайн'}</span>
 			</div>
 		</>
