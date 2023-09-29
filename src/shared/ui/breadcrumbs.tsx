@@ -1,20 +1,25 @@
-'use client'
+'use client';
 
-import { useStore } from 'effector-react'
-import Link from 'next/link'
-import { useParams, usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useStore } from 'effector-react';
+import Link from 'next/link';
+import { useParams, usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-import { useFetchServer } from '../queries/server'
-import { ModUrls, ServerUrls } from '../routes/urls'
-import { $serverHash } from '../store'
 
-import { useFetchMod } from '@/layouts/mod-layout/queries'
+
+import { useFetchServer } from '../queries/server';
+import { ModUrls, ServerUrls } from '../routes/urls';
+import { $serverHash } from '../store';
+
+
+
+import { useFetchMod } from '@/layouts/mod-layout/queries';
+
 
 export const ServerTabs = new Map([
 	['overview', 'Основная информация'],
 	['players', 'Игроки'],
-	['white-list', 'Вайтлист'],
+	['white-list', 'Белый список'],
 	['operators', 'Операторы'],
 	['banned-players', 'Заблокированные игроки'],
 	['banned-ips', 'Заблокированные IP-адреса'],
