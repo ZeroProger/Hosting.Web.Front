@@ -4,6 +4,7 @@ import { useParams, usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
 import { setServerHashFx } from '@/shared/store'
+import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
 
 import { ServerHeader } from '@/widgets/server-header'
 
@@ -23,6 +24,7 @@ export function ServerLayout({ children }: { children: React.ReactNode }) {
 		<div className={styles.wrapper}>
 			<div className={styles.container}>
 				<div className={styles.headerContainer}>
+					<Breadcrumbs />
 					<ServerHeader />
 				</div>
 			</div>
