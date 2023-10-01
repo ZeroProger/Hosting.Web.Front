@@ -10,11 +10,11 @@ export async function generateMetadata({
 }: {
 	params: { modId: number }
 }): Promise<Metadata> {
-	const { data } = await getMod(params.modId)
+	const response = await getMod(params.modId)
 
 	return {
 		...SeoConfig.server.modFiles,
-		title: SeoConfig.server.modFiles.title(data.data.name),
+		title: SeoConfig.server.modFiles.title(response?.data.data.name),
 	}
 }
 

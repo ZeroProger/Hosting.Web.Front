@@ -1,0 +1,21 @@
+.container {
+	@apply flex flex-col gap-4 w-full max-w-xl;
+
+	.searchMods {
+		@apply relative;
+
+		.mods {
+			@apply absolute bg-card rounded-layout p-2 z-search-list left-0 flex flex-wrap gap-2 w-full;
+
+			top: calc(100% + 1rem);
+		}
+	}
+
+	.selectedMods {
+		@apply flex flex-col gap-2;
+
+		.selectedList {
+			@apply flex flex-wrap gap-2 w-full;
+		}
+	}
+}
