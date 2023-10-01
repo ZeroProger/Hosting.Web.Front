@@ -14,12 +14,13 @@ import { SkeletonList } from '@/shared/ui/skeleton'
 
 import { useServerFiles } from '../hooks'
 
+import { Dropzone } from './dropzone'
 import styles from './styles.module.scss'
 
 export function FileNodesList({ fileNodes }: { fileNodes?: IFileNode[] }) {
 	const serverHash = useStore($serverHash)
 
-	const { functions } = useServerFiles()
+	const { functions, path } = useServerFiles()
 	const { formatBytes } = functions
 
 	if (!fileNodes) {
@@ -32,44 +33,48 @@ export function FileNodesList({ fileNodes }: { fileNodes?: IFileNode[] }) {
 
 	if (fileNodes.length === 0) {
 		return (
-			<div className={styles.notFound}>
-				<p className={styles.text}>Папка пустая</p>
-			</div>
+			<Dropzone uploadPath={path}>
+				<div className={styles.notFound}>
+					<p className={styles.text}>Папка пустая</p>
+				</div>
+			</Dropzone>
 		)
 	}
 
 	return (
-		<div className={styles.list}>
-			{fileNodes.map((fileNode) => (
-				<div key={fileNode.path} className={styles.listItem}>
-					{fileNode.type === 'file' ? <FileText size={24} /> : <Folder size={24} />}
-					<Link
-						href={ServerUrls.server.files(serverHash!, fileNode.path)}
-						className={styles.listItemName}
-						scroll={false}
-					>
-						{fileNode.name}
-					</Link>
-					{fileNode.type === 'file' && (
-						<div className={styles.listItemSize}>{formatBytes(fileNode.size)}</div>
-					)}
-					<Popover>
-						<PopoverTrigger asChild>
-							<Button variant="ghost" size="icon" className="py-1 px-2">
-								<MoreHorizontal size={24} strokeWidth={2.5} />
-							</Button>
-						</PopoverTrigger>
-						<PopoverContent
-							align="end"
-							alignOffset={-16}
-							className="p-2 flex flex-col gap-1 w-auto"
+		<Dropzone uploadPath={path}>
+			<div className={styles.list}>
+				{fileNodes.map((fileNode) => (
+					<div key={fileNode.path} className={styles.listItem}>
+						{fileNode.type === 'file' ? <FileText size={24} /> : <Folder size={24} />}
+						<Link
+							href={ServerUrls.server.files(serverHash!, fileNode.path)}
+							className={styles.listItemName}
+							scroll={false}
 						>
-							<FileNodeDownload path={fileNode.path} />
-							<FileNodeRemove path={fileNode.path} />
-						</PopoverContent>
-					</Popover>
-				</div>
-			))}
-		</div>
+							{fileNode.name}
+						</Link>
+						{fileNode.type === 'file' && (
+							<div className={styles.listItemSize}>{formatBytes(fileNode.size)}</div>
+						)}
+						<Popover>
+							<PopoverTrigger asChild>
+								<Button variant="ghost" size="icon" className="py-1 px-2">
+									<MoreHorizontal size={24} strokeWidth={2.5} />
+								</Button>
+							</PopoverTrigger>
+							<PopoverContent
+								align="end"
+								alignOffset={-16}
+								className="p-2 flex flex-col gap-1 w-auto"
+							>
+								<FileNodeDownload path={fileNode.path} />
+								<FileNodeRemove path={fileNode.path} />
+							</PopoverContent>
+						</Popover>
+					</div>
+				))}
+			</div>
+		</Dropzone>
 	)
 }

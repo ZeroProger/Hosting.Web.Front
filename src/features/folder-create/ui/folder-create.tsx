@@ -1,4 +1,7 @@
+'use client'
+
 import { FolderPlus } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 
 import { Button } from '@/shared/ui/button'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/shared/ui/dialog'
@@ -7,6 +10,9 @@ import { Input } from '@/shared/ui/input'
 import styles from './styles.module.scss'
 
 export function FolderCreate() {
+	const searchParams = useSearchParams()
+	const path = searchParams.get('path')
+
 	const handleCreateFolder = () => {}
 
 	return (
@@ -22,10 +28,10 @@ export function FolderCreate() {
 					<div className={styles.pickDirectory}>
 						<div className={styles.pickResultText}>
 							<span>Папка будет создана внутри директории:</span>
-							<span className="font-semibold">~/world/data</span>
+							<span className="font-semibold">~/{path}</span>
 						</div>
 					</div>
-					<Input type="text" className="text-lg" placeholder="Название файла" />
+					<Input type="text" className="text-lg" placeholder="Название папки" />
 					{/* #TODO: Расширение файла: Select с расширениями файла, которые можно создать, лучше их с бэка получать */}
 					<Button
 						variant="primary"

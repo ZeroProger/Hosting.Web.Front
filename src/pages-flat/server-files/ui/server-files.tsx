@@ -1,14 +1,13 @@
 'use client'
 
-import { Home } from 'lucide-react'
+import { Home, Info } from 'lucide-react'
 
 import { FileCreate } from '@/features/file-create'
-import { FileUpload } from '@/features/file-upload'
 import { FolderCreate } from '@/features/folder-create'
-import { FolderUpload } from '@/features/folder-upload'
 
 import { Button } from '@/shared/ui/button'
 import { Heading } from '@/shared/ui/heading'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/shared/ui/tooltip'
 
 import { useServerFiles } from '../hooks'
 
@@ -23,7 +22,21 @@ export function ServerFiles() {
 
 	return (
 		<div className={styles.container}>
-			<Heading>Файловый менеджер</Heading>
+			<div className="flex items-center gap-4 justify-between flex-nowrap">
+				<Heading className="lg:text-2xl">Файловый менеджер</Heading>
+				<TooltipProvider>
+					<Tooltip delayDuration={200}>
+						<TooltipTrigger>
+							<Info size={24} />
+						</TooltipTrigger>
+						<TooltipContent align="end" sideOffset={8}>
+							<p className="text-md max-w-[350px] text-center">
+								Для загрузки файлов/папок перетащите их в область файлового менеджера
+							</p>
+						</TooltipContent>
+					</Tooltip>
+				</TooltipProvider>
+			</div>
 			<div className={styles.header}>
 				<div className={styles.home}>
 					<Button onClick={handleGoHome}>
@@ -33,10 +46,12 @@ export function ServerFiles() {
 				</div>
 				<FilesBreadcrumbs path={path} />
 				<div className={styles.headerActions}>
-					<FileUpload />
-					<FolderUpload />
-					<FileCreate />
-					<FolderCreate />
+					{(!fileContent || fileNodesByPath) && (
+						<>
+							<FileCreate />
+							<FolderCreate />
+						</>
+					)}
 				</div>
 			</div>
 			{fileContent && !fileNodesByPath && <div>Контент: {fileContent}</div>}
