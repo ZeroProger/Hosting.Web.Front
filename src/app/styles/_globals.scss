@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './variables.scss';
+
+@layer base {
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+	}
+
+	body {
+		@apply bg-background text-foreground text-md;
+
+		transition: all 0.2s ease-in;
+		position: relative;
+		z-index: 0;
+	}
+
+	/* Scrollbar styles */
+	/* Firefox */
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: hsl(var(--scrollbar)) transparent;
+	}
+
+	/* Chrome, Edge and Safari */
+	*::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+	*::-webkit-scrollbar-track {
+		border-radius: 16px;
+		background-color: transparent;
+	}
+
+	*::-webkit-scrollbar-track:hover {
+		background-color: transparent;
+	}
+
+	*::-webkit-scrollbar-track:active {
+		background-color: transparent;
+	}
+
+	*::-webkit-scrollbar-thumb {
+		border-radius: 16px;
+		background-color: hsl(var(--scrollbar));
+	}
+
+	*::-webkit-scrollbar-thumb:hover {
+		background-color: hsl(var(--scrollbar-hover));
+	}
+
+	*::-webkit-scrollbar-thumb:active {
+		background-color: hsl(var(--scrollbar-hover));
+	}
+
+	/* Edge password show disable */
+	input::-ms-reveal,
+	input::-ms-clear {
+		display: none;
+	}
+
+	input[type='search']::-webkit-search-cancel-button {
+		display: none;
+	}
+}

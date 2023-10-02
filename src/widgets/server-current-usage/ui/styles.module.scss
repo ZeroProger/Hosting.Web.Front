@@ -1,0 +1,49 @@
+@import '@/app/styles/_mixins.scss';
+
+.card {
+	@apply flex flex-col gap-3 p-6 bg-card shadow-card rounded-layout;
+
+	.header {
+		@apply text-2xl;
+	}
+
+	.hr {
+		@apply border-border border;
+	}
+
+	.body {
+		.lines {
+			@apply flex flex-col gap-4;
+
+			.line {
+				@apply flex flex-row flex-nowrap items-center gap-4;
+
+				.progress {
+					@apply flex flex-row flex-nowrap justify-between items-center gap-4 w-full min-w-[325px];
+
+					.label {
+						@apply flex gap-4 items-center text-xl capitalize whitespace-nowrap;
+
+						.dot {
+							@apply w-5 h-5 rounded-full inline-block;
+						}
+					}
+
+					.value {
+						@apply text-xl whitespace-nowrap;
+					}
+				}
+
+				@include md(lg, 'max') {
+					@apply flex-wrap;
+
+					.progress {
+						.value {
+							@apply w-auto;
+						}
+					}
+				}
+			}
+		}
+	}
+}

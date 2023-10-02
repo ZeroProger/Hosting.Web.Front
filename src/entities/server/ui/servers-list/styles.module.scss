@@ -1,0 +1,55 @@
+.servers {
+	@apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+
+	.server {
+		@apply grid bg-card p-4 rounded-lg border-2 border-transparent hover:border-primary transition-colors shadow-card;
+
+		grid-template-areas:
+			'name name'
+			'ip status';
+		grid-template-columns: auto 150px;
+		grid-template-rows: 40px 30px;
+
+		&.isPublic {
+			@apply hover:border-transparent;
+		}
+
+		.name {
+			@apply text-2xl;
+
+			grid-area: name;
+		}
+
+		.ip {
+			@apply text-xl;
+
+			grid-area: ip;
+		}
+
+		.status {
+			@apply flex flex-row flex-nowrap gap-3 items-center text-xl;
+
+			grid-area: status;
+
+			&.online {
+				@apply text-primary;
+
+				&::before {
+					@apply inline-block w-3 h-3 bg-primary rounded-full;
+
+					content: '';
+				}
+			}
+
+			&.offline {
+				@apply text-destructive;
+
+				&::before {
+					@apply inline-block w-3 h-3 bg-destructive rounded-full;
+
+					content: '';
+				}
+			}
+		}
+	}
+}

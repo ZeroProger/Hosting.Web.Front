@@ -1,0 +1,19 @@
+@import '@/app/styles/_mixins.scss';
+
+.container {
+	@apply grid gap-5;
+
+	grid-template-columns: 650px 1fr;
+
+	.column {
+		@apply flex flex-col justify-start gap-5;
+	}
+
+	@include md(2xl, 'max') {
+		grid-template-columns: 550px 1fr;
+	}
+
+	@include md(xl, 'max') {
+		grid-template-columns: 1fr;
+	}
+}

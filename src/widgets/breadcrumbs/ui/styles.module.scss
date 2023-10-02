@@ -1,0 +1,23 @@
+.breadcrumbs {
+	@apply bg-card shadow-card rounded-layout py-2 flex items-center flex-wrap px-4;
+
+	.breadcrumb {
+		@apply flex items-center;
+
+		a {
+			@apply text-md xs:text-lg font-medium;
+		}
+
+		&:not(:first-child) {
+			&::before {
+				@apply text-md xs:text-lg font-medium px-3;
+
+				content: '>';
+			}
+		}
+
+		span {
+			@apply px-2 text-md xs:text-lg font-medium text-muted-foreground;
+		}
+	}
+}

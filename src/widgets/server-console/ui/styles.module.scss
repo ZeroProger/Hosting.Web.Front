@@ -1,0 +1,110 @@
+.card {
+	@apply flex flex-col bg-card shadow-card rounded-layout;
+
+	.header {
+		@apply text-3xl flex flex-row justify-between items-center flex-wrap gap-x-4 gap-y-2 px-6 py-4;
+
+		.headerActions {
+			a {
+				@apply text-2xl py-1 mb-1;
+			}
+		}
+	}
+
+	.hr {
+		@apply border-border border;
+	}
+
+	.body {
+		@apply p-0;
+
+		.lines {
+			@apply overflow-auto h-[450px] max-h-[450px];
+
+			.line {
+				@apply text-xl;
+			}
+
+			.consoleEmpty {
+				@apply w-full flex flex-col items-center justify-center gap-2 h-[250px];
+
+				span {
+					@apply text-2xl;
+				}
+
+				&.consoleEmptyFull {
+					@apply h-full;
+				}
+			}
+
+			.line {
+				@apply w-full text-xl px-2;
+
+				&.error {
+					@apply bg-destructive text-destructive-foreground;
+
+					.info {
+						@apply text-destructive-foreground;
+
+						.message {
+							@apply text-destructive-foreground;
+						}
+					}
+				}
+
+				&.warn {
+					@apply bg-warn text-warn-foreground;
+
+					.info {
+						@apply text-warn-foreground;
+
+						.message {
+							@apply text-warn-foreground;
+						}
+					}
+				}
+
+				.info {
+					@apply text-gray-100;
+
+					.message {
+						@apply text-gray-200;
+					}
+				}
+			}
+		}
+
+		.enterCommand {
+			@apply p-2;
+
+			/*.slash {
+				@apply flex h-7 w-7 items-center text-xl justify-center rounded-md bg-backgroundLight;
+				margin: 0 5px 0 15px;
+				line-height: 24px;
+				box-sizing: content-box;
+			} */
+
+			input {
+				@apply text-xl;
+			}
+		}
+	}
+
+	&.mini {
+		.header {
+			@apply text-2xl px-6 pt-6 pb-3;
+		}
+
+		.body {
+			@apply pb-2;
+		}
+
+		.lines {
+			@apply max-h-[300px] px-2;
+
+			.line {
+				@apply text-lg;
+			}
+		}
+	}
+}

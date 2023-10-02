@@ -16,27 +16,29 @@
 		"incremental": true,
 		"baseUrl": "./src/",
 		"paths": {
-			"@/components/*": ["components/*"],
-			"@/ui/*": ["ui/*"],
-			"@/api/*": ["api/*"],
-			"@/hooks/*": ["hooks/*"],
+			"@/app/*": ["app/*"],
+			"@/entities/*": ["entities/*"],
+			"@/features/*": ["features/*"],
+			"@/layouts/*": ["layouts/*"],
+			"@/pages-flat/*": ["pages-flat/*"],
 			"@/shared/*": ["shared/*"],
-			"@/pages/*": ["pages/*"],
-			"@/screens/*": ["screens/*"],
-			"@/services/*": ["services/*"],
-			"@/config/*": ["config/*"],
-			"@/assets/*": ["assets/*"],
-			"@/store/*": ["store/*"],
-			"@/utils/*": ["utils/*"],
-			"@/providers/*": ["providers/*"],
-			"@/styles/*": ["styles/*"]
+			"@/widgets/*": ["widgets/*"]
 		},
 		"plugins": [
 			{
 				"name": "next"
+			},
+			{
+				"name": "typescript-plugin-css-modules"
 			}
 		]
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts",
+		"src/entities/mod/ui/card/index.ts"
+	],
 	"exclude": ["node_modules"]
 }

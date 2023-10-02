@@ -1,0 +1,21 @@
+.container {
+	@apply hidden lg:block;
+
+	.list {
+		@apply flex items-center gap-4 flex-nowrap;
+
+		.item {
+			.link {
+				@apply text-xl whitespace-nowrap py-2;
+
+				&.active {
+					@apply border-b-primary border-b-2 transition-all duration-300;
+				}
+
+				&:hover {
+					@apply text-primary;
+				}
+			}
+		}
+	}
+}

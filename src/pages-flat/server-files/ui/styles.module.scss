@@ -1,0 +1,75 @@
+.container {
+	@apply flex flex-col gap-2;
+
+	.header {
+		@apply flex flex-row items-center gap-1 bg-card p-2 rounded-layout shadow-card-sm;
+
+		.home {
+			@apply flex items-center flex-nowrap gap-2;
+
+			.rootPath {
+				@apply flex items-center text-xl font-medium;
+
+				&::before {
+					@apply text-3xl mr-2 font-normal;
+
+					content: '~';
+				}
+
+				&::after {
+					@apply text-xl font-medium;
+
+					content: '/';
+				}
+			}
+		}
+
+		.pathParts {
+			@apply flex flex-row items-center overflow-x-hidden;
+
+			.slash {
+				&::before {
+					@apply text-xl font-medium mx-1;
+
+					content: '/';
+				}
+			}
+		}
+
+		.headerActions {
+			@apply flex flex-row items-center gap-3 flex-1 justify-end;
+		}
+	}
+
+	.list {
+		@apply w-full flex flex-col gap-2;
+
+		.listEmpty {
+			@apply flex flex-row items-center gap-2 py-2 px-4 justify-start text-xl text-white bg-destructive rounded-layout;
+		}
+
+		.fileContent {
+			@apply text-xl;
+		}
+
+		.listItem {
+			@apply flex flex-row items-center gap-2 flex-nowrap bg-card px-4 rounded-layout shadow-card-sm transition-colors duration-200 border-2 border-card hover:border-primary;
+
+			.listItemName {
+				@apply text-lg flex-1 py-2;
+			}
+
+			.listItemSize {
+				@apply bg-secondary rounded-md text-lg px-2 py-0;
+			}
+		}
+	}
+}
+
+.notFound {
+	@apply flex items-center justify-center h-[200px];
+
+	.text {
+		@apply text-2xl;
+	}
+}

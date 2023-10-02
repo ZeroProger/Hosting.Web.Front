@@ -1,0 +1,63 @@
+@import '@/app/styles/mixins.scss';
+
+.container {
+	.whyHeading {
+		@apply flex flex-row flex-nowrap items-center justify-center text-primary;
+
+		&::before {
+			content: '';
+			margin-right: 30px;
+			display: block;
+			background: var(--primary);
+			width: 100px;
+			height: 2px;
+		}
+
+		&::after {
+			content: '';
+			margin-left: 30px;
+			display: block;
+			background: var(--primary);
+			width: 100px;
+			height: 3px;
+		}
+	}
+
+	.qualities {
+		grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+
+		@apply grid gap-10;
+
+		@include md(md, 'max') {
+			@apply grid-cols-1;
+		}
+
+		.quality {
+			@apply flex flex-col gap-4 items-center;
+			.icon {
+				@apply rounded-layout px-6 py-3 text-primary;
+
+				background: linear-gradient(to top right, var(--primary), var(--card) 90%);
+			}
+
+			.title {
+				@apply text-2xl sm:text-3xl uppercase text-primary text-center font-bold;
+			}
+
+			.line {
+				@apply w-full max-w-[200px] h-[2px] mx-auto;
+
+				background: linear-gradient(
+					to right,
+					rgba(26, 39, 66, 0.3) 0%,
+					hsl(var(--primary)) 50%,
+					rgba(29, 37, 61, 0.3) 100%
+				);
+			}
+
+			.description {
+				@apply text-xl text-center text-foreground;
+			}
+		}
+	}
+}

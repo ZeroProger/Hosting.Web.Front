@@ -1,0 +1,21 @@
+// @import 'styles/mixins.scss';
+
+.ul {
+	@apply flex flex-col gap-2;
+
+	li {
+		@apply flex flex-row items-start gap-3;
+
+		&::before {
+			display: inline-block;
+			content: '';
+			min-width: 8px;
+			min-height: 8px;
+			width: 8px;
+			height: 8px;
+			border-radius: 20px;
+			background-color: hsl(var(--primary));
+			margin-top: 10px;
+		}
+	}
+}

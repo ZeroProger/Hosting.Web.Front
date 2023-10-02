@@ -1,0 +1,29 @@
+.filters {
+	@apply grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 lg:flex lg:flex-col gap-5;
+}
+
+.filterBlock {
+	@apply w-full flex flex-col max-w-full;
+
+	.filterOptions {
+		@apply flex flex-col pr-3 gap-2;
+
+		.filterLink {
+			@apply text-lg transition-colors;
+
+			line-height: 1.5rem;
+
+			&:hover {
+				@apply text-foreground/60;
+			}
+
+			&.filterLinkActive {
+				@apply text-primary;
+			}
+		}
+
+		&.filterOptionsCategories {
+			@apply overflow-y-scroll max-h-[250px] lg:max-h-[350px];
+		}
+	}
+}

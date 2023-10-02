@@ -1,0 +1,9 @@
+.container {
+	@apply w-full h-full bg-card;
+
+	.content {
+		@apply content-container flex flex-col p-layout;
+
+		gap: 64px;
+	}
+}

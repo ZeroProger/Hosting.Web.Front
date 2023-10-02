@@ -1,0 +1,17 @@
+.container {
+	@apply flex flex-col items-center gap-6 p-layout rounded-3xl w-full max-w-[1000px] text-center mx-auto;
+
+	border: 10px solid transparent;
+	background-image: linear-gradient(hsl(var(--secondary)), hsl(var(--secondary))),
+		linear-gradient(to right bottom, hsl(var(--warn)), hsl(var(--primary)));
+	background-origin: border-box;
+	background-clip: padding-box, border-box;
+
+	.title {
+		@apply text-3xl text-primary uppercase font-bold sm:text-2xl xs:text-2xl;
+	}
+
+	.description {
+		@apply text-4xl text-foreground uppercase font-bold sm:text-3xl xs:text-2xl;
+	}
+}
