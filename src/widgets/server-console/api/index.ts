@@ -2,7 +2,8 @@ import { serverConsole } from '@/shared/$fake-data$/server.data'
 
 export function getServerConsole(serverHash: string) {
 	console.log('polling serverConsole...')
-	return serverConsole
+	const c = Math.floor(Math.random() * serverConsole.length)
+	return serverConsole.concat(serverConsole.slice(0, c))
 }
 
 export async function sendCommandToServerConsole(serverHash: string, command: string) {

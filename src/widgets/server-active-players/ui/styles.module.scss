@@ -18,7 +18,9 @@
 
 	.body {
 		.rows {
-			@apply flex flex-col justify-start gap-4;
+			@apply flex flex-col justify-start gap-4 overflow-hidden;
+
+			transition: height 0.25s ease;
 
 			.row {
 				@apply flex flex-row flex-nowrap gap-3 items-center justify-start;
