@@ -15,6 +15,15 @@ const preview: Preview = {
 				date: /Date$/,
 			},
 		},
+		backgrounds: {
+			default: 'inherit',
+			values: [
+				{
+					name: 'inherit',
+					value: 'hsl(var(--background))',
+				},
+			],
+		},
 	},
 	decorators: [
 		// Adds theme switching support.
