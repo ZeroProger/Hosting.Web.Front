@@ -16,6 +16,6 @@ interface RequestResult {
 
 type Nullable<T> = { [K in keyof T]: T[K] | null }
 
-type ToUnion<T extends Record<string, string | number>> = keyof {
+type EnumToUnion<T extends Record<string, string | number>> = keyof {
   [Prop in keyof T as `${T[Prop]}`]: Prop
 }
