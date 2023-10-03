@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import { useStore } from 'effector-react'
-import { AlertTriangle, ArrowDownToLine, Heart } from 'lucide-react'
+import { AlertTriangle, ArrowDownToLine } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -10,6 +10,9 @@ import { CallBackProps } from 'react-joyride'
 
 import siteLogo from '@/app/assets/images/logo-green.png'
 
+import { AddModToCart } from '@/features/add-mod-to-cart'
+import { AddModToFavorite } from '@/features/add-mod-to-favorite'
+import { RemoveModFromCart } from '@/features/remove-mod-from-cart'
 import { SearchMods } from '@/features/search-mods'
 
 import { modClassesMap } from '@/shared/config/mods'
@@ -28,8 +31,14 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 
 	const serverHash = useStore($serverHash)
 
-	const { mod, isLoading, formattedDateCreated, formattedDateModified, formattedDownloadsCount } =
-		useModLayout(modId)
+	const {
+		mod,
+		isModInCart,
+		isLoading,
+		formattedDateCreated,
+		formattedDateModified,
+		formattedDownloadsCount,
+	} = useModLayout(modId)
 
 	const joyrideCallback = (callback: CallBackProps) => {
 		if (callback.action === 'next' && callback.step.target === '#add-mod-btn-step')
@@ -81,27 +90,8 @@ export function ModLayout({ children, modId }: { children: React.ReactNode; modI
 								</li>
 							</ul>
 							<div className={styles.modActions}>
-								<button type="button" className={styles.favoriteBtn} id="add-to-favorites-btn-step">
-									<Heart size={24} />
-								</button>
-								{/* <button
-											type="button"
-											className={isModInCart ? styles.removeModBtn : styles.addModBtn}
-											id={`${isModInCart ? 'remove' : 'add'}-mod-btn-step`}
-											onClick={handleToggleModInCart}
-										>
-											{isModInCart ? (
-												<>
-													<Icon name="minus-circle" size={32} />
-													Убрать
-												</>
-											) : (
-												<>
-													<Icon name="plus-circle" size={32} />
-													Добавить
-												</>
-											)}
-										</button> */}
+								<AddModToFavorite mod={mod} />
+								{isModInCart ? <RemoveModFromCart mod={mod} /> : <AddModToCart mod={mod} />}
 							</div>
 						</div>
 						<aside className={styles.aside}>
