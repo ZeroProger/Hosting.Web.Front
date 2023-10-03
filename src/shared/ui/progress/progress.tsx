@@ -6,13 +6,13 @@ import * as React from 'react'
 import { cn } from '@/shared/lib/utils'
 
 type Props = {
-	indicatorColor: string
+	indicatorColor?: string
 }
 
 const Progress = React.forwardRef<
 	React.ElementRef<typeof ProgressPrimitive.Root>,
 	React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & Props
->(({ className, value, max, indicatorColor, ...props }, ref) => (
+>(({ className, value, max, indicatorColor = 'hsl(var(--primary))', ...props }, ref) => (
 	<ProgressPrimitive.Root
 		ref={ref}
 		className={cn('relative h-4 w-full overflow-hidden rounded-full bg-secondary', className)}

@@ -8,7 +8,7 @@ import { useSearchParams } from '@/shared/hooks'
 import { useGroupedCategories } from '@/shared/queries/mod'
 import { ModUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
-import { SubHeading } from '@/shared/ui/heading'
+import { SubHeading } from '@/shared/ui/subheading'
 
 import styles from './styles.module.scss'
 

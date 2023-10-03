@@ -5,7 +5,7 @@ import logo from '@/app/assets/images/logo-green.png'
 
 import { AuthUrls } from '@/shared/routes/urls'
 import { Button } from '@/shared/ui/button'
-import { SubHeading } from '@/shared/ui/heading'
+import { SubHeading } from '@/shared/ui/subheading'
 
 import { contactEmail, copyright, mainColumn, secondaryColumn, slogan, socials } from '../config'
 

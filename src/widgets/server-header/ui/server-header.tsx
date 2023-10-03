@@ -10,7 +10,7 @@ import { StopServer } from '@/features/stop-server'
 import { useFetchServer } from '@/shared/queries/server'
 import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
-import { SubHeading } from '@/shared/ui/heading'
+import { SubHeading } from '@/shared/ui/subheading'
 
 import { ServerTabs } from '../../server-tabs'
 import { useServerHeader } from '../hooks'

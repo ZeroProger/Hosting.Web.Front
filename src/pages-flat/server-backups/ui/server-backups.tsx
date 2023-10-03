@@ -4,11 +4,13 @@ import clsx from 'clsx'
 import { Save, Trash2, Undo2 } from 'lucide-react'
 
 import { Button } from '@/shared/ui/button'
-import { Heading, SubHeading } from '@/shared/ui/heading'
+import { Heading } from '@/shared/ui/heading'
 import { Input } from '@/shared/ui/input'
+import { SubHeading } from '@/shared/ui/subheading'
 import { Switch } from '@/shared/ui/switch'
 
 import { useServerBackups } from '../hooks'
+
 import styles from './styles.module.scss'
 
 export function ServerBackups() {

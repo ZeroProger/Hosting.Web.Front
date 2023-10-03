@@ -7,8 +7,8 @@ import { useSearchParams } from '@/shared/hooks'
 import { useGameVersions } from '@/shared/queries/mod'
 import { ModUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
-import { SubHeading } from '@/shared/ui/heading'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select'
+import { SubHeading } from '@/shared/ui/subheading'
 
 import styles from './styles.module.scss'
 
