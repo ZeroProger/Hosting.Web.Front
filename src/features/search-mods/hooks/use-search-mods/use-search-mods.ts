@@ -26,6 +26,7 @@ export function useSearchMods(hideList?: boolean) {
 		queryKey: [ReactQueryKeys.searchMods, debouncedSearch],
 		queryFn: () => searchMods({ ...searchModsBaseRequest, searchFilter: debouncedSearch }),
 		select: ({ data }) => data.data,
+		enabled: !!debouncedSearch,
 		refetchOnMount: false,
 		refetchOnWindowFocus: false,
 	})
