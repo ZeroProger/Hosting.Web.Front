@@ -5,10 +5,10 @@ import { ModCard } from '@/entities/mod/ui/card'
 
 import { IMod } from '@/shared/api/curse-forge'
 
-import { ModsCompilationLoading } from './loading'
+import { ModCardsCompilationLoading } from './loading'
 import styles from './styles.module.scss'
 
-export function ModsCompilation({
+export function ModCardsCompilation({
 	mods,
 	title,
 	viewAllLink,
@@ -17,7 +17,7 @@ export function ModsCompilation({
 	title: string
 	viewAllLink: string
 }) {
-	if (mods.length === 0) return <ModsCompilationLoading />
+	if (mods.length === 0) return <ModCardsCompilationLoading />
 
 	return (
 		<>

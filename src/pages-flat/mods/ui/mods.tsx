@@ -4,35 +4,26 @@ import clsx from 'clsx'
 import { useStore } from 'effector-react'
 import { ChevronDown, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { CallBackProps } from 'react-joyride'
 
 import { SearchMods } from '@/features/search-mods'
 
-import { CForgeModClassType } from '@/shared/config/curse-forge'
-import {
-	popularModpacksRequest,
-	popularModsRequest,
-	popularPluginsRequest,
-	popularResourcePacksRequest,
-	popularWorldsRequest,
-} from '@/shared/config/mods'
-import { JoyrideGuide, modsSteps } from '@/shared/lib/react-joyride'
 import { useGroupedCategories } from '@/shared/queries/mod'
 import { ModUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 import { Skeleton } from '@/shared/ui/skeleton'
 
-import { ModsCompilation } from '@/widgets/mods-compilation'
+import {
+	ModpacksCompilation,
+	ModsCompilation,
+	PluginsCompilation,
+	WorldsCompilation,
+} from '@/widgets/mods-compilation'
 
 import { useMods } from '../hooks'
-import { useFilteredMods } from '../queries'
 
 import styles from './styles.module.scss'
 
 export function Mods() {
-	const router = useRouter()
-
 	const serverHash = useStore($serverHash)
 
 	const { data: groupedCategories } = useGroupedCategories()
@@ -40,28 +31,8 @@ export function Mods() {
 
 	const { handleClassesOpen, handleClassesExpand } = functions
 
-	//#TODO: можно покрасивее сделать, вынести в отдельные 5 компонентов типа:
-	//PopularModpacksCompilation, ....
-	const { data: mods, isLoading: isModsLoading } = useFilteredMods(popularModsRequest)
-	const { data: modpacks } = useFilteredMods(popularModpacksRequest)
-	const { data: worlds } = useFilteredMods(popularWorldsRequest)
-	const { data: plugins } = useFilteredMods(popularPluginsRequest)
-	const { data: resourcePacks } = useFilteredMods(popularResourcePacksRequest)
-
-	const joyrideCallback = ({ status }: CallBackProps) => {
-		if (status === 'finished') {
-			router.push(ModUrls.mod(serverHash!, mods?.[0].id!))
-		}
-	}
-
 	return (
 		<>
-			<JoyrideGuide
-				steps={modsSteps}
-				callback={joyrideCallback}
-				scrollOffset={150}
-				run={mods && mods.length > 0}
-			/>
 			<div className={styles.container}>
 				{groupedCategories ? (
 					<nav className={styles.modNav}>
@@ -82,8 +53,8 @@ export function Mods() {
 									{groupedCategories?.map((group) => (
 										<li key={group.className}>
 											<div className={styles.group}>
-												<ul className={styles.categories}>
-													<h3 className={styles.class}>
+												<ul>
+													<h3>
 														<Link
 															href={ModUrls.search(serverHash!, {
 																classId: group.classId,
@@ -130,43 +101,10 @@ export function Mods() {
 					</div>
 				)}
 				<div className={styles.compilations}>
-					<div id="mods-compilation-step">
-						<ModsCompilation
-							title="Популярные моды"
-							viewAllLink={ModUrls.search(serverHash!, {
-								classId: CForgeModClassType.Mods,
-							})}
-							mods={mods || []}
-						/>
-					</div>
-					<ModsCompilation
-						title="Популярные сборки модов"
-						viewAllLink={ModUrls.search(serverHash!, {
-							classId: CForgeModClassType.Modpacks,
-						})}
-						mods={modpacks || []}
-					/>
-					<ModsCompilation
-						title="Популярные миры"
-						viewAllLink={ModUrls.search(serverHash!, {
-							classId: CForgeModClassType.Worlds,
-						})}
-						mods={worlds || []}
-					/>
-					<ModsCompilation
-						title="Популярные плагины"
-						viewAllLink={ModUrls.search(serverHash!, {
-							classId: CForgeModClassType.BukkitPlugins,
-						})}
-						mods={plugins || []}
-					/>
-					<ModsCompilation
-						title="Популярные пакеты ресурсов"
-						viewAllLink={ModUrls.search(serverHash!, {
-							classId: CForgeModClassType.ResourcePacks,
-						})}
-						mods={resourcePacks || []}
-					/>
+					<ModsCompilation />
+					<ModpacksCompilation />
+					<PluginsCompilation />
+					<WorldsCompilation />
 				</div>
 			</div>
 		</>

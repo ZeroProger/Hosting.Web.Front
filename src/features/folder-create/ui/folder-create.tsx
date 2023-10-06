@@ -32,7 +32,6 @@ export function FolderCreate() {
 						</div>
 					</div>
 					<Input type="text" className="text-lg" placeholder="Название папки" />
-					{/* #TODO: Расширение файла: Select с расширениями файла, которые можно создать, лучше их с бэка получать */}
 					<Button
 						variant="primary"
 						className="self-end h-auto py-1 text-lg"

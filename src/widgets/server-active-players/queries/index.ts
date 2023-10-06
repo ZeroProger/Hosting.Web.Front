@@ -7,7 +7,6 @@ import { $serverHash } from '@/shared/store'
 import { getActivePlayers } from '../api'
 import { serverActivePlayersPollingInterval } from '../config'
 
-//#TODO переделать на пуллинг
 export function useFetchServerActivePlayers() {
 	const serverHash = useStore($serverHash)
 

@@ -10,7 +10,6 @@ import { BanPlayer } from '@/features/ban-player'
 import { KickPlayer } from '@/features/kick-player'
 
 import { ServerUrls } from '@/shared/routes/urls'
-//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
 import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
 import { Skeleton } from '@/shared/ui/skeleton'

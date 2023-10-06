@@ -14,6 +14,7 @@ export const ReactQueryKeys = {
 	mod: 'mod',
 	modDescription: 'modDescription',
 	searchMods: 'searchMods',
+	modsCompilation: 'modsCompilation',
 	modsGroupedCategories: 'modsGroupedCategories',
 	modsCategories: 'modsCategories',
 	modsGameVersions: 'modsGameVersions',

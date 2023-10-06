@@ -1,9 +1,9 @@
-import { popularRequestPageSize } from '@/shared/config/mods'
 import { Skeleton, SkeletonList } from '@/shared/ui/skeleton'
+import { popularRequestPageSize } from '../config'
 
 import styles from './styles.module.scss'
 
-export function ModsCompilationLoading() {
+export function ModCardsCompilationLoading() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
