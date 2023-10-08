@@ -1,0 +1,45 @@
+.footer {
+	@apply bg-card shadow-card grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 px-8 py-6;
+
+	.column {
+		@apply flex flex-col items-start gap-2;
+
+		.logo {
+			@apply flex items-center gap-4;
+
+			.siteName {
+				@apply text-3xl uppercase font-medium;
+			}
+		}
+
+		.slogan {
+			@apply text-lg max-w-[250px];
+		}
+
+		.copyright {
+			@apply text-md;
+		}
+
+		.nav {
+			@apply flex flex-row gap-10;
+		}
+
+		.navList {
+			@apply flex flex-col gap-1;
+
+			.navItem {
+				a {
+					@apply text-lg transition-colors hover:text-primary;
+				}
+			}
+		}
+
+		.contactUs {
+			@apply text-lg mt-2;
+
+			a {
+				@apply transition-colors hover:text-primary;
+			}
+		}
+	}
+}

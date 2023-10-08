@@ -7,8 +7,8 @@ import { CForgeSoftwareType, modLoaders } from '@/shared/config/curse-forge'
 import { useSearchParams } from '@/shared/hooks'
 import { ModUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
-import { SubHeading } from '@/shared/ui/heading'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select'
+import { SubHeading } from '@/shared/ui/subheading'
 
 import styles from './styles.module.scss'
 

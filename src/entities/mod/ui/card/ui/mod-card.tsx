@@ -2,14 +2,16 @@
 
 import clsx from 'clsx'
 import { useStore } from 'effector-react'
-import { ArrowDownToLine, Clock3, PlusCircle } from 'lucide-react'
+import { ArrowDownToLine, Clock3 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import defaultModImage from '@/app/assets/images/logo-green.png'
 
+import { AddModToCart } from '@/features/add-mod-to-cart'
+import { RemoveModFromCart } from '@/features/remove-mod-from-cart'
+
 import { IMod } from '@/shared/api/curse-forge'
-import { useFetchServer } from '@/shared/queries/server'
 import { ModUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
@@ -21,12 +23,16 @@ import styles from './styles.module.scss'
 export function ModCard({ mod }: { mod: IMod }) {
 	const serverHash = useStore($serverHash)
 
-	const { data: server, isLoading } = useFetchServer(serverHash)
+	const {
+		isHover,
+		isModInCart,
+		formattedDownloadsCount,
+		formattedUpdateDate,
+		classTagName,
+		functions,
+	} = useModCard(mod)
 
-	const { isHover, formattedDownloadsCount, formattedUpdateDate, classTagName, functions } =
-		useModCard(mod)
-
-	const { handleAddModClick, handleMouseOver, handleMouseOut, handleCardClick } = functions
+	const { handleMouseOver, handleMouseOut, handleCardClick } = functions
 
 	return (
 		<li
@@ -34,7 +40,7 @@ export function ModCard({ mod }: { mod: IMod }) {
 			onMouseOver={handleMouseOver}
 			onMouseOut={handleMouseOut}
 		>
-			<Link href={ModUrls.mod(server?.gameServerHash!, mod.id)} onClick={handleCardClick}>
+			<Link href={ModUrls.mod(serverHash!, mod.id)} onClick={handleCardClick}>
 				<div className={styles.inner}>
 					<div className={styles.art}>
 						<Image
@@ -75,17 +81,13 @@ export function ModCard({ mod }: { mod: IMod }) {
 							</ul>
 							<div className={styles.actions}>
 								<Button asChild variant="outline" size="sm" className="py-0 text-md w-full">
-									<Link href={ModUrls.mod(server?.gameServerHash!, mod.id)}>Подробнее</Link>
+									<Link href={ModUrls.mod(serverHash!, mod.id)}>Подробнее</Link>
 								</Button>
-								<Button
-									variant="primary"
-									size="sm"
-									className="py-0 text-md w-full flex items-center gap-2 leading-[normal]"
-									onClick={handleAddModClick}
-								>
-									<PlusCircle size={20} />
-									Добавить
-								</Button>
+								{isModInCart ? (
+									<RemoveModFromCart mod={mod} size="sm" />
+								) : (
+									<AddModToCart mod={mod} size="sm" />
+								)}
 							</div>
 						</div>
 					</div>

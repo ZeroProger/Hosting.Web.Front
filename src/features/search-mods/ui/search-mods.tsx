@@ -42,7 +42,6 @@ export function SearchMods({ hideList = false }: { hideList?: boolean }) {
 					className="rounded-l-none h-auto p-4 focus-visible:ring-0 focus-visible:ring-offset-0"
 				>
 					<Link
-						className={styles.searchInputBtn}
 						href={
 							searchTerm.length > 0
 								? ModUrls.search(serverHash!, { searchFilter: searchTerm })

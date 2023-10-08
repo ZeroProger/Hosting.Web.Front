@@ -6,7 +6,6 @@ import { toastError } from '@/shared/lib/react-toastify'
 
 import { IServerStartRequest, IServerStartResponse } from '../types'
 
-// #TODO переписать под бек
 export async function startServer({ gameServerHash }: IServerStartRequest) {
 	try {
 		if (!gameServerHash) throw new Error('gameServerHash не указан')

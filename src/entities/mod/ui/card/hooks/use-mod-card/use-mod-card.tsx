@@ -1,8 +1,10 @@
-import { useCallback, useState } from 'react'
+import { useStore } from 'effector-react'
+import { useState } from 'react'
 
 import { IMod } from '@/shared/api/curse-forge'
 import { modClassesMap } from '@/shared/config/mods'
 import { useDebounce } from '@/shared/hooks'
+import { $modsCart } from '@/shared/store/mod'
 import { formatModDate, formatModDownloadsCount } from '@/shared/utils/format'
 
 export function useModCard(mod: IMod) {
@@ -13,10 +15,8 @@ export function useModCard(mod: IMod) {
 	const formattedUpdateDate = formatModDate(mod.dateModified)
 	const classTagName = modClassesMap.get(mod.classId)
 
-	const handleAddModClick = useCallback(() => {
-		//#TODO: add mod to cart
-		console.log(`add mod ${mod.id} to cart`)
-	}, [mod.id])
+	const modsCart = useStore($modsCart)
+	const isModInCart = modsCart.some((m) => m.id === mod.id)
 
 	const handleMouseOver = () => {
 		setIsHover(true)
@@ -40,11 +40,11 @@ export function useModCard(mod: IMod) {
 
 	return {
 		isHover: debouncedHover,
+		isModInCart,
 		formattedDownloadsCount,
 		formattedUpdateDate,
 		classTagName,
 		functions: {
-			handleAddModClick,
 			handleMouseOver,
 			handleMouseOut,
 			handleCardClick,

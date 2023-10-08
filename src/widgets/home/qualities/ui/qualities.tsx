@@ -3,7 +3,7 @@
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 
-import { SubHeading } from '@/shared/ui/heading'
+import { SubHeading } from '@/shared/ui/subheading'
 
 import { qualities } from '../config'
 

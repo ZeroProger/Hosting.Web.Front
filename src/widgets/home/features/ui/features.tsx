@@ -2,8 +2,9 @@
 
 import { motion } from 'framer-motion'
 
+import { SubHeading } from '@/shared/ui/subheading'
+
 import { features } from '../config'
-import { SubHeading } from '@/shared/ui/heading'
 
 import styles from './styles.module.scss'
 
@@ -25,9 +26,7 @@ export function Features() {
 							ease: 'backInOut',
 						}}
 					>
-						<div className={styles.icon}>
-							{feature.icon}
-						</div>
+						<div className={styles.icon}>{feature.icon}</div>
 						<div className={styles.text}>
 							<div className={styles.title}>{feature.title}</div>
 							<p className={styles.description}>{feature.description}</p>

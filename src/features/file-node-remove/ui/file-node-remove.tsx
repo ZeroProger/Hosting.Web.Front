@@ -34,7 +34,7 @@ export function FileNodeRemove({ path }: { path: string }) {
 					<AlertDialogTitle>Вы уверены?</AlertDialogTitle>
 					<AlertDialogDescription className="flex flex-col gap-2">
 						<span>Вы собираетесь удалить папку/файл по пути:</span>
-						<span className="text-primary">~/{path}</span>
+						<span className="font-bold text-foreground">~/{path}</span>
 					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>

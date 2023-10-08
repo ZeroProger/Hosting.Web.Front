@@ -7,10 +7,8 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { CallBackProps } from 'react-joyride'
 
-//import { ServerService } from 'services-temp/server-service'
-import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
+import { consoleSteps, JoyrideGuide } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'
-//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в store
 import { $serverHash } from '@/shared/store'
 import { IServerConsoleLineType } from '@/shared/types'
 import { Input } from '@/shared/ui/input'

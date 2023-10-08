@@ -81,20 +81,9 @@
 		}
 
 		.modActions {
-			@apply flex flex-row items-start gap-2;
+			@apply flex items-center gap-4;
+
 			grid-area: actions;
-
-			.favoriteBtn {
-				@apply bg-secondary px-2 py-2 w-[48px] h-[48px];
-			}
-
-			.addModBtn {
-				@apply bg-primary flex flex-row items-center gap-2 px-4 py-2 text-xl h-[48px];
-			}
-
-			.removeModBtn {
-				@apply bg-destructive flex flex-row items-center gap-2 px-4 py-2 text-xl h-[48px];
-			}
 		}
 	}
 

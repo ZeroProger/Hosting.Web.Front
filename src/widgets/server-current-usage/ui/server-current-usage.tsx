@@ -1,7 +1,5 @@
 'use client'
 
-//import { ServerService } from 'services-temp/server-service'
-//#TODO: избавиться от сервисов внутри widgets и entities и features, вынести логику в ./api внутри этих сущностей, или в shared/queries
 import { Progress } from '@/shared/ui/progress'
 import { Skeleton } from '@/shared/ui/skeleton'
 

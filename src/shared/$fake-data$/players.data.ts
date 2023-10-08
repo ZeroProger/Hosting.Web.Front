@@ -37,4 +37,28 @@ export const activePlayers: IActivePlayer[] = [
 		id: 3,
 		name: '4epanadjia',
 	},
+	{
+		id: 4,
+		name: 'ZeroProger',
+	},
+	{
+		id: 5,
+		name: 'kirieshki',
+	},
+	{
+		id: 6,
+		name: '4epanadjia',
+	},
+	{
+		id: 7,
+		name: 'ZeroProger',
+	},
+	{
+		id: 8,
+		name: 'kirieshki',
+	},
+	{
+		id: 9,
+		name: '4epanadjia',
+	},
 ]
