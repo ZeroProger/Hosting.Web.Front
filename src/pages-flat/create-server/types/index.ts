@@ -15,6 +15,7 @@ export enum ECreateServerFormModType {
 export enum ECreateServerFormStep {
 	PLAYERS = 1,
 	MOD_TYPES = 2,
+	TARIFF = 3,
 }
 
 export type CreateServerFormModType = {

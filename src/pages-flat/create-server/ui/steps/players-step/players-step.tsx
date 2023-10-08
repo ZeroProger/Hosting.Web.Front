@@ -8,14 +8,14 @@ import { Button } from '@/shared/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
 
-import { formSchema } from '../../config'
+import { formSchema } from '../../../config'
 import {
 	$serverCreateForm,
 	$serverCreateFormStep,
 	nextFormStep,
 	setServerCreateFormData,
-} from '../../model'
-import { ECreateServerFormStep, FormSchemaType } from '../../types'
+} from '../../../model'
+import { ECreateServerFormStep, FormSchemaType } from '../../../types'
 
 export function PlayersStep() {
 	const formState = useStore($serverCreateForm)

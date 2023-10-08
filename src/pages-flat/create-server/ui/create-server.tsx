@@ -1,4 +1,4 @@
-import { ModsStep, PlayersStep } from './steps'
+import { ModsStep, PlayersStep, TariffStep } from './steps'
 import styles from './styles.module.scss'
 
 export function ServerCreate() {
@@ -6,6 +6,7 @@ export function ServerCreate() {
 		<div className={styles.container}>
 			<PlayersStep />
 			<ModsStep />
+			<TariffStep />
 		</div>
 	)
 }
