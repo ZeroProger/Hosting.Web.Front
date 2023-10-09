@@ -1,3 +1,17 @@
 .container {
-	@apply block;
+	@apply w-full max-w-lg flex flex-col items-center gap-2;
+
+	.buttons {
+		@apply flex flex-col items-center justify-center gap-4;
+
+		button {
+			.title {
+				@apply text-xl font-bold;
+			}
+
+			.description {
+				@apply text-lg text-foreground/70;
+			}
+		}
+	}
 }
