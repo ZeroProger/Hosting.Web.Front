@@ -1,12 +1,20 @@
-import { ModsStep, PlayersStep, TariffStep } from './steps'
+import {
+	AdvancedTariffStep,
+	ChooseModeStep,
+	ModsStep,
+	PlayersStep,
+	ProposedTariffStep,
+} from './steps'
 import styles from './styles.module.scss'
 
 export function ServerCreate() {
 	return (
 		<div className={styles.container}>
+			<ChooseModeStep />
 			<PlayersStep />
 			<ModsStep />
-			<TariffStep />
+			<ProposedTariffStep />
+			<AdvancedTariffStep />
 		</div>
 	)
 }

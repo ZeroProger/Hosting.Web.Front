@@ -1,18 +1,19 @@
 'use client'
 
 import { formSchema } from '@/pages-flat/create-server/config'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useStore } from 'effector-react'
+import { useForm } from 'react-hook-form'
 import {
 	$serverCreateForm,
 	$serverCreateFormStep,
 	nextFormStep,
 	setServerCreateFormData,
-} from '@/pages-flat/create-server/model'
-import { ECreateServerFormStep, FormSchemaType } from '@/pages-flat/create-server/types'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useStore } from 'effector-react'
-import { useForm } from 'react-hook-form'
+} from '../../../model'
+import { ECreateServerFormStep, FormSchemaType } from '../../../types'
+import styles from './styles.module.scss'
 
-export function TariffStep() {
+export function ProposedTariffStep() {
 	const formState = useStore($serverCreateForm)
 	const formStep = useStore($serverCreateFormStep)
 
@@ -26,7 +27,7 @@ export function TariffStep() {
 		nextFormStep()
 	}
 
-	if (formStep !== ECreateServerFormStep.TARIFF) return null
+	if (formStep !== ECreateServerFormStep.PROPOSED_TARIFF) return null
 
-	return <span>{JSON.stringify(formState)}</span>
+	return <div className={styles.container}>ProposedTariffStep</div>
 }

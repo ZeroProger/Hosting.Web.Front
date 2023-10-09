@@ -53,7 +53,7 @@ export function ModsStep() {
 		nextFormStep()
 	}
 
-	if (formStep !== ECreateServerFormStep.MOD_TYPES) return null
+	if (formStep !== ECreateServerFormStep.MODS) return null
 
 	return (
 		<Form {...form}>
