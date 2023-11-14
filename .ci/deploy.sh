@@ -26,8 +26,8 @@ echo "[DEPLOY] Package starting..."
 echo "[DEPLOY] Will be packaged to the $DEPLOY_ARCHIVE file"
 
 echo "[DEPLOY] Switching to PROD environment..."
-rm -f ./.env
-cp ./.deploy/.prod-env ./.env
+rm -f ../.env
+cp ../.deploy/.prod-env ./.env
 echo "[DEPLOY] Successfully switched"
 
 echo "[DEPLOY] Installing NPM packages..."
