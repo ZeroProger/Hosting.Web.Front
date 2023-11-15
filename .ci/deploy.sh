@@ -17,6 +17,7 @@ check_for_var $MACHINE_USER
 echo "[DEPLOY] Prepare for deployment..."
 
 chmod 600 $MACHINE_PRIVATE_SSH_KEY
+cd .. #change working directory to project root
 
 echo "[DEPLOY] Prepare completed"
 
@@ -26,8 +27,8 @@ echo "[DEPLOY] Package starting..."
 echo "[DEPLOY] Will be packaged to the $DEPLOY_ARCHIVE file"
 
 echo "[DEPLOY] Switching to PROD environment..."
-rm -f ../.env
-cp ../.deploy/.prod-env ./.env
+rm -f ./.env
+cp .ci/.prod-env ./.env
 echo "[DEPLOY] Successfully switched"
 
 echo "[DEPLOY] Installing NPM packages..."
