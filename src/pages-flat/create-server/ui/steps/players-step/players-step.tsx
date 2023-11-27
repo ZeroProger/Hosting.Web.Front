@@ -13,6 +13,7 @@ import {
 	$serverCreateForm,
 	$serverCreateFormStep,
 	nextFormStep,
+	prevFormStep,
 	setServerCreateFormData,
 } from '../../../model'
 import { ECreateServerFormStep, FormSchemaType } from '../../../types'
@@ -31,23 +32,29 @@ export function PlayersStep() {
 		nextFormStep()
 	}
 
+	function handlePrevStepClick() {
+		prevFormStep()
+	}
+
 	if (formStep !== ECreateServerFormStep.PLAYERS) return null
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="w-max flex flex-col gap-6">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-2xl flex flex-col gap-6">
 				<FormField
 					control={form.control}
 					name="playersCount"
 					render={({ field }) => (
 						<FormItem className="space-y-0 flex flex-col items-center gap-6">
-							<FormLabel className="text-3xl">Сколько игроков будет играть на сервере?</FormLabel>
+							<FormLabel className="text-2xl sm:text-3xl text-center">
+								Сколько игроков будет играть на сервере?
+							</FormLabel>
 							<FormControl>
 								<Input
 									{...field}
 									type="number"
 									placeholder="Кол-во игроков"
-									className="text-2xl w-auto self-center"
+									className="text-xl sm:text-2xl w-auto self-center"
 									onChange={(e) => field.onChange(parseInt(e.target.value))}
 								/>
 							</FormControl>
@@ -55,9 +62,19 @@ export function PlayersStep() {
 						</FormItem>
 					)}
 				/>
-				<Button type="submit" variant="primary" className="text-2xl w-max px-8 self-center">
-					Далее
-				</Button>
+				<div className="flex flex-col-reverse xs:flex-row justify-center items-center gap-4">
+					<Button
+						type="button"
+						variant="outline"
+						className="text-xl sm:text-2xl w-max px-8"
+						onClick={handlePrevStepClick}
+					>
+						Назад
+					</Button>
+					<Button type="submit" variant="primary" className="text-xl sm:text-2xl w-max px-8">
+						Далее
+					</Button>
+				</div>
 			</form>
 		</Form>
 	)

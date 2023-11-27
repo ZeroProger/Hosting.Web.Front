@@ -1,26 +1,44 @@
 import { LogIn, User } from 'lucide-react'
-import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 
-import { ProfileUrls } from '@/shared/routes/urls'
+import { AuthUrls, ProfileUrls } from '@/shared/routes/urls'
 import { Button } from '@/shared/ui/button'
 
+import { AUTH_TOKEN_COOKIE_KEY, useAuth } from '@/entities/auth'
+import clsx from 'clsx'
+import Cookies from 'js-cookie'
 import styles from './styles.module.scss'
 
 export function ProfileButton() {
-	const { data: session } = useSession()
+	const { user, logout } = useAuth()
+	const authToken = Cookies.get(AUTH_TOKEN_COOKIE_KEY) || ''
 
-	if (session) {
+	const handleLogout = () => {
+		logout({ authToken: authToken })
+	}
+
+	if (user) {
 		return (
-			<Link href={ProfileUrls.profile()} className={styles.link}>
-				<User size={26} /> {session.user?.name}
-			</Link>
+			<div>
+				<Link href={ProfileUrls.profile()} className={styles.link}>
+					<User size={26} /> {user?.userName}
+				</Link>
+				<Button
+					variant={'ghost'}
+					className={clsx(styles.link, styles.primary)}
+					onClick={handleLogout}
+				>
+					Выйти
+				</Button>
+			</div>
 		)
 	}
 
 	return (
-		<Button onClick={() => signIn()} variant={'ghost'} className={styles.link}>
-			<LogIn size={26} /> Войти
+		<Button asChild variant={'ghost'} className={clsx(styles.link, styles.primary)}>
+			<Link href={AuthUrls.signIn()}>
+				<LogIn size={26} /> Войти
+			</Link>
 		</Button>
 	)
 }

@@ -16,6 +16,7 @@ import {
 	$serverCreateForm,
 	$serverCreateFormStep,
 	nextFormStep,
+	prevFormStep,
 	resetServerCreateFormMods,
 	setServerCreateFormData,
 } from '../../../model'
@@ -53,6 +54,10 @@ export function ModsStep() {
 		nextFormStep()
 	}
 
+	function handlePrevStepClick() {
+		prevFormStep()
+	}
+
 	if (formStep !== ECreateServerFormStep.MODS) return null
 
 	return (
@@ -63,7 +68,7 @@ export function ModsStep() {
 					name="mods"
 					render={({ field }) => (
 						<FormItem className="space-y-0 flex flex-col items-center gap-6">
-							<FormLabel className="text-3xl text-center">
+							<FormLabel className="text-2xl sm:text-3xl text-center">
 								Какие модификации планируете установить на сервер?
 							</FormLabel>
 							<FormControl>
@@ -122,8 +127,16 @@ export function ModsStep() {
 						</FormItem>
 					)}
 				/>
-				<div className="flex gap-2 w-full justify-center">
-					<Button type="submit" variant="primary" className="text-2xl w-max px-8">
+				<div className="flex flex-col-reverse xs:flex-row justify-center items-center gap-4">
+					<Button
+						type="button"
+						variant="outline"
+						className="text-xl sm:text-2xl w-max px-8"
+						onClick={handlePrevStepClick}
+					>
+						Назад
+					</Button>
+					<Button type="submit" variant="primary" className="text-xl sm:text-2xl w-max px-8">
 						Далее
 					</Button>
 				</div>

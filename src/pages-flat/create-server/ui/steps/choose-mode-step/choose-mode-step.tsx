@@ -27,7 +27,7 @@ export function ChooseModeStep() {
 				<Button
 					variant="outline"
 					onClick={easyModeClick}
-					className="h-auto flex flex-col gap-2 border-primary/70 hover:border-primary"
+					className="h-auto flex flex-col gap-2 hover:border-primary"
 				>
 					<span className={styles.title}>Да, мне нужна помощь с выбором</span>
 					<p className={styles.description}>
