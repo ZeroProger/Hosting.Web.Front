@@ -8,6 +8,7 @@ export interface IUser {
 
 export type AuthContextType = {
 	user: IUser | null
+	authToken: string | null
 	signIn: (request: ISignInRequest) => Promise<boolean>
 	signUp: (request: ISignUpRequest) => Promise<boolean>
 	logout: (request: ILogoutRequest) => void

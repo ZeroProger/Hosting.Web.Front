@@ -1,20 +1,24 @@
 import { LogIn, User } from 'lucide-react'
 import Link from 'next/link'
 
-import { AuthUrls, ProfileUrls } from '@/shared/routes/urls'
+import { AuthUrls, CommonUrls, ProfileUrls } from '@/shared/routes/urls'
 import { Button } from '@/shared/ui/button'
 
-import { AUTH_TOKEN_COOKIE_KEY, useAuth } from '@/entities/auth'
+import { useAuth } from '@/entities/auth'
 import clsx from 'clsx'
-import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
 import styles from './styles.module.scss'
 
 export function ProfileButton() {
-	const { user, logout } = useAuth()
-	const authToken = Cookies.get(AUTH_TOKEN_COOKIE_KEY) || ''
+	const router = useRouter()
+
+	const { user, authToken, logout } = useAuth()
 
 	const handleLogout = () => {
-		logout({ authToken: authToken })
+		if (authToken) {
+			logout({ authToken: authToken })
+			router.push(CommonUrls.home())
+		}
 	}
 
 	if (user) {

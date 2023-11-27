@@ -1,6 +1,5 @@
 import { useLocalStorage } from '@/shared/hooks'
 import { toastError } from '@/shared/lib/react-toastify'
-import { CommonUrls } from '@/shared/routes/urls'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { createContext, useContext, useEffect, useState } from 'react'
@@ -10,6 +9,7 @@ import { AuthContextType, ILogoutRequest, ISignInRequest, ISignUpRequest, IUser 
 
 export const authContext = createContext<AuthContextType>({
 	user: null,
+	authToken: null,
 	signIn: async () => false,
 	signUp: async () => false,
 	logout: async () => {},
@@ -21,11 +21,10 @@ export const useAuth = () => {
 
 export function useAuthProvider(): AuthContextType {
 	const [user, setUser] = useState<IUser | null>(null)
+	const [authToken, setAuthToken] = useState<string | null>(null)
 
 	const [userFromLS, setUserLS] = useLocalStorage<IUser | null>('user', null)
 	const [authTokenFromLS, setAuthTokenLS] = useLocalStorage<string>(AUTH_TOKEN_COOKIE_KEY, '')
-
-	const authTokenFromCookies = Cookies.get(AUTH_TOKEN_COOKIE_KEY)
 
 	const router = useRouter()
 
@@ -74,8 +73,6 @@ export function useAuthProvider(): AuthContextType {
 		localStorage.removeItem(AUTH_TOKEN_COOKIE_KEY)
 
 		Cookies.remove(AUTH_TOKEN_COOKIE_KEY)
-
-		router.push(CommonUrls.home())
 	}
 
 	useEffect(() => {
@@ -83,12 +80,14 @@ export function useAuthProvider(): AuthContextType {
 			setUser(userFromLS)
 		}
 		if (authTokenFromLS) {
+			setAuthToken(authTokenFromLS)
 			Cookies.set(AUTH_TOKEN_COOKIE_KEY, authTokenFromLS)
 		}
 	}, [userFromLS, authTokenFromLS])
 
 	return {
 		user,
+		authToken,
 		signIn: handleSignIn,
 		signUp: handleSignUp,
 		logout: handleLogout,
