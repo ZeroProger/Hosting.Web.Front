@@ -2,7 +2,7 @@
 
 import { useStore } from 'effector-react'
 import Link from 'next/link'
-import { useParams, usePathname } from 'next/navigation'
+import { useParams } from 'next/navigation'
 
 import { useFetchServer } from '@/shared/queries/server'
 import { ModUrls, ServerUrls } from '@/shared/routes/urls'
@@ -42,7 +42,6 @@ export function BreadcrumbItem({
 }
 
 export function Breadcrumbs() {
-	const pathname = usePathname()
 	const params = useParams()
 	const serverHash = useStore($serverHash)
 

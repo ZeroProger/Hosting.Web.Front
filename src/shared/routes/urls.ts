@@ -89,7 +89,6 @@ export const ModUrls = {
 export const AuthUrls = {
 	signIn: () => '/auth/sign-in',
 	signUp: () => '/auth/sign-up',
-	logout: () => '/auth/logout',
 }
 
 export const ProfileUrls = {

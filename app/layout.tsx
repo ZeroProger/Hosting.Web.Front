@@ -4,7 +4,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { MainProvider } from '@/app/providers/main-provider'
 import '@/app/styles/_globals.scss'
 
-import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 import { Main } from '@/widgets/main'
 
@@ -26,7 +25,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<div className="flex flex-col w-full h-full">
 						<Header />
 						<Main>{children}</Main>
-						<Footer />
 					</div>
 				</MainProvider>
 			</body>

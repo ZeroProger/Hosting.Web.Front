@@ -2,15 +2,13 @@ import { useStore } from 'effector-react'
 import { Package, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
 
 import siteLogo from '@/app/assets/images/logo-green.png'
 
-import { IMod } from '@/shared/api/curse-forge'
 import { useFetchServer } from '@/shared/queries/server'
 import { ModUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
-import { $modsCart, clearModsCart, removeModFromCart } from '@/shared/store/mod'
+import { $modsCart } from '@/shared/store/mod'
 import { Badge } from '@/shared/ui/badge'
 import { Button } from '@/shared/ui/button'
 import {
@@ -22,6 +20,7 @@ import {
 	DialogTrigger,
 } from '@/shared/ui/dialog'
 
+import { useModsCart } from '../hooks'
 import styles from './styles.module.scss'
 
 export function ModsCart() {
@@ -30,30 +29,15 @@ export function ModsCart() {
 
 	const { data: server } = useFetchServer(serverHash)
 
-	const [modalOpen, setModalOpen] = useState(false)
-
-	const handleRemoveModClick = (mod: IMod) => {
-		removeModFromCart(mod)
-	}
-
-	const handleModalOpenChange = (open: boolean) => {
-		setModalOpen(open)
-	}
-
-	const handleModalClose = () => {
-		setModalOpen(false)
-	}
-
-	const handleSubmitCart = () => {
-		//api request to install mods from cart
-		handleModalClose()
-		clearModsCart()
-	}
-
-	const handleClearCart = () => {
-		handleModalClose()
-		clearModsCart()
-	}
+	const { modalOpen, functions } = useModsCart()
+	const {
+		handleModalClose,
+		handleModalOpenChange,
+		handleRemoveModClick,
+		handleClearCart,
+		handleSubmitCart,
+		handleModLinkClick,
+	} = functions
 
 	if (modsCart.length === 0) return null
 

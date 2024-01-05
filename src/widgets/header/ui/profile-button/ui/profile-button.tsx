@@ -1,26 +1,48 @@
 import { LogIn, User } from 'lucide-react'
-import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 
-import { ProfileUrls } from '@/shared/routes/urls'
+import { AuthUrls, CommonUrls, ProfileUrls } from '@/shared/routes/urls'
 import { Button } from '@/shared/ui/button'
 
+import { useAuth } from '@/entities/auth'
+import clsx from 'clsx'
+import { useRouter } from 'next/navigation'
 import styles from './styles.module.scss'
 
 export function ProfileButton() {
-	const { data: session } = useSession()
+	const router = useRouter()
 
-	if (session) {
+	const { user, authToken, logout } = useAuth()
+
+	const handleLogout = () => {
+		if (authToken) {
+			logout({ authToken: authToken })
+			router.push(CommonUrls.home())
+		}
+	}
+
+	if (user) {
 		return (
-			<Link href={ProfileUrls.profile()} className={styles.link}>
-				<User size={26} /> {session.user?.name}
-			</Link>
+			<div className="flex items-center gap-2">
+				<Link href={ProfileUrls.profile()} className={styles.link}>
+					<User size={26} /> {user?.userName}
+				</Link>
+				<Button
+					variant={'ghost'}
+					className={clsx(styles.link, styles.primary)}
+					onClick={handleLogout}
+				>
+					Выйти
+				</Button>
+			</div>
 		)
 	}
 
 	return (
-		<Button onClick={() => signIn()} variant={'ghost'} className={styles.link}>
-			<LogIn size={26} /> Войти
+		<Button asChild variant={'ghost'} className={clsx(styles.link, styles.primary)}>
+			<Link href={AuthUrls.signIn()}>
+				<LogIn size={26} /> Войти
+			</Link>
 		</Button>
 	)
 }

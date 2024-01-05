@@ -2,12 +2,13 @@
 
 import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { SessionProvider } from 'next-auth/react'
 import { useEffect } from 'react'
 
 import { queryClient } from '@/shared/lib/react-query'
 import { ToastifyContainer } from '@/shared/lib/react-toastify'
 
+import { IS_DEV } from '@/shared/config/common/constants'
+import { AuthProvider } from './auth-provider'
 import { ThemeProvider } from './theme-provider'
 
 /**
@@ -33,14 +34,14 @@ export function MainProvider({ children }: { children: React.ReactNode }) {
 	}, [])
 
 	return (
-		<ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-			<SessionProvider>
+		<AuthProvider>
+			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
 				<QueryClientProvider client={queryClient}>
 					{children}
 					<ToastifyContainer />
-					<ReactQueryDevtools />
+					{IS_DEV && <ReactQueryDevtools />}
 				</QueryClientProvider>
-			</SessionProvider>
-		</ThemeProvider>
+			</ThemeProvider>
+		</AuthProvider>
 	)
 }

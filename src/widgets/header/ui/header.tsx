@@ -11,6 +11,7 @@ import { ServerSelect } from '@/widgets/server-select'
 
 import { useHeaderFixed } from '../hooks'
 
+import { useAuth } from '@/entities/auth'
 import { Burger } from './burger'
 import { Logo } from './logo'
 import { Menu } from './menu'
@@ -23,6 +24,7 @@ export function Header() {
 	const isHomePage = pathname === CommonUrls.home()
 
 	const { isFixed } = useHeaderFixed()
+	const { user } = useAuth()
 
 	const { data: userServers } = useFetchUserServers()
 
@@ -38,12 +40,18 @@ export function Header() {
 					<div className={styles.logo}>
 						<Logo />
 					</div>
-					<div className={styles.serverSelect}>
-						<ServerSelect servers={userServers || []} />
-					</div>
-					<div className={styles.nav}>
-						<Nav />
-					</div>
+					{user && (
+						<>
+							{userServers && userServers.length > 0 && (
+								<div className={styles.serverSelect}>
+									<ServerSelect servers={userServers} />
+								</div>
+							)}
+							<div className={styles.nav}>
+								<Nav />
+							</div>
+						</>
+					)}
 				</div>
 				<div className={styles.row}>
 					<ProfileButton />

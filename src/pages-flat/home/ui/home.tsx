@@ -1,3 +1,4 @@
+import { Footer } from '@/widgets/footer'
 import { About, Features, Qualities, TestBanner } from '@/widgets/home'
 
 import styles from './styles.module.scss'
@@ -13,6 +14,7 @@ export function Home() {
 				{/*<Pricing />
 				 */}
 			</div>
+			<Footer />
 		</section>
 	)
 }

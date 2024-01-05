@@ -20,7 +20,10 @@ export function ServerSelect({ servers }: { servers: IServer[] }) {
 
 	const { data: server } = useFetchServer(serverHash)
 
-	const defaultServer = servers.find((server) => server.gameServerHash === params?.serverHash)
+	const defaultServer =
+		servers && servers.length > 0
+			? servers.find((server) => server.gameServerHash === params?.serverHash)
+			: null
 
 	const handleResetServer = () => {
 		resetServerHashFx()
@@ -37,7 +40,7 @@ export function ServerSelect({ servers }: { servers: IServer[] }) {
 		closeHeaderMenu()
 	}
 
-	if (servers.length === 0) return null
+	if (!servers || servers.length) return null
 
 	return (
 		<Select
