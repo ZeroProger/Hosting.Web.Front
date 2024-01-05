@@ -8,7 +8,7 @@ export function useFetchServer(serverHash: string | null | undefined) {
 	return useQuery({
 		queryKey: [ReactQueryKeys.server, serverHash],
 		queryFn: () => getServer(serverHash),
-		// select: ({ data }) => data,
+		select: ({ data }) => data,
 		enabled: !!serverHash,
 	})
 }
@@ -17,6 +17,6 @@ export function useFetchUserServers() {
 	return useQuery({
 		queryKey: [ReactQueryKeys.userServers],
 		queryFn: () => getUserServers({ kind: 'minecraft' }),
-		// select: ({ data }) => data,
+		select: ({ data }) => data.servers,
 	})
 }

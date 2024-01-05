@@ -23,7 +23,7 @@ export function ProfileButton() {
 
 	if (user) {
 		return (
-			<div>
+			<div className="flex items-center gap-2">
 				<Link href={ProfileUrls.profile()} className={styles.link}>
 					<User size={26} /> {user?.userName}
 				</Link>

@@ -42,9 +42,11 @@ export function Header() {
 					</div>
 					{user && (
 						<>
-							<div className={styles.serverSelect}>
-								<ServerSelect servers={userServers || []} />
-							</div>
+							{userServers && userServers.length > 0 && (
+								<div className={styles.serverSelect}>
+									<ServerSelect servers={userServers} />
+								</div>
+							)}
 							<div className={styles.nav}>
 								<Nav />
 							</div>
