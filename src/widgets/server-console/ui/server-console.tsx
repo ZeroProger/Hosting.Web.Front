@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { useStore } from 'effector-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { CallBackProps } from 'react-joyride'
 
 import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
@@ -12,6 +13,7 @@ import { ServerUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 import { IServerConsoleLineType } from '@/shared/types'
 import { Input } from '@/shared/ui/input'
+import { Skeleton } from '@/shared/ui/skeleton'
 
 import { useServerConsole } from '../hooks'
 import { useFetchServerConsole } from '../queries'
@@ -27,7 +29,7 @@ export function ServerConsole({ mini = false }: { mini?: boolean }) {
 	const serverHash = useStore($serverHash)
 
 	const { data: server } = useFetchServer(serverHash)
-	const { data: serverConsole } = useFetchServerConsole()
+	const { data: serverConsole, isLoading } = useFetchServerConsole()
 
 	const joyrideCallback = ({ status }: CallBackProps) => {
 		if (status === 'finished') {
@@ -35,7 +37,13 @@ export function ServerConsole({ mini = false }: { mini?: boolean }) {
 		}
 	}
 
-	if (!serverConsole || !server?.isOnline)
+	useEffect(() => {
+		linesRef?.current?.scrollTo(0, linesRef?.current?.scrollHeight)
+	}, [serverConsole])
+
+	if (!server || isLoading) return <Skeleton className="w-full h-[400px]" />
+
+	if (!serverConsole || !server.isOnline) {
 		return (
 			<div
 				className={clsx(styles.consoleEmpty, {
@@ -46,6 +54,7 @@ export function ServerConsole({ mini = false }: { mini?: boolean }) {
 				<span>Запустите сервер для просмотра логов</span>
 			</div>
 		)
+	}
 
 	return (
 		<>

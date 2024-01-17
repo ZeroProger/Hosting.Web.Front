@@ -16,7 +16,7 @@
 			@apply flex flex-col gap-4;
 
 			.line {
-				@apply flex flex-row flex-nowrap items-center gap-4;
+				@apply flex flex-row flex-nowrap items-center gap-6;
 
 				.progress {
 					@apply flex flex-row flex-nowrap justify-between items-center gap-4 w-full min-w-[325px];

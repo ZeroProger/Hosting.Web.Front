@@ -41,14 +41,11 @@ export interface IServerProperty {
 
 export interface IServerMainInfo {
 	ip: string
-	software: string
+	software: string | null
 	version: string
-	otherInfo?: {
-		isOnline?: boolean
-		copyable?: boolean
-		isSoftware?: boolean
-		isVersion?: boolean
-	}
+	playersCount: string
+	maxPlayers: string
+	map: string
 }
 
 export enum IServerConsoleLineType {

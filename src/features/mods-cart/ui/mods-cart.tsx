@@ -2,6 +2,7 @@ import { useStore } from 'effector-react'
 import { Package, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect } from 'react'
 
 import siteLogo from '@/app/assets/images/logo-green.png'
 
@@ -21,6 +22,7 @@ import {
 } from '@/shared/ui/dialog'
 
 import { useModsCart } from '../hooks'
+
 import styles from './styles.module.scss'
 
 export function ModsCart() {
@@ -38,6 +40,12 @@ export function ModsCart() {
 		handleSubmitCart,
 		handleModLinkClick,
 	} = functions
+
+	useEffect(() => {
+		if (modsCart.length === 0) {
+			handleModalClose()
+		}
+	}, [modsCart])
 
 	if (modsCart.length === 0) return null
 

@@ -8,6 +8,7 @@ import { useFetchServer } from '@/shared/queries/server'
 import { ModUrls, ServerUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
+import { Skeleton } from '@/shared/ui/skeleton'
 
 import { ModTabs, ServerTabs } from '../config'
 import { useBreadcrumbs } from '../hooks'
@@ -48,8 +49,10 @@ export function Breadcrumbs() {
 	const { pathParts, functions } = useBreadcrumbs()
 	const { isModPathPart, isVersionPathPart } = functions
 
-	const { data: server } = useFetchServer(serverHash)
+	const { data: server, isLoading } = useFetchServer(serverHash)
 	const { data: mod } = useFetchMod(+params.modId)
+
+	if (isLoading) return <Skeleton className="w-full h-[50px]" />
 
 	if (!server) return null
 

@@ -23,22 +23,3 @@ export const bannedIps: IPlayerListItem[] = [
 	{ value: '215.53.75.14', id: 2 },
 	{ value: '174.102.54.19', id: 3 },
 ]
-
-export const activePlayers: IActivePlayer[] = [
-	{
-		id: 1,
-		name: 'ZeroProger',
-	},
-	{
-		id: 2,
-		name: 'kirieshki',
-	},
-	{
-		id: 3,
-		name: '4epanadjia',
-	},
-	{
-		id: 4,
-		name: 'ZeroProger',
-	},
-]
