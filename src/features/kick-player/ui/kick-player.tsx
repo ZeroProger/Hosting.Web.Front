@@ -21,7 +21,7 @@ export function KickPlayer({ playerNickname }: { playerNickname: string }) {
 	const kickPlayerMutation = useKickPlayerMutation()
 
 	const handleKickPlayer = () => {
-		kickPlayerMutation.mutateAsync(playerNickname)
+		kickPlayerMutation.mutateAsync({ playerNickname })
 	}
 
 	return (

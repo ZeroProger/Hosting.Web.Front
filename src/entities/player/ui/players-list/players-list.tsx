@@ -16,6 +16,7 @@ import { Input } from '@/shared/ui/input'
 
 import { DataListLoading } from '../list-loading'
 import styles from '../styles.module.scss'
+import playerHead from '@/app/assets/images/steve-head.webp'
 
 export function PlayersList({
 	players,

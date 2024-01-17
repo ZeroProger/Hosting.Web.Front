@@ -15,6 +15,7 @@ export function ToastifyContainer() {
 			pauseOnHover
 			draggable
 			theme="dark"
+			className="text-xl"
 		/>
 	)
 }

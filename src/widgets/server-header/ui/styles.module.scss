@@ -29,6 +29,10 @@
 				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-gray-400 z-1;
 			}
 
+			.subBarGame {
+				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-gray-400;
+			}
+
 			.subBarCore {
 				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-gray-400;
 			}

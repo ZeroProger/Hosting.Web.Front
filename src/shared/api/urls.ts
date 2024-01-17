@@ -30,6 +30,7 @@ export const ServerApiUrls = {
 	userServers: () => '/servers/private-servers',
 	publicServers: () => '/servers/public-servers',
 	sendCommand: () => '/servers/controller/send-message',
+	getServerInfo: () => '/servers/controller/get-server-info',
 	getServerLogs: () => '/servers/controller/get-server-logs',
 }
 

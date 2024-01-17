@@ -2,7 +2,9 @@
 
 import clsx from 'clsx'
 import { useStore } from 'effector-react'
-import { Bookmark, Globe, MoreHorizontal } from 'lucide-react'
+import { Bookmark, Gamepad2, Globe, MoreHorizontal } from 'lucide-react'
+
+import { useServerMainInfo } from '@/entities/server/model'
 
 import { ModsCart } from '@/features/mods-cart'
 import { StartServer } from '@/features/start-server'
@@ -23,6 +25,7 @@ export function ServerHeader() {
 	const serverHash = useStore($serverHash)
 
 	const { data: server, isLoading } = useFetchServer(serverHash)
+	const { mainInfo } = useServerMainInfo()
 
 	const getServerFullAddress = () => {
 		const controllerPort = server?.serverPorts.find((port) => port.portKind === 'controller')
@@ -65,18 +68,14 @@ export function ServerHeader() {
 						<Globe size={24} />
 						<span>{getServerFullAddress()}</span>
 					</div>
-					{/* {activePlayers && (
-						<div className={styles.subBarUsers}>
-							<AvatarGroup translate="no" animated={false} />
-							<span>{activePlayers.length} / 10</span>
-						</div>
-					)} */}
+					<div className={styles.subBarGame}>
+						<Gamepad2 size={24} />
+						<span>{server.gameKind}</span>
+					</div>
 					<div className={styles.subBarCore}>
 						<Bookmark />
 						<span>
-							{/* {server.software.name} {server.version.name} */}
-							{/* #TODO: Заглушка, потом поправить на данные с сервера */}
-							Vanila 1.19.3
+							{mainInfo?.software === null ? 'Vanila' : mainInfo?.software} {mainInfo?.version}
 						</span>
 					</div>
 					<div

@@ -21,7 +21,7 @@ export const overviewSteps: Step[] = [
 	{
 		content:
 			'Тут видны игроки находящиеся на сервере в данный момент, вы видите их роли, а также можете кикнуть или забанить их. Кнопка "Управление" переместит вас на страницу с подробным управлением игроками и их возможностями',
-		target: '.active-players',
+		target: '.online-players',
 		disableBeacon: true,
 		placement: 'top',
 		styles: { options: { width: 600 } },

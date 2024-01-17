@@ -8,7 +8,7 @@ import { JoyrideGuide, overviewSteps } from '@/shared/lib/react-joyride'
 import { ServerUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 
-import { ServerActivePlayers } from '@/widgets/server-active-players'
+import { ServerOnlinePlayers } from '@/widgets/server-online-players'
 import { ServerConsole } from '@/widgets/server-console'
 import { ServerCurrentUsage } from '@/widgets/server-current-usage'
 import { ServerMainInfo } from '@/widgets/server-main-info'
@@ -34,8 +34,8 @@ export function ServerOverview() {
 					<div className="main-info">
 						<ServerMainInfo />
 					</div>
-					<div className="active-players">
-						<ServerActivePlayers />
+					<div className="online-players">
+						<ServerOnlinePlayers />
 					</div>
 				</div>
 				<div className={styles.column}>
