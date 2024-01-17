@@ -1,7 +1,4 @@
-import { default as image1 } from '@/app/assets/images/head1.webp'
-import { default as image2 } from '@/app/assets/images/head2.png'
-import { default as image3 } from '@/app/assets/images/head3.webp'
-import image4 from '@/app/assets/images/head4.webp'
+import steveHead from '@/app/assets/images/steve-head.webp'
 
 import {
 	IFileNode,
@@ -40,22 +37,8 @@ export const servers: IServer[] = [
 
 export const serverMainInfo: IServerMainInfo[] = [
 	{
-		label: 'Статус',
-		value: 'Онлайн',
-		otherInfo: {
-			isOnline: true,
-		},
-	},
-	{
-		label: 'Игроки',
-		value: '4/8',
-		otherInfo: {
-			playersImages: [image1.src, image2.src, image3.src, image4.src],
-		},
-	},
-	{
 		label: 'IP',
-		value: 'arcade-sky.simplehost',
+		value: 'server-name.simplehost',
 		otherInfo: {
 			copyable: true,
 		},
@@ -421,9 +404,9 @@ export const serverConsole: IServerConsoleLine[] = [
 ]
 
 export const serverCurrentUsage: IServerCurrentUsageItem[] = [
-	{ label: 'Процессор', value: 58, maxValue: 100, color: 'purple', isPercent: true },
-	{ label: 'Опер. память', value: 716, maxValue: 2500, color: 'blue', valueUnit: 'MB' },
-	{ label: 'хранилище', value: 0.23, maxValue: 5, color: 'orange', valueUnit: 'GB' },
+	{ label: 'Процессор', value: 72, maxValue: 100, color: 'purple', isPercent: true },
+	{ label: 'Опер. память', value: 1780, maxValue: 2500, color: 'blue', valueUnit: 'MB' },
+	{ label: 'хранилище', value: 0.9, maxValue: 5, color: 'orange', valueUnit: 'GB' },
 ]
 
 export const filesTree: IFileNode[] = [

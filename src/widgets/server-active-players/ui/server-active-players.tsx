@@ -4,7 +4,7 @@ import { useStore } from 'effector-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import playerHead from '@/app/assets/images/head1.webp'
+import steveHead from '@/app/assets/images/steve-head.webp'
 
 import { BanPlayer } from '@/features/ban-player'
 import { KickPlayer } from '@/features/kick-player'
@@ -48,7 +48,7 @@ export function ServerActivePlayers() {
 						<div key={player.id} className={styles.row}>
 							<div className={styles.avatar}>
 								<Image
-									src={playerHead.src}
+									src={steveHead.src}
 									alt={`Аватар игрока ${player.name}`}
 									width={32}
 									height={32}

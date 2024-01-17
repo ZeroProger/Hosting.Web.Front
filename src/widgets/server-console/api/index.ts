@@ -1,12 +1,26 @@
-import { serverConsole } from '@/shared/$fake-data$/server.data'
+import { axiosAuth } from '@/shared/api/auth'
+import { ServerApiUrls } from '@/shared/api/urls'
 
 export function getServerConsole(serverHash: string) {
-	console.log('polling serverConsole...')
-	const c = Math.floor(Math.random() * serverConsole.length)
-	return serverConsole.concat(serverConsole.slice(0, c))
+	const logs = axiosAuth().post<{
+		Logs: {
+			Id: number
+			Record: string
+		}[]
+	}>(ServerApiUrls.getServerLogs(), { isLastLogs: false, page: null, gameServerHash: serverHash })
+
+	return logs
 }
 
-export async function sendCommandToServerConsole(serverHash: string, command: string) {
-	console.log(`API: send command \"${command}\" to server ${serverHash}`)
-	return
+export async function sendCommandToServerConsole(gameServerHash: string, message: string) {
+	const postSystem = 'rcon'
+
+	return axiosAuth().post<{ response: string; error: string; success: boolean }>(
+		ServerApiUrls.sendCommand(),
+		{
+			gameServerHash,
+			message,
+			postSystem,
+		}
+	)
 }

@@ -3,6 +3,8 @@
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
 
+import { useAuth } from '@/entities/auth'
+
 import { cn } from '@/shared/lib/utils'
 import { useFetchUserServers } from '@/shared/queries/server'
 import { CommonUrls } from '@/shared/routes/urls'
@@ -11,7 +13,6 @@ import { ServerSelect } from '@/widgets/server-select'
 
 import { useHeaderFixed } from '../hooks'
 
-import { useAuth } from '@/entities/auth'
 import { Burger } from './burger'
 import { Logo } from './logo'
 import { Menu } from './menu'
@@ -31,7 +32,7 @@ export function Header() {
 	return (
 		<header
 			className={cn(styles.header, {
-				[styles.isFixed]: isFixed,
+				[styles.isFixed]: false,
 				[styles.landscape]: isHomePage,
 			})}
 		>

@@ -18,6 +18,8 @@ export async function stopServer({ gameServerHash }: IServerStopRequest) {
 		if (!response.data.success) throw new Error('Не удалось остановить сервер')
 
 		toast.success('Сервер остановлен')
+
+		return response.data
 	} catch (error) {
 		toastError(error)
 	}

@@ -4,15 +4,14 @@ import clsx from 'clsx'
 import { useStore } from 'effector-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 import { CallBackProps } from 'react-joyride'
 
-import { consoleSteps, JoyrideGuide } from '@/shared/lib/react-joyride'
+import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
+import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 import { IServerConsoleLineType } from '@/shared/types'
 import { Input } from '@/shared/ui/input'
-import { Skeleton } from '@/shared/ui/skeleton'
 
 import { useServerConsole } from '../hooks'
 import { useFetchServerConsole } from '../queries'
@@ -27,7 +26,8 @@ export function ServerConsole({ mini = false }: { mini?: boolean }) {
 
 	const serverHash = useStore($serverHash)
 
-	const { data: serverConsole, isLoading } = useFetchServerConsole()
+	const { data: server } = useFetchServer(serverHash)
+	const { data: serverConsole } = useFetchServerConsole()
 
 	const joyrideCallback = ({ status }: CallBackProps) => {
 		if (status === 'finished') {
@@ -35,13 +35,17 @@ export function ServerConsole({ mini = false }: { mini?: boolean }) {
 		}
 	}
 
-	useEffect(() => {
-		linesRef?.current?.scrollTo(0, linesRef?.current?.scrollHeight)
-	}, [serverConsole])
-
-	if (isLoading) return <Skeleton className="w-full h-[375px]" />
-
-	if (!serverConsole) return null
+	if (!serverConsole || !server?.isOnline)
+		return (
+			<div
+				className={clsx(styles.consoleEmpty, {
+					[styles.consoleEmptyFull]: !mini,
+				})}
+			>
+				<span>Здесь пока пусто</span>
+				<span>Запустите сервер для просмотра логов</span>
+			</div>
+		)
 
 	return (
 		<>
@@ -58,27 +62,16 @@ export function ServerConsole({ mini = false }: { mini?: boolean }) {
 				<div className={styles.hr}></div>
 				<div className={styles.body}>
 					<div className={styles.lines} ref={linesRef}>
-						{serverConsole.length === 0 && (
-							<div
-								className={clsx(styles.consoleEmpty, {
-									[styles.consoleEmptyFull]: !mini,
-								})}
-							>
-								<span>Здесь пока пусто</span>
-								<span>Запустите сервер для просмотра логов</span>
-							</div>
-						)}
 						{serverConsole.map((line) => (
 							<div
-								key={line.id}
+								key={line.Id}
 								className={clsx(styles.line, {
-									[styles.error]: line.type === IServerConsoleLineType.Error,
-									[styles.warn]: line.type === IServerConsoleLineType.Warning,
+									[styles.error]: line.Record.indexOf(IServerConsoleLineType.Error) !== -1,
+									[styles.warn]: line.Record.indexOf(IServerConsoleLineType.Warning) !== -1,
 								})}
 							>
-								<div className={styles.info}>
-									{`[${line.time} - ${line.type}]: `}
-									<span className={styles.message}>{line.message}</span>
+								<div className={styles.messageWrapper}>
+									<span className={styles.message}>{line.Record}</span>
 								</div>
 							</div>
 						))}

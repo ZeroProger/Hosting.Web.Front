@@ -60,7 +60,7 @@ export interface IServerConsoleRequest {
 export interface IServerConsoleResponse {}
 
 export interface IServerSendCommandToConsoleRequest {
-	command: string
+	message: string
 }
 
 export interface IServerSendCommandToConsoleResponse {}

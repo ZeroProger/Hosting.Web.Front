@@ -40,21 +40,21 @@ export interface IServerProperty {
 }
 
 export interface IServerMainInfo {
-	label: string
-	value: string
+	ip: string
+	software: string
+	version: string
 	otherInfo?: {
 		isOnline?: boolean
 		copyable?: boolean
 		isSoftware?: boolean
 		isVersion?: boolean
-		playersImages?: string[]
 	}
 }
 
 export enum IServerConsoleLineType {
-	Error = 'ERROR',
-	Warning = 'WARNING',
-	Info = 'INFO',
+	Error = '/ERROR',
+	Warning = '/WARN',
+	Info = '/INFO',
 }
 
 export interface IServerConsoleLine {

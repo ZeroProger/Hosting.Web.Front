@@ -1,11 +1,10 @@
 import { serverCurrentUsage } from '@/shared/$fake-data$/server.data'
 
 export function getServerCurrentUsage() {
-	console.log('polling serverCurrentUsage...')
-
 	return serverCurrentUsage.map((item) => {
-		const max = item.maxValue
-		const randValue = Math.random() * max
+		const max = item.value + item.value * 0.05
+		const min = item.value - item.value * 0.05
+		const randValue = Math.random() * (max - min) + min
 
 		return {
 			...item,

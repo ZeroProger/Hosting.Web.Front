@@ -40,7 +40,7 @@ export function ServerSelect({ servers }: { servers: IServer[] }) {
 		closeHeaderMenu()
 	}
 
-	if (!servers || servers.length) return null
+	if (!servers || servers.length === 0) return null
 
 	return (
 		<Select

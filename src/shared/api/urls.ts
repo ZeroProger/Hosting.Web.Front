@@ -21,14 +21,16 @@ export const AuthApiUrls = {
 
 //#TODO: не забыть
 export const ServerApiUrls = {
-	create: () => '/server/create',
-	start: () => '/server/start',
-	stop: () => '/server/stop',
+	create: () => '/server/start',
+	start: () => '/servers/controller/start-server',
+	stop: () => '/servers/controller/stop-server',
 	update: () => '/server/update',
 	remove: () => '/server/remove',
 	server: (hash: string) => `/server/${hash}`,
 	userServers: () => '/servers/private-servers',
 	publicServers: () => '/servers/public-servers',
+	sendCommand: () => '/servers/controller/send-message',
+	getServerLogs: () => '/servers/controller/get-server-logs',
 }
 
 export const SubscriptionApiUrls = {}

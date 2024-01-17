@@ -17,6 +17,8 @@ export async function startServer({ gameServerHash }: IServerStartRequest) {
 		if (!response.data.success) throw new Error('Не удалось запустить сервер')
 
 		toast.success('Сервер запущен')
+
+		return response.data
 	} catch (error) {
 		toastError(error)
 	}

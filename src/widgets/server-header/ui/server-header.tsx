@@ -24,6 +24,14 @@ export function ServerHeader() {
 
 	const { data: server, isLoading } = useFetchServer(serverHash)
 
+	const getServerFullAddress = () => {
+		const controllerPort = server?.serverPorts.find((port) => port.portKind === 'controller')
+
+		const serverPort = server?.serverPorts.find((port) => port.port !== controllerPort?.port)
+
+		return `${server?.serverIp}:${serverPort?.port}`
+	}
+
 	if (!server || isLoading) return <ServerHeaderLoading />
 
 	return (
@@ -55,14 +63,7 @@ export function ServerHeader() {
 				<div className={styles.subBar}>
 					<div className={styles.subBarAddress}>
 						<Globe size={24} />
-						<span>
-							{server.serverPorts.length > 0 ? (
-								//#TODO: getServerFullAddress
-								<>{server.serverIp}</>
-							) : (
-								<>Запустите сервер для получения IP</>
-							)}
-						</span>
+						<span>{getServerFullAddress()}</span>
 					</div>
 					{/* {activePlayers && (
 						<div className={styles.subBarUsers}>

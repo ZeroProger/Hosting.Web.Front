@@ -22,28 +22,12 @@
 			@apply overflow-auto h-[450px] max-h-[450px];
 
 			.line {
-				@apply text-xl;
-			}
-
-			.consoleEmpty {
-				@apply w-full flex flex-col items-center justify-center gap-2 h-[250px];
-
-				span {
-					@apply text-2xl;
-				}
-
-				&.consoleEmptyFull {
-					@apply h-full;
-				}
-			}
-
-			.line {
 				@apply w-full text-xl px-2;
 
 				&.error {
 					@apply bg-destructive text-destructive-foreground;
 
-					.info {
+					.messageWrapper {
 						@apply text-destructive-foreground;
 
 						.message {
@@ -55,7 +39,7 @@
 				&.warn {
 					@apply bg-warn text-warn-foreground;
 
-					.info {
+					.messageWrapper {
 						@apply text-warn-foreground;
 
 						.message {
@@ -64,7 +48,7 @@
 					}
 				}
 
-				.info {
+				.messageWrapper {
 					@apply text-gray-100;
 
 					.message {
@@ -106,5 +90,17 @@
 				@apply text-lg;
 			}
 		}
+	}
+}
+
+.consoleEmpty {
+	@apply bg-card shadow-card rounded-layout w-full flex flex-col items-center justify-center gap-2 h-[250px];
+
+	span {
+		@apply text-2xl;
+	}
+
+	&.consoleEmptyFull {
+		@apply h-[500px];
 	}
 }

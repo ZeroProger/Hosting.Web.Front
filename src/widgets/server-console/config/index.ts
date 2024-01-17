@@ -1,1 +1,1 @@
-export const serverConsolePollingInterval = 2000
+export const serverConsolePollingInterval = 1500

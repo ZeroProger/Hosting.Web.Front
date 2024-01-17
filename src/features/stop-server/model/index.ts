@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { ReactQueryKeys } from '@/shared/lib/react-query'
-import { toastError } from '@/shared/lib/react-toastify'
 
 import { stopServer } from '../api'
 
@@ -11,12 +10,9 @@ export function useStopServerMutation() {
 	return useMutation({
 		mutationFn: stopServer,
 		onSettled: async (response, error) => {
-			if (error === undefined || error === null) {
-				toastError(error)
-				return
+			if (response?.success) {
+				await queryClient.invalidateQueries([ReactQueryKeys.server])
 			}
-
-			await queryClient.invalidateQueries([ReactQueryKeys.server])
 		},
 	})
 }

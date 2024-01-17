@@ -5,8 +5,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { CallBackProps } from 'react-joyride'
 
-import playerHead from '@/app/assets/images/head1.webp'
-
 import { IPlayerListItem } from '@/shared/api/common'
 import { JoyrideGuide } from '@/shared/lib/react-joyride'
 import { playersCategorySteps } from '@/shared/lib/react-joyride/steps/players'
