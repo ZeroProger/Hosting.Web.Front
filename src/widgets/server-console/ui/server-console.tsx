@@ -4,7 +4,6 @@ import clsx from 'clsx'
 import { useStore } from 'effector-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 import { CallBackProps } from 'react-joyride'
 
 import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
@@ -37,11 +36,11 @@ export function ServerConsole({ mini = false }: { mini?: boolean }) {
 		}
 	}
 
-	useEffect(() => {
-		linesRef?.current?.scrollTo(0, linesRef?.current?.scrollHeight)
-	}, [serverConsole])
+	// useEffect(() => {
+	// 	linesRef?.current?.scrollTo(0, linesRef?.current?.scrollHeight)
+	// }, [serverConsole])
 
-	if (!server || isLoading) return <Skeleton className="w-full h-[400px]" />
+	if (!server) return <Skeleton className="w-full h-[400px]" />
 
 	if (!serverConsole || !server.isOnline) {
 		return (

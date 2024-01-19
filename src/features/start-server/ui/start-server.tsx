@@ -1,4 +1,5 @@
 import { useStore } from 'effector-react'
+import { Play } from 'lucide-react'
 
 import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
@@ -16,11 +17,12 @@ export function StartServer() {
 
 	return (
 		<Button
-			className="text-2xl flex flex-row items-center flex-nowrap gap-4"
+			className="text-xl flex flex-row items-center flex-nowrap gap-2"
 			onClick={handleClick}
 			disabled={isLoading}
-			variant="primary"
+			variant="ghost"
 		>
+			<Play size={24} className="text-primary fill-primary" />
 			Запустить
 		</Button>
 	)

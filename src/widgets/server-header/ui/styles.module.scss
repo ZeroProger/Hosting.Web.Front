@@ -22,19 +22,19 @@
 			@apply flex flex-row flex-wrap justify-start items-center gap-8;
 
 			.subBarAddress {
-				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-gray-400;
+				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-foreground/50;
 			}
 
 			.subBarUsers {
-				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-gray-400 z-1;
+				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-foreground/50 z-1;
 			}
 
 			.subBarGame {
-				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-gray-400;
+				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-foreground/50;
 			}
 
 			.subBarCore {
-				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-gray-400;
+				@apply flex flex-row flex-nowrap gap-2 items-center text-lg text-foreground/50;
 			}
 
 			.subBarStatus {
@@ -61,6 +61,12 @@
 				}
 			}
 		}
+
+		.actionsBar {
+			.serverActions {
+				@apply flex items-center gap-4;
+			}
+		}
 	}
 
 	.controls {
@@ -71,19 +77,6 @@
 
 		.otherActions {
 			@apply flex flex-row flex-nowrap items-center gap-8;
-
-			// #TODO: Поделиться кнопка
-			/* .otherActionsBtn {
-				@apply flex flex-row flex-nowrap items-center gap-2 text-lg;
-
-				.otherActionsIcon {
-					@apply text-primary text-2xl;
-				}
-
-				.otherActionsText {
-					@apply text-gray-200 text-2xl;
-				}
-			} */
 		}
 	}
 }
