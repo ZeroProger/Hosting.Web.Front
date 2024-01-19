@@ -38,7 +38,7 @@ export function ServerOnlinePlayers() {
 			<div className={styles.body}>
 				<div className={styles.rows}>
 					{onlinePlayers.length === 0 && (
-						<div className="flex justify-center items-center text-lg">
+						<div className="flex justify-center items-center text-xl pt-4 pb-2">
 							На сервере пока нет игроков
 						</div>
 					)}

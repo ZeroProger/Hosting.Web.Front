@@ -12,10 +12,12 @@
 	@apply flex flex-row flex-wrap justify-start items-center gap-x-10 gap-y-6;
 
 	.link {
-		@apply block py-4 transition-colors text-2xl;
+		@apply block py-4 text-2xl;
+
+		transition: color 0.2s ease-in;
 
 		&.isActiveLink {
-			@apply text-primary border-b-primary border-b-2 transition-all;
+			@apply text-primary border-b-primary border-b-2;
 		}
 
 		&:hover {

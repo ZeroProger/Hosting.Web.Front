@@ -64,8 +64,9 @@ export interface IServerMainInfoRequest {
 	postSystem: 'query'
 }
 
+//#TODO: fix when backend api route fixing
 export interface IServerMainInfoResponse extends ResponseResult {
-	'online-players': string[]
+	onlinePlayers: string[]
 	properties: {
 		plugins: string
 		hostname: string

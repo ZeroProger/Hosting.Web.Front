@@ -16,11 +16,13 @@ export function useServerMainInfo(): {
 	const { data: server } = useFetchServer(serverHash)
 	const { data: mainInfo, isLoading } = useFetchServerMainInfo()
 
-	if (mainInfo === undefined) {
+	console.log('useServerMainInfo:', mainInfo)
+
+	if (mainInfo === undefined || (server && !server.isOnline)) {
 		return {
 			mainInfo: null,
 			onlinePlayers: [],
-			isLoading,
+			isLoading: false,
 		}
 	}
 
@@ -33,7 +35,7 @@ export function useServerMainInfo(): {
 			map: mainInfo.properties.map,
 			software: null,
 		},
-		onlinePlayers: mainInfo['online-players'],
+		onlinePlayers: mainInfo.onlinePlayers,
 		isLoading,
 	}
 }

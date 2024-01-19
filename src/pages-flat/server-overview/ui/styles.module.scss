@@ -17,3 +17,11 @@
 		grid-template-columns: 1fr;
 	}
 }
+
+.card {
+	@apply flex flex-col gap-3 p-6 bg-card shadow-card rounded-layout;
+
+	.actions {
+		@apply flex flex-row justify-center items-center gap-4 flex-wrap;
+	}
+}
