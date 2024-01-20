@@ -16,8 +16,6 @@ export function useServerMainInfo(): {
 	const { data: server } = useFetchServer(serverHash)
 	const { data: mainInfo, isLoading } = useFetchServerMainInfo()
 
-	console.log('useServerMainInfo:', mainInfo)
-
 	if (mainInfo === undefined || (server && !server.isOnline)) {
 		return {
 			mainInfo: null,

@@ -9,5 +9,6 @@ export enum ECreateServerFormStep {
 	PLAYERS = 2,
 	MODS = 3,
 	PROPOSED_TARIFF = 4,
-	ADVANCED_TARIFF = 5
+	ADVANCED_TARIFF = 5,
+	SERVER_NAME = 6
 }

@@ -1,13 +1,30 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
+import { redirect, usePathname } from 'next/navigation'
+import { useEffect } from 'react'
+
+import { PrivateRoutes } from '@/app/config/private-routes'
+
+import { useAuth } from '@/entities/auth'
 
 import { cn } from '@/shared/lib/utils'
-import { CommonUrls } from '@/shared/routes/urls'
+import { AuthUrls, CommonUrls } from '@/shared/routes/urls'
 
 export function Main({ children }: { children: React.ReactNode }) {
 	const pathname = usePathname()
 	const isHomePage = pathname === CommonUrls.home()
+
+	const { user, authToken, logout } = useAuth()
+
+	useEffect(() => {
+		if (!authToken) {
+			PrivateRoutes.forEach((path) => {
+				if (pathname.startsWith(path)) {
+					redirect(AuthUrls.signIn())
+				}
+			})
+		}
+	}, [authToken, pathname])
 
 	return (
 		<main

@@ -1,20 +1,91 @@
-import {
-	AdvancedTariffStep,
-	ChooseModeStep,
-	ModsStep,
-	PlayersStep,
-	ProposedTariffStep,
-} from './steps'
+'use client'
+
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import zod from 'zod'
+
+import { IServerCreateResponse } from '@/entities/server/types/requests'
+
+import { axiosAuth } from '@/shared/api/auth'
+import { ServerApiUrls } from '@/shared/api/urls'
+import { ServerUrls } from '@/shared/routes/urls'
+import { Button } from '@/shared/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form'
+import { Input } from '@/shared/ui/input'
+
 import styles from './styles.module.scss'
 
+const formSchema = zod.object({
+	serverName: zod.string(),
+})
+
+type FormSchemaType = zod.infer<typeof formSchema>
+
+//#TODO: Полностью переделать создание, это тестовый вариант
 export function ServerCreate() {
+	const router = useRouter()
+	const form = useForm<FormSchemaType>({
+		resolver: zodResolver(formSchema),
+	})
+
+	async function onSubmit(data: FormSchemaType) {
+		const response = await axiosAuth().post<IServerCreateResponse>(ServerApiUrls.create(), {
+			name: data.serverName,
+			gameId: 1,
+			locationId: 1,
+			tariffId: '1',
+			period: 30,
+			isTestPeriod: false,
+			slots: 12,
+		})
+
+		if (response.data.success) {
+			router.push(ServerUrls.server.overview(response.data.gameServerHash))
+		}
+	}
+
 	return (
 		<div className={styles.container}>
-			<ChooseModeStep />
+			{/* <ChooseModeStep />
 			<PlayersStep />
 			<ModsStep />
 			<ProposedTariffStep />
 			<AdvancedTariffStep />
+			<ServerNameStep /> */}
+			<Form {...form}>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="w-full max-w-2xl flex flex-col gap-6"
+				>
+					<FormField
+						control={form.control}
+						name="serverName"
+						render={({ field }) => (
+							<FormItem className="space-y-0 flex flex-col items-center gap-6">
+								<FormLabel className="text-2xl sm:text-3xl text-center">
+									Введите название вашего сервера
+								</FormLabel>
+								<FormControl>
+									<Input
+										{...field}
+										type="text"
+										placeholder="Название сервера"
+										className="text-xl sm:text-2xl w-full self-center"
+										onChange={(e) => field.onChange(e.target.value)}
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<div className="flex flex-col-reverse xs:flex-row justify-center items-center gap-4">
+						<Button type="submit" variant="primary" className="text-xl sm:text-2xl w-max px-8">
+							Создать
+						</Button>
+					</div>
+				</form>
+			</Form>
 		</div>
 	)
 }
