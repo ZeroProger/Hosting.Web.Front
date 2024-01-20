@@ -11,6 +11,7 @@ export const formSchema = zod.object({
 		.min(minPlayers, 'На сервере не может играть меньше 2 человек')
 		.max(maxPlayers, 'Извините, мы пока не поддерживаем сервера с онлайном более 1000 человек'),
 	mods: zod.number().array(),
+	serverName: zod.string(),
 })
 
 export const formSteps = [

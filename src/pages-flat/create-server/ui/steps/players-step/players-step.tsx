@@ -28,6 +28,7 @@ export function PlayersStep() {
 	})
 
 	function onSubmit(data: FormSchemaType) {
+		console.log(formStep, data)
 		setServerCreateFormData(data)
 		nextFormStep()
 	}

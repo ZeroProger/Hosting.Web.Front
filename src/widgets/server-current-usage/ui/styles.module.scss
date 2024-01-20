@@ -12,6 +12,8 @@
 	}
 
 	.body {
+		@apply relative;
+
 		.lines {
 			@apply flex flex-col gap-4;
 
@@ -44,6 +46,10 @@
 					}
 				}
 			}
+		}
+
+		.offline {
+			@apply absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center;
 		}
 	}
 }

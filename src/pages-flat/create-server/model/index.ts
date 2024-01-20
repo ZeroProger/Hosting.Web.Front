@@ -1,6 +1,6 @@
 import { createEvent, createStore } from 'effector'
-import { formSteps } from '../config'
 
+import { formSteps } from '../config'
 import { ECreateServerFormStep, FormSchemaType } from '../types'
 
 export const prevFormStep = createEvent()
@@ -20,7 +20,7 @@ export const $serverCreateFormStep = createStore(ECreateServerFormStep.CHOOSE_MO
 export const setServerCreateFormData = createEvent<FormSchemaType>()
 export const resetServerCreateFormMods = createEvent()
 
-const defaultServerCreateForm: FormSchemaType = { playersCount: 2, mods: [] }
+const defaultServerCreateForm: FormSchemaType = { playersCount: 2, mods: [], serverName: '' }
 
 export const $serverCreateForm = createStore<FormSchemaType>(defaultServerCreateForm).on(
 	setServerCreateFormData,

@@ -54,11 +54,11 @@ export function ModsCart() {
 			<DialogTrigger asChild>
 				<Button
 					variant="ghost"
-					className="h-auto py-1 sm:px-2 px-4 text-lg gap-3 whitespace-nowrap relative"
+					className="h-auto p-3 lg:px-2 lg:py-1 text-lg gap-3 whitespace-nowrap relative"
 				>
 					<Badge content={modsCart.length}>
 						<Package size={24} />
-						<span className="hidden sm:inline">Моды к установке</span>
+						<span className="hidden lg:inline">Моды к установке</span>
 					</Badge>
 				</Button>
 			</DialogTrigger>

@@ -1,8 +1,10 @@
-import { useLocalStorage } from '@/shared/hooks'
-import { toastError } from '@/shared/lib/react-toastify'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { createContext, useContext, useEffect, useState } from 'react'
+
+import { useLocalStorage } from '@/shared/hooks'
+import { toastError } from '@/shared/lib/react-toastify'
+
 import { logout, signIn, signUp } from '../api'
 import { AUTH_TOKEN_COOKIE_KEY } from '../config'
 import { AuthContextType, ILogoutRequest, ISignInRequest, ISignUpRequest, IUser } from '../types'
@@ -65,7 +67,6 @@ export function useAuthProvider(): AuthContextType {
 
 		if (status !== 200) {
 			toastError('Ошибка выхода из системы')
-			return
 		}
 
 		setUser(null)
@@ -87,7 +88,7 @@ export function useAuthProvider(): AuthContextType {
 
 	return {
 		user,
-		authToken,
+		authToken: Cookies.get(AUTH_TOKEN_COOKIE_KEY) || null,
 		signIn: handleSignIn,
 		signUp: handleSignUp,
 		logout: handleLogout,

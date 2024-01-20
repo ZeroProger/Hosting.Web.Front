@@ -13,7 +13,7 @@ import styles from './styles.module.scss'
 
 export const ServerMainInfo: FC = () => {
 	const { mainInfo, isLoading } = useServerMainInfo()
-	console.log('component mainInfo:', mainInfo)
+
 	const handleCopyClick = (event: React.MouseEvent<HTMLElement>) => {
 		const copyText =
 			event.currentTarget.closest(`.${styles.value}`)?.querySelector('span')?.innerText || ''

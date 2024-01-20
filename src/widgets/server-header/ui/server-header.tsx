@@ -7,7 +7,6 @@ import { Gamepad2, Globe } from 'lucide-react'
 import { useServerMainInfo } from '@/entities/server/model'
 
 import { CheckServerTariff } from '@/features/check-server-tariff'
-import { ModsCart } from '@/features/mods-cart'
 import { ProlongServer } from '@/features/prolong-server'
 import { ReinstallServer } from '@/features/reinstall-server'
 import { RenameServer } from '@/features/rename-server'
@@ -76,9 +75,6 @@ export function ServerHeader() {
 						)}
 					>
 						<span>{server.isOnline ? 'Онлайн' : 'Оффлайн'}</span>
-					</div>
-					<div className={styles.cart}>
-						<ModsCart />
 					</div>
 				</div>
 			</div>
