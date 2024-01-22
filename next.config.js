@@ -2,7 +2,7 @@
 
 const nextConfig = {
 	reactStrictMode: true,
-	//output: 'export',
+	output: 'export',
 	poweredByHeader: false,
 	optimizeFonts: false,
 	//skipMiddlewareUrlNormalize: false,
@@ -24,18 +24,6 @@ const nextConfig = {
 			},
 		],
 		domains: ['media.forgecdn.net', 'www.youtube.com'],
-	},
-	async rewrites() {
-		return [
-			// {
-			// 	source: '/api/:path*',
-			// 	destination: `${process.env.SERVER_URL}/api/:path*`,
-			// },
-			{
-				source: '/uploads/:path*',
-				destination: `${process.env.SERVER_URL}/uploads/:path*`,
-			},
-		]
 	},
 }
 
