@@ -1,5 +1,9 @@
 'use client'
 
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
+import json from 'highlight.js/lib/languages/json'
+import yaml from 'highlight.js/lib/languages/yaml'
 import { redirect, usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
@@ -14,7 +18,9 @@ export function Main({ children }: { children: React.ReactNode }) {
 	const pathname = usePathname()
 	const isHomePage = pathname === CommonUrls.home()
 
-	const { user, authToken, logout } = useAuth()
+	const { authToken } = useAuth()
+
+	
 
 	useEffect(() => {
 		if (!authToken) {

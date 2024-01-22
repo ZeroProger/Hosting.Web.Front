@@ -1,6 +1,10 @@
 .container {
 	@apply flex flex-col gap-2;
 
+	pre > code {
+		@apply inline-block w-full bg-card rounded-layout shadow-card-sm px-4 py-2;
+	}
+
 	.header {
 		@apply flex flex-row items-center gap-1 bg-card p-2 rounded-layout shadow-card-sm;
 
@@ -72,4 +76,8 @@
 	.text {
 		@apply text-2xl;
 	}
+}
+
+.hide {
+	@apply hidden;
 }
