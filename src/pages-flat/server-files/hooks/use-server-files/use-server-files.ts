@@ -1,7 +1,12 @@
 import { useStore } from 'effector-react'
+import hljs from 'highlight.js/lib/core'
+import ini from 'highlight.js/lib/languages/ini'
+import javascript from 'highlight.js/lib/languages/javascript'
+import json from 'highlight.js/lib/languages/json'
+import yaml from 'highlight.js/lib/languages/yaml'
 import { useRouter, useSearchParams } from 'next/navigation'
 import numeral from 'numeral'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { ServerUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
@@ -14,12 +19,15 @@ export function useServerFiles() {
 	const searchParams = useSearchParams()
 	const path = searchParams.get('path') || ''
 	const serverHash = useStore($serverHash)
+	const fileContentRef = useRef<HTMLElement>(null)
 
 	const [fileNodesByPath, setFileNodesByPath] = useState<IFileNode[] | null>(null)
 	const [activeFilePath, setActiveFilePath] = useState<string | null>()
 
 	const { data: fileNodes } = useFetchServerFiles()
-	const { data: fileContent } = useFetchServerFileContent(path, { enabled: !!activeFilePath })
+	const { data: fileContent } = useFetchServerFileContent(path, {
+		enabled: !!activeFilePath,
+	})
 
 	useEffect(() => {
 		if (fileNodes) {
@@ -37,6 +45,28 @@ export function useServerFiles() {
 			}
 		}
 	}, [path, fileNodes, fileContent])
+
+	useEffect(() => {
+		hljs.registerLanguage('javascript', javascript)
+		hljs.registerLanguage('json', json)
+		hljs.registerLanguage('yaml', yaml)
+		hljs.registerLanguage('ini', ini)
+	}, [])
+
+	useEffect(() => {
+		if (!(fileContent && !fileNodesByPath)) {
+			if (fileContentRef && fileContentRef.current) {
+				delete fileContentRef.current.dataset.highlighted
+				fileContentRef.current.className = fileContentRef.current.className.replace(
+					/language-[a-z].*/g,
+					''
+				)
+			}
+		}
+		if (fileContent && fileContentRef && fileContentRef.current) {
+			hljs.highlightElement(fileContentRef.current)
+		}
+	}, [fileContent])
 
 	const filterFilesNodesByPath = (path: string) => {
 		if (!fileNodes) {
@@ -73,6 +103,7 @@ export function useServerFiles() {
 		serverHash,
 		path,
 		fileContent,
+		fileContentRef,
 		fileNodesByPath,
 		functions: {
 			formatBytes,
