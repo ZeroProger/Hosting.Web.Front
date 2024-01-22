@@ -55,6 +55,10 @@ export function About() {
 							<span className="text-primary font-bold">✓</span> Множество шаблонов создания сервера.
 						</p>
 						<p>
+							<span className="text-primary font-bold">✓</span> Автоматическая установка
+							модификаций.
+						</p>
+						<p>
 							<span className="text-primary font-bold">✓</span> Удобная панель управления.
 						</p>
 					</motion.div>

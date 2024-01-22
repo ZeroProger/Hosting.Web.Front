@@ -7,7 +7,7 @@ import { getPublicServers } from '../api'
 export function useFetchPublicServers() {
 	return useQuery({
 		queryKey: [ReactQueryKeys.publicServers],
-		queryFn: () => getPublicServers(),
-		select: (data) => data.data,
+		queryFn: () => getPublicServers({ kind: 'minecraft' }),
+		select: (data) => data.data.servers,
 	})
 }

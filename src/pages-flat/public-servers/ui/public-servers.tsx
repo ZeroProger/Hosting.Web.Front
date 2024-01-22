@@ -5,6 +5,7 @@ import { ServersList } from '@/entities/server'
 import { Heading } from '@/shared/ui/heading'
 
 import { useFetchPublicServers } from '../queries'
+
 import styles from './styles.module.scss'
 
 export function PublicServers() {

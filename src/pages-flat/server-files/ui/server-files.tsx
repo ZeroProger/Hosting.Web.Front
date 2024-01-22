@@ -1,10 +1,12 @@
 'use client'
 
+import 'highlight.js/styles/atom-one-dark.min.css'
 import { Home, Info } from 'lucide-react'
 
 import { FileCreate } from '@/features/file-create'
 import { FolderCreate } from '@/features/folder-create'
 
+import { cn } from '@/shared/lib/utils'
 import { Button } from '@/shared/ui/button'
 import { Heading } from '@/shared/ui/heading'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/shared/ui/tooltip'
@@ -16,7 +18,7 @@ import { FilesBreadcrumbs } from './files-breadcrumbs'
 import styles from './styles.module.scss'
 
 export function ServerFiles() {
-	const { path, fileContent, fileNodesByPath, functions } = useServerFiles()
+	const { path, fileContent, fileContentRef, fileNodesByPath, functions } = useServerFiles()
 
 	const { handleGoHome } = functions
 
@@ -54,7 +56,11 @@ export function ServerFiles() {
 					)}
 				</div>
 			</div>
-			{fileContent && !fileNodesByPath && <div>Контент: {fileContent}</div>}
+			<pre className={cn({ [styles.hide]: !(fileContent && !fileNodesByPath) })}>
+				<code ref={fileContentRef} className="text-lg">
+					{fileContent}
+				</code>
+			</pre>
 			{fileNodesByPath && <FileNodesList fileNodes={fileNodesByPath} />}
 		</div>
 	)
