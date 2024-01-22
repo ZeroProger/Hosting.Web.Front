@@ -13,6 +13,7 @@ export function useFetchServerFiles() {
 		queryKey: [ReactQueryKeys.serverFiles, serverHash],
 		queryFn: () => getServerFiles(serverHash),
 		enabled: !!serverHash,
+		select: (data) => data.data.files
 	})
 }
 
@@ -25,6 +26,7 @@ export function useFetchServerFileContent(
 	return useQuery({
 		queryKey: [ReactQueryKeys.serverFileContent, serverHash, path],
 		queryFn: () => getServerFileContent(serverHash, path),
+		select: (data) => data.data.content,
 		enabled: options.enabled,
 	})
 }

@@ -34,4 +34,9 @@ export const ServerApiUrls = {
 	getServerLogs: () => '/servers/controller/get-server-logs',
 }
 
+export const FilesApiUrls = {
+	filesList: () => '/files/list-directory',
+	fileContent: () => '/files/get-file-content'
+}
+
 export const SubscriptionApiUrls = {}

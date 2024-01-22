@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { useStore } from 'effector-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { CallBackProps } from 'react-joyride'
 
 import { JoyrideGuide, consoleSteps } from '@/shared/lib/react-joyride'
@@ -22,13 +23,14 @@ import styles from './styles.module.scss'
 export function ServerConsole({ mini = false }: { mini?: boolean }) {
 	const router = useRouter()
 
+	const [isInitialScrolled, setIsInitialScrolled] = useState(false)
 	const { inputRef, linesRef, inputValue, functions } = useServerConsole()
 	const { handleInput, clearInput, handleSend } = functions
 
 	const serverHash = useStore($serverHash)
 
 	const { data: server } = useFetchServer(serverHash)
-	const { data: serverConsole, isLoading } = useFetchServerConsole()
+	const { data: serverConsole } = useFetchServerConsole()
 
 	const joyrideCallback = ({ status }: CallBackProps) => {
 		if (status === 'finished') {
@@ -36,9 +38,12 @@ export function ServerConsole({ mini = false }: { mini?: boolean }) {
 		}
 	}
 
-	// useEffect(() => {
-	// 	linesRef?.current?.scrollTo(0, linesRef?.current?.scrollHeight)
-	// }, [serverConsole])
+	useEffect(() => {
+		if (linesRef && serverConsole && !isInitialScrolled) {
+			setIsInitialScrolled(true)
+			linesRef?.current?.scrollTo(0, linesRef?.current?.scrollHeight)
+		}
+	}, [linesRef, serverConsole, isInitialScrolled])
 
 	if (!server) return <Skeleton className="w-full h-[400px]" />
 
