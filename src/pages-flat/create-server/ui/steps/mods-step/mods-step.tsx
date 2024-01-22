@@ -2,15 +2,15 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useStore } from 'effector-react'
+import { X } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 
+import { useClickOutside } from '@/shared/hooks'
 import { Button } from '@/shared/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/shared/ui/form'
-
-import { useClickOutside } from '@/shared/hooks'
 import { Input } from '@/shared/ui/input'
 import { SubHeading } from '@/shared/ui/subheading'
-import { X } from 'lucide-react'
+
 import { formSchema } from '../../../config'
 import {
 	$serverCreateForm,
@@ -18,9 +18,11 @@ import {
 	nextFormStep,
 	prevFormStep,
 	resetServerCreateFormMods,
+	setFormStep,
 	setServerCreateFormData,
 } from '../../../model'
 import { ECreateServerFormStep, FormSchemaType } from '../../../types'
+
 import { useSelectMods } from './hooks'
 import styles from './styles.module.scss'
 
@@ -46,7 +48,7 @@ export function ModsStep() {
 		)
 		form.setValue('playersCount', formState.playersCount)
 		setServerCreateFormData(form.getValues())
-		nextFormStep()
+		setFormStep(ECreateServerFormStep.SERVER_NAME)
 	}
 
 	function handleWithoutModsClick() {

@@ -8,6 +8,6 @@ export function useFetchPublicServers() {
 	return useQuery({
 		queryKey: [ReactQueryKeys.publicServers],
 		queryFn: () => getPublicServers(),
-		select: (data) => data,
+		select: (data) => data.data,
 	})
 }

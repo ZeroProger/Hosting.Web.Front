@@ -12,11 +12,13 @@
 	}
 
 	.body {
+		@apply relative;
+
 		.lines {
 			@apply flex flex-col gap-4;
 
 			.line {
-				@apply flex flex-row flex-nowrap items-center gap-4;
+				@apply flex flex-row flex-nowrap items-center gap-6;
 
 				.progress {
 					@apply flex flex-row flex-nowrap justify-between items-center gap-4 w-full min-w-[325px];
@@ -44,6 +46,10 @@
 					}
 				}
 			}
+		}
+
+		.offline {
+			@apply absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center;
 		}
 	}
 }

@@ -73,7 +73,7 @@ const config: Config = {
 			spacing: {
 				layout: '2rem',
 				'layout-sm': '1rem',
-				header: '106px',
+				header: '92px',
 				'header-sm': '92px',
 			},
 			fontSize: {

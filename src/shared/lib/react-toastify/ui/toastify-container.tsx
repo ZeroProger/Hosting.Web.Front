@@ -6,7 +6,7 @@ export function ToastifyContainer() {
 	return (
 		<ToastContainer
 			position="bottom-right"
-			autoClose={3000}
+			autoClose={3500}
 			hideProgressBar={false}
 			newestOnTop={false}
 			rtl={false}
@@ -15,6 +15,8 @@ export function ToastifyContainer() {
 			pauseOnHover
 			draggable
 			theme="dark"
+			className="text-lg"
+			toastClassName="mb-0"
 		/>
 	)
 }

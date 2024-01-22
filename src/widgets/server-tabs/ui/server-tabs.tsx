@@ -25,7 +25,7 @@ export function ServerTabs({ serverHash }: { serverHash: string }) {
 					[styles.isActiveLink]: pathname?.startsWith(overviewUrl),
 				})}
 			>
-				Основая информация
+				Обзор
 			</Link>
 			<Link
 				href={playersUrl}
@@ -65,7 +65,7 @@ export function ServerTabs({ serverHash }: { serverHash: string }) {
 					[styles.isActiveLink]: pathname?.startsWith(backupsUrl),
 				})}
 			>
-				Резервные копии
+				Бэкапы
 			</Link>
 			<Link
 				href={settingsUrl}

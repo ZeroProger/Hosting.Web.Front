@@ -3,7 +3,6 @@ export const ReactQueryKeys = {
 	serverCurrentUsage: 'serverCurrentUsage',
 	serverMainInfo: 'serverMainInfo',
 	serverConsole: 'serverConsole',
-	serverActivePlayers: 'serverActivePlayers',
 	serverBackups: 'serverBackups',
 	serverSettings: 'serverSettings',
 	serverFiles: 'serverFiles',

@@ -2,7 +2,6 @@ import { toast } from 'react-toastify'
 
 import { axiosAuth } from '@/shared/api/auth'
 import { ServerApiUrls } from '@/shared/api/urls'
-import { toastError } from '@/shared/lib/react-toastify'
 
 import { IServerStartRequest, IServerStartResponse } from '../types'
 
@@ -19,7 +18,8 @@ export async function startServer({ gameServerHash }: IServerStartRequest) {
 		toast.success('Сервер запущен')
 
 		return response.data
-	} catch (error) {
-		toastError(error)
+	} catch (error: any) {
+		console.log(error?.response?.status)
+		if (error?.response?.status >= 400) toast.error('Не удалось запустить сервер')
 	}
 }

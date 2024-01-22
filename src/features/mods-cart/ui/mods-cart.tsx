@@ -2,6 +2,7 @@ import { useStore } from 'effector-react'
 import { Package, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect } from 'react'
 
 import siteLogo from '@/app/assets/images/logo-green.png'
 
@@ -21,6 +22,7 @@ import {
 } from '@/shared/ui/dialog'
 
 import { useModsCart } from '../hooks'
+
 import styles from './styles.module.scss'
 
 export function ModsCart() {
@@ -39,6 +41,12 @@ export function ModsCart() {
 		handleModLinkClick,
 	} = functions
 
+	useEffect(() => {
+		if (modsCart.length === 0) {
+			handleModalClose()
+		}
+	}, [modsCart])
+
 	if (modsCart.length === 0) return null
 
 	return (
@@ -46,11 +54,11 @@ export function ModsCart() {
 			<DialogTrigger asChild>
 				<Button
 					variant="ghost"
-					className="h-auto py-1 sm:px-2 px-4 text-lg gap-3 whitespace-nowrap relative"
+					className="h-auto p-3 lg:px-2 lg:py-1 text-lg gap-3 whitespace-nowrap relative"
 				>
 					<Badge content={modsCart.length}>
 						<Package size={24} />
-						<span className="hidden sm:inline">Моды к установке</span>
+						<span className="hidden lg:inline">Моды к установке</span>
 					</Badge>
 				</Button>
 			</DialogTrigger>

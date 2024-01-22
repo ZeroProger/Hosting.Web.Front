@@ -19,6 +19,7 @@ export function useFetchServerConsole() {
 		queryFn: () => getServerConsole(serverHash!),
 		enabled: !!serverHash && server !== undefined && server.isOnline,
 		select: (data) => data.data.Logs,
+		retry: 3,
 		refetchInterval: serverConsolePollingInterval,
 	})
 }

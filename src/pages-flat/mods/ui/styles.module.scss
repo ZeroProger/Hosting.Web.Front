@@ -4,8 +4,8 @@
 	.modNav {
 		@apply relative grid;
 
-		grid-template-areas: 'classes divider search';
-		grid-template-columns: auto auto 1fr;
+		grid-template-areas: 'classes divider search mods-cart';
+		grid-template-columns: auto auto 1fr auto;
 		grid-column-gap: 20px;
 		-moz-column-gap: 20px;
 		column-gap: 20px;
@@ -123,6 +123,12 @@
 
 		.search {
 			grid-area: search;
+		}
+
+		.modsCart {
+			@apply flex items-center;
+
+			grid-area: mods-cart;
 		}
 	}
 

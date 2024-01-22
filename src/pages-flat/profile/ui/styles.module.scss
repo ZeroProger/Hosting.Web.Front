@@ -1,0 +1,9 @@
+.container {
+	.link {
+		@apply flex items-center gap-2 text-xl;
+
+		&.primary {
+			@apply border-2 border-transparent duration-300 hover:border-primary hover:bg-transparent;
+		}
+	}
+}

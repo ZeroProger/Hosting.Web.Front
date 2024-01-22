@@ -1,79 +1,96 @@
 'use client'
 
 // import { Popover } from '@nextui-org/react'
-import clsx from 'clsx'
-import { useStore } from 'effector-react'
-import { PencilLine } from 'lucide-react'
-import Link from 'next/link'
+import { Copy, Info } from 'lucide-react'
 import { FC } from 'react'
+import { toast } from 'react-toastify'
 
-import { ServerUrls } from '@/shared/routes/urls'
-import { $serverHash } from '@/shared/store'
+import { useServerMainInfo } from '@/entities/server/model'
+
 import { Skeleton } from '@/shared/ui/skeleton'
-import { isUndefined } from '@/shared/utils/isUndefined'
-
-import { useFetchServerMainInfo } from '../queries'
 
 import styles from './styles.module.scss'
 
 export const ServerMainInfo: FC = () => {
-	const serverHash = useStore($serverHash)
-
-	const { data: mainInfo, isLoading } = useFetchServerMainInfo()
+	const { mainInfo, isLoading } = useServerMainInfo()
 
 	const handleCopyClick = (event: React.MouseEvent<HTMLElement>) => {
 		const copyText =
 			event.currentTarget.closest(`.${styles.value}`)?.querySelector('span')?.innerText || ''
+
 		navigator.clipboard.writeText(copyText)
+		toast('IP скопирован')
 	}
 
-	if (isLoading) return <Skeleton className="w-full h-[350px]" />
-
-	if (!mainInfo) return null
+	if (isLoading) return <Skeleton className="w-full h-[310px]" />
 
 	return (
 		<div className={styles.card}>
 			<div className={styles.header}>Основная информация</div>
 			<hr className={styles.hr} />
 			<div className={styles.body}>
-				<div className={styles.rows}>
-					{mainInfo.map((row) => (
-						<div key={row.label} className={styles.row}>
-							<div className={styles.label}>{row.label}</div>
+				{mainInfo === null ? (
+					<div className="flex justify-center pt-4 pb-2">
+						<span className="flex items-center gap-2 text-xl">
+							<Info />
+							Сервер выключен
+						</span>
+					</div>
+				) : (
+					<div className={styles.rows}>
+						<div className={styles.row}>
+							<div className={styles.label}>IP</div>
 							<div className={styles.value}>
-								<span
-									className={clsx({
-										[styles.copyable]: row.otherInfo?.copyable,
-										[styles.online]: row.otherInfo?.isOnline,
-										[styles.offline]:
-											!isUndefined(row.otherInfo?.isOnline) && !row.otherInfo?.isOnline,
-									})}
-								>
-									{row.value}
-									{!isUndefined(row.otherInfo?.playersImages) && <> онлайн</>}
-								</span>
-								{!isUndefined(row.otherInfo?.isSoftware) ||
-								!isUndefined(row.otherInfo?.isVersion) ? (
-									//#TODO: костыль, когда будут данные вместо 'fabric'
-									//подставлять .value Ядра
-									<Link
-										href={
-											row.otherInfo?.isSoftware
-												? ServerUrls.server.software(serverHash!)
-												: row.otherInfo?.isVersion
-												? ServerUrls.server.versions(serverHash!, 'vanila' /*server.software.slug*/)
-												: ServerUrls.server.overview(serverHash!)
-										}
-										className={styles.link}
-									>
-										<PencilLine size={24} />
-									</Link>
-								) : null}
+								<span>{mainInfo.ip}</span>
+								<div onClick={handleCopyClick}>
+									<Copy className="cursor-pointer" />
+								</div>
 							</div>
 						</div>
-					))}
-				</div>
+						<div className={styles.row}>
+							<div className={styles.label}>Игроки</div>
+							<div className={styles.value}>
+								<span>
+									{mainInfo.playersCount} / {mainInfo.maxPlayers}
+								</span>
+							</div>
+						</div>
+						<div className={styles.row}>
+							<div className={styles.label}>Ядро</div>
+							<div className={styles.value}>
+								<span>{mainInfo.software === null ? 'Vanila' : mainInfo.software}</span>
+							</div>
+						</div>
+						<div className={styles.row}>
+							<div className={styles.label}>Версия</div>
+							<div className={styles.value}>
+								<span>{mainInfo.version}</span>
+							</div>
+						</div>
+						<div className={styles.row}>
+							<div className={styles.label}>Карта</div>
+							<div className={styles.value}>
+								<span>{mainInfo.map}</span>
+							</div>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	)
 }
+
+// {!isUndefined(row.otherInfo?.isSoftware) || !isUndefined(row.otherInfo?.isVersion) ? (
+// 								<Link
+// 									href={
+// 										row.otherInfo?.isSoftware
+// 											? ServerUrls.server.software(serverHash!)
+// 											: row.otherInfo?.isVersion
+// 											? ServerUrls.server.versions(serverHash!, 'vanila' /*server.software.slug*/)
+// 											: ServerUrls.server.overview(serverHash!)
+// 									}
+// 									className={styles.link}
+// 								>
+// 									<PencilLine size={24} />
+// 								</Link>
+// 							) : null}

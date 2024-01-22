@@ -41,12 +41,6 @@ export interface IServerRequest {
 	gameServerHash: string
 }
 
-export interface IServerActivePlayersRequest {
-	gameServerHash: string
-}
-
-export interface IServerActivePlayersResponse {}
-
 export interface IServerCurrentUsageRequest {
 	gameServerHash: string
 }
@@ -66,10 +60,26 @@ export interface IServerSendCommandToConsoleRequest {
 export interface IServerSendCommandToConsoleResponse {}
 
 export interface IServerMainInfoRequest {
-	gameServerHash: string
+	gameServerHash: string | null | undefined
+	postSystem: 'query'
 }
 
-export interface IServerMainInfoResponse {}
+//#TODO: fix when backend api route fixing
+export interface IServerMainInfoResponse extends ResponseResult {
+	onlinePlayers: string[]
+	properties: {
+		plugins: string
+		hostname: string
+		hostip: string
+		numplayers: string
+		version: string
+		hostport: string
+		map: string
+		game_id: string
+		maxplayers: string
+		gametype: string
+	}
+}
 
 export interface IServerPropertiesRequest {
 	gameServerHash: string

@@ -12,6 +12,12 @@ interface IBasicDynamicMetadata extends Omit<Metadata, 'title'> {
 	title: (value?: string) => string
 }
 
+interface ISeoConfig {
+	server: IServerSeoConfig
+	common: ICommonSeoConfig
+	auth: IAuthSeoConfig
+}
+
 interface IServerSeoConfig {
 	overview: IBasicDynamicMetadata
 	players: IBasicDynamicMetadata
@@ -39,9 +45,9 @@ interface ICommonSeoConfig {
 	home: IBasicMetadata
 }
 
-interface ISeoConfig {
-	server: IServerSeoConfig
-	common: ICommonSeoConfig
+interface IAuthSeoConfig {
+	signIn: IBasicMetadata
+	signUp: IBasicMetadata
 }
 
 const ServerSeoConfig: IServerSeoConfig = {
@@ -99,6 +105,11 @@ const CommonSeoConfig: ICommonSeoConfig = {
 	},
 }
 
+const AuthSeoConfig: IAuthSeoConfig = {
+	signIn: { title: 'Вход в аккаунт', description: 'Войдите в свой аккаунт' },
+	signUp: { title: 'Регистрация', description: 'Зарегистрируйтесь сейчас и создайте сервер за несколько минут' },
+}
+
 export const SeoConfig: ISeoConfig = {
 	server: {
 		...ServerSeoConfig,
@@ -106,4 +117,7 @@ export const SeoConfig: ISeoConfig = {
 	common: {
 		...CommonSeoConfig,
 	},
+	auth: {
+		...AuthSeoConfig
+	}
 }

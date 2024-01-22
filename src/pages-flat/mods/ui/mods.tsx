@@ -5,6 +5,7 @@ import { useStore } from 'effector-react'
 import { ChevronDown, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
+import { ModsCart } from '@/features/mods-cart'
 import { SearchMods } from '@/features/search-mods'
 
 import { useGroupedCategories } from '@/shared/queries/mod'
@@ -94,12 +95,16 @@ export function Mods() {
 						<div className={styles.search}>
 							<SearchMods />
 						</div>
+						<div className={styles.modsCart}>
+							<ModsCart />
+						</div>
 					</nav>
 				) : (
 					<div className="w-full">
 						<Skeleton className="h-[56px]" />
 					</div>
 				)}
+
 				<div className={styles.compilations}>
 					<ModsCompilation />
 					<ModpacksCompilation />
