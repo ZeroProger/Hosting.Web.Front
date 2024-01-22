@@ -4,8 +4,6 @@ import clsx from 'clsx'
 import { useStore } from 'effector-react'
 import { Gamepad2, Globe } from 'lucide-react'
 
-import { useServerMainInfo } from '@/entities/server/model'
-
 import { CheckServerTariff } from '@/features/check-server-tariff'
 import { ProlongServer } from '@/features/prolong-server'
 import { ReinstallServer } from '@/features/reinstall-server'
@@ -24,7 +22,6 @@ export function ServerHeader() {
 	const serverHash = useStore($serverHash)
 
 	const { data: server, isLoading } = useFetchServer(serverHash)
-	const { mainInfo } = useServerMainInfo()
 
 	const getServerFullAddress = () => {
 		const controllerPort = server?.serverPorts.find((port) => port.portKind === 'controller')

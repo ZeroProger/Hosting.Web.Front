@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { Dot } from 'lucide-react'
 import Link from 'next/link'
 
 import { ServerUrls } from '@/shared/routes/urls'
@@ -37,10 +36,18 @@ function ItemWrapper({
 }
 
 function ItemContent({ server }: { server: IServer }) {
+	const getServerFullAddress = () => {
+		const controllerPort = server?.serverPorts.find((port) => port.portKind === 'controller')
+
+		const serverPort = server?.serverPorts.find((port) => port.port !== controllerPort?.port)
+
+		return `${server?.serverIp}:${serverPort?.port}`
+	}
+
 	return (
 		<>
 			<div className={styles.name}>{server.gameServerName}</div>
-			<div className={styles.ip}>{server.serverIp}</div>
+			<div className={styles.ip}>{getServerFullAddress()}</div>
 			<div
 				className={clsx(
 					styles.status,
