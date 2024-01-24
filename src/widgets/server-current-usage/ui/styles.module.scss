@@ -5,6 +5,10 @@
 
 	.header {
 		@apply text-2xl;
+
+		@include md(xs, 'max') {
+			@apply text-xl;
+		}
 	}
 
 	.hr {
@@ -20,8 +24,12 @@
 			.line {
 				@apply flex flex-row flex-nowrap items-center gap-6;
 
+				@include md(xs, 'max') {
+					@apply gap-2;
+				}
+
 				.progress {
-					@apply flex flex-row flex-nowrap justify-between items-center gap-4 w-full min-w-[325px];
+					@apply flex flex-row flex-nowrap justify-between items-center gap-4 w-full;
 
 					.label {
 						@apply flex gap-4 items-center text-xl capitalize whitespace-nowrap;
@@ -29,21 +37,31 @@
 						.dot {
 							@apply w-5 h-5 rounded-full inline-block;
 						}
+
+						@include md(xs, 'max') {
+							@apply text-md gap-2;
+
+							.dot {
+								@apply w-3 h-3;
+							}
+						}
 					}
 
 					.value {
 						@apply text-xl whitespace-nowrap;
+
+						@include md(lg, 'max') {
+							@apply w-auto;
+						}
+
+						@include md(xs, 'max') {
+							@apply text-md;
+						}
 					}
 				}
 
 				@include md(lg, 'max') {
 					@apply flex-wrap;
-
-					.progress {
-						.value {
-							@apply w-auto;
-						}
-					}
 				}
 			}
 		}

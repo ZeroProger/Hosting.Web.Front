@@ -32,7 +32,7 @@ export function ServerCurrentUsage() {
 					{currentUsage.map((item) => (
 						<div
 							key={item.label}
-							className={cn(styles.line, { 'opacity-10': server && !server.isOnline })}
+							className={cn(styles.line, { 'opacity-100': server && !server.isOnline })}
 						>
 							<div className={styles.progress}>
 								<div className={styles.label}>
@@ -49,14 +49,14 @@ export function ServerCurrentUsage() {
 						</div>
 					))}
 				</div>
-				{server && !server.isOnline && (
+				{/* {server && !server.isOnline && (
 					<div className={styles.offline}>
 						<span className="flex items-center gap-2 text-xl font-medium">
 							<Info size={24} strokeWidth={3} />
 							Нет процесса
 						</span>
 					</div>
-				)}
+				)} */}
 			</div>
 		</div>
 	)

@@ -1,3 +1,5 @@
+@import '@/app/styles/_mixins.scss';
+
 .card {
 	@apply flex flex-col bg-card shadow-card rounded-layout;
 
@@ -98,6 +100,10 @@
 
 	span {
 		@apply text-2xl text-center;
+
+		@include md(xs, 'max') {
+			@apply text-xl;
+		}
 	}
 
 	&.consoleEmptyFull {

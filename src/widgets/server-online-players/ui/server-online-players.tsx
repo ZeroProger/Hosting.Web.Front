@@ -1,6 +1,7 @@
 'use client'
 
 import { useStore } from 'effector-react'
+import { Settings2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -31,14 +32,17 @@ export function ServerOnlinePlayers() {
 			<div className={styles.header}>
 				<div className={styles.headerTitle}>Активные игроки</div>
 				<div className={styles.headerActions}>
-					<Link href={ServerUrls.server.players(serverHash!)}>Управление</Link>
+					<Link href={ServerUrls.server.players(serverHash!)}>
+						<Settings2 size={24} className="xs:hidden" />
+						<span className="hidden xs:block">Управление</span>
+					</Link>
 				</div>
 			</div>
 			<hr className={styles.hr} />
 			<div className={styles.body}>
 				<div className={styles.rows}>
 					{onlinePlayers.length === 0 && (
-						<div className="flex justify-center items-center text-xl pt-4 pb-2">
+						<div className="flex justify-center items-center text-xl text-center pt-4 pb-2">
 							На сервере пока нет игроков
 						</div>
 					)}

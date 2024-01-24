@@ -1,8 +1,14 @@
+@import '@/app/styles/_mixins.scss';
+
 .card {
 	@apply flex flex-col gap-3 p-6 bg-card shadow-card rounded-layout;
 
 	.header {
 		@apply text-2xl;
+
+		@include md(xs, 'max') {
+			@apply text-xl;
+		}
 	}
 
 	.hr {

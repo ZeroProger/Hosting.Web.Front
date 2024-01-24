@@ -25,7 +25,8 @@ export function ProfileButton() {
 		return (
 			<div className="flex items-center gap-2">
 				<Link href={ProfileUrls.profile()} className={styles.link}>
-					<User size={26} /> {user?.userName}
+					<User size={28} strokeWidth={2.5} />{' '}
+					<span className="hidden xs:inline">{user?.userName}</span>
 				</Link>
 			</div>
 		)

@@ -9,7 +9,7 @@
 } */
 
 .list {
-	@apply flex flex-row flex-wrap justify-start items-center gap-x-10 gap-y-6;
+	@apply flex flex-row flex-nowrap justify-start items-center gap-x-10 gap-y-6 overflow-x-auto;
 
 	.link {
 		@apply block py-4 text-2xl;
@@ -17,11 +17,11 @@
 		transition: color 0.2s ease-in;
 
 		&.isActiveLink {
-			@apply text-primary border-b-primary border-b-2;
+			@apply text-primary;
 		}
 
 		&:hover {
-			@apply text-primary/80 border-b-primary/80;
+			@apply text-primary/80;
 		}
 	}
 }

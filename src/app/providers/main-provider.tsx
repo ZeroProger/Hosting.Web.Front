@@ -4,10 +4,10 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useEffect } from 'react'
 
+import { IS_DEV } from '@/shared/config/common/constants'
 import { queryClient } from '@/shared/lib/react-query'
 import { ToastifyContainer } from '@/shared/lib/react-toastify'
 
-import { IS_DEV } from '@/shared/config/common/constants'
 import { AuthProvider } from './auth-provider'
 import { ThemeProvider } from './theme-provider'
 

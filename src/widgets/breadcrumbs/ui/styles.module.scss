@@ -1,8 +1,8 @@
 .breadcrumbs {
-	@apply bg-card shadow-card rounded-layout py-2 flex items-center flex-wrap px-4;
+	@apply bg-card shadow-card rounded-layout py-2 flex items-center flex-nowrap px-4 overflow-x-auto;
 
 	.breadcrumb {
-		@apply flex items-center;
+		@apply flex items-center whitespace-nowrap;
 
 		a {
 			@apply text-md xs:text-lg font-medium;
