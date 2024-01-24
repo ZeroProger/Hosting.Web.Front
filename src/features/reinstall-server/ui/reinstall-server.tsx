@@ -57,10 +57,10 @@ export function ReinstallServer() {
 			<DialogContent className="max-w-sm gap-4 place-items-center" hideClose>
 				<DialogHeader className="flex items-center">
 					<DialogTitle>Переустановить сервер</DialogTitle>
-					<DialogDescription className="text-muted-foreground text-md">
+					<DialogDescription className="text-muted-foreground text-center text-md">
 						Чтобы подтвердить переустановку сервера введите в поле ниже строку
 						<br />
-						<span className="text-primary">{reinstallCode}</span>
+						<span className="text-foreground text-lg font-medium">{reinstallCode}</span>
 					</DialogDescription>
 				</DialogHeader>
 				<div className={styles.container}>
