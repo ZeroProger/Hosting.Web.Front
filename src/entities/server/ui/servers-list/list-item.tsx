@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { ServerUrls } from '@/shared/routes/urls'
 import { IServer } from '@/shared/types'
 
+import { getServerFullAddress } from '../../model'
+
 import styles from './styles.module.scss'
 
 function ItemWrapper({
@@ -36,18 +38,10 @@ function ItemWrapper({
 }
 
 function ItemContent({ server }: { server: IServer }) {
-	const getServerFullAddress = () => {
-		const controllerPort = server?.serverPorts.find((port) => port.portKind === 'controller')
-
-		const serverPort = server?.serverPorts.find((port) => port.port !== controllerPort?.port)
-
-		return `${server?.serverIp}:${serverPort?.port}`
-	}
-
 	return (
 		<>
 			<div className={styles.name}>{server.gameServerName}</div>
-			<div className={styles.ip}>{getServerFullAddress()}</div>
+			<div className={styles.ip}>{getServerFullAddress(server)}</div>
 			<div
 				className={clsx(
 					styles.status,

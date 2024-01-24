@@ -14,6 +14,7 @@ import { $serverHash } from '@/shared/store'
 import { IServerConsoleLineType } from '@/shared/types'
 import { Input } from '@/shared/ui/input'
 import { Skeleton } from '@/shared/ui/skeleton'
+import { SubHeading } from '@/shared/ui/subheading'
 
 import { useServerConsole } from '../hooks'
 import { useFetchServerConsole } from '../queries'
@@ -65,7 +66,7 @@ export function ServerConsole({ mini = false }: { mini?: boolean }) {
 			{!mini && <JoyrideGuide steps={consoleSteps} callback={joyrideCallback} />}
 			<div className={clsx(styles.card, { [styles.mini]: mini })} id="server-console-step">
 				<div className={styles.header}>
-					<div className={styles.headerTitle}>Консоль</div>
+					<SubHeading>Консоль</SubHeading>
 					{!mini && (
 						<div className={styles.headerActions} id="server-logs-step">
 							<Link href={ServerUrls.server.logs(serverHash!)}>Журнал логов</Link>

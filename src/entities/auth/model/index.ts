@@ -63,17 +63,24 @@ export function useAuthProvider(): AuthContextType {
 	}
 
 	const handleLogout = async (request: ILogoutRequest) => {
-		const { status } = await logout(request)
+		try {
+			const { status } = await logout(request)
 
-		if (status !== 200) {
-			toastError('Ошибка выхода из системы')
+			if (status !== 200) {
+				toastError('Ошибка выхода из системы')
+			}
+			setUser(null)
+			localStorage.removeItem('user')
+			localStorage.removeItem(AUTH_TOKEN_COOKIE_KEY)
+
+			Cookies.remove(AUTH_TOKEN_COOKIE_KEY)
+		} catch (err) {
+			setUser(null)
+			localStorage.removeItem('user')
+			localStorage.removeItem(AUTH_TOKEN_COOKIE_KEY)
+
+			Cookies.remove(AUTH_TOKEN_COOKIE_KEY)
 		}
-
-		setUser(null)
-		localStorage.removeItem('user')
-		localStorage.removeItem(AUTH_TOKEN_COOKIE_KEY)
-
-		Cookies.remove(AUTH_TOKEN_COOKIE_KEY)
 	}
 
 	useEffect(() => {

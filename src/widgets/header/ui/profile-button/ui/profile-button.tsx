@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { LogIn, User } from 'lucide-react'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 import { useAuth } from '@/entities/auth'
 
@@ -10,9 +11,17 @@ import { Button } from '@/shared/ui/button'
 import styles from './styles.module.scss'
 
 export function ProfileButton() {
-	const { user } = useAuth()
+	const [isMount, setIsMount] = useState(false)
 
-	if (user) {
+	const { user, authToken } = useAuth()
+
+	useEffect(() => {
+		setIsMount(true)
+	}, [])
+
+	if (!isMount) return null
+
+	if (user || authToken) {
 		return (
 			<div className="flex items-center gap-2">
 				<Link href={ProfileUrls.profile()} className={styles.link}>

@@ -1,3 +1,4 @@
+import { createEvent, createStore } from 'effector'
 import { useStore } from 'effector-react'
 
 import { useFetchServer } from '@/shared/queries/server'
@@ -38,10 +39,23 @@ export function useServerMainInfo(): {
 	}
 }
 
-const getServerFullAddress = (server?: IServer) => {
-	const controllerPort = server?.serverPorts.find((port) => port.portKind === 'controller')
+export const getServerFullAddress = (server?: IServer) => {
+	if (!server) return 'Не удалось получить IP'
 
-	const serverPort = server?.serverPorts.find((port) => port.port !== controllerPort?.port)
+	const controllerPort = server.serverPorts.find((port) => port.portKind === 'controller')
 
-	return `${server?.serverIp}:${serverPort?.port}`
+	const serverPort = server.serverPorts.find((port) => port.port !== controllerPort?.port)
+
+	return `${server.serverIp}:${serverPort?.port}`
 }
+
+export const openServerSelect = createEvent()
+export const closeServerSelect = createEvent()
+export const toggleServerSelect = createEvent()
+
+export const $serverSelect = createStore<{ isServerSelectOpen: boolean }>({
+	isServerSelectOpen: false,
+})
+	.on(openServerSelect, () => ({ isServerSelectOpen: true }))
+	.on(closeServerSelect, () => ({ isServerSelectOpen: false }))
+	.on(toggleServerSelect, (state) => ({ isServerSelectOpen: !state.isServerSelectOpen }))

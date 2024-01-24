@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
+import { useAuth } from '@/entities/auth'
+
 import { ReactQueryKeys } from '@/shared/lib/react-query'
 
 import { getServer, getUserServers } from './api'
@@ -14,9 +16,11 @@ export function useFetchServer(serverHash: string | null | undefined) {
 }
 
 export function useFetchUserServers() {
+	const { authToken } = useAuth()
 	return useQuery({
 		queryKey: [ReactQueryKeys.userServers],
 		queryFn: () => getUserServers({ kind: 'minecraft' }),
 		select: ({ data }) => data.servers,
+		enabled: !!authToken,
 	})
 }
