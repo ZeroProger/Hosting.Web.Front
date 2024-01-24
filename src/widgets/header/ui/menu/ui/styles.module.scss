@@ -15,14 +15,14 @@
 	}
 
 	.content {
-		@apply flex flex-col gap-4 pt-[70px] pb-4 px-6;
+		@apply flex flex-col gap-4 pt-[70px] pb-4 px-6 h-full;
 
 		.serverSelect {
 			@apply block sm:hidden;
 		}
 
 		.list {
-			@apply flex flex-col gap-4;
+			@apply flex flex-col gap-4 flex-1;
 
 			.item {
 				@apply w-max p-2 text-2xl;

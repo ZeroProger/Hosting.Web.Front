@@ -1,3 +1,5 @@
+@import '@/app/styles/_mixins.scss';
+
 .container {
 	@apply flex flex-col gap-2;
 
@@ -60,11 +62,11 @@
 			@apply flex flex-row items-center gap-2 flex-nowrap bg-card px-4 rounded-layout shadow-card-sm transition-colors duration-200 border-2 border-card hover:border-primary;
 
 			.listItemName {
-				@apply text-lg flex-1 py-2;
+				@apply text-md xs:text-lg flex-1 py-2;
 			}
 
 			.listItemSize {
-				@apply bg-secondary rounded-md text-lg px-2 py-0;
+				@apply bg-secondary rounded-md text-sm xs:text-lg px-2 py-0;
 			}
 		}
 	}

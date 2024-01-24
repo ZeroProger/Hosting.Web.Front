@@ -50,7 +50,7 @@ const SelectContent = React.forwardRef<
 		>
 			<SelectPrimitive.Viewport
 				className={cn(
-					'p-1',
+					'p-0',
 					position === 'popper' &&
 						'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]'
 				)}
@@ -81,17 +81,12 @@ const SelectItem = React.forwardRef<
 	<SelectPrimitive.Item
 		ref={ref}
 		className={cn(
-			'relative flex w-full cursor-default select-none items-center rounded-layout py-1.5 px-4 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 z-select-item',
+			'relative flex w-full cursor-default items-center rounded-layout py-2 px-4 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 z-select-item',
 			className
 		)}
 		{...props}
 	>
-		{/* <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-			<SelectPrimitive.ItemIndicator>
-				<LuCheck className="h-4 w-4" />
-			</SelectPrimitive.ItemIndicator>
-		</span> */}
-		<SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+		{children}
 	</SelectPrimitive.Item>
 ))
 SelectItem.displayName = SelectPrimitive.Item.displayName

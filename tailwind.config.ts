@@ -74,6 +74,7 @@ const config: Config = {
 			spacing: {
 				layout: '2rem',
 				'layout-sm': '1rem',
+				'layout-xs': '0.5rem',
 				header: '92px',
 				'header-sm': '92px',
 			},

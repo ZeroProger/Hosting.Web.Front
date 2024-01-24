@@ -1,10 +1,8 @@
 'use client'
 
 import { useStore } from 'effector-react'
-import { useParams, usePathname, useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-
-import { $serverSelect, closeServerSelect, openServerSelect } from '@/entities/server/model'
 
 import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
@@ -15,10 +13,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 export function ServerSelect({ servers }: { servers: IServer[] }) {
 	const router = useRouter()
 	const params = useParams()
-	const pathname = usePathname()
 
 	const serverHash = useStore($serverHash)
-	const { isServerSelectOpen } = useStore($serverSelect)
 
 	const { data: server } = useFetchServer(serverHash)
 
@@ -32,15 +28,7 @@ export function ServerSelect({ servers }: { servers: IServer[] }) {
 	}
 
 	const handleSelect = (value: string) => {
-		if (isServerSelectOpen) {
-			router.push(ServerUrls.server.overview(value))
-		}
-	}
-
-	const handleOpenChange = (open: boolean) => {
-		if (open) {
-			openServerSelect()
-		}
+		router.push(ServerUrls.server.overview(value))
 	}
 
 	useEffect(() => {
@@ -49,12 +37,6 @@ export function ServerSelect({ servers }: { servers: IServer[] }) {
 		}
 	}, [params])
 
-	useEffect(() => {
-		if (isServerSelectOpen) {
-			closeServerSelect()
-		}
-	}, [pathname])
-
 	if (!servers || servers.length === 0) return null
 
 	return (
@@ -62,7 +44,6 @@ export function ServerSelect({ servers }: { servers: IServer[] }) {
 			value={server ? server.gameServerHash : ''}
 			defaultValue={defaultServer ? defaultServer.gameServerHash : ''}
 			onValueChange={handleSelect}
-			onOpenChange={handleOpenChange}
 		>
 			<SelectTrigger className="w-full text-xl px-4 bg-transparent">
 				<SelectValue aria-label={server ? server.gameServerName : 'Выберите сервер'}>

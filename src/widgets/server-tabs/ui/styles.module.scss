@@ -9,10 +9,10 @@
 } */
 
 .list {
-	@apply flex flex-row flex-nowrap justify-start items-center gap-x-10 gap-y-6 overflow-x-auto;
+	@apply flex flex-row flex-nowrap justify-start items-center gap-x-6 sm:gap-x-10 overflow-x-auto;
 
 	.link {
-		@apply block py-4 text-2xl;
+		@apply block py-3 sm:py-4 text-lg sm:text-xl md:text-2xl;
 
 		transition: color 0.2s ease-in;
 

@@ -3,7 +3,7 @@
 import { useStore } from 'effector-react'
 import { LocateOff, UserCheck, UserCog, UserX } from 'lucide-react'
 import Link from 'next/link'
-import { useParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { CallBackProps } from 'react-joyride'
 
 import { JoyrideGuide } from '@/shared/lib/react-joyride'
@@ -15,7 +15,6 @@ import styles from './styles.module.scss'
 
 export function ServerPlayers() {
 	const router = useRouter()
-	const params = useParams()
 
 	const serverHash = useStore($serverHash)
 
